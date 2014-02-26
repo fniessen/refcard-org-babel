@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-02-26 Wed 21:50>
+#+Time-stamp: <2014-02-26 Wed 22:52>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -756,7 +756,14 @@ Specifies a different results separator.
 
 ** Inheritance
 
-Header arguments can be set at different levels of a hierarchy.
+Header arguments can be set at different levels of a hierarchy:
+
+1. [[id:7b0711cf-353b-4382-bc19-093e4e67ca92][*Default* header arguments]] shipped with Org mode
+2. [[id:1cadb447-8403-400c-9117-13db017cc198][Default *languages-specific* header arguments]] shipped with Org mode
+3. [[id:aebeec14-5693-4c38-8040-c91d28ade608][*Buffer* (or file) level header arguments]]
+4. [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][*Subtree* header arguments]]
+5. [[id:69939aec-bdee-449b-87fd-420daa53eaba][*Code block* header arguments]]
+6. [[id:3fe40664-b445-4ae4-8248-8847576732fa][*Call line* header arguments]]
 
 At the top of the hierarchy, default header arguments shipped with Org mode
 are the most general of all: they define behavior common to all code blocks,
@@ -765,116 +772,107 @@ unless set otherwise, inherited by all lower levels.
 Header arguments near the bottom of the hierarchy provide behavior more
 specific to a (group of) code block(s).
 
-1. *Default* header arguments shipped with Org mode
+*** Default header arguments shipped with Org mode
+    :PROPERTIES:
+    :ID:       7b0711cf-353b-4382-bc19-093e4e67ca92
+    :END:
 
-   - Variable =org-babel-default-header-args= for source blocks
-   - Variable =org-babel-default-inline-header-args= for inline source blocks
-   - Variable =org-babel-default-lob-header-args= for =#+call= lines
+- Variable =org-babel-default-header-args= for source blocks
+- Variable =org-babel-default-inline-header-args= for inline source blocks
+- Variable =org-babel-default-lob-header-args= for =#+call= lines
 
-   These default header arguments can be set by the user:
+These default header arguments can be set by the user:
 
-   #+begin_src emacs-lisp
-   ;; add default arguments to use when evaluating a source block
-   (add-to-list 'org-babel-default-header-args
-   '(:noweb . "yes"))
-   #+end_src
+#+begin_src emacs-lisp
+;; add default arguments to use when evaluating a source block
+(add-to-list 'org-babel-default-header-args
+'(:noweb . "yes"))
+#+end_src
 
-   This can also be done file-wide through the use of /file local variables/.
+This can also be done file-wide through the use of /file local variables/.
 
-2. Default *languages-specific* header arguments shipped with Org mode
+*** Default languages-specific header arguments shipped with Org mode
+    :PROPERTIES:
+    :ID:       1cadb447-8403-400c-9117-13db017cc198
+    :END:
 
-   - Variable =org-babel-default-header-args:emacs-lisp= for Emacs Lisp
-   - Variable =org-babel-default-header-args:R= for R
-   - Variable =org-babel-default-header-args:ledger= for Ledger
-   - Variable =org-babel-default-header-args:org= for Org
-   - Variable =org-babel-default-header-args:latex= for LaTeX
-   - Variable =org-babel-default-header-args:dot= for Dot
-   - Etc.
+- Variable =org-babel-default-header-args:emacs-lisp= for Emacs Lisp
+- Variable =org-babel-default-header-args:R= for R
+- Variable =org-babel-default-header-args:org= for Org
+- Etc.
 
-   Header arguments which have different defaults between languages:
+Header arguments which have different defaults between languages:
 
-   | Languages                      | :exports | :hlines | :results       |
-   |--------------------------------+----------+---------+----------------|
-   | general-purpose languages + /sh/ | code     | no      | replace        |
-   | /ledger/                         | code     | no      | output replace |
-   | /org/                            | code     | no      | silent raw     |
-   | /latex/                          | results  | no      | latex replace  |
-   | graphics-only languages        | results  | no      | file replace   |
+| Languages                      | :exports | :hlines | :results       |
+|--------------------------------+----------+---------+----------------|
+| general-purpose languages + /sh/ | code     | no      | replace        |
+| /ledger/                         | code     | no      | output replace |
+| /org/                            | code     | no      | silent raw     |
+| /latex/                          | results  | no      | latex replace  |
+| graphics-only languages        | results  | no      | file replace   |
 
-   These default language-specific header arguments can be changed by the user:
+These default language-specific header arguments can be changed by the user:
 
-   #+begin_src emacs-lisp
-   (add-to-list 'org-babel-default-header-args:R
-                '(:session . "*org-R*"))
+#+begin_src emacs-lisp
+(add-to-list 'org-babel-default-header-args:R
+             '(:session . "*org-R*"))
 
-   (add-to-list 'org-babel-default-header-args:R
-                '((:width . 640) (:height . 640)))
-   #+end_src
+(add-to-list 'org-babel-default-header-args:R
+             '((:width . 640) (:height . 640)))
+#+end_src
 
-   This can also be done file-wide (for certain files) through the use of:
-   - /property lines/ or
-   - /file local variables/.
+This can also be done file-wide (for certain files) through the use of:
+- [[id:aebeec14-5693-4c38-8040-c91d28ade608][property lines]] or
+- /file local variables/.
 
-3. *Buffer* (or file) level header arguments
+*** Buffer (or file) level header arguments
+    :PROPERTIES:
+    :ID:       aebeec14-5693-4c38-8040-c91d28ade608
+    :END:
 
-   For example, when you want to tangle all source blocks in an Org file,
-   include the line:
+A =#+PROPERTY:= line located *anywhere* in a buffer affects the entire file: it
+sets a *global* property.
 
-   : #+PROPERTY: tangle yes
+For example, when you want to tangle all source blocks in an Org file, include
+the line:
 
-   That can be over-ridden on a per-subtree or per-block basis.
+: #+PROPERTY: tangle yes
 
-4. *Subtree* header arguments
+That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] or [[id:69939aec-bdee-449b-87fd-420daa53eaba][per-block]] basis.
 
-5. *Code block* header arguments
+Since *only one property may be specified per property line*, there is *no need
+for colons*.
 
-6. *Call line* header arguments
-
-*** #+PROPERTY: lines
-
-Currently, a =#+PROPERTY:= line located *anywhere* in a buffer affects the entire
-file: it sets a *global* property. In contrast, a property-block is only valid
-of the given tree (and subtrees).
-
-In the case of two =#+PROPERTY:= lines for the same property, I would expect the
-property to have the later value.
-
-Since *only one property may be specified per property line* there is *no need
-for colons*. This mirrors exactly the way the properties are saved under
-subtrees in :PROPERTY: blocks.
-
-Multiple lines may be used to specify multiple properties. e.g.,
+Multiple lines may be used to specify multiple properties:
 
 : #+PROPERTY: results output code append
 : #+PROPERTY: cache yes
 : #+PROPERTY: tangle force-the-output-to-that-file.el
 
-Multiple "var" specifications behind a single ":var" are allowed. The multiple
-var arguments must be comma-separated. So, the following are now possible:
+In the case of two =#+PROPERTY:= lines for the same property, the property will
+have the later value.
 
-#+begin_src org
-,#+PROPERTY: var foo=1, bar=2
-,#+PROPERTY: cache yes
-,#+begin_src emacs-lisp
-(+ foo bar)
-,#+end_src
+The property mechanism is a general mechanism for the concatenation of property
+strings. Any property specification unless it is postfixed with a =+= will /reset/
+the value of that property to its current value.
 
-,#+results[be32e67491d4e92f75769aebe423c20ca01626fe]:
-: 3
-#+end_src
+*** Subtree header arguments
+    :PROPERTIES:
+    :ID:       e7fda871-60ec-47d5-aee0-130c7d06fab2
+    :END:
 
-and
+In contrast to property lines, a =:PROPERTIES:= block is only valid for the given
+tree (and subtrees).
 
-#+begin_src emacs-lisp :var foo="this", bar="that"
-  (concat foo " " bar)
-#+end_src
+*** Code block header arguments
+    :PROPERTIES:
+    :ID:       69939aec-bdee-449b-87fd-420daa53eaba
+    :END:
 
-#+results[3cde077efa81f1ca24a62ac264dbd5776b6e0054]:
-: this that
-
-The property mechanism is a general mechanism for the concatenation of
-property strings. Any property specification unless it is postfixed with a "+"
-will /reset/ the value of that property to its current value.
+*** Call line header arguments
+    :PROPERTIES:
+    :ID:       3fe40664-b445-4ae4-8248-8847576732fa
+    :END:
 
 ** :cache
    :PROPERTIES:
@@ -2379,7 +2377,7 @@ Controls the permissions of tangled files.
    :CUSTOM_ID: var
    :END:
 
-Passes arguments to code blocks.
+*Passes arguments* to code blocks.
 
 *** Options
 
@@ -2388,6 +2386,30 @@ Passes arguments to code blocks.
      list or a code block) to the argument.
 
 *** Remarks
+
+Multiple =var= specifications behind a single =:var= are allowed. The multiple var
+arguments must be comma-separated:
+
+#+begin_src org
+,#+PROPERTY: var foo=1, bar=2
+,#+begin_src emacs-lisp
+(+ foo bar)
+,#+end_src
+
+,#+results:
+: 3
+#+end_src
+
+and
+
+#+begin_src org
+,#+begin_src emacs-lisp :var foo="hello", bar="world"
+(concat foo " " bar)
+,#+end_src
+
+,#+results:
+: hello world
+#+end_src
 
 *************** TODO Question about prefix char
   So, the prefix char of such lines should be =|=, =:= or =-=?
