@@ -7,7 +7,7 @@
   <meta name="generator" content=
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
-  <title>Org Babel quick reference card</title><!-- 2014-02-14 Fri 14:12 -->
+  <title>Org Babel quick reference card</title><!-- 2014-02-26 Wed 21:50 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -54,36 +54,56 @@
     <div id="outline-container-sec-2" class="outline-2">
       <h2 id="sec-2">Compendium principles</h2>
 
-      <div class="outline-text-2" id="text-2">
-        <p>Above the classical operations of <b>literate programming</b>:</p>
+      <div class="outline-text-2" id="text-2"></div>
 
-        <dl class="org-dl">
-          <dt>Tangle</dt>
+      <div id="outline-container-sec-2-1" class="outline-3">
+        <h3 id="sec-2-1">Literate Programming</h3>
 
-          <dd>Extract the source code blocks and generate <b>real working
-          code</b> files for further compilation or execution, eventually
-          outside of Emacs.</dd>
+        <div class="outline-text-3" id="text-2-1">
+          <p><b>Literate programming</b> offers 2 classical operations:</p>
 
-          <dt>Weave</dt>
+          <dl class="org-dl">
+            <dt>Tangle</dt>
 
-          <dd>Export the whole Org file as literate, <b>human-readable
-          documentation</b> (generally in HTML or LaTeX).</dd>
-        </dl>
+            <dd>Extract the source code blocks and generate <b>real working
+            code</b> files for further compilation or execution, eventually
+            outside of Emacs.</dd>
 
-        <p>Org Babel brings <i>in situ</i> code evaluation:</p>
+            <dt>Weave</dt>
 
-        <ul class="org-ul">
-          <li>During <b>interactive</b> use</li>
+            <dd>Export the whole Org file as literate, <b>human-readable
+            documentation</b> (generally in HTML or LaTeX).</dd>
+          </dl>
+        </div>
+      </div>
 
-          <li>During <b>tangle</b></li>
+      <div id="outline-container-sec-2-2" class="outline-3">
+        <h3 id="sec-2-2">Reproducible Research</h3>
 
-          <li>During <b>export</b> (code blocks with <code>:exports</code> set
-          to <code>results</code> or <code>both</code>)</li>
-        </ul>
+        <div class="outline-text-3" id="text-2-2">
+          <p>Above those, Org Babel adds <i>in situ</i> code evaluation:</p>
 
-        <p>This allows you to insert in your document all <b>data</b> (that can
-        reasonably be included) and <b>code</b> you used, following the
-        principles of <b>reproducible research</b>.</p>
+          <ul class="org-ul">
+            <li>during <b>interactive</b> use,</li>
+
+            <li>during <b>tangle</b>, and/or</li>
+
+            <li>during <b>export</b> (code blocks with <code>:exports</code>
+            set to <code>results</code> or <code>both</code>)</li>
+          </ul>
+
+          <p>This allows you to insert in your Org document:</p>
+
+          <ul class="org-ul">
+            <li>all <b>data</b> (that can reasonably be included),</li>
+
+            <li>all <b>code</b> you used, and</li>
+
+            <li>the full set of <b>outputs</b> you got,</li>
+          </ul>
+
+          <p>following the principles of <b>reproducible research</b>.</p>
+        </div>
       </div>
     </div>
 
@@ -2711,7 +2731,7 @@ ls -la
 
           <div class="outline-text-4" id="text-4-9-1">
             <dl class="org-dl">
-              <dt>=:epilogue ""=</dt>
+              <dt><code>:epilogue ""</code></dt>
 
               <dd>(default)</dd>
 
@@ -3661,7 +3681,7 @@ in x
 
           <div class="outline-text-4" id="text-4-22-1">
             <dl class="org-dl">
-              <dt>=:prologue ""=</dt>
+              <dt><code>:prologue ""</code></dt>
 
               <dd>(default)</dd>
 
@@ -4221,7 +4241,7 @@ ls -l
             <dl class="org-dl">
               <dt><code>:session none</code></dt>
 
-              <dd>(default) Avoids session-based evaluation.</dd>
+              <dd>(default) Disables session-based evaluation.</dd>
 
               <dt><code>:session &lt;NAME&gt;</code></dt>
 

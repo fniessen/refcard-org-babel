@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-02-14 Fri 14:19>
+#+Time-stamp: <2014-02-26 Wed 21:50>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -19,7 +19,9 @@ Babel 8.
 
 * Compendium principles
 
-Above the classical operations of *literate programming*:
+** Literate Programming
+
+*Literate programming* offers 2 classical operations:
 
 - Tangle ::
      Extract the source code blocks and generate *real working code* files for
@@ -29,14 +31,21 @@ Above the classical operations of *literate programming*:
      Export the whole Org file as literate, *human-readable documentation*
      (generally in HTML or LaTeX).
 
-Org Babel brings /in situ/ code evaluation:
+** Reproducible Research
 
-- During *interactive* use
-- During *tangle*
-- During *export* (code blocks with =:exports= set to =results= or =both=)
+Above those, Org Babel adds /in situ/ code evaluation:
 
-This allows you to insert in your document all *data* (that can reasonably be
-included) and *code* you used, following the principles of *reproducible research*.
+- during *interactive* use,
+- during *tangle*, and/or
+- during *export* (code blocks with =:exports= set to =results= or =both=)
+
+This allows you to insert in your Org document:
+
+- all *data* (that can reasonably be included),
+- all *code* you used, and
+- the full set of *outputs* you got,
+
+following the principles of *reproducible research*.
 
 * Evaluation
 
@@ -2265,7 +2274,7 @@ Shares data and persists state between (evaluation of) different code blocks.
 
 - =:session none= ::
      (default)
-     Avoids session-based evaluation.
+     Disables session-based evaluation.
 
 - =:session <NAME>= ::
      Performs evaluation using a persistently running inferior process to
