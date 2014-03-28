@@ -7,7 +7,7 @@
   <meta name="generator" content=
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
-  <title>Org Babel quick reference card</title><!-- 2014-02-26 Wed 22:52 -->
+  <title>Org Babel quick reference card</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -47,7 +47,7 @@
       <div class="outline-text-2" id="text-1">
         <p>Welcome to Org Babel reference card. It contains the reference
         documentation that describes how to perform <b>code execution</b>
-        within Org documents using Org Babel 8.</p>
+        within Org mode documents using Org Babel 8.</p>
       </div>
     </div>
 
@@ -60,7 +60,8 @@
         <h3 id="sec-2-1">Literate Programming</h3>
 
         <div class="outline-text-3" id="text-2-1">
-          <p><b>Literate programming</b> offers 2 classical operations:</p>
+          <p><b>Literate programming</b> (LP) offers 2 classical
+          operations:</p>
 
           <dl class="org-dl">
             <dt>Tangle</dt>
@@ -71,7 +72,7 @@
 
             <dt>Weave</dt>
 
-            <dd>Export the whole Org file as literate, <b>human-readable
+            <dd><b>Export</b> the whole Org file as literate, <b>human-readable
             documentation</b> (generally in HTML or LaTeX).</dd>
           </dl>
         </div>
@@ -84,12 +85,12 @@
           <p>Above those, Org Babel adds <i>in situ</i> code evaluation:</p>
 
           <ul class="org-ul">
-            <li>during <b>interactive</b> use,</li>
+            <li>during <b>interactive</b> use (in the Org buffer itself),</li>
 
             <li>during <b>tangle</b>, and/or</li>
 
-            <li>during <b>export</b> (code blocks with <code>:exports</code>
-            set to <code>results</code> or <code>both</code>)</li>
+            <li>during <b>weave</b> (code blocks with =:exports= set to
+            <code>results</code> or <code>both</code>)</li>
           </ul>
 
           <p>This allows you to insert in your Org document:</p>
@@ -102,7 +103,7 @@
             <li>the full set of <b>outputs</b> you got,</li>
           </ul>
 
-          <p>following the principles of <b>reproducible research</b>.</p>
+          <p>following the principles of <b>reproducible research</b> (RR).</p>
         </div>
       </div>
     </div>
@@ -179,9 +180,41 @@ As I'm named, my results may live anywhere in the file.
           </div>
 
           <div id="outline-container-sec-3-1-1-2" class="outline-5">
-            <h5 id="sec-3-1-1-2">Code block arguments</h5>
+            <h5 id="sec-3-1-1-2">Language</h5>
 
             <div class="outline-text-5" id="text-3-1-1-2">
+              <p>The following language strings are currently recognized:</p>
+
+              <p>Awk, C, R, Asymptote, Calc, Clojure, CSS, Ditaa, Dot, Emacs
+              Lisp, Fortran, Gnuplot, Haskell, IO, J, Java, Javascript, LaTeX,
+              Ledger, Lilypond, Lisp, Makefile, Maxima, Matlab, Mscgen, Ocaml,
+              Octave, Org, Perl, Pico Lisp, PlantUML, Python, Ruby, Sass,
+              Scala, Scheme, Screen, Shell Script, Shen, Sql, Sqlite,
+              ebnf2ps.</p>
+
+              <p>You can also add support for new languages:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp">
+(add-to-list 'org-src-lang-modes '(<span style=
+"color: #036A07;">"&lt;LANGUAGE&gt;"</span> . <span style=
+"color: #036A07;">"&lt;MAJOR-MODE&gt;"</span>))
+</pre>
+              </div>
+
+              <p>so that font lock and editing source do work.</p>
+
+              <p>Currently, a <code>bash</code> code block will be run with
+              <code>bash</code>, and a <code>shell</code> code block will be
+              run with <code>sh</code>. Both will use
+              <code>shell-script-mode</code>.</p>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-3-1-1-3" class="outline-5">
+            <h5 id="sec-3-1-1-3">Code block arguments</h5>
+
+            <div class="outline-text-5" id="text-3-1-1-3">
               <p>You can create a code block with optional parameters by
               specifying a <b>default value</b> for optional parameters. When
               the code block is executed, the default value is used if no other
@@ -217,10 +250,10 @@ As I'm named, my results may live anywhere in the file.
             </ul>
           </div>
 
-          <div id="outline-container-sec-3-1-1-3" class="outline-5">
-            <h5 id="sec-3-1-1-3">Scope of Variables</h5>
+          <div id="outline-container-sec-3-1-1-4" class="outline-5">
+            <h5 id="sec-3-1-1-4">Scope of Variables</h5>
 
-            <div class="outline-text-5" id="text-3-1-1-3"></div>
+            <div class="outline-text-5" id="text-3-1-1-4"></div>
 
             <ul class="org-ul">
               <li>Global variables<br /></li>
@@ -229,15 +262,15 @@ As I'm named, my results may live anywhere in the file.
             </ul>
           </div>
 
-          <div id="outline-container-sec-3-1-1-4" class="outline-5">
-            <h5 id="sec-3-1-1-4">Examples</h5>
+          <div id="outline-container-sec-3-1-1-5" class="outline-5">
+            <h5 id="sec-3-1-1-5">Examples</h5>
 
-            <div class="outline-text-5" id="text-3-1-1-4"></div>
+            <div class="outline-text-5" id="text-3-1-1-5"></div>
 
             <ul class="org-ul">
               <li>Using :headers<br />
 
-                <div class="outline-text-6" id="text-3-1-1-4-1">
+                <div class="outline-text-6" id="text-3-1-1-5-1">
                   <p>Code can (possibly) be easier to read/write when splitting
                   header arguments among multiple lines, by writing the options
                   above the code block.</p>
@@ -246,7 +279,7 @@ As I'm named, my results may live anywhere in the file.
 
               <li>Do stuff conditional to the export backend<br />
 
-                <div class="outline-text-6" id="text-3-1-1-4-2">
+                <div class="outline-text-6" id="text-3-1-1-5-2">
                   <p>Maybe you could do something like the following…</p>
 
                   <div class="org-src-container">
@@ -260,7 +293,7 @@ As I'm named, my results may live anywhere in the file.
 
               <li>Cross-referencing a results block<br />
 
-                <div class="outline-text-6" id="text-3-1-1-4-3">
+                <div class="outline-text-6" id="text-3-1-1-5-3">
                   <p>&gt;&gt; #+results are never used for cross-references.
                   This is a Babel internal &gt;&gt; keyword used to refer to
                   the source that generated this element. &gt;&gt; &gt;&gt;
@@ -298,7 +331,7 @@ As I'm named, my results may live anywhere in the file.
 
               <li>Other explanation<br />
 
-                <div class="outline-text-6" id="text-3-1-1-4-4">
+                <div class="outline-text-6" id="text-3-1-1-5-4">
                   <p>You need to apply <code>CAPTION</code> and
                   <code>NAME</code> keywords on the results, not the source
                   code.</p>
@@ -356,8 +389,7 @@ As I'm named, my results may live anywhere in the file.
                   block</b>. They affect how the code block is evaluated: they
                   <b>change the inputs</b>.
 
-                  <p>For example, <code>:session *org-R*</code> or
-                  <code>:results output</code>.</p>
+                  <p>For example, =:session *org-R*= or =:results output=.</p>
                 </dd>
 
                 <dt>HEADER-ARGS-FOR-CALL-LINE</dt>
@@ -367,8 +399,7 @@ As I'm named, my results may live anywhere in the file.
                   line</b>. They do not affect evaluation of the named code
                   block.
 
-                  <p>For example, <code>:exports results</code> or
-                  <code>:results html</code>.</p>
+                  <p>For example, =:exports results= or =:results html=.</p>
                 </dd>
               </dl>
             </div>
@@ -423,6 +454,16 @@ As I'm named, my results may live anywhere in the file.
               <p>Code blocks are sometimes located in a separate file (called
               “library of Babel”) which can be included in other Org files that
               wish to use the code blocks.</p>
+
+              <p>The result of named code blocks evaluated with a
+              <code>#+CALL:</code> line is wrapped according to the value of
+              <code>org-babel-inline-result-wrap</code>, which by default
+              is</p>
+              <pre class="example">
+"=%s="
+</pre>
+
+              <p>for markup that produces verbatim text.</p>
             </div>
           </div>
 
@@ -481,8 +522,8 @@ As I'm named, my results may live anywhere in the file.
               <li>Other<br />
 
                 <div class="outline-text-6" id="text-3-1-2-3-4">
-                  <p>It is possible to pass the <code>:dir</code> header
-                  argument through a call line.</p>
+                  <p>It is possible to pass the =:dir= header argument through
+                  a call line.</p>
 
                   <div class="org-src-container">
                     <pre class="src src-sh" id="where">
@@ -996,9 +1037,9 @@ nil
                   export target:</p>
 
                   <ul class="org-ul">
-                    <li>a <code>.pdf</code> image for LaTeX export and</li>
+                    <li>a =.pdf= image for LaTeX export and</li>
 
-                    <li>a <code>.png</code> image for HTML export.</li>
+                    <li>a =.png= image for HTML export.</li>
                   </ul>
 
                   <div class="org-src-container">
@@ -1042,138 +1083,194 @@ plot(x, sin(x))
       <div id="outline-container-sec-3-2" class="outline-3">
         <h3 id="sec-3-2">Inline code blocks</h3>
 
-        <div class="outline-text-3" id="text-3-2">
-          <p>An <b>inline source block</b> is a code block which is contained
-          in a paragraph of text. It was added so that <b>results</b> of code
-          blocks could be <b>exported</b> inline in blocks of prose.</p>
-        </div>
+        <div class="outline-text-3" id="text-3-2"></div>
 
         <div id="outline-container-sec-3-2-1" class="outline-4">
-          <h4 id="sec-3-2-1">Syntax</h4>
+          <h4 id="sec-3-2-1">Inline code blocks</h4>
 
           <div class="outline-text-4" id="text-3-2-1">
-            <p>The basic syntax structure for inline code blocks is:</p>
+            <p>An <b>inline source block</b> is a code block which is placed
+            <i>inline</i> within textual elements such as paragraphs of text or
+            lists.</p>
 
-            <div class="org-src-container">
-              <pre class="src src-org">
+            <p>Its sole purpose is to include <b>results</b> inline in textual
+            elements.</p>
+          </div>
+
+          <div id="outline-container-sec-3-2-1-1" class="outline-5">
+            <h5 id="sec-3-2-1-1">Syntax</h5>
+
+            <div class="outline-text-5" id="text-3-2-1-1">
+              <p>The basic syntax structure for inline code blocks is:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-org">
 src_&lt;LANGUAGE&gt;{&lt;BODY&gt;}
 </pre>
-            </div>
+              </div>
 
-            <p>without header arguments, and:</p>
+              <p>without header arguments, and:</p>
 
-            <div class="org-src-container">
-              <pre class="src src-org">
+              <div class="org-src-container">
+                <pre class="src src-org">
 src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 </pre>
-            </div>
+              </div>
 
-            <p>with header arguments.</p>
+              <p>with header arguments.</p>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-3-2-1-2" class="outline-5">
+            <h5 id="sec-3-2-1-2">Remarks</h5>
+
+            <div class="outline-text-5" id="text-3-2-1-2">
+              <ul class="org-ul">
+                <li><b>Inline code blocks don’t associate themselves with their
+                results</b>, they are <b>only expected to be evaluated during
+                export</b>. They are not intended to be executed in the buffer
+                during normal use.</li>
+
+                <li>Inline code blocks are treated just like code blocks,
+                however they have different default header arguments: see
+                <code>org-babel-default-inline-header-args</code>.</li>
+
+                <li>If you set the following
+
+                  <div class="org-src-container">
+                    <pre class="src src-emacs-lisp">
+(setq org-babel-inline-result-wrap <span style="color: #036A07;">"$%s$"</span>)
+</pre>
+                  </div>
+
+                  <p>then inline code snippets will be wrapped into the
+                  formatting string.</p>
+                </li>
+
+                <li>Currently, inline code blocks are not fontified even when
+                <code>org-src-fontify-natively</code> is non-nil.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-3-2-1-3" class="outline-5">
+            <h5 id="sec-3-2-1-3">Examples</h5>
+
+            <div class="outline-text-5" id="text-3-2-1-3">
+              <p>This file was exported on .</p>
+
+              <p>The answer to 2 + 3 is .</p>
+
+              <p>One plus one equals .</p>
+
+              <p>Two plus two equals .</p>
+
+              <p>A definition returns "".</p>
+
+              <p>, where x is a variable existing in the python session.</p>
+            </div>
           </div>
         </div>
 
         <div id="outline-container-sec-3-2-2" class="outline-4">
-          <h4 id="sec-3-2-2">Remarks</h4>
+          <h4 id="sec-3-2-2">Inline Babel calls</h4>
 
-          <div class="outline-text-4" id="text-3-2-2">
-            <ul class="org-ul">
-              <li><b>Inline code blocks don’t associate themselves with their
-              results</b>, they are <b>only expected to be evaluated during
-              export</b>. They are not intended to be executed in the buffer
-              during normal use.</li>
+          <div class="outline-text-4" id="text-3-2-2"></div>
 
-              <li>Inline code blocks are treated just like code blocks, however
-              they have different default header arguments: see
-              <code>org-babel-default-inline-header-args</code>.</li>
+          <div id="outline-container-sec-3-2-2-1" class="outline-5">
+            <h5 id="sec-3-2-2-1">Syntax</h5>
 
-              <li>If you set the following
+            <div class="outline-text-5" id="text-3-2-2-1">
+              <p>The syntax for inline evaluation of named code blocks is the
+              following, where each header argument portion is optional.</p>
 
-                <div class="org-src-container">
-                  <pre class="src src-emacs-lisp">
-(setq org-babel-inline-result-wrap <span style="color: #036A07;">"$%s$"</span>)
-</pre>
-                </div>
-
-                <p>then inline code snippets will be wrapped into the
-                formatting string.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div id="outline-container-sec-3-2-3" class="outline-4">
-          <h4 id="sec-3-2-3">Examples</h4>
-
-          <div class="outline-text-4" id="text-3-2-3">
-            <p>This file was exported on .</p>
-
-            <p>The answer to 2 + 3 is .</p>
-
-            <p>One plus one equals .</p>
-
-            <p>Two plus two equals .</p>
-
-            <p>A definition returns "".</p>
-
-            <p>, where x is a variable existing in the python session.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="outline-container-sec-3-3" class="outline-3">
-        <h3 id="sec-3-3">Inline Babel calls</h3>
-
-        <div class="outline-text-3" id="text-3-3"></div>
-
-        <div id="outline-container-sec-3-3-1" class="outline-4">
-          <h4 id="sec-3-3-1">Syntax</h4>
-
-          <div class="outline-text-4" id="text-3-3-1">
-            <p>The syntax for inline evaluation of named code blocks is the
-            following, where each header argument portion is optional.</p>
-
-            <div class="org-src-container">
-              <pre class="src src-org">
+              <div class="org-src-container">
+                <pre class="src src-org">
 ... call_&lt;NAME&gt;[&lt;HEADER-ARGS-FOR-BLOCK&gt;](&lt;ARGUMENTS&gt;)[&lt;HEADER-ARGS-FOR-CALL-LINE&gt;] ...
 </pre>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="outline-container-sec-3-3-2" class="outline-4">
-          <h4 id="sec-3-3-2">Remarks</h4>
-        </div>
+          <div id="outline-container-sec-3-2-2-2" class="outline-5">
+            <h5 id="sec-3-2-2-2">Remarks</h5>
 
-        <div id="outline-container-sec-3-3-3" class="outline-4">
-          <h4 id="sec-3-3-3">Examples</h4>
+            <div class="outline-text-5" id="text-3-2-2-2">
+              <p>The result of named code blocks evaluated inline within a
+              block of text is wrapped according to the value of
+              <code>org-babel-inline-result-wrap</code>, which by default
+              is</p>
+              <pre class="example">
+"=%s="
+</pre>
 
-          <div class="outline-text-4" id="text-3-3-3">
-            <p>Simple examples for inline call:</p>
+              <p>for markup that produces verbatim text.</p>
+            </div>
+          </div>
 
-            <div class="org-src-container">
-              <pre class="src src-emacs-lisp" id="square">
+          <div id="outline-container-sec-3-2-2-3" class="outline-5">
+            <h5 id="sec-3-2-2-3">Examples</h5>
+
+            <div class="outline-text-5" id="text-3-2-2-3">
+              <p>Simple examples for inline call:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-emacs-lisp" id="square">
 (* x x)
 </pre>
+              </div>
+
+              <p>I should be able to put the output inline using .</p>
+
+              <p>Here is a , stuck in the middle of some prose.</p>
+
+              <p>The following exports as a normal call line:</p>
+
+              <p>Now here is an inline call stuck in the middle of some
+              prose.</p>
+
+              <p>This one should not be exported <code>call_square(x=2)</code>
+              because it is quoted.</p>
+
+              <p>Finally this next one should export, even though it starts a
+              line because sometimes inline blocks fold with a paragraph.</p>
+
+              <p>And, a call with raw results should not have quoted
+              results.</p>
+
+              <p>)</p>
             </div>
 
-            <p>I should be able to put the output inline using .</p>
+            <ul class="org-ul">
+              <li>Similar code in three languages<br />
 
-            <p>Here is a , stuck in the middle of some prose.</p>
+                <div class="outline-text-6" id="text-3-2-2-3-1">
+                  <div class="org-src-container">
+                    <pre class="src src-lisp" id="lisp-2">
+(+ 1 1)
+</pre>
+                  </div>
 
-            <p>The following exports as a normal call line:</p>
+                  <div class="org-src-container">
+                    <pre class="src src-python" id="python-2">
+<span style="color: #0000FF;">return</span>(1 + 1)
+</pre>
+                  </div>
 
-            <p>Now here is an inline call stuck in the middle of some
-            prose.</p>
+                  <div class="org-src-container">
+                    <pre class="src src-R" id="r-2">
+1 + 1
+</pre>
+                  </div>
 
-            <p>This one should not be exported <code>call_square(x=2)</code>
-            because it is quoted.</p>
+                  <p>Will lisp-2 export with a newline?</p>
 
-            <p>Finally this next one should export, even though it starts a
-            line because sometimes inline blocks fold with a paragraph.</p>
+                  <p>Will python-2 export with a newline?</p>
 
-            <p>And, a call with raw results should not have quoted results.</p>
-
-            <p>)</p>
+                  <p>Will r-2 export with a newline?</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1186,310 +1283,28 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
       <div class="outline-text-2" id="text-4"></div>
 
       <div id="outline-container-sec-4-1" class="outline-3">
-        <h3 id="sec-4-1">Standard header arguments</h3>
+        <h3 id="sec-4-1">Inheritance</h3>
 
         <div class="outline-text-3" id="text-4-1">
-          <p>The following table lists the standard header arguments that Org
-          Babel uses.</p>
-
-          <table border="2" cellspacing="0" cellpadding="6" rules="groups"
-          frame="hsides">
-            <colgroup>
-              <col class="left" />
-              <col class="left" />
-            </colgroup>
-
-            <tbody>
-              <tr>
-                <td class="left"><a href="#cache">:cache</a></td>
-
-                <td class="left"><a href="#noweb-ref">:noweb-ref</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#cmdline">:cmdline</a></td>
-
-                <td class="left"><a href="#noweb-sep">:noweb-sep</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#colnames">:colnames</a></td>
-
-                <td class="left"><a href="#padline">:padline</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#comments">:comments</a></td>
-
-                <td class="left"><a href="#post">:post</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#dir">:dir</a></td>
-
-                <td class="left"><a href="#prologue">:prologue</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#epilogue">:epilogue</a></td>
-
-                <td class="left"><a href="#results">:results</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#eval">:eval</a></td>
-
-                <td class="left"><a href="#rownames">:rownames</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#exports">:exports</a></td>
-
-                <td class="left"><a href="#sep">:sep</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#file">:file</a></td>
-
-                <td class="left"><a href="#session">:session</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#file-desc">:file-desc</a></td>
-
-                <td class="left"><a href="#shebang">:shebang</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#hlines">:hlines</a></td>
-
-                <td class="left"><a href="#tangle">:tangle</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#mkdirp">:mkdirp</a></td>
-
-                <td class="left"><i>:tangle-mode</i></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#no-expand">:no-expand</a></td>
-
-                <td class="left"><a href="#var">:var</a></td>
-              </tr>
-
-              <tr>
-                <td class="left"><a href="#noweb">:noweb</a></td>
-
-                <td class="left"><a href="#wrap">:wrap</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div id="outline-container-sec-4-2" class="outline-3">
-        <h3 id="sec-4-2">Extra language-specific header arguments</h3>
-
-        <div class="outline-text-3" id="text-4-2">
-          <p>The following table lists the header arguments that some languages
-          use.</p>
-
-          <table border="2" cellspacing="0" cellpadding="6" rules="groups"
-          frame="hsides">
-            <colgroup>
-              <col class="left" />
-              <col class="left" />
-            </colgroup>
-
-            <tbody>
-              <tr>
-                <td class="left">:border</td>
-
-                <td class="left">:java</td>
-              </tr>
-
-              <tr>
-                <td class="left">:buffer</td>
-
-                <td class="left">:main</td>
-              </tr>
-
-              <tr>
-                <td class="left">:classname</td>
-
-                <td class="left">:nullvalue</td>
-              </tr>
-
-              <tr>
-                <td class="left">:cmd</td>
-
-                <td class="left">:out-file</td>
-              </tr>
-
-              <tr>
-                <td class="left">:cmd-line</td>
-
-                <td class="left">:package</td>
-              </tr>
-
-              <tr>
-                <td class="left">:cmpflag</td>
-
-                <td class="left">:packages</td>
-              </tr>
-
-              <tr>
-                <td class="left">:colname-names</td>
-
-                <td class="left">:pdf</td>
-              </tr>
-
-              <tr>
-                <td class="left">:database</td>
-
-                <td class="left">:pdfheight</td>
-              </tr>
-
-              <tr>
-                <td class="left">:db</td>
-
-                <td class="left">:pdfpng</td>
-              </tr>
-
-              <tr>
-                <td class="left">:dbhost</td>
-
-                <td class="left">:pdfwidth</td>
-              </tr>
-
-              <tr>
-                <td class="left">:dbpassword</td>
-
-                <td class="left">:preamble</td>
-              </tr>
-
-              <tr>
-                <td class="left">:dbuser</td>
-
-                <td class="left">:result-params</td>
-              </tr>
-
-              <tr>
-                <td class="left">:defines</td>
-
-                <td class="left">:result-type</td>
-              </tr>
-
-              <tr>
-                <td class="left">:engine</td>
-
-                <td class="left">:results_switches</td>
-              </tr>
-
-              <tr>
-                <td class="left">:eps</td>
-
-                <td class="left">:return</td>
-              </tr>
-
-              <tr>
-                <td class="left">:filetype</td>
-
-                <td class="left">:rowname-names</td>
-              </tr>
-
-              <tr>
-                <td class="left">:fit</td>
-
-                <td class="left">:scheme</td>
-              </tr>
-
-              <tr>
-                <td class="left">:flags</td>
-
-                <td class="left">:separator</td>
-              </tr>
-
-              <tr>
-                <td class="left">:headers</td>
-
-                <td class="left"><b>:stdin</b></td>
-              </tr>
-
-              <tr>
-                <td class="left">:imagemagick</td>
-
-                <td class="left">:tangle</td>
-              </tr>
-
-              <tr>
-                <td class="left">:iminoptions</td>
-
-                <td class="left">:term</td>
-              </tr>
-
-              <tr>
-                <td class="left">:imoutoptions</td>
-
-                <td class="left">:terminal</td>
-              </tr>
-
-              <tr>
-                <td class="left">:in-file</td>
-
-                <td class="left">:xmp-option</td>
-              </tr>
-
-              <tr>
-                <td class="left"><b>:includes</b></td>
-
-                <td class="left">&nbsp;</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div id="outline-container-sec-4-2-1" class="outline-4">
-          <h4 id="sec-4-2-1">:preamble</h4>
-
-          <div class="outline-text-4" id="text-4-2-1">
-            <p>Specifies code block prefix for code evaluation.</p>
-          </div>
-        </div>
-
-        <div id="outline-container-sec-4-2-2" class="outline-4">
-          <h4 id="sec-4-2-2">:separator</h4>
-
-          <div class="outline-text-4" id="text-4-2-2">
-            <p>Specifies a different results separator.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="outline-container-sec-4-3" class="outline-3">
-        <h3 id="sec-4-3">Inheritance</h3>
-
-        <div class="outline-text-3" id="text-4-3">
           <p>Header arguments can be set at different levels of a
           hierarchy:</p>
 
           <ol class="org-ol">
-            <li><a href="#sec-4-3-1"><b>Default</b> header arguments</a>
+            <li><a href="#sec-4-1-1"><b>Default</b> header arguments</a>
             shipped with Org mode</li>
 
-            <li><a href="#sec-4-3-2">Default <b>languages-specific</b> header
+            <li><a href="#sec-4-1-2">Default <b>languages-specific</b> header
             arguments</a> shipped with Org mode</li>
 
-            <li><a href="#sec-4-3-3"><b>Buffer</b> (or file) level header
+            <li><a href="#sec-4-1-3"><b>Buffer</b> (or file) level header
             arguments</a></li>
 
-            <li><a href="#sec-4-3-4"><b>Subtree</b> header arguments</a></li>
+            <li><a href="#sec-4-1-4"><b>Subtree</b> header arguments</a></li>
 
-            <li><a href="#sec-4-3-5"><b>Code block</b> header
+            <li><a href="#sec-4-1-5"><b>Code block</b> header
             arguments</a></li>
 
-            <li><a href="#sec-4-3-6"><b>Call line</b> header arguments</a></li>
+            <li><a href="#sec-4-1-6"><b>Call line</b> header arguments</a></li>
           </ol>
 
           <p>At the top of the hierarchy, default header arguments shipped with
@@ -1501,12 +1316,12 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
           more specific to a (group of) code block(s).</p>
         </div>
 
-        <div id="outline-container-sec-4-3-1" class="outline-4">
-          <h4 id="sec-4-3-1"><a id="ID-7b0711cf-353b-4382-bc19-093e4e67ca92"
+        <div id="outline-container-sec-4-1-1" class="outline-4">
+          <h4 id="sec-4-1-1"><a id="ID-7b0711cf-353b-4382-bc19-093e4e67ca92"
           name="ID-7b0711cf-353b-4382-bc19-093e4e67ca92"></a>Default header
           arguments shipped with Org mode</h4>
 
-          <div class="outline-text-4" id="text-4-3-1">
+          <div class="outline-text-4" id="text-4-1-1">
             <ul class="org-ul">
               <li>Variable <code>org-babel-default-header-args</code> for
               source blocks</li>
@@ -1525,7 +1340,7 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 <span style="color: #8D8D84;">;; </span><span style=
 "color: #8D8D84; font-style: italic;">add default arguments to use when evaluating a source block</span>
 (add-to-list 'org-babel-default-header-args
-'(<span style="color: #006FE0;">:noweb</span> . <span style=
+             '(<span style="color: #006FE0;">:noweb</span> . <span style=
 "color: #036A07;">"yes"</span>))
 </pre>
             </div>
@@ -1535,12 +1350,12 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
           </div>
         </div>
 
-        <div id="outline-container-sec-4-3-2" class="outline-4">
-          <h4 id="sec-4-3-2"><a id="ID-1cadb447-8403-400c-9117-13db017cc198"
+        <div id="outline-container-sec-4-1-2" class="outline-4">
+          <h4 id="sec-4-1-2"><a id="ID-1cadb447-8403-400c-9117-13db017cc198"
           name="ID-1cadb447-8403-400c-9117-13db017cc198"></a>Default
           languages-specific header arguments shipped with Org mode</h4>
 
-          <div class="outline-text-4" id="text-4-3-2">
+          <div class="outline-text-4" id="text-4-1-2">
             <ul class="org-ul">
               <li>Variable
               <code>org-babel-default-header-args:emacs-lisp</code> for Emacs
@@ -1651,19 +1466,19 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
             use of:</p>
 
             <ul class="org-ul">
-              <li><a href="#sec-4-3-3">property lines</a> or</li>
+              <li><a href="#sec-4-1-3">property lines</a> or</li>
 
               <li><i>file local variables</i>.</li>
             </ul>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-3-3" class="outline-4">
-          <h4 id="sec-4-3-3"><a id="ID-aebeec14-5693-4c38-8040-c91d28ade608"
+        <div id="outline-container-sec-4-1-3" class="outline-4">
+          <h4 id="sec-4-1-3"><a id="ID-aebeec14-5693-4c38-8040-c91d28ade608"
           name="ID-aebeec14-5693-4c38-8040-c91d28ade608"></a>Buffer (or file)
           level header arguments</h4>
 
-          <div class="outline-text-4" id="text-4-3-3">
+          <div class="outline-text-4" id="text-4-1-3">
             <p>A <code>#+PROPERTY:</code> line located <b>anywhere</b> in a
             buffer affects the entire file: it sets a <b>global</b>
             property.</p>
@@ -1675,7 +1490,7 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 </pre>
 
             <p>That can be over-ridden on a <a href=
-            "#sec-4-3-4">per-subtree</a> or <a href="#sec-4-3-5">per-block</a>
+            "#sec-4-1-4">per-subtree</a> or <a href="#sec-4-1-5">per-block</a>
             basis.</p>
 
             <p>Since <b>only one property may be specified per property
@@ -1698,51 +1513,154 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
           </div>
         </div>
 
-        <div id="outline-container-sec-4-3-4" class="outline-4">
-          <h4 id="sec-4-3-4"><a id="ID-e7fda871-60ec-47d5-aee0-130c7d06fab2"
+        <div id="outline-container-sec-4-1-4" class="outline-4">
+          <h4 id="sec-4-1-4"><a id="ID-e7fda871-60ec-47d5-aee0-130c7d06fab2"
           name="ID-e7fda871-60ec-47d5-aee0-130c7d06fab2"></a>Subtree header
           arguments</h4>
 
-          <div class="outline-text-4" id="text-4-3-4">
-            <p>In contrast to property lines, a <code>:PROPERTIES:</code> block
-            is only valid for the given tree (and subtrees).</p>
+          <div class="outline-text-4" id="text-4-1-4">
+            <p>In contrast to property lines, a =:PROPERTIES:= block is only
+            valid for the given tree (and subtrees).</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-3-5" class="outline-4">
-          <h4 id="sec-4-3-5"><a id="ID-69939aec-bdee-449b-87fd-420daa53eaba"
+        <div id="outline-container-sec-4-1-5" class="outline-4">
+          <h4 id="sec-4-1-5"><a id="ID-69939aec-bdee-449b-87fd-420daa53eaba"
           name="ID-69939aec-bdee-449b-87fd-420daa53eaba"></a>Code block header
           arguments</h4>
 
-          <div class="outline-text-4" id="text-4-3-5"></div>
+          <div class="outline-text-4" id="text-4-1-5"></div>
         </div>
 
-        <div id="outline-container-sec-4-3-6" class="outline-4">
-          <h4 id="sec-4-3-6"><a id="ID-3fe40664-b445-4ae4-8248-8847576732fa"
+        <div id="outline-container-sec-4-1-6" class="outline-4">
+          <h4 id="sec-4-1-6"><a id="ID-3fe40664-b445-4ae4-8248-8847576732fa"
           name="ID-3fe40664-b445-4ae4-8248-8847576732fa"></a>Call line header
           arguments</h4>
 
-          <div class="outline-text-4" id="text-4-3-6"></div>
+          <div class="outline-text-4" id="text-4-1-6"></div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-4-2" class="outline-3">
+        <h3 id="sec-4-2">Standard header arguments</h3>
+
+        <div class="outline-text-3" id="text-4-2">
+          <p>The following table lists the standard header arguments that Org
+          Babel uses.</p>
+
+          <table border="2" cellspacing="0" cellpadding="6" rules="groups"
+          frame="hsides">
+            <colgroup>
+              <col class="left" />
+              <col class="left" />
+            </colgroup>
+
+            <tbody>
+              <tr>
+                <td class="left"><a href="#cache">:cache</a></td>
+
+                <td class="left"><a href="#noweb-ref">:noweb-ref</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#cmdline">:cmdline</a></td>
+
+                <td class="left"><a href="#noweb-sep">:noweb-sep</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#colnames">:colnames</a></td>
+
+                <td class="left"><a href="#padline">:padline</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#comments">:comments</a></td>
+
+                <td class="left"><a href="#post">:post</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#dir">:dir</a></td>
+
+                <td class="left"><a href="#prologue">:prologue</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#epilogue">:epilogue</a></td>
+
+                <td class="left"><a href="#results">:results</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#eval">:eval</a></td>
+
+                <td class="left"><a href="#rownames">:rownames</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#exports">:exports</a></td>
+
+                <td class="left"><a href="#sep">:sep</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#file">:file</a></td>
+
+                <td class="left"><a href="#session">:session</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#file-desc">:file-desc</a></td>
+
+                <td class="left"><a href="#shebang">:shebang</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#hlines">:hlines</a></td>
+
+                <td class="left"><a href="#tangle">:tangle</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#mkdirp">:mkdirp</a></td>
+
+                <td class="left"><a href="#tangle-mode">:tangle-mode</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#no-expand">:no-expand</a></td>
+
+                <td class="left"><a href="#var">:var</a></td>
+              </tr>
+
+              <tr>
+                <td class="left"><a href="#noweb">:noweb</a></td>
+
+                <td class="left"><a href="#wrap">:wrap</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
       <div id="outline-container-cache" class="outline-3">
-        <h3 id="cache"><a id="sec-4-4" name="sec-4-4"></a>:cache</h3>
+        <h3 id="cache"><a id="sec-4-3" name="sec-4-3"></a>:cache</h3>
 
         <div class="outline-text-3" id="text-cache">
           <p>Avoids re-evaluating unchanged code blocks.</p>
         </div>
 
-        <div id="outline-container-sec-4-4-1" class="outline-4">
-          <h4 id="sec-4-4-1">Options</h4>
+        <div id="outline-container-sec-4-3-1" class="outline-4">
+          <h4 id="sec-4-3-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-4-1">
+          <div class="outline-text-4" id="text-4-3-1">
             <dl class="org-dl">
-              <dt><code>:cache no</code></dt>
+              <dt>=:cache no=</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:cache yes</code></dt>
+              <dt>=:cache yes=</dt>
 
               <dd>Avoids re-evaluating unchanged code blocks by associating a
               <b>hash</b> of the <i>expanded</i> code block (= code block and
@@ -1753,10 +1671,10 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
           </div>
         </div>
 
-        <div id="outline-container-sec-4-4-2" class="outline-4">
-          <h4 id="sec-4-4-2">Remarks</h4>
+        <div id="outline-container-sec-4-3-2" class="outline-4">
+          <h4 id="sec-4-3-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-4-2">
+          <div class="outline-text-4" id="text-4-3-2">
             <p>In order for caching to work (i.e., <b>no evaluation</b> when
             triggered either <b>interactively</b> or <b>during export</b>), the
             results of the code block must be present in the Org mode file: you
@@ -1772,22 +1690,22 @@ date
 </pre>
             </div>
 
-            <p>Though, this code block shouldn’t be marked <code>:cache</code>
-            unless the desired (and odd) behavior is to have a datestamp that
-            is only updated when the user forcibly re-evaluates the block (with
+            <p>Though, this code block shouldn’t be marked =:cache= unless the
+            desired (and odd) behavior is to have a datestamp that is only
+            updated when the user forcibly re-evaluates the block (with
             <code>C-u C-c C-v C-e</code>).</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-4-3" class="outline-4">
-          <h4 id="sec-4-4-3">Examples</h4>
+        <div id="outline-container-sec-4-3-3" class="outline-4">
+          <h4 id="sec-4-3-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-4-3"></div>
+          <div class="outline-text-4" id="text-4-3-3"></div>
 
-          <div id="outline-container-sec-4-4-3-1" class="outline-5">
-            <h5 id="sec-4-4-3-1">Avoid re-evaluating unchanged code blocks</h5>
+          <div id="outline-container-sec-4-3-3-1" class="outline-5">
+            <h5 id="sec-4-3-3-1">Avoid re-evaluating unchanged code blocks</h5>
 
-            <div class="outline-text-5" id="text-4-4-3-1">
+            <div class="outline-text-5" id="text-4-3-3-1">
               <p>The following example uses the cache optimization for a very
               long running code block.</p>
 
@@ -1825,11 +1743,11 @@ printf </span><span style=
             </div>
           </div>
 
-          <div id="outline-container-sec-4-4-3-2" class="outline-5">
-            <h5 id="sec-4-4-3-2">Avoid re-evaluating code blocks unless some
+          <div id="outline-container-sec-4-3-3-2" class="outline-5">
+            <h5 id="sec-4-3-3-2">Avoid re-evaluating code blocks unless some
             process restarts</h5>
 
-            <div class="outline-text-5" id="text-4-4-3-2">
+            <div class="outline-text-5" id="text-4-3-3-2">
               <p>The following example allows to include the PID of the R
               process in the results hash, so that the code would be rerun only
               if the R process (session) restarts.</p>
@@ -1857,15 +1775,15 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
           </div>
         </div>
 
-        <div id="outline-container-sec-4-4-4" class="outline-4">
-          <h4 id="sec-4-4-4">See also</h4>
+        <div id="outline-container-sec-4-3-4" class="outline-4">
+          <h4 id="sec-4-3-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-4-4"></div>
+          <div class="outline-text-4" id="text-4-3-4"></div>
 
-          <div id="outline-container-sec-4-4-4-1" class="outline-5">
-            <h5 id="sec-4-4-4-1">Reference</h5>
+          <div id="outline-container-sec-4-3-4-1" class="outline-5">
+            <h5 id="sec-4-3-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-4-4-1">
+            <div class="outline-text-5" id="text-4-3-4-1">
               <p><a href="#eval">:eval</a><br />
               <a href="#exports">:exports</a></p>
             </div>
@@ -1874,37 +1792,37 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
       </div>
 
       <div id="outline-container-cmdline" class="outline-3">
-        <h3 id="cmdline"><a id="sec-4-5" name="sec-4-5"></a>:cmdline</h3>
+        <h3 id="cmdline"><a id="sec-4-4" name="sec-4-4"></a>:cmdline</h3>
 
         <div class="outline-text-3" id="text-cmdline"></div>
 
-        <div id="outline-container-sec-4-5-1" class="outline-4">
-          <h4 id="sec-4-5-1">Options</h4>
+        <div id="outline-container-sec-4-4-1" class="outline-4">
+          <h4 id="sec-4-4-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-5-1">
+          <div class="outline-text-4" id="text-4-4-1">
             <dl class="org-dl">
               <dt>none</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:cmdline ...</code></dt>
+              <dt>=:cmdline …=</dt>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-5-2" class="outline-4">
-          <h4 id="sec-4-5-2">Remarks</h4>
+        <div id="outline-container-sec-4-4-2" class="outline-4">
+          <h4 id="sec-4-4-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-5-2">
-            <p>The <code>:cmdline</code> header argument is supported by a
-            couple of languages.</p>
+          <div class="outline-text-4" id="text-4-4-2">
+            <p>The =:cmdline= header argument is supported by a couple of
+            languages.</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-5-3" class="outline-4">
-          <h4 id="sec-4-5-3">Examples</h4>
+        <div id="outline-container-sec-4-4-3" class="outline-4">
+          <h4 id="sec-4-4-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-5-3">
+          <div class="outline-text-4" id="text-4-4-3">
             <p>For shell, this allows to make the code inside a Babel code
             block similar to a real shell script.</p>
 
@@ -1933,16 +1851,16 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
       </div>
 
       <div id="outline-container-colnames" class="outline-3">
-        <h3 id="colnames"><a id="sec-4-6" name="sec-4-6"></a>:colnames</h3>
+        <h3 id="colnames"><a id="sec-4-5" name="sec-4-5"></a>:colnames</h3>
 
         <div class="outline-text-3" id="text-colnames">
           <p>Handles <b>column names in tables</b>.</p>
         </div>
 
-        <div id="outline-container-sec-4-6-1" class="outline-4">
-          <h4 id="sec-4-6-1">Options</h4>
+        <div id="outline-container-sec-4-5-1" class="outline-4">
+          <h4 id="sec-4-5-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-6-1">
+          <div class="outline-text-4" id="text-4-5-1">
             <dl class="org-dl">
               <dt>none</dt>
 
@@ -1950,22 +1868,22 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
               table before processing if the input table looks like it has
               column names (because its second row is an hline).</dd>
 
-              <dt><code>:colnames no</code></dt>
+              <dt>=:colnames no=</dt>
 
               <dd>(default for Emacs Lisp code blocks) Don’t strip the header.
               Re-add headers (post-processing).</dd>
 
-              <dt><code>:colnames yes</code></dt>
+              <dt>=:colnames yes=</dt>
 
               <dd>Tells Org Babel that your first row contains column names.
               Applies the code block to the body of the input table.</dd>
 
-              <dt><code>:colnames &lt;LIST&gt;</code></dt>
+              <dt>=:colnames &lt;LIST&gt;=</dt>
 
               <dd>Specifies to use <code>&lt;LIST&gt;</code> as column
               names.</dd>
 
-              <dt><code>:colnames '()</code></dt>
+              <dt>=:colnames '()=</dt>
 
               <dd><b>Unsets</b> the header argument if set at a higher level.
               Is the same as “none” WHEN NOT SET AT A HIGHER LEVEL.</dd>
@@ -1973,13 +1891,13 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
           </div>
         </div>
 
-        <div id="outline-container-sec-4-6-2" class="outline-4">
-          <h4 id="sec-4-6-2">Remarks</h4>
+        <div id="outline-container-sec-4-5-2" class="outline-4">
+          <h4 id="sec-4-5-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-6-2">
+          <div class="outline-text-4" id="text-4-5-2">
             <p>By default, the first row will be used for column names if
             followed by a <code>hline</code> XXX???XXX. Without a
-            <code>hline</code>, use <code>:colnames yes</code>.</p>
+            <code>hline</code>, use =:colnames yes=.</p>
 
             <table id="colrownamestbl" border="2" cellspacing="0" cellpadding=
             "6" rules="groups" frame="hsides">
@@ -2044,10 +1962,10 @@ rownames(data)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-6-3" class="outline-4">
-          <h4 id="sec-4-6-3">Examples</h4>
+        <div id="outline-container-sec-4-5-3" class="outline-4">
+          <h4 id="sec-4-5-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-6-3">
+          <div class="outline-text-4" id="text-4-5-3">
             <p>Consider the following input tables, one without column names,
             one with column names.</p>
 
@@ -2116,11 +2034,10 @@ rownames(data)
             </table>
           </div>
 
-          <div id="outline-container-sec-4-6-3-1" class="outline-5">
-            <h5 id="sec-4-6-3-1">Using no <code>:colnames</code> header
-            argument</h5>
+          <div id="outline-container-sec-4-5-3-1" class="outline-5">
+            <h5 id="sec-4-5-3-1">Using no =:colnames= header argument</h5>
 
-            <div class="outline-text-5" id="text-4-6-3-1">
+            <div class="outline-text-5" id="text-4-5-3-1">
               <p>The following example outputs the table without column
               names.</p>
 
@@ -2182,10 +2099,10 @@ rownames(data)
             </div>
           </div>
 
-          <div id="outline-container-sec-4-6-3-2" class="outline-5">
-            <h5 id="sec-4-6-3-2">Using <code>:colnames no</code></h5>
+          <div id="outline-container-sec-4-5-3-2" class="outline-5">
+            <h5 id="sec-4-5-3-2">Using =:colnames no=</h5>
 
-            <div class="outline-text-5" id="text-4-6-3-2">
+            <div class="outline-text-5" id="text-4-5-3-2">
               <p>The following example outputs all the rows of the table,
               considering there is no column names.</p>
 
@@ -2253,10 +2170,10 @@ rownames(data)
             </div>
           </div>
 
-          <div id="outline-container-sec-4-6-3-3" class="outline-5">
-            <h5 id="sec-4-6-3-3">Using <code>:colnames yes</code></h5>
+          <div id="outline-container-sec-4-5-3-3" class="outline-5">
+            <h5 id="sec-4-5-3-3">Using =:colnames yes=</h5>
 
-            <div class="outline-text-5" id="text-4-6-3-3">
+            <div class="outline-text-5" id="text-4-5-3-3">
               <p>The following example outputs the table with its column
               names.</p>
 
@@ -2338,10 +2255,10 @@ rownames(data)
             </div>
           </div>
 
-          <div id="outline-container-sec-4-6-3-4" class="outline-5">
-            <h5 id="sec-4-6-3-4">Using specified column names</h5>
+          <div id="outline-container-sec-4-5-3-4" class="outline-5">
+            <h5 id="sec-4-5-3-4">Using specified column names</h5>
 
-            <div class="outline-text-5" id="text-4-6-3-4">
+            <div class="outline-text-5" id="text-4-5-3-4">
               <p><b>XXX Will work with (unapplied) patch of Eric, on
               <span class="timestamp-wrapper"><span class=
               "timestamp">[2013-04-08 Mon]</span></span></b></p>
@@ -2408,11 +2325,11 @@ rownames(data)
             </div>
           </div>
 
-          <div id="outline-container-sec-4-6-3-5" class="outline-5">
-            <h5 id="sec-4-6-3-5">Show the labels of the vertical and the
+          <div id="outline-container-sec-4-5-3-5" class="outline-5">
+            <h5 id="sec-4-5-3-5">Show the labels of the vertical and the
             horizontal axes</h5>
 
-            <div class="outline-text-5" id="text-4-6-3-5">
+            <div class="outline-text-5" id="text-4-5-3-5">
               <table border="2" cellspacing="0" cellpadding="6" rules="groups"
               frame="hsides">
                 <colgroup>
@@ -2490,10 +2407,10 @@ rownames(data)
             </div>
           </div>
 
-          <div id="outline-container-sec-4-6-3-6" class="outline-5">
-            <h5 id="sec-4-6-3-6">Utility function</h5>
+          <div id="outline-container-sec-4-5-3-6" class="outline-5">
+            <h5 id="sec-4-5-3-6">Utility function</h5>
 
-            <div class="outline-text-5" id="text-4-6-3-6">
+            <div class="outline-text-5" id="text-4-5-3-6">
               <table id="col-with-a-header" border="2" cellspacing="0"
               cellpadding="6" rules="groups" frame="hsides">
                 <colgroup>
@@ -2535,15 +2452,15 @@ rownames(data)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-6-4" class="outline-4">
-          <h4 id="sec-4-6-4">See also</h4>
+        <div id="outline-container-sec-4-5-4" class="outline-4">
+          <h4 id="sec-4-5-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-6-4"></div>
+          <div class="outline-text-4" id="text-4-5-4"></div>
 
-          <div id="outline-container-sec-4-6-4-1" class="outline-5">
-            <h5 id="sec-4-6-4-1">Reference</h5>
+          <div id="outline-container-sec-4-5-4-1" class="outline-5">
+            <h5 id="sec-4-5-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-6-4-1">
+            <div class="outline-text-5" id="text-4-5-4-1">
               <p><a href="#hlines">:hlines</a><br />
               <a href="#rownames">:rownames</a></p>
             </div>
@@ -2552,7 +2469,7 @@ rownames(data)
       </div>
 
       <div id="outline-container-comments" class="outline-3">
-        <h3 id="comments"><a id="sec-4-7" name="sec-4-7"></a>:comments</h3>
+        <h3 id="comments"><a id="sec-4-6" name="sec-4-6"></a>:comments</h3>
 
         <div class="outline-text-3" id="text-comments">
           <p>Controls the insertion of extra comments into the tangled code
@@ -2560,66 +2477,66 @@ rownames(data)
           original code blocks (from which the code was tangled).</p>
         </div>
 
-        <div id="outline-container-sec-4-7-1" class="outline-4">
-          <h4 id="sec-4-7-1">Options</h4>
+        <div id="outline-container-sec-4-6-1" class="outline-4">
+          <h4 id="sec-4-6-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-7-1">
+          <div class="outline-text-4" id="text-4-6-1">
             <dl class="org-dl">
-              <dt><code>:comments no</code></dt>
+              <dt>=:comments no=</dt>
 
               <dd>(default) Does not insert any comments in tangled files
               (beyond those which may already exist in the body of the code
               block).</dd>
 
-              <dt><code>:comments link</code></dt>
+              <dt>=:comments link=</dt>
 
               <dd>Inserts “tangled from X” comments around the code blocks in
               the tangled file (with <b>links</b> back to the original Org mode
               file).</dd>
 
-              <dt><code>:comments noweb</code></dt>
+              <dt>=:comments noweb=</dt>
 
               <dd>Inserts comment wrappers (with <b>links</b> back to the
               original Org mode file) around all <b>embedded noweb</b>
-              sections. Is an enhanced version of <code>:comments link</code>,
-              that can break newlines in <code>&lt;&lt;block&gt;&gt; +
-              1</code>, for example. XXX</dd>
+              sections. Is an enhanced version of =:comments link=, that can
+              break newlines in <code>&lt;&lt;block&gt;&gt; + 1</code>, for
+              example. XXX</dd>
 
-              <dt><code>:comments org</code></dt>
+              <dt>=:comments org=</dt>
 
               <dd>Includes <b>preceding text</b> from the Org mode file as a
               comment before the code block (but does not wrap the code with
               links back to the original Org file).</dd>
 
-              <dt><code>:comments both</code></dt>
+              <dt>=:comments both=</dt>
 
               <dd>Turns on both the <code>link</code> and <code>org</code>
               comment options.</dd>
 
-              <dt><code>:comments yes</code></dt>
+              <dt>=:comments yes=</dt>
 
-              <dd>(deprecated) Is the same as <code>:comments link</code>.</dd>
+              <dd>(deprecated) Is the same as =:comments link=.</dd>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-7-2" class="outline-4">
-          <h4 id="sec-4-7-2">See also</h4>
+        <div id="outline-container-sec-4-6-2" class="outline-4">
+          <h4 id="sec-4-6-2">See also</h4>
 
-          <div class="outline-text-4" id="text-4-7-2"></div>
+          <div class="outline-text-4" id="text-4-6-2"></div>
 
-          <div id="outline-container-sec-4-7-2-1" class="outline-5">
-            <h5 id="sec-4-7-2-1">Reference</h5>
+          <div id="outline-container-sec-4-6-2-1" class="outline-5">
+            <h5 id="sec-4-6-2-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-7-2-1">
+            <div class="outline-text-5" id="text-4-6-2-1">
               <p><a href="#tangle">:tangle</a></p>
             </div>
           </div>
 
-          <div id="outline-container-sec-4-7-2-2" class="outline-5">
-            <h5 id="sec-4-7-2-2">Other resources</h5>
+          <div id="outline-container-sec-4-6-2-2" class="outline-5">
+            <h5 id="sec-4-6-2-2">Other resources</h5>
 
-            <div class="outline-text-5" id="text-4-7-2-2">
+            <div class="outline-text-5" id="text-4-6-2-2">
               <p>The variable
               <code>org-babel-tangle-use-relative-file-links</code> controls
               whether files and links in comments in tangled files use relative
@@ -2630,24 +2547,24 @@ rownames(data)
       </div>
 
       <div id="outline-container-dir" class="outline-3">
-        <h3 id="dir"><a id="sec-4-8" name="sec-4-8"></a>:dir</h3>
+        <h3 id="dir"><a id="sec-4-7" name="sec-4-7"></a>:dir</h3>
 
         <div class="outline-text-3" id="text-dir">
           <p>Specifies the default (possibly <b>remote</b>) directory during
           code block execution.</p>
         </div>
 
-        <div id="outline-container-sec-4-8-1" class="outline-4">
-          <h4 id="sec-4-8-1">Options</h4>
+        <div id="outline-container-sec-4-7-1" class="outline-4">
+          <h4 id="sec-4-7-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-8-1">
+          <div class="outline-text-4" id="text-4-7-1">
             <dl class="org-dl">
               <dt>none</dt>
 
               <dd>Uses the directory associated with the <b>current
               buffer</b>.</dd>
 
-              <dt><code>:dir &lt;DIR&gt;</code></dt>
+              <dt>=:dir &lt;DIR&gt;=</dt>
 
               <dd>Specifies to use <code>DIR</code> as the <b>default
               directory</b> for code block execution.</dd>
@@ -2655,23 +2572,23 @@ rownames(data)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-8-2" class="outline-4">
-          <h4 id="sec-4-8-2">Remarks</h4>
+        <div id="outline-container-sec-4-7-2" class="outline-4">
+          <h4 id="sec-4-7-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-8-2">
-            <p>You can use the <code>:dir</code> header argument for <b>remote
+          <div class="outline-text-4" id="text-4-7-2">
+            <p>You can use the =:dir= header argument for <b>remote
             execution</b>. The directory is specified using using <a href=
             "http://www.gnu.org/software/emacs/manual/html_node/tramp/Filename-Syntax.html">
             Tramp filename syntax</a>.</p>
 
-            <p><code>:results output</code> seems to be necessary!</p>
+            <p>=:results output= seems to be necessary!</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-8-3" class="outline-4">
-          <h4 id="sec-4-8-3">Examples</h4>
+        <div id="outline-container-sec-4-7-3" class="outline-4">
+          <h4 id="sec-4-7-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-8-3">
+          <div class="outline-text-4" id="text-4-7-3">
             <p>WHY DON’T WE HAVE TO SPECIFY :OUTPUT FOR THE SH BLOCK?</p>
 
             <div class="org-src-container">
@@ -2705,15 +2622,15 @@ ls -la
           </div>
         </div>
 
-        <div id="outline-container-sec-4-8-4" class="outline-4">
-          <h4 id="sec-4-8-4">See also</h4>
+        <div id="outline-container-sec-4-7-4" class="outline-4">
+          <h4 id="sec-4-7-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-8-4"></div>
+          <div class="outline-text-4" id="text-4-7-4"></div>
 
-          <div id="outline-container-sec-4-8-4-1" class="outline-5">
-            <h5 id="sec-4-8-4-1">Reference</h5>
+          <div id="outline-container-sec-4-7-4-1" class="outline-5">
+            <h5 id="sec-4-7-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-8-4-1">
+            <div class="outline-text-5" id="text-4-7-4-1">
               <p><a href="#file">:file</a></p>
             </div>
           </div>
@@ -2721,38 +2638,38 @@ ls -la
       </div>
 
       <div id="outline-container-epilogue" class="outline-3">
-        <h3 id="epilogue"><a id="sec-4-9" name="sec-4-9"></a>:epilogue</h3>
+        <h3 id="epilogue"><a id="sec-4-8" name="sec-4-8"></a>:epilogue</h3>
 
         <div class="outline-text-3" id="text-epilogue">
           <p>Appends text to code block body.</p>
         </div>
 
-        <div id="outline-container-sec-4-9-1" class="outline-4">
-          <h4 id="sec-4-9-1">Options</h4>
+        <div id="outline-container-sec-4-8-1" class="outline-4">
+          <h4 id="sec-4-8-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-9-1">
+          <div class="outline-text-4" id="text-4-8-1">
             <dl class="org-dl">
-              <dt><code>:epilogue ""</code></dt>
+              <dt>=:epilogue ""=</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:epilogue &lt;TEXT&gt;</code></dt>
+              <dt>=:epilogue &lt;TEXT&gt;=</dt>
 
-              <dd>Appends the value of the <code>:epilogue</code> header
-              argument to the code block body before execution.</dd>
+              <dd>Appends the value of the =:epilogue= header argument to the
+              code block body before execution.</dd>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-9-2" class="outline-4">
-          <h4 id="sec-4-9-2">See also</h4>
+        <div id="outline-container-sec-4-8-2" class="outline-4">
+          <h4 id="sec-4-8-2">See also</h4>
 
-          <div class="outline-text-4" id="text-4-9-2"></div>
+          <div class="outline-text-4" id="text-4-8-2"></div>
 
-          <div id="outline-container-sec-4-9-2-1" class="outline-5">
-            <h5 id="sec-4-9-2-1">Reference</h5>
+          <div id="outline-container-sec-4-8-2-1" class="outline-5">
+            <h5 id="sec-4-8-2-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-9-2-1">
+            <div class="outline-text-5" id="text-4-8-2-1">
               <p><a href="#prologue">:prologue</a></p>
             </div>
           </div>
@@ -2760,11 +2677,111 @@ ls -la
       </div>
 
       <div id="outline-container-eval" class="outline-3">
-        <h3 id="eval"><a id="sec-4-10" name="sec-4-10"></a>:eval</h3>
+        <h3 id="eval"><a id="sec-4-9" name="sec-4-9"></a>:eval</h3>
 
         <div class="outline-text-3" id="text-eval">
           <p>Specifies permissions for <i>every</i> execution of code
           blocks.</p>
+        </div>
+
+        <div id="outline-container-sec-4-9-1" class="outline-4">
+          <h4 id="sec-4-9-1">Options</h4>
+
+          <div class="outline-text-4" id="text-4-9-1">
+            <dl class="org-dl">
+              <dt>=:eval yes=</dt>
+
+              <dd>(default) Allows evaluation of the code block (both
+              interactively and during export) WITHOUT A CONFIRMATION FROM THE
+              USER?.</dd>
+
+              <dt>=:eval query=</dt>
+
+              <dd>Requires confirmation before evaluating the code block (both
+              interactively and during export), regardless of the value of the
+              <code>org-confirm-babel-evaluate</code> variable.</dd>
+
+              <dt>=:eval query-export=</dt>
+
+              <dd>Allows interactive evaluation of the code block, but requires
+              confirmation before evaluating it during export, regardless of
+              the value of the <code>org-confirm-babel-evaluate</code>
+              variable.</dd>
+
+              <dt>=:eval never=</dt>
+
+              <dd>Inhibits (silently) evaluation of the code block (both
+              interactively and during export). This is useful for protecting
+              against the evaluation of dangerous code blocks.</dd>
+
+              <dt>=:eval never-export=</dt>
+
+              <dd>Allows interactive evaluation of the code block, but inhibits
+              its evaluation during export.</dd>
+
+              <dt>=:eval no=</dt>
+
+              <dd>Is the same as =:eval never=.</dd>
+
+              <dt>=:eval no-export=</dt>
+
+              <dd>Is the same as =:eval never-export=.</dd>
+
+              <dt>=:noeval=</dt>
+
+              <dd>Is the same as =:eval no=.</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div id="outline-container-sec-4-9-2" class="outline-4">
+          <h4 id="sec-4-9-2">Remarks</h4>
+
+          <div class="outline-text-4" id="text-4-9-2">
+            <p>Sometimes, to <b>switch off execution</b> of code blocks
+            <b>during export</b>, you can find it easy to simply manually
+            generate the results of a code block (e.g., through an interactive
+            evaluation), and set the =:eval= property of the code block to
+            <code>never-export</code>.</p>
+
+            <p>Note that, unlike <a href="#tangle">tangling</a>, evaluation
+            requires the specific language to be supported for both performing
+            the evaluation and collecting the <a href=
+            "#results">results</a>.</p>
+          </div>
+        </div>
+
+        <div id="outline-container-sec-4-9-3" class="outline-4">
+          <h4 id="sec-4-9-3">See also</h4>
+
+          <div class="outline-text-4" id="text-4-9-3"></div>
+
+          <div id="outline-container-sec-4-9-3-1" class="outline-5">
+            <h5 id="sec-4-9-3-1">Reference</h5>
+
+            <div class="outline-text-5" id="text-4-9-3-1">
+              <p><a href="#cache">:cache</a><br />
+              <a href="#exports">:exports</a><br />
+              <a href="#session">:session</a></p>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-4-9-3-2" class="outline-5">
+            <h5 id="sec-4-9-3-2">Variable</h5>
+
+            <div class="outline-text-5" id="text-4-9-3-2">
+              <p><code>org-confirm-babel-evaluate</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-exports" class="outline-3">
+        <h3 id="exports"><a id="sec-4-10" name="sec-4-10"></a>:exports</h3>
+
+        <div class="outline-text-3" id="text-exports">
+          <p>Specifies how code and/or results should be handled <b>during
+          export</b>.</p>
         </div>
 
         <div id="outline-container-sec-4-10-1" class="outline-4">
@@ -2772,47 +2789,26 @@ ls -la
 
           <div class="outline-text-4" id="text-4-10-1">
             <dl class="org-dl">
-              <dt><code>:eval yes</code></dt>
+              <dt>=:exports none=</dt>
 
-              <dd>(default) Allows evaluation of the code block (both
-              interactively and during export) WITHOUT A CONFIRMATION FROM THE
-              USER?.</dd>
+              <dd>Doesn’t include anything in the exported file.</dd>
 
-              <dt><code>:eval query</code></dt>
+              <dt>=:exports code=</dt>
 
-              <dd>Requires confirmation before evaluating the code block (both
-              interactively and during export), regardless of the value of the
-              <code>org-confirm-babel-evaluate</code> variable.</dd>
+              <dd>(default) (default for Org code blocks) Includes (only) the
+              body of the code block into the exported file.</dd>
 
-              <dt><code>:eval query-export</code></dt>
+              <dt>=:exports results=</dt>
 
-              <dd>Allows interactive evaluation of the code block, but requires
-              confirmation before evaluating it during export, regardless of
-              the value of the <code>org-confirm-babel-evaluate</code>
-              variable.</dd>
+              <dd>(default for <i>inline</i> code blocks) (default for LaTeX
+              code blocks) (default for code blocks in graphics-only languages)
+              Includes (only) the <b>results block</b> in the exported
+              file.</dd>
 
-              <dt><code>:eval never</code></dt>
+              <dt>=:exports both=</dt>
 
-              <dd>Inhibits (silently) evaluation of the code block (both
-              interactively and during export). This is useful for protecting
-              against the evaluation of dangerous code blocks.</dd>
-
-              <dt><code>:eval never-export</code></dt>
-
-              <dd>Allows interactive evaluation of the code block, but inhibits
-              its evaluation during export.</dd>
-
-              <dt><code>:eval no</code></dt>
-
-              <dd>Is the same as <code>:eval never</code>.</dd>
-
-              <dt><code>:eval no-export</code></dt>
-
-              <dd>Is the same as <code>:eval never-export</code>.</dd>
-
-              <dt><code>:noeval</code></dt>
-
-              <dd>Is the same as <code>:eval no</code>.</dd>
+              <dd>Includes both the code block and the <a href=
+              "#eval">results</a> in the exported file.</dd>
             </dl>
           </div>
         </div>
@@ -2821,16 +2817,32 @@ ls -la
           <h4 id="sec-4-10-2">Remarks</h4>
 
           <div class="outline-text-4" id="text-4-10-2">
-            <p>Sometimes, to <b>switch off execution</b> of code blocks
-            <b>during export</b>, you can find it easy to simply manually
-            generate the results of a code block (e.g., through an interactive
-            evaluation), and set the <code>:eval</code> property of the code
-            block to <code>never-export</code>.</p>
+            <ul class="org-ul">
+              <li>When =:exports= is set to <code>none</code> or
+              <code>code</code>, Org Babel will <b>not <a href=
+              "#eval">run</a></b> the code block <b>during export</b>, avoiding
+              to (re-)generate the results on every export. In particular, use
+              that on code blocks which cannot be <a href="#eval">executed</a>
+              on their own.
 
-            <p>Note that, unlike <a href="#tangle">tangling</a>, evaluation
-            requires the specific language to be supported for both performing
-            the evaluation and collecting the <a href=
-            "#results">results</a>.</p>
+                <p>This has <b>no effect on interactive <a href=
+                "#eval">evaluation</a></b>, though.</p>
+              </li>
+
+              <li>When =:exports= is set to <code>results</code> or
+              <code>both</code>, if evaluation is allowed during export, the
+              code block will be (re-)<a href="#eval">evaluated</a> during
+              export. Otherwise, the current (unchanged) results block, when
+              present, will be included <b>in the exported file</b>.</li>
+
+              <li>Note that the =:exports= option is only relevant for code
+              blocks, not inline code.</li>
+
+              <li>A code block in a subtree tagged =:noexport:= will still be
+              evaluated, if evaluation is allowed during export, because its
+              side-effects may be needed for code run elsewhere. If you don’t
+              want that, set =:eval= accordingly.</li>
+            </ul>
           </div>
         </div>
 
@@ -2844,96 +2856,6 @@ ls -la
 
             <div class="outline-text-5" id="text-4-10-3-1">
               <p><a href="#cache">:cache</a><br />
-              <a href="#exports">:exports</a><br />
-              <a href="#session">:session</a></p>
-            </div>
-          </div>
-
-          <div id="outline-container-sec-4-10-3-2" class="outline-5">
-            <h5 id="sec-4-10-3-2">Variable</h5>
-
-            <div class="outline-text-5" id="text-4-10-3-2">
-              <p><code>org-confirm-babel-evaluate</code></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="outline-container-exports" class="outline-3">
-        <h3 id="exports"><a id="sec-4-11" name="sec-4-11"></a>:exports</h3>
-
-        <div class="outline-text-3" id="text-exports">
-          <p>Specifies how code and/or results should be handled <b>during
-          export</b>.</p>
-        </div>
-
-        <div id="outline-container-sec-4-11-1" class="outline-4">
-          <h4 id="sec-4-11-1">Options</h4>
-
-          <div class="outline-text-4" id="text-4-11-1">
-            <dl class="org-dl">
-              <dt><code>:exports none</code></dt>
-
-              <dd>Doesn’t include anything in the exported file.</dd>
-
-              <dt><code>:exports code</code></dt>
-
-              <dd>(default) (default for Org code blocks) Includes (only) the
-              body of the code block into the exported file.</dd>
-
-              <dt><code>:exports results</code></dt>
-
-              <dd>(default for <i>inline</i> code blocks) (default for LaTeX
-              code blocks) (default for code blocks in graphics-only languages)
-              Includes (only) the <b>results block</b> in the exported
-              file.</dd>
-
-              <dt><code>:exports both</code></dt>
-
-              <dd>Includes both the code block and the <a href=
-              "#eval">results</a> in the exported file.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div id="outline-container-sec-4-11-2" class="outline-4">
-          <h4 id="sec-4-11-2">Remarks</h4>
-
-          <div class="outline-text-4" id="text-4-11-2">
-            <ul class="org-ul">
-              <li>When <code>:exports</code> is set to <code>none</code> or
-              <code>code</code>, Org Babel will <b>not <a href=
-              "#eval">run</a></b> the code block <b>during export</b>, avoiding
-              to (re-)generate the results on every export. In particular, use
-              that on code blocks which cannot be <a href="#eval">executed</a>
-              on their own.
-
-                <p>This has no effect on interactive <a href=
-                "#eval">evaluation</a>, though.</p>
-
-                <p>If you need the code to be evaluated, put the block in a
-                <code>:noexport:</code> entry.</p>
-              </li>
-
-              <li>When <code>:exports</code> is set to <code>results</code> or
-              <code>both</code>, if evaluation is allowed during export, the
-              code block will be (re-)<a href="#eval">evaluated</a> during
-              export. Otherwise, the current (unchanged) results block, when
-              present, will be included <b>in the exported file</b>.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div id="outline-container-sec-4-11-3" class="outline-4">
-          <h4 id="sec-4-11-3">See also</h4>
-
-          <div class="outline-text-4" id="text-4-11-3"></div>
-
-          <div id="outline-container-sec-4-11-3-1" class="outline-5">
-            <h5 id="sec-4-11-3-1">Reference</h5>
-
-            <div class="outline-text-5" id="text-4-11-3-1">
-              <p><a href="#cache">:cache</a><br />
               <a href="#eval">:eval</a><br />
               <a href="#results">:results</a></p>
             </div>
@@ -2942,18 +2864,18 @@ ls -la
       </div>
 
       <div id="outline-container-file" class="outline-3">
-        <h3 id="file"><a id="sec-4-12" name="sec-4-12"></a>:file</h3>
+        <h3 id="file"><a id="sec-4-11" name="sec-4-11"></a>:file</h3>
 
         <div class="outline-text-3" id="text-file">
           <p>Specifies to <b>write the results to a file</b>.</p>
         </div>
 
-        <div id="outline-container-sec-4-12-1" class="outline-4">
-          <h4 id="sec-4-12-1">Options</h4>
+        <div id="outline-container-sec-4-11-1" class="outline-4">
+          <h4 id="sec-4-11-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-12-1">
+          <div class="outline-text-4" id="text-4-11-1">
             <dl class="org-dl">
-              <dt><code>:file &lt;FILENAME&gt;</code></dt>
+              <dt>=:file &lt;FILENAME&gt;=</dt>
 
               <dd>Writes the <b>results</b> from the code block evaluation to
               <code>&lt;FILENAME&gt;</code> and inserts (for the <b>results
@@ -2963,12 +2885,12 @@ ls -la
           </div>
         </div>
 
-        <div id="outline-container-sec-4-12-2" class="outline-4">
-          <h4 id="sec-4-12-2">Remarks</h4>
+        <div id="outline-container-sec-4-11-2" class="outline-4">
+          <h4 id="sec-4-11-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-12-2">
-            <p>Extension can be everything: <code>.png</code>,
-            <code>.pdf</code>, <code>.txt</code>, <code>.csv</code>, etc.</p>
+          <div class="outline-text-4" id="text-4-11-2">
+            <p>Extension can be everything: =.png=, =.pdf=, =.txt=, =.csv=,
+            etc.</p>
 
             <p>When relative, the filename is interpreted relatively to the
             <a href="#dir">default directory</a>.</p>
@@ -2984,14 +2906,12 @@ ls -la
               written to file is the <b>normal Org Babel results</b> (string,
               number, table).
 
-                <p>When generating <b>graphics</b>, including the
-                <code>:results graphics</code> header argument is
-                <b>required</b>, in addition to <code>:file
-                &lt;FILENAME&gt;</code>, in order for graphical output to be
-                sent automatically to file. If <code>:file</code> is supplied,
-                but not <code>:results graphics</code>, then non-graphical
-                (<code>value</code> or <code>output</code>) results are written
-                to file.</p>
+                <p>When generating <b>graphics</b>, including the =:results
+                graphics= header argument is <b>required</b>, in addition to
+                =:file &lt;FILENAME&gt;=, in order for graphical output to be
+                sent automatically to file. If =:file= is supplied, but not
+                =:results graphics=, then non-graphical (<code>value</code> or
+                <code>output</code>) results are written to file.</p>
               </li>
             </ul>
 
@@ -3003,28 +2923,28 @@ ls -la
             image from within your Org buffer.</p>
 
             <p>Some languages including <i>R</i>, <i>gnuplot</i>, <i>dot</i>,
-            and <i>ditaa</i> provide special handling of the <code>:file</code>
-            header argument automatically wrapping the code block body in the
+            and <i>ditaa</i> provide special handling of the =:file= header
+            argument automatically wrapping the code block body in the
             boilerplate code required to save output to the specified file.
             This is often useful for saving graphical output of a code block to
             the specified file.</p>
 
-            <p><i>This means that the argument of the <code>:file</code> header
-            can be omitted and the file name can be generated within the source
+            <p><i>This means that the argument of the =:file= header can be
+            omitted and the file name can be generated within the source
             block.</i></p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-12-3" class="outline-4">
-          <h4 id="sec-4-12-3">Examples</h4>
+        <div id="outline-container-sec-4-11-3" class="outline-4">
+          <h4 id="sec-4-11-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-12-3"></div>
+          <div class="outline-text-4" id="text-4-11-3"></div>
 
-          <div id="outline-container-sec-4-12-3-1" class="outline-5">
-            <h5 id="sec-4-12-3-1">Saving the textual output from a
+          <div id="outline-container-sec-4-11-3-1" class="outline-5">
+            <h5 id="sec-4-11-3-1">Saving the textual output from a
             general-purpose language to a text file</h5>
 
-            <div class="outline-text-5" id="text-4-12-3-1">
+            <div class="outline-text-5" id="text-4-11-3-1">
               <p>Send the text output of <code>ls -l</code> directly to a
               file:</p>
 
@@ -3036,15 +2956,15 @@ ls -l
 
               <p><a href="dirlisting.txt">dirlisting.txt</a></p>
 
-              <p>Recall that <code>:results value</code> is the default.</p>
+              <p>Recall that =:results value= is the default.</p>
             </div>
           </div>
 
-          <div id="outline-container-sec-4-12-3-2" class="outline-5">
-            <h5 id="sec-4-12-3-2">Saving the graphical output from a
+          <div id="outline-container-sec-4-11-3-2" class="outline-5">
+            <h5 id="sec-4-11-3-2">Saving the graphical output from a
             general-purpose language to an image file</h5>
 
-            <div class="outline-text-5" id="text-4-12-3-2">
+            <div class="outline-text-5" id="text-4-11-3-2">
               <p>XXX Output is not necessary!!</p>
 
               <div class="org-src-container">
@@ -3059,16 +2979,16 @@ plot(1:10, (1:10)^2)
             </div>
           </div>
 
-          <div id="outline-container-sec-4-12-3-3" class="outline-5">
-            <h5 id="sec-4-12-3-3">Saving the graphical output from a graphics
+          <div id="outline-container-sec-4-11-3-3" class="outline-5">
+            <h5 id="sec-4-11-3-3">Saving the graphical output from a graphics
             language to an image file</h5>
 
-            <div class="outline-text-5" id="text-4-12-3-3"></div>
+            <div class="outline-text-5" id="text-4-11-3-3"></div>
 
             <ul class="org-ul">
               <li>Dotty<br />
 
-                <div class="outline-text-6" id="text-4-12-3-3-1">
+                <div class="outline-text-6" id="text-4-11-3-3-1">
                   <div class="org-src-container">
                     <pre class="src src-dot">
 digraph <span style="color: #006699;">G</span> {
@@ -3094,14 +3014,14 @@ digraph <span style="color: #006699;">G</span> {
                     <p><img src="images/dot.png" alt="dot.png" /></p>
                   </div>
 
-                  <p>Recall that <code>:exports results</code> is the default
-                  for graphics-only languages.</p>
+                  <p>Recall that =:exports results= is the default for
+                  graphics-only languages.</p>
                 </div>
               </li>
 
               <li>R<br />
 
-                <div class="outline-text-6" id="text-4-12-3-3-2">
+                <div class="outline-text-6" id="text-4-11-3-3-2">
                   <p>Choose PNG extension (and not PDF) to preview the results
                   in the Org buffer itself.</p>
 
@@ -3116,15 +3036,15 @@ plot(1:10, (1:10)^2)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-12-4" class="outline-4">
-          <h4 id="sec-4-12-4">See also</h4>
+        <div id="outline-container-sec-4-11-4" class="outline-4">
+          <h4 id="sec-4-11-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-12-4"></div>
+          <div class="outline-text-4" id="text-4-11-4"></div>
 
-          <div id="outline-container-sec-4-12-4-1" class="outline-5">
-            <h5 id="sec-4-12-4-1">Reference</h5>
+          <div id="outline-container-sec-4-11-4-1" class="outline-5">
+            <h5 id="sec-4-11-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-12-4-1">
+            <div class="outline-text-5" id="text-4-11-4-1">
               <p><a href="#dir">:dir</a><br />
               <a href="#results">:results</a><br />
               <a href="#sep">:sep</a> (for saving tabular results)</p>
@@ -3134,7 +3054,7 @@ plot(1:10, (1:10)^2)
       </div>
 
       <div id="outline-container-file-desc" class="outline-3">
-        <h3 id="file-desc"><a id="sec-4-13" name="sec-4-13"></a>:file-desc</h3>
+        <h3 id="file-desc"><a id="sec-4-12" name="sec-4-12"></a>:file-desc</h3>
 
         <div class="outline-text-3" id="text-file-desc">
           <p>Specifies a description for file results.</p>
@@ -3142,22 +3062,22 @@ plot(1:10, (1:10)^2)
       </div>
 
       <div id="outline-container-hlines" class="outline-3">
-        <h3 id="hlines"><a id="sec-4-14" name="sec-4-14"></a>:hlines</h3>
+        <h3 id="hlines"><a id="sec-4-13" name="sec-4-13"></a>:hlines</h3>
 
         <div class="outline-text-3" id="text-hlines">
           <p>Handles <b>horizontal lines</b> in input tables.</p>
         </div>
 
-        <div id="outline-container-sec-4-14-1" class="outline-4">
-          <h4 id="sec-4-14-1">Options</h4>
+        <div id="outline-container-sec-4-13-1" class="outline-4">
+          <h4 id="sec-4-13-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-14-1">
+          <div class="outline-text-4" id="text-4-13-1">
             <dl class="org-dl">
-              <dt><code>:hlines no</code></dt>
+              <dt>=:hlines no=</dt>
 
               <dd>(default) Strips horizontal lines from the input table.</dd>
 
-              <dt><code>:hlines yes</code></dt>
+              <dt>=:hlines yes=</dt>
 
               <dd>(default for Emacs Lisp code blocks) Preserves horizontal
               lines in the input table.</dd>
@@ -3165,19 +3085,19 @@ plot(1:10, (1:10)^2)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-14-2" class="outline-4">
-          <h4 id="sec-4-14-2">Remarks</h4>
+        <div id="outline-container-sec-4-13-2" class="outline-4">
+          <h4 id="sec-4-13-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-14-2">
+          <div class="outline-text-4" id="text-4-13-2">
             <p><b>Don’t confound this with the <a href=
             "#colnames">:colnames</a> machinery.</b></p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-14-3" class="outline-4">
-          <h4 id="sec-4-14-3">Examples</h4>
+        <div id="outline-container-sec-4-13-3" class="outline-4">
+          <h4 id="sec-4-13-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-14-3">
+          <div class="outline-text-4" id="text-4-13-3">
             <table id="one-hline" border="2" cellspacing="0" cellpadding="6"
             rules="groups" frame="hsides">
               <colgroup>
@@ -3276,8 +3196,8 @@ plot(1:10, (1:10)^2)
 </pre>
             </div>
 
-            <p>The <code>:hlines yes</code> header argument must be set on the
-            call line itself.</p>
+            <p>The =:hlines yes= header argument must be set on the call line
+            itself.</p>
             <pre class="example">
 ((1 "one") (2 "two") (3 "three"))
 </pre>
@@ -3287,15 +3207,15 @@ plot(1:10, (1:10)^2)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-14-4" class="outline-4">
-          <h4 id="sec-4-14-4">See also</h4>
+        <div id="outline-container-sec-4-13-4" class="outline-4">
+          <h4 id="sec-4-13-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-14-4"></div>
+          <div class="outline-text-4" id="text-4-13-4"></div>
 
-          <div id="outline-container-sec-4-14-4-1" class="outline-5">
-            <h5 id="sec-4-14-4-1">Reference</h5>
+          <div id="outline-container-sec-4-13-4-1" class="outline-5">
+            <h5 id="sec-4-13-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-14-4-1">
+            <div class="outline-text-5" id="text-4-13-4-1">
               <p><a href="#colnames">:colnames</a></p>
             </div>
           </div>
@@ -3303,71 +3223,89 @@ plot(1:10, (1:10)^2)
       </div>
 
       <div id="outline-container-mkdirp" class="outline-3">
-        <h3 id="mkdirp"><a id="sec-4-15" name="sec-4-15"></a>:mkdirp</h3>
+        <h3 id="mkdirp"><a id="sec-4-14" name="sec-4-14"></a>:mkdirp</h3>
 
         <div class="outline-text-3" id="text-mkdirp">
           <p>Toggles creation of parent directories of target files during
           tangling.</p>
         </div>
 
-        <div id="outline-container-sec-4-15-1" class="outline-4">
-          <h4 id="sec-4-15-1">Options</h4>
+        <div id="outline-container-sec-4-14-1" class="outline-4">
+          <h4 id="sec-4-14-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-15-1">
+          <div class="outline-text-4" id="text-4-14-1">
             <dl class="org-dl">
-              <dt><code>:mkdirp no</code></dt>
+              <dt>=:mkdirp no=</dt>
 
-              <dt><code>:mkdirp yes</code></dt>
+              <dt>=:mkdirp yes=</dt>
             </dl>
           </div>
         </div>
       </div>
 
       <div id="outline-container-no-expand" class="outline-3">
-        <h3 id="no-expand"><a id="sec-4-16" name="sec-4-16"></a>:no-expand</h3>
+        <h3 id="no-expand"><a id="sec-4-15" name="sec-4-15"></a>:no-expand</h3>
 
-        <div class="outline-text-3" id="text-no-expand"></div>
+        <div class="outline-text-3" id="text-no-expand">
+          <p>During tangling.</p>
+        </div>
+
+        <div id="outline-container-sec-4-15-1" class="outline-4">
+          <h4 id="sec-4-15-1">See also</h4>
+
+          <div class="outline-text-4" id="text-4-15-1"></div>
+
+          <div id="outline-container-sec-4-15-1-1" class="outline-5">
+            <h5 id="sec-4-15-1-1">Reference</h5>
+
+            <div class="outline-text-5" id="text-4-15-1-1">
+              <p><a href="#noweb">:noweb</a><br />
+              <a href="#noweb-ref">:noweb-ref</a><br />
+              <a href="#noweb-sep">:noweb-sep</a><br /></p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="outline-container-noweb" class="outline-3">
-        <h3 id="noweb"><a id="sec-4-17" name="sec-4-17"></a>:noweb</h3>
+        <h3 id="noweb"><a id="sec-4-16" name="sec-4-16"></a>:noweb</h3>
 
         <div class="outline-text-3" id="text-noweb">
           <p>Specifies when expansion of “noweb” style references should
           occur.</p>
         </div>
 
-        <div id="outline-container-sec-4-17-1" class="outline-4">
-          <h4 id="sec-4-17-1">Options</h4>
+        <div id="outline-container-sec-4-16-1" class="outline-4">
+          <h4 id="sec-4-16-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-17-1">
+          <div class="outline-text-4" id="text-4-16-1">
             <dl class="org-dl">
-              <dt><code>:noweb no</code></dt>
+              <dt>=:noweb no=</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:noweb yes</code></dt>
+              <dt>=:noweb yes=</dt>
 
               <dd>Expands noweb references in code blocks during both tangling
               and evaluation (interactively and during export).</dd>
 
-              <dt><code>:noweb strip-export</code></dt>
+              <dt>=:noweb strip-export=</dt>
 
               <dd>Expands noweb references in code blocks before the block is
               tangled or evaluated. However, they will be <b>stripped on
               export</b>.</dd>
 
-              <dt><code>:noweb no-export</code></dt>
+              <dt>=:noweb no-export=</dt>
 
               <dd>Expands noweb references during tangling and interactive
               evaluation, but not during export.</dd>
 
-              <dt><code>:noweb tangle</code></dt>
+              <dt>=:noweb tangle=</dt>
 
               <dd>Expands noweb references only during tangling, but not during
               interactive evaluation nor during export.</dd>
 
-              <dt><code>:noweb eval</code></dt>
+              <dt>=:noweb eval=</dt>
 
               <dd>Expands noweb references <b>only</b> during interactive
               evaluation.</dd>
@@ -3375,19 +3313,19 @@ plot(1:10, (1:10)^2)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-17-2" class="outline-4">
-          <h4 id="sec-4-17-2">Examples</h4>
+        <div id="outline-container-sec-4-16-2" class="outline-4">
+          <h4 id="sec-4-16-2">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-17-2"></div>
+          <div class="outline-text-4" id="text-4-16-2"></div>
 
-          <div id="outline-container-sec-4-17-2-1" class="outline-5">
-            <h5 id="sec-4-17-2-1">Expand block</h5>
+          <div id="outline-container-sec-4-16-2-1" class="outline-5">
+            <h5 id="sec-4-16-2-1">Expand block</h5>
           </div>
 
-          <div id="outline-container-sec-4-17-2-2" class="outline-5">
-            <h5 id="sec-4-17-2-2">Execute block</h5>
+          <div id="outline-container-sec-4-16-2-2" class="outline-5">
+            <h5 id="sec-4-16-2-2">Execute block</h5>
 
-            <div class="outline-text-5" id="text-4-17-2-2">
+            <div class="outline-text-5" id="text-4-16-2-2">
               <p>Note the parens in the noweb reference:</p>
 
               <div class="org-src-container">
@@ -3409,18 +3347,23 @@ in x
               </div>
             </div>
           </div>
+
+          <div id="outline-container-sec-4-16-2-3" class="outline-5">
+            <h5 id="sec-4-16-2-3">Expand variable in tangled code</h5>
+          </div>
         </div>
 
-        <div id="outline-container-sec-4-17-3" class="outline-4">
-          <h4 id="sec-4-17-3">See also</h4>
+        <div id="outline-container-sec-4-16-3" class="outline-4">
+          <h4 id="sec-4-16-3">See also</h4>
 
-          <div class="outline-text-4" id="text-4-17-3"></div>
+          <div class="outline-text-4" id="text-4-16-3"></div>
 
-          <div id="outline-container-sec-4-17-3-1" class="outline-5">
-            <h5 id="sec-4-17-3-1">Reference</h5>
+          <div id="outline-container-sec-4-16-3-1" class="outline-5">
+            <h5 id="sec-4-16-3-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-17-3-1">
+            <div class="outline-text-5" id="text-4-16-3-1">
               <p><a href="#comments">:comments</a><br />
+              <a href="#no-expand">:no-expand</a><br />
               <a href="#noweb-ref">:noweb-ref</a><br />
               <a href="#noweb-sep">:noweb-sep</a><br />
               <a href="#padline">:padline</a><br />
@@ -3428,10 +3371,10 @@ in x
             </div>
           </div>
 
-          <div id="outline-container-sec-4-17-3-2" class="outline-5">
-            <h5 id="sec-4-17-3-2">Concepts</h5>
+          <div id="outline-container-sec-4-16-3-2" class="outline-5">
+            <h5 id="sec-4-16-3-2">Concepts</h5>
 
-            <div class="outline-text-5" id="text-4-17-3-2">
+            <div class="outline-text-5" id="text-4-16-3-2">
               <p>Noweb references</p>
             </div>
           </div>
@@ -3439,20 +3382,20 @@ in x
       </div>
 
       <div id="outline-container-noweb-ref" class="outline-3">
-        <h3 id="noweb-ref"><a id="sec-4-18" name="sec-4-18"></a>:noweb-ref</h3>
+        <h3 id="noweb-ref"><a id="sec-4-17" name="sec-4-17"></a>:noweb-ref</h3>
 
         <div class="outline-text-3" id="text-noweb-ref">
           <p>Specifies block’s noweb reference resolution target.</p>
         </div>
 
-        <div id="outline-container-sec-4-18-1" class="outline-4">
-          <h4 id="sec-4-18-1">Options</h4>
+        <div id="outline-container-sec-4-17-1" class="outline-4">
+          <h4 id="sec-4-17-1">Options</h4>
         </div>
 
-        <div id="outline-container-sec-4-18-2" class="outline-4">
-          <h4 id="sec-4-18-2">Remarks</h4>
+        <div id="outline-container-sec-4-17-2" class="outline-4">
+          <h4 id="sec-4-17-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-18-2">
+          <div class="outline-text-4" id="text-4-17-2">
             <p>This allows you to <b>avoid repeating the reference name</b> in
             your Org document: if you set this header argument at the file or
             subtree level, the code blocks will be concatenated into the
@@ -3461,10 +3404,10 @@ in x
           </div>
         </div>
 
-        <div id="outline-container-sec-4-18-3" class="outline-4">
-          <h4 id="sec-4-18-3">Examples</h4>
+        <div id="outline-container-sec-4-17-3" class="outline-4">
+          <h4 id="sec-4-17-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-18-3">
+          <div class="outline-text-4" id="text-4-17-3">
             <div class="org-src-container">
               <pre class="src src-org">
 <span style=
@@ -3507,24 +3450,24 @@ in x
           </div>
         </div>
 
-        <div id="outline-container-sec-4-18-4" class="outline-4">
-          <h4 id="sec-4-18-4">See also</h4>
+        <div id="outline-container-sec-4-17-4" class="outline-4">
+          <h4 id="sec-4-17-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-18-4"></div>
+          <div class="outline-text-4" id="text-4-17-4"></div>
 
-          <div id="outline-container-sec-4-18-4-1" class="outline-5">
-            <h5 id="sec-4-18-4-1">Reference</h5>
+          <div id="outline-container-sec-4-17-4-1" class="outline-5">
+            <h5 id="sec-4-17-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-18-4-1">
+            <div class="outline-text-5" id="text-4-17-4-1">
               <p><a href="#noweb">:noweb</a><br />
               <a href="#noweb-sep">:noweb-sep</a></p>
             </div>
           </div>
 
-          <div id="outline-container-sec-4-18-4-2" class="outline-5">
-            <h5 id="sec-4-18-4-2">Other resources</h5>
+          <div id="outline-container-sec-4-17-4-2" class="outline-5">
+            <h5 id="sec-4-17-4-2">Other resources</h5>
 
-            <div class="outline-text-5" id="text-4-18-4-2">
+            <div class="outline-text-5" id="text-4-17-4-2">
               <p>The variable
               <code>org-babel-use-quick-and-dirty-noweb-expansion</code>
               controls XXX</p>
@@ -3534,30 +3477,30 @@ in x
       </div>
 
       <div id="outline-container-noweb-sep" class="outline-3">
-        <h3 id="noweb-sep"><a id="sec-4-19" name="sec-4-19"></a>:noweb-sep</h3>
+        <h3 id="noweb-sep"><a id="sec-4-18" name="sec-4-18"></a>:noweb-sep</h3>
 
         <div class="outline-text-3" id="text-noweb-sep">
           <p>Specifies the string to use to separate accumulated noweb
           references.</p>
         </div>
 
-        <div id="outline-container-sec-4-19-1" class="outline-4">
-          <h4 id="sec-4-19-1">Options</h4>
+        <div id="outline-container-sec-4-18-1" class="outline-4">
+          <h4 id="sec-4-18-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-19-1">
+          <div class="outline-text-4" id="text-4-18-1">
             <p>By default a newline is used.</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-19-2" class="outline-4">
-          <h4 id="sec-4-19-2">See also</h4>
+        <div id="outline-container-sec-4-18-2" class="outline-4">
+          <h4 id="sec-4-18-2">See also</h4>
 
-          <div class="outline-text-4" id="text-4-19-2"></div>
+          <div class="outline-text-4" id="text-4-18-2"></div>
 
-          <div id="outline-container-sec-4-19-2-1" class="outline-5">
-            <h5 id="sec-4-19-2-1">Reference</h5>
+          <div id="outline-container-sec-4-18-2-1" class="outline-5">
+            <h5 id="sec-4-18-2-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-19-2-1">
+            <div class="outline-text-5" id="text-4-18-2-1">
               <p><a href="#noweb">:noweb</a><br />
               <a href="#noweb-ref">:noweb-ref</a></p>
             </div>
@@ -3566,22 +3509,22 @@ in x
       </div>
 
       <div id="outline-container-padline" class="outline-3">
-        <h3 id="padline"><a id="sec-4-20" name="sec-4-20"></a>:padline</h3>
+        <h3 id="padline"><a id="sec-4-19" name="sec-4-19"></a>:padline</h3>
 
         <div class="outline-text-3" id="text-padline">
           <p>Controls insertion of padding lines in tangled code files.</p>
         </div>
 
-        <div id="outline-container-sec-4-20-1" class="outline-4">
-          <h4 id="sec-4-20-1">Options</h4>
+        <div id="outline-container-sec-4-19-1" class="outline-4">
+          <h4 id="sec-4-19-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-20-1">
+          <div class="outline-text-4" id="text-4-19-1">
             <dl class="org-dl">
-              <dt><code>:padline yes</code></dt>
+              <dt>=:padline yes=</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:padline no</code></dt>
+              <dt>=:padline no=</dt>
 
               <dd>Gets rid of the <b>first blank line</b> preceding tangled
               output.</dd>
@@ -3589,24 +3532,24 @@ in x
           </div>
         </div>
 
-        <div id="outline-container-sec-4-20-2" class="outline-4">
-          <h4 id="sec-4-20-2">Remarks</h4>
+        <div id="outline-container-sec-4-19-2" class="outline-4">
+          <h4 id="sec-4-19-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-20-2">
+          <div class="outline-text-4" id="text-4-19-2">
             <p>The padline is not inserted at the top of the file, only between
             blocks.</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-20-3" class="outline-4">
-          <h4 id="sec-4-20-3">See also</h4>
+        <div id="outline-container-sec-4-19-3" class="outline-4">
+          <h4 id="sec-4-19-3">See also</h4>
 
-          <div class="outline-text-4" id="text-4-20-3"></div>
+          <div class="outline-text-4" id="text-4-19-3"></div>
 
-          <div id="outline-container-sec-4-20-3-1" class="outline-5">
-            <h5 id="sec-4-20-3-1">Reference</h5>
+          <div id="outline-container-sec-4-19-3-1" class="outline-5">
+            <h5 id="sec-4-19-3-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-20-3-1">
+            <div class="outline-text-5" id="text-4-19-3-1">
               <p><a href="#noweb">:noweb</a></p>
             </div>
           </div>
@@ -3614,17 +3557,28 @@ in x
       </div>
 
       <div id="outline-container-post" class="outline-3">
-        <h3 id="post"><a id="sec-4-21" name="sec-4-21"></a>:post</h3>
+        <h3 id="post"><a id="sec-4-20" name="sec-4-20"></a>:post</h3>
 
         <div class="outline-text-3" id="text-post">
-          <p>Post-processes the results of a code block.</p>
+          <p><b>Post-processes</b> the <b>results</b> of a code block.</p>
         </div>
 
-        <div id="outline-container-sec-4-21-1" class="outline-4">
-          <h4 id="sec-4-21-1">Remarks</h4>
+        <div id="outline-container-sec-4-20-1" class="outline-4">
+          <h4 id="sec-4-20-1">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-21-1">
-            <ol class="org-ol">
+          <div class="outline-text-4" id="text-4-20-1">
+            <ul class="org-ul">
+              <li>Post blocks must return results, eventually by adding a
+              variable to them. For example:
+
+                <div class="org-src-container">
+                  <pre class="src src-emacs-lisp" id="notify">
+(shell-command <span style="color: #036A07;">"beep"</span>)
+data
+</pre>
+                </div>
+              </li>
+
               <li>When a post argument is given, the results of the code block
               will temporarily be bound to the <code>*this*</code> variable.
               This variable may then be included in header argument forms such
@@ -3632,18 +3586,17 @@ in x
               allowing passing of results to other code blocks, or direct
               execution via Emacs Lisp.</li>
 
-              <li>For example, the <code>:post</code> header argument could
-              link to an Emacs Lisp source code block which does automatically
-              refresh the inline images of (only) certain blocks (and not
-              others).</li>
-            </ol>
+              <li>For example, the =:post= header argument could link to an
+              Emacs Lisp source code block which does automatically refresh the
+              inline images of (only) certain blocks (and not others).</li>
+            </ul>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-21-2" class="outline-4">
-          <h4 id="sec-4-21-2">Examples</h4>
+        <div id="outline-container-sec-4-20-2" class="outline-4">
+          <h4 id="sec-4-20-2">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-21-2">
+          <div class="outline-text-4" id="text-4-20-2">
             <p>We can have a sequence of forward chained blocks with length
             &gt; 2.</p>
 
@@ -3671,38 +3624,38 @@ in x
       </div>
 
       <div id="outline-container-prologue" class="outline-3">
-        <h3 id="prologue"><a id="sec-4-22" name="sec-4-22"></a>:prologue</h3>
+        <h3 id="prologue"><a id="sec-4-21" name="sec-4-21"></a>:prologue</h3>
 
         <div class="outline-text-3" id="text-prologue">
           <p>Prepends text to code block body.</p>
         </div>
 
-        <div id="outline-container-sec-4-22-1" class="outline-4">
-          <h4 id="sec-4-22-1">Options</h4>
+        <div id="outline-container-sec-4-21-1" class="outline-4">
+          <h4 id="sec-4-21-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-22-1">
+          <div class="outline-text-4" id="text-4-21-1">
             <dl class="org-dl">
-              <dt><code>:prologue ""</code></dt>
+              <dt>=:prologue ""=</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:prologue &lt;TEXT&gt;</code></dt>
+              <dt>=:prologue &lt;TEXT&gt;=</dt>
 
-              <dd>Prepends the value of the <code>:prologue</code> header
-              argument to the code block body before execution.</dd>
+              <dd>Prepends the value of the =:prologue= header argument to the
+              code block body before execution.</dd>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-22-2" class="outline-4">
-          <h4 id="sec-4-22-2">See also</h4>
+        <div id="outline-container-sec-4-21-2" class="outline-4">
+          <h4 id="sec-4-21-2">See also</h4>
 
-          <div class="outline-text-4" id="text-4-22-2"></div>
+          <div class="outline-text-4" id="text-4-21-2"></div>
 
-          <div id="outline-container-sec-4-22-2-1" class="outline-5">
-            <h5 id="sec-4-22-2-1">Reference</h5>
+          <div id="outline-container-sec-4-21-2-1" class="outline-5">
+            <h5 id="sec-4-21-2-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-22-2-1">
+            <div class="outline-text-5" id="text-4-21-2-1">
               <p><a href="#epilogue">:epilogue</a></p>
             </div>
           </div>
@@ -3710,33 +3663,33 @@ in x
       </div>
 
       <div id="outline-container-results" class="outline-3">
-        <h3 id="results"><a id="sec-4-23" name="sec-4-23"></a>:results</h3>
+        <h3 id="results"><a id="sec-4-22" name="sec-4-22"></a>:results</h3>
 
         <div class="outline-text-3" id="text-results">
           <p>Specifies the type of results and how they will be collected and
           handled.</p>
         </div>
 
-        <div id="outline-container-sec-4-23-1" class="outline-4">
-          <h4 id="sec-4-23-1">Options</h4>
+        <div id="outline-container-sec-4-22-1" class="outline-4">
+          <h4 id="sec-4-22-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-23-1"></div>
+          <div class="outline-text-4" id="text-4-22-1"></div>
 
-          <div id="outline-container-sec-4-23-1-1" class="outline-5">
-            <h5 id="sec-4-23-1-1">How the code block is evaluated</h5>
+          <div id="outline-container-sec-4-22-1-1" class="outline-5">
+            <h5 id="sec-4-22-1-1">How the code block is evaluated</h5>
 
-            <div class="outline-text-5" id="text-4-23-1-1">
+            <div class="outline-text-5" id="text-4-22-1-1">
               <p>Specifies how the results should be <b>collected</b> from the
               code block’s evaluation.</p>
 
               <dl class="org-dl">
-                <dt><code>:results value</code> (aka functional mode)</dt>
+                <dt>=:results value= (aka functional mode)</dt>
 
                 <dd>(default) Specifies that the results of the block is the
                 <b>value of the last statement</b> in your code, turned into an
                 <b>Org mode table</b> if it is a list/vector type object.</dd>
 
-                <dt><code>:results output</code> (aka scripting mode)</dt>
+                <dt>=:results output= (aka scripting mode)</dt>
 
                 <dd>(default for Ledger code blocks) Specifies that the results
                 will be <b>everything printed to stdout</b> during execution of
@@ -3746,30 +3699,30 @@ in x
               </dl>
 
               <p>If you get the message <code>Source block produced no
-              output</code>, try adding <code>:results output</code>.</p>
+              output</code>, try adding =:results output=.</p>
             </div>
           </div>
 
-          <div id="outline-container-sec-4-23-1-2" class="outline-5">
-            <h5 id="sec-4-23-1-2">How the results are inserted into the Org
+          <div id="outline-container-sec-4-22-1-2" class="outline-5">
+            <h5 id="sec-4-22-1-2">How the results are inserted into the Org
             mode buffer</h5>
 
-            <div class="outline-text-5" id="text-4-23-1-2"></div>
+            <div class="outline-text-5" id="text-4-22-1-2"></div>
 
             <ul class="org-ul">
               <li>Handling params<br />
 
-                <div class="outline-text-6" id="text-4-23-1-2-1">
+                <div class="outline-text-6" id="text-4-22-1-2-1">
                   <p>Specifies if and how the results should be <b>inserted in
                   the buffer</b>.</p>
 
                   <dl class="org-dl">
-                    <dt><code>:results replace</code></dt>
+                    <dt>=:results replace=</dt>
 
                     <dd>(default) Inserts results after the code block,
                     replacing any previously inserted results.</dd>
 
-                    <dt><code>:results silent</code></dt>
+                    <dt>=:results silent=</dt>
 
                     <dd>(default for Org and Screen code blocks) Sends the
                     commands, echoes the results in the minibuffer (to see code
@@ -3777,17 +3730,17 @@ in x
                     buffer</b> (even during export, <b>no results are
                     inserted</b> into the exported document).</dd>
 
-                    <dt><code>:results none</code></dt>
+                    <dt>=:results none=</dt>
 
                     <dd>Silents the results, even for the minibuffer. By
                     definition, such a code block is run for its side
                     effects.</dd>
 
-                    <dt><code>:results append</code></dt>
+                    <dt>=:results append=</dt>
 
                     <dd>Builds new results onto existing results.</dd>
 
-                    <dt><code>:results prepend</code></dt>
+                    <dt>=:results prepend=</dt>
 
                     <dd>Is the same as <code>append</code>, but puts new
                     results before the existing results.</dd>
@@ -3797,12 +3750,12 @@ in x
 
               <li>Type<br />
 
-                <div class="outline-text-6" id="text-4-23-1-2-2">
+                <div class="outline-text-6" id="text-4-22-1-2-2">
                   <p>Specifies how the results should be
                   <b>interpreted</b>.</p>
 
                   <dl class="org-dl">
-                    <dt><code>:results verbatim</code></dt>
+                    <dt>=:results verbatim=</dt>
 
                     <dd>
                       (default for <code>raw</code>, <code>org</code> and
@@ -3828,12 +3781,12 @@ in x
                       </div>
                     </dd>
 
-                    <dt><code>:results table</code></dt>
+                    <dt>=:results table=</dt>
 
                     <dd>(default) Interprets the results as an Org mode
                     table.</dd>
 
-                    <dt><code>:results list</code></dt>
+                    <dt>=:results list=</dt>
 
                     <dd>
                       Writes an Org mode list.
@@ -3850,36 +3803,36 @@ in x
                       </div>
                     </dd>
 
-                    <dt><code>:results file</code></dt>
+                    <dt>=:results file=</dt>
 
                     <dd>(default for code blocks in graphics-only languages)
                     <b>Interprets the results as a file path</b>, and insert it
                     into the buffer using the Org mode file syntax.</dd>
 
-                    <dt><code>:results graphics</code></dt>
+                    <dt>=:results graphics=</dt>
 
                     <dd>(extra option for code blocks in maxima, octave and R)
                     XXX</dd>
 
-                    <dt><code>:results vector</code></dt>
+                    <dt>=:results vector=</dt>
 
-                    <dd>Is the same as <code>:results table</code>.</dd>
+                    <dd>Is the same as =:results table=.</dd>
 
-                    <dt><code>:results scalar</code></dt>
+                    <dt>=:results scalar=</dt>
 
-                    <dd>Is the same as <code>:results verbatim</code>.</dd>
+                    <dd>Is the same as =:results verbatim=.</dd>
                   </dl>
                 </div>
               </li>
 
               <li>Format<br />
 
-                <div class="outline-text-6" id="text-4-23-1-2-3">
+                <div class="outline-text-6" id="text-4-22-1-2-3">
                   <p>Specifies what type of results the code block will
                   return.</p>
 
                   <dl class="org-dl">
-                    <dt><code>:results raw</code></dt>
+                    <dt>=:results raw=</dt>
 
                     <dd>
                       (default for Org code blocks) (implies
@@ -3892,15 +3845,19 @@ in x
 <span style="color: #036A07;">"* Headline\nParagraph"</span>
 </pre>
                       </div>
+
+                      <p>Note that it is allowable for raw results to include
+                      newlines (if the code block returns a newline): the
+                      purpose of raw results is specifically to <b>not</b>
+                      change the result.</p>
                     </dd>
 
-                    <dt><code>:results html</code></dt>
+                    <dt>=:results html=</dt>
 
                     <dd>
                       Specifies that the <b>results</b> of the code block is
                       <b>raw HTML code</b> (which can be included correctly in
-                      HTML-based export targets). Is the same as <code>:wrap
-                      HTML</code>.
+                      HTML-based export targets). Is the same as =:wrap HTML=.
 
                       <p>Inserts the results inside a <code>#+BEGIN_HTML</code>
                       block.</p>
@@ -3913,13 +3870,13 @@ in x
                       </div>output <b>HTML</b> formatted text
                     </dd>
 
-                    <dt><code>:results latex</code></dt>
+                    <dt>=:results latex=</dt>
 
                     <dd>
                       (default for LaTeX code blocks) Specifies that the
                       <b>results</b> of the code block is <b>raw LaTeX code</b>
                       (which can be included correctly in LaTeX-based export
-                      targets). Is the same as <code>:wrap LaTeX</code>.
+                      targets). Is the same as =:wrap LaTeX=.
 
                       <p>Inserts the results inside a
                       <code>#+BEGIN_LaTeX</code> block.</p>
@@ -3937,7 +3894,7 @@ tex(exp(-x)/x);
                       </div>
                     </dd>
 
-                    <dt><code>:results org</code></dt>
+                    <dt>=:results org=</dt>
 
                     <dd>
                       (implies <code>verbatim</code> results, unless otherwise
@@ -3962,12 +3919,12 @@ Paragraph
                       </div>
                     </dd>
 
-                    <dt><code>:results drawer</code></dt>
+                    <dt>=:results drawer=</dt>
 
                     <dd>
-                      (replacement of <code>:results wrap</code>, since Org
-                      7.9.2) (implies <code>verbatim</code> results, unless
-                      otherwise stated) <b>Wraps code block results</b> in a
+                      (replacement of =:results wrap=, since Org 7.9.2)
+                      (implies <code>verbatim</code> results, unless otherwise
+                      stated) <b>Wraps code block results</b> in a
                       <code>RESULTS</code> drawer. This has the benefit of
                       delimiting your results, and can be useful for really
                       inserting pure <b>Org mode syntax</b> in the buffer (live
@@ -4019,7 +3976,7 @@ Paragraph
                       <p><a href="./plots/file2.pdf">./plots/file2.pdf</a></p>
                     </dd>
 
-                    <dt><code>:results code</code></dt>
+                    <dt>=:results code=</dt>
 
                     <dd>
                       This will be <b>exported as &lt;LANG&gt; code block</b>
@@ -4039,7 +3996,7 @@ Paragraph
                       </div>
                     </dd>
 
-                    <dt><code>:results pp</code></dt>
+                    <dt>=:results pp=</dt>
 
                     <dd>
                       Prints data. Puts the output in an <code>EXAMPLE</code>
@@ -4061,16 +4018,16 @@ Paragraph
           </div>
         </div>
 
-        <div id="outline-container-sec-4-23-2" class="outline-4">
-          <h4 id="sec-4-23-2">Remarks</h4>
+        <div id="outline-container-sec-4-22-2" class="outline-4">
+          <h4 id="sec-4-22-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-23-2">
+          <div class="outline-text-4" id="text-4-22-2">
             <p>With <code>raw</code>, as there are <b>no obvious markers to
             delimit the results</b> in the Org mode buffer, there is no way to
-            know where raw results begin or end. So, <code>:results raw
-            replace</code> will never work as expected: <b>raw results cannot
-            be removed</b> (they become part of the buffer), and you’ll get
-            duplicates when re-evaluating the code block.</p>
+            know where raw results begin or end. So, =:results raw replace=
+            will never work as expected: <b>raw results cannot be removed</b>
+            (they become part of the buffer), and you’ll get duplicates when
+            re-evaluating the code block.</p>
 
             <p>The sole purpose of <code>raw</code> results is to allow
             inserting an headline (a real headline, not comma protected) in the
@@ -4087,15 +4044,15 @@ Paragraph
           </div>
         </div>
 
-        <div id="outline-container-sec-4-23-3" class="outline-4">
-          <h4 id="sec-4-23-3">Examples</h4>
+        <div id="outline-container-sec-4-22-3" class="outline-4">
+          <h4 id="sec-4-22-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-23-3"></div>
+          <div class="outline-text-4" id="text-4-22-3"></div>
 
-          <div id="outline-container-sec-4-23-3-1" class="outline-5">
-            <h5 id="sec-4-23-3-1">Interpreting the results as a file path</h5>
+          <div id="outline-container-sec-4-22-3-1" class="outline-5">
+            <h5 id="sec-4-22-3-1">Interpreting the results as a file path</h5>
 
-            <div class="outline-text-5" id="text-4-23-3-1">
+            <div class="outline-text-5" id="text-4-22-3-1">
               <div class="org-src-container">
                 <pre class="src src-python">
 <span style="color: #0000FF;">from</span> pylab <span style=
@@ -4109,15 +4066,15 @@ savefig(<span style="color: #036A07;">'images/test.png'</span>)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-23-4" class="outline-4">
-          <h4 id="sec-4-23-4">See also</h4>
+        <div id="outline-container-sec-4-22-4" class="outline-4">
+          <h4 id="sec-4-22-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-23-4"></div>
+          <div class="outline-text-4" id="text-4-22-4"></div>
 
-          <div id="outline-container-sec-4-23-4-1" class="outline-5">
-            <h5 id="sec-4-23-4-1">Reference</h5>
+          <div id="outline-container-sec-4-22-4-1" class="outline-5">
+            <h5 id="sec-4-22-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-23-4-1">
+            <div class="outline-text-5" id="text-4-22-4-1">
               <p><a href="#exports">:exports</a><br />
               <a href="#file">:file</a><br />
               <a href="#wrap">:wrap</a></p>
@@ -4127,37 +4084,37 @@ savefig(<span style="color: #036A07;">'images/test.png'</span>)
       </div>
 
       <div id="outline-container-rownames" class="outline-3">
-        <h3 id="rownames"><a id="sec-4-24" name="sec-4-24"></a>:rownames</h3>
+        <h3 id="rownames"><a id="sec-4-23" name="sec-4-23"></a>:rownames</h3>
 
         <div class="outline-text-3" id="text-rownames">
           <p>Handles row names in tables.</p>
         </div>
 
-        <div id="outline-container-sec-4-24-1" class="outline-4">
-          <h4 id="sec-4-24-1">Options</h4>
+        <div id="outline-container-sec-4-23-1" class="outline-4">
+          <h4 id="sec-4-23-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-24-1">
+          <div class="outline-text-4" id="text-4-23-1">
             <dl class="org-dl">
-              <dt><code>:rownames no</code></dt>
+              <dt>=:rownames no=</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:rownames yes</code></dt>
+              <dt>=:rownames yes=</dt>
 
               <dd>Tells Org that your first column contains row names.</dd>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-24-2" class="outline-4">
-          <h4 id="sec-4-24-2">See also</h4>
+        <div id="outline-container-sec-4-23-2" class="outline-4">
+          <h4 id="sec-4-23-2">See also</h4>
 
-          <div class="outline-text-4" id="text-4-24-2"></div>
+          <div class="outline-text-4" id="text-4-23-2"></div>
 
-          <div id="outline-container-sec-4-24-2-1" class="outline-5">
-            <h5 id="sec-4-24-2-1">Reference</h5>
+          <div id="outline-container-sec-4-23-2-1" class="outline-5">
+            <h5 id="sec-4-23-2-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-24-2-1">
+            <div class="outline-text-5" id="text-4-23-2-1">
               <p><a href="#colnames">:colnames</a><br />
               <a href="#wrap">:wrap</a></p>
             </div>
@@ -4166,40 +4123,39 @@ savefig(<span style="color: #036A07;">'images/test.png'</span>)
       </div>
 
       <div id="outline-container-sep" class="outline-3">
-        <h3 id="sep"><a id="sec-4-25" name="sec-4-25"></a>:sep</h3>
+        <h3 id="sep"><a id="sec-4-24" name="sec-4-24"></a>:sep</h3>
 
         <div class="outline-text-3" id="text-sep">
           <p>Specifies a delimiter for reading or writing <b>tabular
           results</b>.</p>
         </div>
 
-        <div id="outline-container-sec-4-25-1" class="outline-4">
-          <h4 id="sec-4-25-1">Options</h4>
+        <div id="outline-container-sec-4-24-1" class="outline-4">
+          <h4 id="sec-4-24-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-25-1">
+          <div class="outline-text-4" id="text-4-24-1">
             <dl class="org-dl">
               <dt>none</dt>
 
               <dd>Uses TAB as default separator.</dd>
 
-              <dt><code>:sep &lt;SEPARATOR&gt;</code></dt>
+              <dt>=:sep &lt;SEPARATOR&gt;=</dt>
 
               <dd>Sets separator to <code>&lt;SEPARATOR&gt;</code>.</dd>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-25-2" class="outline-4">
-          <h4 id="sec-4-25-2">Examples</h4>
+        <div id="outline-container-sec-4-24-2" class="outline-4">
+          <h4 id="sec-4-24-2">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-25-2"></div>
+          <div class="outline-text-4" id="text-4-24-2"></div>
 
-          <div id="outline-container-sec-4-25-2-1" class="outline-5">
-            <h5 id="sec-4-25-2-1">Saving the tabular output to a CSV file</h5>
+          <div id="outline-container-sec-4-24-2-1" class="outline-5">
+            <h5 id="sec-4-24-2-1">Saving the tabular output to a CSV file</h5>
 
-            <div class="outline-text-5" id="text-4-25-2-1">
-              <p>Save the output of <code>ls -l</code> as a <code>.csv</code>
-              file.</p>
+            <div class="outline-text-5" id="text-4-24-2-1">
+              <p>Save the output of <code>ls -l</code> as a =.csv= file.</p>
 
               <div class="org-src-container">
                 <pre class="src src-sh">
@@ -4207,20 +4163,20 @@ ls -l
 </pre>
               </div>
 
-              <p>Recall that <code>:results value</code> is the default.</p>
+              <p>Recall that =:results value= is the default.</p>
             </div>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-25-3" class="outline-4">
-          <h4 id="sec-4-25-3">See also</h4>
+        <div id="outline-container-sec-4-24-3" class="outline-4">
+          <h4 id="sec-4-24-3">See also</h4>
 
-          <div class="outline-text-4" id="text-4-25-3"></div>
+          <div class="outline-text-4" id="text-4-24-3"></div>
 
-          <div id="outline-container-sec-4-25-3-1" class="outline-5">
-            <h5 id="sec-4-25-3-1">Reference</h5>
+          <div id="outline-container-sec-4-24-3-1" class="outline-5">
+            <h5 id="sec-4-24-3-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-25-3-1">
+            <div class="outline-text-5" id="text-4-24-3-1">
               <p><a href="#file">:file</a></p>
             </div>
           </div>
@@ -4228,23 +4184,23 @@ ls -l
       </div>
 
       <div id="outline-container-session" class="outline-3">
-        <h3 id="session"><a id="sec-4-26" name="sec-4-26"></a>:session</h3>
+        <h3 id="session"><a id="sec-4-25" name="sec-4-25"></a>:session</h3>
 
         <div class="outline-text-3" id="text-session">
           <p>Shares data and persists state between (evaluation of) different
           code blocks.</p>
         </div>
 
-        <div id="outline-container-sec-4-26-1" class="outline-4">
-          <h4 id="sec-4-26-1">Options</h4>
+        <div id="outline-container-sec-4-25-1" class="outline-4">
+          <h4 id="sec-4-25-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-26-1">
+          <div class="outline-text-4" id="text-4-25-1">
             <dl class="org-dl">
-              <dt><code>:session none</code></dt>
+              <dt>=:session none=</dt>
 
               <dd>(default) Disables session-based evaluation.</dd>
 
-              <dt><code>:session &lt;NAME&gt;</code></dt>
+              <dt>=:session &lt;NAME&gt;=</dt>
 
               <dd>
                 Performs evaluation using a persistently running inferior
@@ -4257,10 +4213,10 @@ ls -l
           </div>
         </div>
 
-        <div id="outline-container-sec-4-26-2" class="outline-4">
-          <h4 id="sec-4-26-2">Remarks</h4>
+        <div id="outline-container-sec-4-25-2" class="outline-4">
+          <h4 id="sec-4-25-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-26-2">
+          <div class="outline-text-4" id="text-4-25-2">
             <p>Even if you don’t need to share data between blocks, you can
             still use sessions in order not to wait for the interpreter to
             start up for each block!</p>
@@ -4279,15 +4235,15 @@ ls -l
           </div>
         </div>
 
-        <div id="outline-container-sec-4-26-3" class="outline-4">
-          <h4 id="sec-4-26-3">See also</h4>
+        <div id="outline-container-sec-4-25-3" class="outline-4">
+          <h4 id="sec-4-25-3">See also</h4>
 
-          <div class="outline-text-4" id="text-4-26-3"></div>
+          <div class="outline-text-4" id="text-4-25-3"></div>
 
-          <div id="outline-container-sec-4-26-3-1" class="outline-5">
-            <h5 id="sec-4-26-3-1">Reference</h5>
+          <div id="outline-container-sec-4-25-3-1" class="outline-5">
+            <h5 id="sec-4-25-3-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-26-3-1">
+            <div class="outline-text-5" id="text-4-25-3-1">
               <p><a href="#eval">:eval</a></p>
             </div>
           </div>
@@ -4295,28 +4251,28 @@ ls -l
       </div>
 
       <div id="outline-container-shebang" class="outline-3">
-        <h3 id="shebang"><a id="sec-4-27" name="sec-4-27"></a>:shebang</h3>
+        <h3 id="shebang"><a id="sec-4-26" name="sec-4-26"></a>:shebang</h3>
 
         <div class="outline-text-3" id="text-shebang">
           <p>Uses preamble for tangled files (and make them executable).</p>
         </div>
 
-        <div id="outline-container-sec-4-27-1" class="outline-4">
-          <h4 id="sec-4-27-1">Options</h4>
+        <div id="outline-container-sec-4-26-1" class="outline-4">
+          <h4 id="sec-4-26-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-27-1">
+          <div class="outline-text-4" id="text-4-26-1">
             <dl class="org-dl">
-              <dt><code>:shebang &lt;SHEBANG&gt;</code></dt>
+              <dt>=:shebang &lt;SHEBANG&gt;=</dt>
 
               <dd>Specifies the shebang.</dd>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-27-2" class="outline-4">
-          <h4 id="sec-4-27-2">Remarks</h4>
+        <div id="outline-container-sec-4-26-2" class="outline-4">
+          <h4 id="sec-4-26-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-27-2">
+          <div class="outline-text-4" id="text-4-26-2">
             <p>The preamble line is only used for tangling, not during
             evaluation.</p>
 
@@ -4326,10 +4282,10 @@ ls -l
           </div>
         </div>
 
-        <div id="outline-container-sec-4-27-3" class="outline-4">
-          <h4 id="sec-4-27-3">Examples</h4>
+        <div id="outline-container-sec-4-26-3" class="outline-4">
+          <h4 id="sec-4-26-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-27-3">
+          <div class="outline-text-4" id="text-4-26-3">
             <p>Set the shebang.</p>
 
             <div class="org-src-container">
@@ -4343,37 +4299,37 @@ printf <span style=
       </div>
 
       <div id="outline-container-tangle" class="outline-3">
-        <h3 id="tangle"><a id="sec-4-28" name="sec-4-28"></a>:tangle</h3>
+        <h3 id="tangle"><a id="sec-4-27" name="sec-4-27"></a>:tangle</h3>
 
         <div class="outline-text-3" id="text-tangle">
           <p>Toggles tangling and specify file name.</p>
         </div>
 
-        <div id="outline-container-sec-4-28-1" class="outline-4">
-          <h4 id="sec-4-28-1">Options</h4>
+        <div id="outline-container-sec-4-27-1" class="outline-4">
+          <h4 id="sec-4-27-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-28-1">
+          <div class="outline-text-4" id="text-4-27-1">
             <dl class="org-dl">
-              <dt><code>:tangle no</code></dt>
+              <dt>=:tangle no=</dt>
 
               <dd>(default)</dd>
 
-              <dt><code>:tangle yes</code></dt>
+              <dt>=:tangle yes=</dt>
 
               <dd>Tangles to a target file named after the name of the Org mode
               file (<code>$(basename).&lt;MODE-EXT&gt;</code>).</dd>
 
-              <dt><code>:tangle &lt;FILENAME&gt;</code></dt>
+              <dt>=:tangle &lt;FILENAME&gt;=</dt>
 
               <dd>Specifies an alternate target file.</dd>
             </dl>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-28-2" class="outline-4">
-          <h4 id="sec-4-28-2">Remarks</h4>
+        <div id="outline-container-sec-4-27-2" class="outline-4">
+          <h4 id="sec-4-27-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-28-2">
+          <div class="outline-text-4" id="text-4-27-2">
             <p>Tangling works for <b>any</b> programming language (even those
             which have yet to be created and have no explicit Emacs or Org mode
             support) because, on tangling, the code block is simply treated as
@@ -4392,42 +4348,43 @@ printf <span style=
           </div>
         </div>
 
-        <div id="outline-container-sec-4-28-3" class="outline-4">
-          <h4 id="sec-4-28-3">See also</h4>
+        <div id="outline-container-sec-4-27-3" class="outline-4">
+          <h4 id="sec-4-27-3">See also</h4>
 
-          <div class="outline-text-4" id="text-4-28-3"></div>
+          <div class="outline-text-4" id="text-4-27-3"></div>
 
-          <div id="outline-container-sec-4-28-3-1" class="outline-5">
-            <h5 id="sec-4-28-3-1">Reference</h5>
+          <div id="outline-container-sec-4-27-3-1" class="outline-5">
+            <h5 id="sec-4-27-3-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-28-3-1">
+            <div class="outline-text-5" id="text-4-27-3-1">
               <p><a href="#noweb">:noweb</a></p>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-4-29" class="outline-3">
-        <h3 id="sec-4-29">:tangle-mode</h3>
+      <div id="outline-container-tangle-mode" class="outline-3">
+        <h3 id="tangle-mode"><a id="sec-4-28" name=
+        "sec-4-28"></a>:tangle-mode</h3>
 
-        <div class="outline-text-3" id="text-4-29">
+        <div class="outline-text-3" id="text-tangle-mode">
           <p>Controls the permissions of tangled files.</p>
         </div>
       </div>
 
       <div id="outline-container-var" class="outline-3">
-        <h3 id="var"><a id="sec-4-30" name="sec-4-30"></a>:var</h3>
+        <h3 id="var"><a id="sec-4-29" name="sec-4-29"></a>:var</h3>
 
         <div class="outline-text-3" id="text-var">
           <p><b>Passes arguments</b> to code blocks.</p>
         </div>
 
-        <div id="outline-container-sec-4-30-1" class="outline-4">
-          <h4 id="sec-4-30-1">Options</h4>
+        <div id="outline-container-sec-4-29-1" class="outline-4">
+          <h4 id="sec-4-29-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-30-1">
+          <div class="outline-text-4" id="text-4-29-1">
             <dl class="org-dl">
-              <dt><code>:var &lt;NAME&gt;=&lt;VALUE&gt;</code></dt>
+              <dt>=:var &lt;NAME&gt;=&lt;VALUE&gt;=</dt>
 
               <dd>Assigns a <b>default</b> value (literal or reference to a
               literal, a table, a list or a code block) to the argument.</dd>
@@ -4435,12 +4392,12 @@ printf <span style=
           </div>
         </div>
 
-        <div id="outline-container-sec-4-30-2" class="outline-4">
-          <h4 id="sec-4-30-2">Remarks</h4>
+        <div id="outline-container-sec-4-29-2" class="outline-4">
+          <h4 id="sec-4-29-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-30-2">
-            <p>Multiple <code>var</code> specifications behind a single
-            <code>:var</code> are allowed. The multiple var arguments must be
+          <div class="outline-text-4" id="text-4-29-2">
+            <p>Multiple <code>var</code> specifications behind a single =:var=
+            are allowed. The multiple var arguments must be
             comma-separated:</p>
 
             <div class="org-src-container">
@@ -4484,7 +4441,7 @@ printf <span style=
                   <b>Question about prefix char</b><br />
 
                   <p>So, the prefix char of such lines should be
-                  <code>|</code>, <code>:</code> or <code>-</code>?</p>
+                  <code>|</code>, =:= or =-=?</p>
                 </td>
               </tr>
             </table>
@@ -4550,8 +4507,8 @@ printf <span style=
             </ul>
 
             <p>To reference a variable in an external file, use the syntax
-            <code>:var data=&lt;FILE&gt;:&lt;VAR&gt;</code>. Note that, in
-            order to work, the files must be in the same directory.</p>
+            =:var data=&lt;FILE&gt;:&lt;VAR&gt;=. Note that, in order to work,
+            the files must be in the same directory.</p>
 
             <p>:var introduces code block dependencies. include anything in the
             Org mode file that takes a @code{#+NAME:}, @code{#+BEGIN_EXAMPLE}
@@ -4566,35 +4523,35 @@ printf <span style=
           </div>
         </div>
 
-        <div id="outline-container-sec-4-30-3" class="outline-4">
-          <h4 id="sec-4-30-3">Examples</h4>
+        <div id="outline-container-sec-4-29-3" class="outline-4">
+          <h4 id="sec-4-29-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-30-3"></div>
+          <div class="outline-text-4" id="text-4-29-3"></div>
 
-          <div id="outline-container-sec-4-30-3-1" class="outline-5">
-            <h5 id="sec-4-30-3-1">Literal string</h5>
+          <div id="outline-container-sec-4-29-3-1" class="outline-5">
+            <h5 id="sec-4-29-3-1">Literal string</h5>
 
-            <div class="outline-text-5" id="text-4-30-3-1">
+            <div class="outline-text-5" id="text-4-29-3-1">
               <pre class="example">
 value
 </pre>
             </div>
           </div>
 
-          <div id="outline-container-sec-4-30-3-2" class="outline-5">
-            <h5 id="sec-4-30-3-2">Literal number</h5>
+          <div id="outline-container-sec-4-29-3-2" class="outline-5">
+            <h5 id="sec-4-29-3-2">Literal number</h5>
 
-            <div class="outline-text-5" id="text-4-30-3-2">
+            <div class="outline-text-5" id="text-4-29-3-2">
               <pre class="example">
 42
 </pre>
             </div>
           </div>
 
-          <div id="outline-container-sec-4-30-3-3" class="outline-5">
-            <h5 id="sec-4-30-3-3">Reference to a literal example block</h5>
+          <div id="outline-container-sec-4-29-3-3" class="outline-5">
+            <h5 id="sec-4-29-3-3">Reference to a literal example block</h5>
 
-            <div class="outline-text-5" id="text-4-30-3-3">
+            <div class="outline-text-5" id="text-4-29-3-3">
               <pre class="example">
 Les sanglots longs
 des violons de l'automne
@@ -4619,10 +4576,10 @@ des violons de l'automne
             </div>
           </div>
 
-          <div id="outline-container-sec-4-30-3-4" class="outline-5">
-            <h5 id="sec-4-30-3-4">Reference to part of a table</h5>
+          <div id="outline-container-sec-4-29-3-4" class="outline-5">
+            <h5 id="sec-4-29-3-4">Reference to part of a table</h5>
 
-            <div class="outline-text-5" id="text-4-30-3-4">
+            <div class="outline-text-5" id="text-4-29-3-4">
               <table id="data3x3" border="2" cellspacing="0" cellpadding="6"
               rules="groups" frame="hsides">
                 <colgroup>
@@ -4762,10 +4719,10 @@ hline
             </div>
           </div>
 
-          <div id="outline-container-sec-4-30-3-5" class="outline-5">
-            <h5 id="sec-4-30-3-5">Reference to a list</h5>
+          <div id="outline-container-sec-4-29-3-5" class="outline-5">
+            <h5 id="sec-4-29-3-5">Reference to a list</h5>
 
-            <div class="outline-text-5" id="text-4-30-3-5">
+            <div class="outline-text-5" id="text-4-29-3-5">
               <ul class="org-ul">
                 <li>foo</li>
 
@@ -4795,11 +4752,12 @@ hline
             </div>
           </div>
 
-          <div id="outline-container-sec-4-30-3-6" class="outline-5">
-            <h5 id="sec-4-30-3-6">Reference to a code block</h5>
+          <div id="outline-container-sec-4-29-3-6" class="outline-5">
+            <h5 id="sec-4-29-3-6">Reference to a code block</h5>
 
-            <div class="outline-text-5" id="text-4-30-3-6">
-              <p>Chaining calculations, possibly in different languages.</p>
+            <div class="outline-text-5" id="text-4-29-3-6">
+              <p>It is possible to <b>chain code blocks</b> (possibly in
+              different languages) in =:var= lines, as shown:</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
@@ -4812,28 +4770,28 @@ rowSums(x)
       </div>
 
       <div id="outline-container-wrap" class="outline-3">
-        <h3 id="wrap"><a id="sec-4-31" name="sec-4-31"></a>:wrap</h3>
+        <h3 id="wrap"><a id="sec-4-30" name="sec-4-30"></a>:wrap</h3>
 
         <div class="outline-text-3" id="text-wrap">
           <p>Delimit the results (of source block evaluation).</p>
         </div>
 
-        <div id="outline-container-sec-4-31-1" class="outline-4">
-          <h4 id="sec-4-31-1">Options</h4>
+        <div id="outline-container-sec-4-30-1" class="outline-4">
+          <h4 id="sec-4-30-1">Options</h4>
 
-          <div class="outline-text-4" id="text-4-31-1">
+          <div class="outline-text-4" id="text-4-30-1">
             <dl class="org-dl">
               <dt>none</dt>
 
               <dd>(default) Tells Org Babel <b>not</b> to <b>wrap</b> the
               results.</dd>
 
-              <dt><code>:wrap</code></dt>
+              <dt>=:wrap=</dt>
 
               <dd>Specifies to wrap the results in a
               <code>#+BEGIN/END_RESULTS</code> block.</dd>
 
-              <dt><code>:wrap &lt;MARKUP&gt;</code></dt>
+              <dt>=:wrap &lt;MARKUP&gt;=</dt>
 
               <dd>Specifies the name of the block
               (<code>#+BEGIN/END_&lt;MARKUP&gt;</code>) with which to wrap the
@@ -4844,24 +4802,24 @@ rowSums(x)
           </div>
         </div>
 
-        <div id="outline-container-sec-4-31-2" class="outline-4">
-          <h4 id="sec-4-31-2">Remarks</h4>
+        <div id="outline-container-sec-4-30-2" class="outline-4">
+          <h4 id="sec-4-30-2">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-31-2">
-            <p>The <code>:wrap</code> header argument gives you control over
-            the formatting of results from code blocks.</p>
+          <div class="outline-text-4" id="text-4-30-2">
+            <p>The =:wrap= header argument gives you control over the
+            formatting of results from code blocks.</p>
           </div>
         </div>
 
-        <div id="outline-container-sec-4-31-3" class="outline-4">
-          <h4 id="sec-4-31-3">Examples</h4>
+        <div id="outline-container-sec-4-30-3" class="outline-4">
+          <h4 id="sec-4-30-3">Examples</h4>
 
-          <div class="outline-text-4" id="text-4-31-3"></div>
+          <div class="outline-text-4" id="text-4-30-3"></div>
 
-          <div id="outline-container-sec-4-31-3-1" class="outline-5">
-            <h5 id="sec-4-31-3-1">Using <code>:wrap</code> with no value</h5>
+          <div id="outline-container-sec-4-30-3-1" class="outline-5">
+            <h5 id="sec-4-30-3-1">Using =:wrap= with no value</h5>
 
-            <div class="outline-text-5" id="text-4-31-3-1">
+            <div class="outline-text-5" id="text-4-30-3-1">
               <p>The following example wraps the results in
               <code>#+BEGIN_RESULTS</code> … <code>#+END_RESULTS</code>
               block.</p>
@@ -4912,11 +4870,10 @@ rowSums(x)
             </div>
           </div>
 
-          <div id="outline-container-sec-4-31-3-2" class="outline-5">
-            <h5 id="sec-4-31-3-2">Using <code>:wrap</code> with a string
-            value</h5>
+          <div id="outline-container-sec-4-30-3-2" class="outline-5">
+            <h5 id="sec-4-30-3-2">Using =:wrap= with a string value</h5>
 
-            <div class="outline-text-5" id="text-4-31-3-2">
+            <div class="outline-text-5" id="text-4-30-3-2">
               <p>The following examples puts the <b>output in an
               <code>EXAMPLE</code> block</b>.</p>
               <pre class="example">
@@ -4925,11 +4882,11 @@ Some results wrapped in an example block.
             </div>
           </div>
 
-          <div id="outline-container-sec-4-31-3-3" class="outline-5">
-            <h5 id="sec-4-31-3-3">Using <code>:wrap</code> to produce a source
-            code block in a named language</h5>
+          <div id="outline-container-sec-4-30-3-3" class="outline-5">
+            <h5 id="sec-4-30-3-3">Using =:wrap= to produce a source code block
+            in a named language</h5>
 
-            <div class="outline-text-5" id="text-4-31-3-3">
+            <div class="outline-text-5" id="text-4-30-3-3">
               <p>The following examples puts the results into a
               <code>SRC</code> code block (associated to the <code>c++</code>
               mode).</p>
@@ -4965,15 +4922,15 @@ Some results wrapped in an example block.
           </div>
         </div>
 
-        <div id="outline-container-sec-4-31-4" class="outline-4">
-          <h4 id="sec-4-31-4">See also</h4>
+        <div id="outline-container-sec-4-30-4" class="outline-4">
+          <h4 id="sec-4-30-4">See also</h4>
 
-          <div class="outline-text-4" id="text-4-31-4"></div>
+          <div class="outline-text-4" id="text-4-30-4"></div>
 
-          <div id="outline-container-sec-4-31-4-1" class="outline-5">
-            <h5 id="sec-4-31-4-1">Reference</h5>
+          <div id="outline-container-sec-4-30-4-1" class="outline-5">
+            <h5 id="sec-4-30-4-1">Reference</h5>
 
-            <div class="outline-text-5" id="text-4-31-4-1">
+            <div class="outline-text-5" id="text-4-30-4-1">
               <p><a href="#results">:results</a></p>
             </div>
           </div>
@@ -4982,18 +4939,199 @@ Some results wrapped in an example block.
     </div>
 
     <div id="outline-container-sec-5" class="outline-2">
-      <h2 id="sec-5">Data types</h2>
+      <h2 id="sec-5">Extra language-specific header arguments</h2>
+
+      <div class="outline-text-2" id="text-5">
+        <p>The following table lists the header arguments that some languages
+        use.</p>
+
+        <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame=
+        "hsides">
+          <colgroup>
+            <col class="left" />
+            <col class="left" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td class="left">:border</td>
+
+              <td class="left">:java</td>
+            </tr>
+
+            <tr>
+              <td class="left">:buffer</td>
+
+              <td class="left">:main</td>
+            </tr>
+
+            <tr>
+              <td class="left">:classname</td>
+
+              <td class="left">:nullvalue</td>
+            </tr>
+
+            <tr>
+              <td class="left">:cmd</td>
+
+              <td class="left">:out-file</td>
+            </tr>
+
+            <tr>
+              <td class="left">:cmd-line</td>
+
+              <td class="left">:package</td>
+            </tr>
+
+            <tr>
+              <td class="left">:cmpflag</td>
+
+              <td class="left">:packages</td>
+            </tr>
+
+            <tr>
+              <td class="left">:colname-names</td>
+
+              <td class="left">:pdf</td>
+            </tr>
+
+            <tr>
+              <td class="left">:database</td>
+
+              <td class="left">:pdfheight</td>
+            </tr>
+
+            <tr>
+              <td class="left">:db</td>
+
+              <td class="left">:pdfpng</td>
+            </tr>
+
+            <tr>
+              <td class="left">:dbhost</td>
+
+              <td class="left">:pdfwidth</td>
+            </tr>
+
+            <tr>
+              <td class="left">:dbpassword</td>
+
+              <td class="left"><a href="#preamble">:preamble</a></td>
+            </tr>
+
+            <tr>
+              <td class="left">:dbuser</td>
+
+              <td class="left">:result-params</td>
+            </tr>
+
+            <tr>
+              <td class="left">:defines</td>
+
+              <td class="left">:result-type</td>
+            </tr>
+
+            <tr>
+              <td class="left">:engine</td>
+
+              <td class="left">:results_switches</td>
+            </tr>
+
+            <tr>
+              <td class="left">:eps</td>
+
+              <td class="left">:return</td>
+            </tr>
+
+            <tr>
+              <td class="left">:filetype</td>
+
+              <td class="left">:rowname-names</td>
+            </tr>
+
+            <tr>
+              <td class="left">:fit</td>
+
+              <td class="left">:scheme</td>
+            </tr>
+
+            <tr>
+              <td class="left">:flags</td>
+
+              <td class="left"><a href="#separator">:separator</a></td>
+            </tr>
+
+            <tr>
+              <td class="left">:headers</td>
+
+              <td class="left">*:stdin*</td>
+            </tr>
+
+            <tr>
+              <td class="left">:imagemagick</td>
+
+              <td class="left">:tangle</td>
+            </tr>
+
+            <tr>
+              <td class="left">:iminoptions</td>
+
+              <td class="left">:term</td>
+            </tr>
+
+            <tr>
+              <td class="left">:imoutoptions</td>
+
+              <td class="left">:terminal</td>
+            </tr>
+
+            <tr>
+              <td class="left">:in-file</td>
+
+              <td class="left">:xmp-option</td>
+            </tr>
+
+            <tr>
+              <td class="left">*:includes*</td>
+
+              <td class="left">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>XXX Title disappears!?</p>
+      </div>
+
+      <div id="outline-container-preamble" class="outline-3">
+        <h3 id="preamble"><a id="sec-5-1" name="sec-5-1"></a>:preamble</h3>
+
+        <div class="outline-text-3" id="text-preamble">
+          <p>Specifies code block prefix for code evaluation.</p>
+        </div>
+      </div>
+
+      <div id="outline-container-separator" class="outline-3">
+        <h3 id="separator"><a id="sec-5-2" name="sec-5-2"></a>:separator</h3>
+
+        <div class="outline-text-3" id="text-separator">
+          <p>Specifies a different results separator.</p>
+        </div>
+      </div>
     </div>
 
     <div id="outline-container-sec-6" class="outline-2">
-      <h2 id="sec-6">Subtleties</h2>
+      <h2 id="sec-6">Data types</h2>
+    </div>
 
-      <div class="outline-text-2" id="text-6"></div>
+    <div id="outline-container-sec-7" class="outline-2">
+      <h2 id="sec-7">Subtleties</h2>
 
-      <div id="outline-container-sec-6-1" class="outline-3">
-        <h3 id="sec-6-1">Sh-mode</h3>
+      <div class="outline-text-2" id="text-7"></div>
 
-        <div class="outline-text-3" id="text-6-1">
+      <div id="outline-container-sec-7-1" class="outline-3">
+        <h3 id="sec-7-1">Sh-mode</h3>
+
+        <div class="outline-text-3" id="text-7-1">
           <p>&gt; Why is the `diff’ command alone not exported while the piped
           `diff’ via &gt; `cat’ works?</p>
 
@@ -5014,10 +5152,10 @@ Some results wrapped in an example block.
       </div>
     </div>
 
-    <div id="outline-container-sec-7" class="outline-2">
-      <h2 id="sec-7">References</h2>
+    <div id="outline-container-sec-8" class="outline-2">
+      <h2 id="sec-8">References</h2>
 
-      <div class="outline-text-2" id="text-7">
+      <div class="outline-text-2" id="text-8">
         <ul class="org-ul">
           <li><a href="http://orgmode.org/org.pdf">The Org Manual</a></li>
 
@@ -5031,8 +5169,10 @@ Some results wrapped in an example block.
   </div>
 
   <div id="postamble" class="status">
-    <div id="copyright">
-      © Fabrice Niessen
+    <div id="footer">
+      <div id="copyright">
+        Copyright © Fabrice Niessen
+      </div>
     </div>
   </div>
 </body>
