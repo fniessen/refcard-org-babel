@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-03-31 Mon 09:57>
+#+Time-stamp: <2014-03-31 Mon 12:16>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -37,7 +37,7 @@ Above those, Org Babel adds /in situ/ code evaluation:
 
 - during *interactive* use (in the Org buffer itself),
 - during *tangle*, and/or
-- during *weave* (code blocks with =:exports= set to =results= or =both=)
+- during *weave* (code blocks with ~:exports~ set to ~results~ or ~both~)
 
 This allows you to insert in your Org document:
 
@@ -126,8 +126,8 @@ You can also add support for new languages:
 
 so that font lock and editing source do work.
 
-Currently, a =bash= code block will be run with =bash=, and a =shell= code block will
-be run with =sh=.  Both will use =shell-script-mode=.
+Currently, a ~bash~ code block will be run with ~bash~, and a ~shell~ code block will
+be run with ~sh~.  Both will use ~shell-script-mode~.
 
 **** Code block arguments
 
@@ -135,7 +135,7 @@ You can create a code block with optional parameters by specifying a *default
 value* for optional parameters. When the code block is executed, the default
 value is used if no other value has been specified in the call.
 
-The way to define arguments is to declare them on the =#+begin_src= line.
+The way to define arguments is to declare them on the ~#+begin_src~ line.
 
 #+name: square
 #+begin_src emacs-lisp :var x=1
@@ -232,19 +232,19 @@ Here is an example:
 
 ***** Other explanation
 
-You need to apply =CAPTION= and =NAME= keywords on the results, not the source
+You need to apply ~CAPTION~ and ~NAME~ keywords on the results, not the source
 code.
 
 *** Calling a code block
 
 You can *define* a code block somewhere and then *call* it *explicitly* elsewhere
---- provided the code block has a =#+name:= meta data to label it.
+--- provided the code block has a ~#+name:~ meta data to label it.
 
 **** Syntax
 
-=#+call:= is for *standalone lines*: it lives on a block by itself.
+~#+call:~ is for *standalone lines*: it lives on a block by itself.
 
-A =#+call:= line can be *named*, in order for its *results* (for the arguments used)
+A ~#+call:~ line can be *named*, in order for its *results* (for the arguments used)
 to be *referenced*.
 
 It has the following syntax, where each header argument portion is optional.
@@ -264,17 +264,17 @@ It has the following syntax, where each header argument portion is optional.
      Header arguments applied to the *evaluation of the code block*. They affect
      how the code block is evaluated: they *change the inputs*.
 
-     For example, =:session *org-R*= or =:results output=.
+     For example, ~:session *org-R*~ or ~:results output~.
 
 - HEADER-ARGS-FOR-CALL-LINE ::
      Header arguments applied to the *evaluation of the #+CALL: line*. They do
      not affect evaluation of the named code block.
 
-     For example, =:exports results= or =:results html=.
+     For example, ~:exports results~ or ~:results html~.
 
 **** Remarks
 
-=#+call:= lines recently got =#+names=, hopefully soon they will get =#+header=
+~#+call:~ lines recently got ~#+names~, hopefully soon they will get ~#+header~
 arguments as well.
 
 When *evaluating a call line*, it is converted into an ephemeral Emacs Lisp code
@@ -299,14 +299,14 @@ This is why call lines have *two* possible sets of header arguments:
     As to the "call" lines, think of the output of the "called" block as being
     input to an anonymous block (the #+call), so the hlines are stripped.
 
-Press =C-c C-v C-e= on the call line to *execute* the block.
+Press ~C-c C-v C-e~ on the call line to *execute* the block.
 
 Code blocks are sometimes located in a separate file (called "library of
 Babel") which can be included in other Org files that wish to use the code
 blocks.
 
-The result of named code blocks evaluated with a =#+CALL:= line is wrapped
-according to the value of =org-babel-inline-result-wrap=, which by default is
+The result of named code blocks evaluated with a ~#+CALL:~ line is wrapped
+according to the value of ~org-babel-inline-result-wrap~, which by default is
 : "=%s="
 for markup that produces verbatim text.
 
@@ -352,7 +352,7 @@ is equivalent to
 
 ***** Other
 
-It is possible to pass the =:dir= header argument through a call line.
+It is possible to pass the ~:dir~ header argument through a call line.
 
 #+name: where
 #+begin_src sh
@@ -390,7 +390,7 @@ result of calling that code block with a specific argument.
 #+RESULTS: echo-new
 : input=new
 
-As =#+call:= lines can be named, it is possible to reference that result.
+As ~#+call:~ lines can be named, it is possible to reference that result.
 
 #+begin_src sh :var input=echo-new()
   echo "this=$input"
@@ -401,7 +401,7 @@ As =#+call:= lines can be named, it is possible to reference that result.
 
 *** Calling a code block from other elements
 
-Using the =org-sbe= (for "source block evaluate") macro, you may call arbitrary
+Using the ~org-sbe~ (for "source block evaluate") macro, you may call arbitrary
 code blocks
 
 - in a *table formula*,
@@ -411,20 +411,20 @@ code blocks
 
 **** Syntax
 
-Return the results of calling =NAME= with =VARIABLES=.
+Return the results of calling ~NAME~ with ~VARIABLES~.
 
 #+begin_src org
 (org-sbe '<NAME> <VARIABLES>)
 #+end_src
 
-Each element of =VARIABLES= should be a two element list, whose
+Each element of ~VARIABLES~ should be a two element list, whose
 
 - first element is the name of the variable and
 - second element is a *string* of its value.
 
 By default, string variable names are interpreted as references to source-code
 blocks. To force interpretation of a cell's value as a string, prefix the
-identifier with a =$= (e.g., =$$2= instead of =$2= or =$@2$2= instead of =@2$2=).
+identifier with a ~$~ (e.g., ~$$2~ instead of ~$2~ or ~$@2$2~ instead of ~@2$2~).
 
 In order to differentiate between strings and reference names, we surround all
 strings in double quotes...
@@ -458,7 +458,7 @@ From [[http://osdir.com/ml/emacs-orgmode-gnu/2010-03/msg00651.html][Re: {Orgmode
 (org-sbe 'NAME (n $2) (m 3))
 #+end_src
 
-The preceding call to =org-sbe= is equivalent to the following source code block.
+The preceding call to ~org-sbe~ is equivalent to the following source code block.
 
 #+begin_src org
 ,#+begin_src emacs-lisp :var results=NAME(n=val_at_col_2, m=3) :results silent
@@ -467,7 +467,7 @@ results
 #+end_src
 
 There is no way to *map* a *code block* over the *rows of a table*. You could use
-the =org-sbe= macro and a spreadsheet formula to call a code block on multiple table
+the ~org-sbe~ macro and a spreadsheet formula to call a code block on multiple table
 cells, but the results would be inserted back into the table.
 
 | A       |           nil |
@@ -552,10 +552,10 @@ then be passed before all variables.
 | 1 | 2 | :file nothing.png | nil |
 #+TBLFM: @1$4='(org-sbe test-org-sbe $3 (x $1) (y $2))
 
-***** Using =org-sbe= in a local variables line
+***** Using ~org-sbe~ in a local variables line
 
 You can run some preparatory code (in any language) when the file is opened for
-the first time by using =(org-sbe NAME)= (where =NAME= is a double-quoted string)
+the first time by using ~(org-sbe NAME)~ (where ~NAME~ is a double-quoted string)
 in *Local Variables* lines, at the end of the Org file.
 
 #+begin_src org
@@ -571,7 +571,7 @@ in *Local Variables* lines, at the end of the Org file.
 
 Emacs will evaluate the set-up block(s), after asking for confirmation.
 
-***** Using =org-sbe= inside of an elisp link
+***** Using ~org-sbe~ inside of an elisp link
 
 #+name: counter
 #+begin_src sh :results output :var to=6
@@ -589,15 +589,15 @@ Clicking on the following hyperlink will execute the code block.
 [[elisp:(org-sbe counter (to "3"))][count to 3]]
 #+end_src
 
-***** Using =org-sbe= to assign header arguments
+***** Using ~org-sbe~ to assign header arguments
 
 You can use arbitrary Lisp forms to assign header arguments. For example, to
 dynamically *compute the file name*.
 
 The following generates a file which is conditional to the export target:
 
-- a =.pdf= image for LaTeX export and
-- a =.png= image for HTML export.
+- a ~.pdf~ image for LaTeX export and
+- a ~.png~ image for HTML export.
 
 #+name: get-file-path
 #+begin_src emacs-lisp
@@ -626,7 +626,7 @@ plot(x, sin(x))
 #+results:
 [[file:Rplot_rev-3.14.png]]
 
-The following works great. (note the tick in the =(boundp 'backend)=).
+The following works great. (note the tick in the ~(boundp 'backend)~).
 
 # #+call: disc[:file (if (and (boundp 'backend) (equal backend 'html)) "fox.svg" "fox.pdf")]() :results file
 
@@ -666,7 +666,7 @@ with header arguments.
 
 - Inline code blocks are treated just like code blocks, however they have
   different default header arguments: see
-  =org-babel-default-inline-header-args=.
+  ~org-babel-default-inline-header-args~.
 
 - If you set the following
 
@@ -677,7 +677,7 @@ with header arguments.
   then inline code snippets will be wrapped into the formatting string.
 
 - Currently, inline code blocks are not fontified even when
-  =org-src-fontify-natively= is non-nil.
+  ~org-src-fontify-natively~ is non-nil.
 
 **** Examples
 
@@ -709,7 +709,7 @@ each header argument portion is optional.
 **** Remarks
 
 The result of named code blocks evaluated inline within a block of text is
-wrapped according to the value of =org-babel-inline-result-wrap=, which by
+wrapped according to the value of ~org-babel-inline-result-wrap~, which by
 default is
 : "=%s="
 for markup that produces verbatim text.
@@ -733,7 +733,7 @@ The following exports as a normal call line:
 
 Now here is an inline call call_square(x=1) stuck in the middle of some prose.
 
-This one should not be exported =call_square(x=2)= because it is quoted.
+This one should not be exported ~call_square(x=2)~ because it is quoted.
 
 Finally this next one should export, even though it starts a line
 call_square(x=3) because sometimes inline blocks fold with a paragraph.
@@ -794,9 +794,9 @@ specific to a (group of) code block(s).
     :ID:       7b0711cf-353b-4382-bc19-093e4e67ca92
     :END:
 
-- Variable =org-babel-default-header-args= for source blocks
-- Variable =org-babel-default-inline-header-args= for inline source blocks
-- Variable =org-babel-default-lob-header-args= for =#+call= lines
+- Variable ~org-babel-default-header-args~ for source blocks
+- Variable ~org-babel-default-inline-header-args~ for inline source blocks
+- Variable ~org-babel-default-lob-header-args~ for ~#+call~ lines
 
 These default header arguments can be set by the user:
 
@@ -813,9 +813,9 @@ This can also be done file-wide through the use of /file local variables/.
     :ID:       1cadb447-8403-400c-9117-13db017cc198
     :END:
 
-- Variable =org-babel-default-header-args:emacs-lisp= for Emacs Lisp
-- Variable =org-babel-default-header-args:R= for R
-- Variable =org-babel-default-header-args:org= for Org
+- Variable ~org-babel-default-header-args:emacs-lisp~ for Emacs Lisp
+- Variable ~org-babel-default-header-args:R~ for R
+- Variable ~org-babel-default-header-args:org~ for Org
 - Etc.
 
 Header arguments which have different defaults between languages:
@@ -847,7 +847,7 @@ This can also be done file-wide (for certain files) through the use of:
     :ID:       aebeec14-5693-4c38-8040-c91d28ade608
     :END:
 
-A =#+PROPERTY:= line located *anywhere* in a buffer affects the entire file: it
+A ~#+PROPERTY:~ line located *anywhere* in a buffer affects the entire file: it
 sets a *global* property.
 
 For example, when you want to tangle all source blocks in an Org file, include
@@ -866,11 +866,11 @@ Multiple lines may be used to specify multiple properties:
 : #+PROPERTY: cache yes
 : #+PROPERTY: tangle force-the-output-to-that-file.el
 
-In the case of two =#+PROPERTY:= lines for the same property, the property will
+In the case of two ~#+PROPERTY:~ lines for the same property, the property will
 have the later value.
 
 The property mechanism is a general mechanism for the concatenation of property
-strings. Any property specification unless it is postfixed with a =+= will /reset/
+strings. Any property specification unless it is postfixed with a ~+~ will /reset/
 the value of that property to its current value.
 
 *** Subtree header arguments
@@ -878,7 +878,7 @@ the value of that property to its current value.
     :ID:       e7fda871-60ec-47d5-aee0-130c7d06fab2
     :END:
 
-In contrast to property lines, a =:PROPERTIES:= block is only valid for the given
+In contrast to property lines, a ~:PROPERTIES:~ block is only valid for the given
 tree (and subtrees).
 
 *** Code block header arguments
@@ -922,10 +922,10 @@ Avoids re-evaluating unchanged code blocks.
 
 *** Options
 
-- =:cache no= ::
+- ~:cache no~ ::
      (default)
 
-- =:cache yes= ::
+- ~:cache yes~ ::
      Avoids re-evaluating unchanged code blocks by associating a *hash* of the
      /expanded/ code block (= code block and parameters) with the *results*. It
      allows the results to be returned without having to re-run the code block
@@ -944,9 +944,9 @@ Note that same input does *not* always *guarantee the same output*, e.g.,
 date
 #+end_src
 
-Though, this code block shouldn't be marked =:cache= unless the desired (and
+Though, this code block shouldn't be marked ~:cache~ unless the desired (and
 odd) behavior is to have a datestamp that is only updated when the user
-forcibly re-evaluates the block (with =C-u C-c C-v C-e=).
+forcibly re-evaluates the block (with ~C-u C-c C-v C-e~).
 
 *** Examples
 
@@ -1010,11 +1010,11 @@ x <- 'side effect'
 - none ::
      (default)
 
-- =:cmdline ...= ::
+- ~:cmdline ...~ ::
 
 *** Remarks
 
-The =:cmdline= header argument is supported by a couple of languages.
+The ~:cmdline~ header argument is supported by a couple of languages.
 
 *** Examples
 
@@ -1028,7 +1028,7 @@ echo $2
 #+results:
 : bar
 
-The script can use =$@= for its positional parameters.
+The script can use ~$@~ for its positional parameters.
 
 #+begin_src sh :cmdline "foo bar baz"
 echo "$@"
@@ -1037,7 +1037,7 @@ echo "$@"
 #+results:
 : foo bar baz
 
-Also, calling the script using =#+call= is like calling it from another shell
+Also, calling the script using ~#+call~ is like calling it from another shell
 script (supplying the value in the call line).
 
 ** :colnames
@@ -1054,25 +1054,25 @@ Handles *column names in tables*.
      processing if the input table looks like it has column names (because its
      second row is an hline).
 
-- =:colnames no= ::
+- ~:colnames no~ ::
      (default for Emacs Lisp code blocks)
      Don't strip the header. Re-add headers (post-processing).
 
-- =:colnames yes= ::
+- ~:colnames yes~ ::
      Tells Org Babel that your first row contains column names. Applies the
      code block to the body of the input table.
 
-- =:colnames <LIST>= ::
-     Specifies to use =<LIST>= as column names.
+- ~:colnames <LIST>~ ::
+     Specifies to use ~<LIST>~ as column names.
 
-- =:colnames '()= ::
+- ~:colnames '()~ ::
      *Unsets* the header argument if set at a higher level. Is the same as
      "none" WHEN NOT SET AT A HIGHER LEVEL.
 
 *** Remarks
 
-By default, the first row will be used for column names if followed by a =hline=
-XXX???XXX. Without a =hline=, use =:colnames yes=.
+By default, the first row will be used for column names if followed by a ~hline~
+XXX???XXX. Without a ~hline~, use ~:colnames yes~.
 
 #+name: colrownamestbl
 |        | Alpha | Beta | Gamma |
@@ -1107,7 +1107,7 @@ names.
 |   2 | two   |
 |   3 | three |
 
-**** Using no =:colnames= header argument
+**** Using no ~:colnames~ header argument
 
 The following example outputs the table without column names.
 
@@ -1129,7 +1129,7 @@ data
 | 2 | two   |
 | 3 | three |
 
-**** Using =:colnames no=
+**** Using ~:colnames no~
 
 The following example outputs all the rows of the table, considering there is
 no column names.
@@ -1153,7 +1153,7 @@ data
 |   2 | two   |
 |   3 | three |
 
-**** Using =:colnames yes=
+**** Using ~:colnames yes~
 
 The following example outputs the table with its column names.
 
@@ -1275,31 +1275,31 @@ which the code was tangled).
 
 *** Options
 
-- =:comments no= ::
+- ~:comments no~ ::
      (default)
      Does not insert any comments in tangled files (beyond those which may
      already exist in the body of the code block).
 
-- =:comments link= ::
+- ~:comments link~ ::
      Inserts "tangled from X" comments around the code blocks in the tangled
      file (with *links* back to the original Org mode file).
 
-- =:comments noweb= ::
+- ~:comments noweb~ ::
      Inserts comment wrappers (with *links* back to the original Org mode file)
-     around all *embedded noweb* sections. Is an enhanced version of =:comments
-     link=, that can break newlines in =<<block>> + 1=, for example. XXX
+     around all *embedded noweb* sections. Is an enhanced version of ~:comments
+     link~, that can break newlines in ~<<block>> + 1~, for example. XXX
 
-- =:comments org= ::
+- ~:comments org~ ::
      Includes *preceding text* from the Org mode file as a comment before the
      code block (but does not wrap the code with links back to the original
      Org file).
 
-- =:comments both= ::
-     Turns on both the =link= and =org= comment options.
+- ~:comments both~ ::
+     Turns on both the ~link~ and ~org~ comment options.
 
-- =:comments yes= ::
+- ~:comments yes~ ::
      (deprecated)
-     Is the same as =:comments link=.
+     Is the same as ~:comments link~.
 
 *** See also
 
@@ -1309,7 +1309,7 @@ which the code was tangled).
 
 **** Other resources
 
-The variable =org-babel-tangle-use-relative-file-links= controls whether files
+The variable ~org-babel-tangle-use-relative-file-links~ controls whether files
 and links in comments in tangled files use relative or absolute path names (it
 defaults to relative paths).
 
@@ -1325,15 +1325,15 @@ Specifies the default (possibly *remote*) directory during code block execution.
 - none ::
      Uses the directory associated with the *current buffer*.
 
-- =:dir <DIR>= ::
-     Specifies to use =DIR= as the *default directory* for code block execution.
+- ~:dir <DIR>~ ::
+     Specifies to use ~DIR~ as the *default directory* for code block execution.
 
 *** Remarks
 
-You can use the =:dir= header argument for *remote execution*. The directory is
+You can use the ~:dir~ header argument for *remote execution*. The directory is
 specified using using [[http://www.gnu.org/software/emacs/manual/html_node/tramp/Filename-Syntax.html][Tramp filename syntax]].
 
-=:results output= seems to be necessary!
+~:results output~ seems to be necessary!
 
 *** Examples
 
@@ -1378,11 +1378,11 @@ Appends text to code block body.
 
 *** Options
 
-- =:epilogue ""= ::
+- ~:epilogue ""~ ::
      (default)
 
-- =:epilogue <TEXT>= ::
-     Appends the value of the =:epilogue= header argument to the code block
+- ~:epilogue <TEXT>~ ::
+     Appends the value of the ~:epilogue~ header argument to the code block
      body before execution.
 
 *** See also
@@ -1400,45 +1400,45 @@ Specifies permissions for /every/ execution of code blocks.
 
 *** Options
 
-- =:eval yes= ::
+- ~:eval yes~ ::
      (default)
      Allows evaluation of the code block (both interactively and during
      export) WITHOUT A CONFIRMATION FROM THE USER?.
 
-- =:eval query= ::
+- ~:eval query~ ::
      Requires confirmation before evaluating the code block (both
      interactively and during export), regardless of the value of the
-     =org-confirm-babel-evaluate= variable.
+     ~org-confirm-babel-evaluate~ variable.
 
-- =:eval query-export= ::
+- ~:eval query-export~ ::
      Allows interactive evaluation of the code block, but requires
      confirmation before evaluating it during export, regardless of the value
-     of the =org-confirm-babel-evaluate= variable.
+     of the ~org-confirm-babel-evaluate~ variable.
 
-- =:eval never= ::
+- ~:eval never~ ::
      Inhibits (silently) evaluation of the code block (both interactively and
      during export). This is useful for protecting against the evaluation of
      dangerous code blocks.
 
-- =:eval never-export= ::
+- ~:eval never-export~ ::
      Allows interactive evaluation of the code block, but inhibits its
      evaluation during export.
 
-- =:eval no= ::
-     Is the same as =:eval never=.
+- ~:eval no~ ::
+     Is the same as ~:eval never~.
 
-- =:eval no-export= ::
-     Is the same as =:eval never-export=.
+- ~:eval no-export~ ::
+     Is the same as ~:eval never-export~.
 
-- =:noeval= ::
-     Is the same as =:eval no=.
+- ~:noeval~ ::
+     Is the same as ~:eval no~.
 
 *** Remarks
 
 Sometimes, to *switch off execution* of code blocks *during export*, you can find
 it easy to simply manually generate the results of a code block (e.g., through
-an interactive evaluation), and set the =:eval= property of the code block to
-=never-export=.
+an interactive evaluation), and set the ~:eval~ property of the code block to
+~never-export~.
 
 Note that, unlike [[#tangle][tangling]], evaluation requires the specific language to be
 supported for both performing the evaluation and collecting the [[#results][results]].
@@ -1453,7 +1453,7 @@ supported for both performing the evaluation and collecting the [[#results][resu
 
 **** Variable
 
-=org-confirm-babel-evaluate=
+~org-confirm-babel-evaluate~
 
 ** :exports
    :PROPERTIES:
@@ -1464,42 +1464,42 @@ Specifies how code and/or results should be handled *during export*.
 
 *** Options
 
-- =:exports none= ::
+- ~:exports none~ ::
      Doesn't include anything in the exported file.
 
-- =:exports code= ::
+- ~:exports code~ ::
      (default)
      (default for Org code blocks)
      Includes (only) the body of the code block into the exported file.
 
-- =:exports results= ::
+- ~:exports results~ ::
      (default for /inline/ code blocks)
      (default for LaTeX code blocks)
      (default for code blocks in graphics-only languages)
      Includes (only) the *results block* in the exported file.
 
-- =:exports both= ::
+- ~:exports both~ ::
      Includes both the code block and the [[#eval][results]] in the exported file.
 
 *** Remarks
 
-- When =:exports= is set to =none= or =code=, Org Babel will *not [[#eval][run]]* the code block
+- When ~:exports~ is set to ~none~ or ~code~, Org Babel will *not [[#eval][run]]* the code block
   *during export*, avoiding to (re-)generate the results on every export. In
   particular, use that on code blocks which cannot be [[#eval][executed]] on their own.
 
   This has *no effect on interactive [[#eval][evaluation]]*, though.
 
-- When =:exports= is set to =results= or =both=, if evaluation is allowed during
+- When ~:exports~ is set to ~results~ or ~both~, if evaluation is allowed during
   export, the code block will be (re-)[[#eval][evaluated]] during export. Otherwise, the
   current (unchanged) results block, when present, will be included *in the
   exported file*.
 
-- Note that the =:exports= option is only relevant for code blocks, not inline
+- Note that the ~:exports~ option is only relevant for code blocks, not inline
   code.
 
-- A code block in a subtree tagged =:noexport:= will still be evaluated, if
+- A code block in a subtree tagged ~:noexport:~ will still be evaluated, if
   evaluation is allowed during export, because its side-effects may be needed
-  for code run elsewhere.  If you don't want that, set =:eval= accordingly.
+  for code run elsewhere.  If you don't want that, set ~:eval~ accordingly.
 
 *** See also
 
@@ -1518,14 +1518,14 @@ Specifies to *write the results to a file*.
 
 *** Options
 
-- =:file <FILENAME>= ::
-     Writes the *results* from the code block evaluation to =<FILENAME>= and
+- ~:file <FILENAME>~ ::
+     Writes the *results* from the code block evaluation to ~<FILENAME>~ and
      inserts (for the *results block*) a *link to the file* into the Org mode
      buffer.
 
 *** Remarks
 
-Extension can be everything: =.png=, =.pdf=, =.txt=, =.csv=, etc.
+Extension can be everything: ~.png~, ~.pdf~, ~.txt~, ~.csv~, etc.
 
 When relative, the filename is interpreted relatively to the [[#dir][default
 directory]].
@@ -1538,30 +1538,30 @@ directory]].
   "results" written to file is the *normal Org Babel results* (string, number,
   table).
 
-  When generating *graphics*, including the =:results graphics= header argument is
-  *required*, in addition to =:file <FILENAME>=, in order for graphical output to
-  be sent automatically to file. If =:file= is supplied, but not =:results
-  graphics=, then non-graphical (=value= or =output=) results are written to file.
+  When generating *graphics*, including the ~:results graphics~ header argument is
+  *required*, in addition to ~:file <FILENAME>~, in order for graphical output to
+  be sent automatically to file. If ~:file~ is supplied, but not ~:results
+  graphics~, then non-graphical (~value~ or ~output~) results are written to file.
 
 Links to generated images will be expanded to include the contents of the
 images upon export.
 
-If you then turn on inline images with =M-x org-toggle-inline-images=, you can
+If you then turn on inline images with ~M-x org-toggle-inline-images~, you can
 preview the generated image from within your Org buffer.
 
 Some languages including /R/, /gnuplot/, /dot/, and /ditaa/ provide special handling
-of the =:file= header argument automatically wrapping the code block body in the
+of the ~:file~ header argument automatically wrapping the code block body in the
 boilerplate code required to save output to the specified file. This is often
 useful for saving graphical output of a code block to the specified file.
 
-/This means that the argument of the =:file= header can be omitted and the
+/This means that the argument of the ~:file~ header can be omitted and the
 file name can be generated within the source block./
 
 *** Examples
 
 **** Saving the textual output from a general-purpose language to a text file
 
-Send the text output of =ls -l= directly to a file:
+Send the text output of ~ls -l~ directly to a file:
 
 #+begin_src sh :results output :file dirlisting.txt :exports both
 ls -l
@@ -1570,7 +1570,7 @@ ls -l
 #+results:
 [[file:dirlisting.txt]]
 
-Recall that =:results value= is the default.
+Recall that ~:results value~ is the default.
 
 **** Saving the graphical output from a general-purpose language to an image file
 
@@ -1600,7 +1600,7 @@ digraph G {
 #+results:
 [[file:images/dot.png]]
 
-Recall that =:exports results= is the default for graphics-only languages.
+Recall that ~:exports results~ is the default for graphics-only languages.
 
 ***** R
 
@@ -1638,11 +1638,11 @@ Handles *horizontal lines* in input tables.
 
 *** Options
 
-- =:hlines no= ::
+- ~:hlines no~ ::
      (default)
      Strips horizontal lines from the input table.
 
-- =:hlines yes= ::
+- ~:hlines yes~ ::
      (default for Emacs Lisp code blocks)
      Preserves horizontal lines in the input table.
 
@@ -1699,7 +1699,7 @@ Handles *horizontal lines* in input tables.
 #+results:
 : (("Key" "Val") hline (1 "one") (2 "two") hline (3 "three"))
 
-The =:hlines yes= header argument must be set on the call line itself.
+The ~:hlines yes~ header argument must be set on the call line itself.
 
 #+call: echo-input(data=one-hline) :hlines yes
 
@@ -1726,9 +1726,9 @@ Toggles creation of parent directories of target files during tangling.
 
 *** Options
 
-- =:mkdirp no= ::
+- ~:mkdirp no~ ::
 
-- =:mkdirp yes= ::
+- ~:mkdirp yes~ ::
 
 ** :no-expand
    :PROPERTIES:
@@ -1758,26 +1758,26 @@ Specifies when expansion of "noweb" style references should occur.
 
 *** Options
 
-- =:noweb no= ::
+- ~:noweb no~ ::
      (default)
 
-- =:noweb yes= ::
+- ~:noweb yes~ ::
      Expands noweb references in code blocks during both tangling and
      evaluation (interactively and during export).
 
-- =:noweb strip-export= ::
+- ~:noweb strip-export~ ::
      Expands noweb references in code blocks before the block is tangled or
      evaluated. However, they will be *stripped on export*.
 
-- =:noweb no-export= ::
+- ~:noweb no-export~ ::
      Expands noweb references during tangling and interactive evaluation, but
      not during export.
 
-- =:noweb tangle= ::
+- ~:noweb tangle~ ::
      Expands noweb references only during tangling, but not during interactive
      evaluation nor during export.
 
-- =:noweb eval= ::
+- ~:noweb eval~ ::
      Expands noweb references *only* during interactive evaluation.
 
 *** Examples
@@ -1832,7 +1832,7 @@ Specifies block's noweb reference resolution target.
 This allows you to *avoid repeating the reference name* in your Org document: if
 you set this header argument at the file or subtree level, the code blocks will
 be concatenated into the *propagated* reference name -- if *property inheritance*
-is turned on for the =noweb-ref= property.
+is turned on for the ~noweb-ref~ property.
 
 *** Examples
 
@@ -1870,7 +1870,7 @@ second
 
 **** Other resources
 
-The variable =org-babel-use-quick-and-dirty-noweb-expansion= controls XXX
+The variable ~org-babel-use-quick-and-dirty-noweb-expansion~ controls XXX
 
 ** :noweb-sep
    :PROPERTIES:
@@ -1899,10 +1899,10 @@ Controls insertion of padding lines in tangled code files.
 
 *** Options
 
-- =:padline yes= ::
+- ~:padline yes~ ::
      (default)
 
-- =:padline no= ::
+- ~:padline no~ ::
      Gets rid of the *first blank line* preceding tangled output.
 
 *** Remarks
@@ -1934,12 +1934,12 @@ The padline is not inserted at the top of the file, only between blocks.
   #+end_src
 
 - When a post argument is given, the results of the code block will
-  temporarily be bound to the =*this*= variable. This variable may then be
-  included in header argument forms such as those used in =var= header argument
+  temporarily be bound to the ~*this*~ variable. This variable may then be
+  included in header argument forms such as those used in ~var~ header argument
   specifications allowing passing of results to other code blocks, or direct
   execution via Emacs Lisp.
 
-- For example, the =:post= header argument could link to an Emacs Lisp source
+- For example, the ~:post~ header argument could link to an Emacs Lisp source
   code block which does automatically refresh the inline images of (only)
   certain blocks (and not others).
 
@@ -1975,11 +1975,11 @@ Prepends text to code block body.
 
 *** Options
 
-- =:prologue ""= ::
+- ~:prologue ""~ ::
      (default)
 
-- =:prologue <TEXT>= ::
-     Prepends the value of the =:prologue= header argument to the code block
+- ~:prologue <TEXT>~ ::
+     Prepends the value of the ~:prologue~ header argument to the code block
      body before execution.
 
 *** See also
@@ -2002,20 +2002,20 @@ Specifies the type of results and how they will be collected and handled.
 Specifies how the results should be *collected* from the code block's
 evaluation.
 
-- =:results value= (aka functional mode) ::
+- ~:results value~ (aka functional mode) ::
      (default)
      Specifies that the results of the block is the *value of the last
      statement* in your code, turned into an *Org mode table* if it is a
      list/vector type object.
 
-- =:results output= (aka scripting mode) ::
+- ~:results output~ (aka scripting mode) ::
      (default for Ledger code blocks)
      Specifies that the results will be *everything printed to stdout* during
-     execution of the code block. The strings collected from =stdout= are not
+     execution of the code block. The strings collected from ~stdout~ are not
      treated as values, but rather as *raw strings*.
 
-If you get the message ~Source block produced no output~, try adding =:results
-output=.
+If you get the message =Source block produced no output=, try adding ~:results
+output~.
 
 **** How the results are inserted into the Org mode buffer
 
@@ -2023,33 +2023,33 @@ output=.
 
 Specifies if and how the results should be *inserted in the buffer*.
 
-- =:results replace= ::
+- ~:results replace~ ::
      (default)
      Inserts results after the code block, replacing any previously inserted
      results.
 
-- =:results silent= ::
+- ~:results silent~ ::
      (default for Org and Screen code blocks)
      Sends the commands, echoes the results in the minibuffer (to see code
      block output), but *does not change the Org mode buffer* (even during
      export, *no results are inserted* into the exported document).
 
-- =:results none= ::
+- ~:results none~ ::
      Silents the results, even for the minibuffer. By definition, such a code
      block is run for its side effects.
 
-- =:results append= ::
+- ~:results append~ ::
      Builds new results onto existing results.
 
-- =:results prepend= ::
-     Is the same as =append=, but puts new results before the existing results.
+- ~:results prepend~ ::
+     Is the same as ~append~, but puts new results before the existing results.
 
 ***** Type
 
 Specifies how the results should be *interpreted*.
 
-- =:results verbatim= ::
-     (default for =raw=, =org= and =drawer= results)
+- ~:results verbatim~ ::
+     (default for ~raw~, ~org~ and ~drawer~ results)
      Informs explicitly the code block that you will be returning a string, to
      *inhibit its interpretation* as a value --- the output will neither be
      converted into a table nor into a list.
@@ -2075,11 +2075,11 @@ Specifies how the results should be *interpreted*.
      string
      #+end_example
 
-- =:results table= ::
+- ~:results table~ ::
      (default)
      Interprets the results as an Org mode table.
 
-- =:results list= ::
+- ~:results list~ ::
       Writes an Org mode list.
 
      #+begin_src sh :results drawer list
@@ -2095,28 +2095,28 @@ Specifies how the results should be *interpreted*.
      - vino tinto
      :END:
 
-- =:results file= ::
+- ~:results file~ ::
      (default for code blocks in graphics-only languages)
      *Interprets the results as a file path*, and insert it into the buffer
      using the Org mode file syntax.
 
-- =:results graphics= ::
+- ~:results graphics~ ::
      (extra option for code blocks in maxima, octave and R)
      XXX
 
-- =:results vector= ::
-     Is the same as =:results table=.
+- ~:results vector~ ::
+     Is the same as ~:results table~.
 
-- =:results scalar= ::
-     Is the same as =:results verbatim=.
+- ~:results scalar~ ::
+     Is the same as ~:results verbatim~.
 
 ***** Format
 
 Specifies what type of results the code block will return.
 
-- =:results raw= ::
+- ~:results raw~ ::
      (default for Org code blocks)
-     (implies =verbatim= results, unless otherwise stated)
+     (implies ~verbatim~ results, unless otherwise stated)
      Means that the input is a string (so hline processing is not performed).
 
      #+begin_src emacs-lisp :results raw :exports both
@@ -2127,12 +2127,12 @@ Specifies what type of results the code block will return.
      block returns a newline): the purpose of raw results is specifically to
      *not* change the result.
 
-- =:results html= ::
+- ~:results html~ ::
      Specifies that the *results* of the code block is *raw HTML code* (which can
-     be included correctly in HTML-based export targets). Is the same as =:wrap
-     HTML=.
+     be included correctly in HTML-based export targets). Is the same as ~:wrap
+     HTML~.
 
-     Inserts the results inside a =#+BEGIN_HTML= block.
+     Inserts the results inside a ~#+BEGIN_HTML~ block.
 
      #+begin_src emacs-lisp :results html :exports both
      "output <b>HTML</b> formatted text"
@@ -2143,13 +2143,13 @@ Specifies what type of results the code block will return.
      output <b>HTML</b> formatted text
      #+END_HTML
 
-- =:results latex= ::
+- ~:results latex~ ::
      (default for LaTeX code blocks)
      Specifies that the *results* of the code block is *raw LaTeX code* (which can
      be included correctly in LaTeX-based export targets). Is the same as
-     =:wrap LaTeX=.
+     ~:wrap LaTeX~.
 
-     Inserts the results inside a =#+BEGIN_LaTeX= block.
+     Inserts the results inside a ~#+BEGIN_LaTeX~ block.
 
      #+begin_src emacs-lisp :results latex :exports both
      "output \\textbf{\\LaTeX} formatted text"
@@ -2169,11 +2169,11 @@ Specifies what type of results the code block will return.
      $${{e^ {- x }}\over{x}}$$
      #+END_LaTeX
 
-- =:results org= ::
-     (implies =verbatim= results, unless otherwise stated)
-     *Wraps raw Org mode results* in a =#+BEGIN_SRC org= block (dead data,
+- ~:results org~ ::
+     (implies ~verbatim~ results, unless otherwise stated)
+     *Wraps raw Org mode results* in a ~#+BEGIN_SRC org~ block (dead data,
      *comma-escaped lines*). This will be *exported as Org code block* (as
-     =verbatim= or =listings= to LaTeX).
+     ~verbatim~ or ~listings~ to LaTeX).
 
      #+begin_src emacs-lisp :results org :exports both
      "* Headline\nParagraph"
@@ -2185,10 +2185,10 @@ Specifies what type of results the code block will return.
      Paragraph
      #+END_SRC
 
-- =:results drawer= ::
-     (replacement of =:results wrap=, since Org 7.9.2)
-     (implies =verbatim= results, unless otherwise stated)
-     *Wraps code block results* in a =RESULTS= drawer. This has the benefit of
+- ~:results drawer~ ::
+     (replacement of ~:results wrap~, since Org 7.9.2)
+     (implies ~verbatim~ results, unless otherwise stated)
+     *Wraps code block results* in a ~RESULTS~ drawer. This has the benefit of
      delimiting your results, and can be useful for really inserting pure *Org
      mode syntax* in the buffer (live data, *not escaped*) --- which can be
      included correctly *in all export targets*.
@@ -2216,8 +2216,8 @@ Specifies what type of results the code block will return.
      [[./plots/file2.pdf]]
      :END:
 
-- =:results code= ::
-     This will be *exported as <LANG> code block* (as =verbatim= or =listings= to
+- ~:results code~ ::
+     This will be *exported as <LANG> code block* (as ~verbatim~ or ~listings~ to
      LaTeX).
 
      #+begin_src emacs-lisp :results code :exports both
@@ -2229,9 +2229,9 @@ Specifies what type of results the code block will return.
      "* Headline\nParagraph"
      #+END_SRC
 
-- =:results pp= ::
+- ~:results pp~ ::
      Prints data.
-     Puts the output in an =EXAMPLE= block? XXX
+     Puts the output in an ~EXAMPLE~ block? XXX
 
      #+begin_src emacs-lisp :results pp :exports both
      "* Headline\nParagraph"
@@ -2242,17 +2242,17 @@ Specifies what type of results the code block will return.
 
 *** Remarks
 
-With =raw=, as there are *no obvious markers to delimit the results* in the Org
+With ~raw~, as there are *no obvious markers to delimit the results* in the Org
 mode buffer, there is no way to know where raw results begin or end. So,
-=:results raw replace= will never work as expected: *raw results cannot be removed*
+~:results raw replace~ will never work as expected: *raw results cannot be removed*
 (they become part of the buffer), and you'll get duplicates when re-evaluating
 the code block.
 
-The sole purpose of =raw= results is to allow inserting an headline (a real
+The sole purpose of ~raw~ results is to allow inserting an headline (a real
 headline, not comma protected) in the buffer, because headlines cannot be
 contained in anything else than headlines.
 
-If the generated code doesn't contain an headline, you don't need =raw= results.
+If the generated code doesn't contain an headline, you don't need ~raw~ results.
 
 A block wrapper makes it possible for the entirety of the results to be
 clearly located, regardless of their contents, and replaced (with new results)
@@ -2286,10 +2286,10 @@ Handles row names in tables.
 
 *** Options
 
-- =:rownames no= ::
+- ~:rownames no~ ::
      (default)
 
-- =:rownames yes= ::
+- ~:rownames yes~ ::
      Tells Org that your first column contains row names.
 
 *** See also
@@ -2311,14 +2311,14 @@ Specifies a delimiter for reading or writing *tabular results*.
 - none ::
      Uses TAB as default separator.
 
-- =:sep <SEPARATOR>= ::
-     Sets separator to =<SEPARATOR>=.
+- ~:sep <SEPARATOR>~ ::
+     Sets separator to ~<SEPARATOR>~.
 
 *** Examples
 
 **** Saving the tabular output to a CSV file
 
-Save the output of =ls -l= as a =.csv= file.
+Save the output of ~ls -l~ as a ~.csv~ file.
 
 #+begin_src sh :file dirlisting.csv :sep ,
 ls -l
@@ -2327,7 +2327,7 @@ ls -l
 #+results:
 [[file:dirlisting.csv]]
 
-Recall that =:results value= is the default.
+Recall that ~:results value~ is the default.
 
 *** See also
 
@@ -2344,15 +2344,15 @@ Shares data and persists state between (evaluation of) different code blocks.
 
 *** Options
 
-- =:session none= ::
+- ~:session none~ ::
      (default)
      Disables session-based evaluation.
 
-- =:session <NAME>= ::
+- ~:session <NAME>~ ::
      Performs evaluation using a persistently running inferior process to
      which the code block is submitted.
 
-     (default for Screen code blocks: session name set to =default=)
+     (default for Screen code blocks: session name set to ~default~)
 
 *** Remarks
 
@@ -2380,7 +2380,7 @@ Uses preamble for tangled files (and make them executable).
 
 *** Options
 
-- =:shebang <SHEBANG>= ::
+- ~:shebang <SHEBANG>~ ::
      Specifies the shebang.
 
 *** Remarks
@@ -2411,14 +2411,14 @@ Toggles tangling and specify file name.
 
 *** Options
 
-- =:tangle no= ::
+- ~:tangle no~ ::
      (default)
 
-- =:tangle yes= ::
+- ~:tangle yes~ ::
      Tangles to a target file named after the name of the Org mode file
-     (=$(basename).<MODE-EXT>=).
+     (~$(basename).<MODE-EXT>~).
 
-- =:tangle <FILENAME>= ::
+- ~:tangle <FILENAME>~ ::
      Specifies an alternate target file.
 
 *** Remarks
@@ -2430,11 +2430,11 @@ the code block is simply treated as text.
 Blocks to the same target file are *concatenated* during tangling, IN THE ORDER
 AT WHICH THEY APPEAR IN THE ORG SOURCE FILE.
 
-Blocks which are under a =COMMENT='ed heading (including parents) are not
+Blocks which are under a ~COMMENT~'ed heading (including parents) are not
 tangled.
 
 Propagating changes back from tangled code to Org mode blocks (aka
-"*detangling*") is possible with the function =org-babel-detangle=.
+"*detangling*") is possible with the function ~org-babel-detangle~.
 
 *** See also
 
@@ -2458,13 +2458,13 @@ Controls the permissions of tangled files.
 
 *** Options
 
-- =:var <NAME>=<VALUE>= ::
+- ~:var <NAME>=<VALUE>~ ::
      Assigns a *default* value (literal or reference to a literal, a table, a
      list or a code block) to the argument.
 
 *** Remarks
 
-Multiple =var= specifications behind a single =:var= are allowed. The multiple var
+Multiple ~var~ specifications behind a single ~:var~ are allowed. The multiple var
 arguments must be comma-separated:
 
 #+begin_src org
@@ -2489,7 +2489,7 @@ and
 #+end_src
 
 *************** TODO Question about prefix char
-  So, the prefix char of such lines should be =|=, =:= or =-=?
+  So, the prefix char of such lines should be ~|~, ~:~ or ~-~?
 *************** END
 
 The value passed to an argument can be:
@@ -2500,7 +2500,7 @@ The value passed to an argument can be:
 
 - a *reference* to *named data*
   + literal *example block*
-  + (part of) a *table* (when naming a table, =#+name:= should replace =#+tblname:=,
+  + (part of) a *table* (when naming a table, ~#+name:~ should replace ~#+tblname:~,
     which still exists for backwards compatibility)
   + (level-1) *list*
 
@@ -2513,20 +2513,20 @@ The value passed to an argument can be:
 
   *Note --* Eric means about '(...) or (...)
 
-  Arbitrary Emacs Lisp can be placed inside of header arguments, and the =org-sbe=
+  Arbitrary Emacs Lisp can be placed inside of header arguments, and the ~org-sbe~
   take the name of a code block and returns its results.
 
-To specify a *subset* of a table, give a =[row,column]= index.
+To specify a *subset* of a table, give a ~[row,column]~ index.
 
 - Indices are numerical and begin at 0.
 - Column names, hlines and row names do count in the indexes.
 - Negative numbers imply counting back from the end.
 - Ranges (consecutive rows or columns) are specified using the colon notation
-  =first:last=.
+  ~first:last~.
 - If row or column is empty, then all rows or all columns are taken.
 
-To reference a variable in an external file, use the syntax =:var
-data=<FILE>:<VAR>=. Note that, in order to work, the files must be in the same
+To reference a variable in an external file, use the syntax ~:var
+data=<FILE>:<VAR>~. Note that, in order to work, the files must be in the same
 directory.
 
 :var introduces code block dependencies.
@@ -2628,7 +2628,7 @@ data
 
 **** Reference to a code block
 
-It is possible to *chain code blocks* (possibly in different languages) in =:var=
+It is possible to *chain code blocks* (possibly in different languages) in ~:var~
 lines, as shown:
 
 #+name: foo
@@ -2664,25 +2664,25 @@ Delimit the results (of source block evaluation).
      (default)
      Tells Org Babel *not* to *wrap* the results.
 
-- =:wrap= ::
-     Specifies to wrap the results in a =#+BEGIN/END_RESULTS= block.
+- ~:wrap~ ::
+     Specifies to wrap the results in a ~#+BEGIN/END_RESULTS~ block.
 
-- =:wrap <MARKUP>= ::
-     Specifies the name of the block (=#+BEGIN/END_<MARKUP>=) with which to wrap
+- ~:wrap <MARKUP>~ ::
+     Specifies the name of the block (~#+BEGIN/END_<MARKUP>~) with which to wrap
      the results.
 
 *XXX How to unset it (when set in a higher level)?*
 
 *** Remarks
 
-The =:wrap= header argument gives you control over the formatting of results
+The ~:wrap~ header argument gives you control over the formatting of results
 from code blocks.
 
 *** Examples
 
-**** Using =:wrap= with no value
+**** Using ~:wrap~ with no value
 
-The following example wraps the results in =#+BEGIN_RESULTS= ... =#+END_RESULTS=
+The following example wraps the results in ~#+BEGIN_RESULTS~ ... ~#+END_RESULTS~
 block.
 
 #+begin_src R :exports results :wrap
@@ -2697,9 +2697,9 @@ x
 | 3 | 6 | 9 | 12 |
 #+END_RESULTS
 
-**** Using =:wrap= with a string value
+**** Using ~:wrap~ with a string value
 
-The following examples puts the *output in an =EXAMPLE= block*.
+The following examples puts the *output in an ~EXAMPLE~ block*.
 
 #+begin_src R :exports results :results raw :wrap EXAMPLE
 print("Some results wrapped in an example block.")
@@ -2710,10 +2710,10 @@ print("Some results wrapped in an example block.")
 Some results wrapped in an example block.
 #+END_EXAMPLE
 
-**** Using =:wrap= to produce a source code block in a named language
+**** Using ~:wrap~ to produce a source code block in a named language
 
-The following examples puts the results into a =SRC= code block (associated to
-the =c++= mode).
+The following examples puts the results into a ~SRC~ code block (associated to
+the ~c++~ mode).
 
 #+begin_src R :exports results :results raw :wrap SRC c++
 print("for (int i = 0; i < random; i++) {
@@ -2728,8 +2728,8 @@ for (int i = 0; i < random; i++) {
 }
 #+END_SRC
 
-On LaTeX export, the =SRC= block will be exported as =c++= code under =listings=
-instead of being wrapped in a =\begin{verbatim}..\end{verbatim}= environment.
+On LaTeX export, the ~SRC~ block will be exported as ~c++~ code under ~listings~
+instead of being wrapped in a ~\begin{verbatim}..\end{verbatim}~ environment.
 
 Alternatively, you can use the :post header argument to wrap the results in a
 source block.
