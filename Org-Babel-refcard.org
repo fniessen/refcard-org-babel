@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-03-28 Fri 16:13>
+#+Time-stamp: <2014-03-31 Mon 09:57>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -1735,7 +1735,11 @@ Toggles creation of parent directories of target files during tangling.
    :CUSTOM_ID: no-expand
    :END:
 
-During tangling.
+Turns off the code blocks expansion *during tangling*.
+
+*** Remarks
+
+~:no-expand~ has no effect during execution.
 
 *** See also
 

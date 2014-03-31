@@ -89,8 +89,8 @@
 
             <li>during <b>tangle</b>, and/or</li>
 
-            <li>during <b>weave</b> (code blocks with =:exports= set to
-            <code>results</code> or <code>both</code>)</li>
+            <li>during <b>weave</b> (code blocks with <code>:exports</code> set
+            to <code>results</code> or <code>both</code>)</li>
           </ul>
 
           <p>This allows you to insert in your Org document:</p>
@@ -139,10 +139,10 @@
               <div class="org-src-container">
                 <pre class="src src-org">
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src &lt;LANGUAGE&gt; &lt;HEADER-ARGS&gt;</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src &lt;LANGUAGE&gt; &lt;HEADER-ARGS&gt;</span>
 <span style="background-color: #FFFFE0;">&lt;BODY&gt;
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 </pre>
               </div>
 
@@ -389,7 +389,8 @@ As I'm named, my results may live anywhere in the file.
                   block</b>. They affect how the code block is evaluated: they
                   <b>change the inputs</b>.
 
-                  <p>For example, =:session *org-R*= or =:results output=.</p>
+                  <p>For example, <code>:session *org-R*</code> or
+                  <code>:results output</code>.</p>
                 </dd>
 
                 <dt>HEADER-ARGS-FOR-CALL-LINE</dt>
@@ -399,7 +400,8 @@ As I'm named, my results may live anywhere in the file.
                   line</b>. They do not affect evaluation of the named code
                   block.
 
-                  <p>For example, =:exports results= or =:results html=.</p>
+                  <p>For example, <code>:exports results</code> or
+                  <code>:results html</code>.</p>
                 </dd>
               </dl>
             </div>
@@ -420,10 +422,10 @@ As I'm named, my results may live anywhere in the file.
               <div class="org-src-container">
                 <pre class="src src-org">
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var result=&lt;NAME&gt;(&lt;ARGUMENTS&gt;) &lt;HEADER-ARGS-FOR-BLOCK&gt;</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src emacs-lisp :var result=&lt;NAME&gt;(&lt;ARGUMENTS&gt;) &lt;HEADER-ARGS-FOR-BLOCK&gt;</span>
 <span style="background-color: #FFFFE0;">,  result
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 </pre>
               </div>
 
@@ -490,10 +492,10 @@ As I'm named, my results may live anywhere in the file.
                   <div class="org-src-container">
                     <pre class="src src-org">
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var results=foo(bar=1)</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src emacs-lisp :var results=foo(bar=1)</span>
 <span style="background-color: #FFFFE0;">,  results
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 </pre>
                   </div>
                 </div>
@@ -522,8 +524,8 @@ As I'm named, my results may live anywhere in the file.
               <li>Other<br />
 
                 <div class="outline-text-6" id="text-3-1-2-3-4">
-                  <p>It is possible to pass the =:dir= header argument through
-                  a call line.</p>
+                  <p>It is possible to pass the <code>:dir</code> header
+                  argument through a call line.</p>
 
                   <div class="org-src-container">
                     <pre class="src src-sh" id="where">
@@ -713,10 +715,10 @@ input=new
               <div class="org-src-container">
                 <pre class="src src-org">
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var results=NAME(n=val_at_col_2, m=3) :results silent</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src emacs-lisp :var results=NAME(n=val_at_col_2, m=3) :results silent</span>
 <span style="background-color: #FFFFE0;">results
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 </pre>
               </div>
 
@@ -983,13 +985,13 @@ nil
                     <pre class="src src-org">
 <span style="color: #008ED1; background-color: #EAEAFF;">#+name: init</span>
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src R :session *R*</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src R :session *R*</span>
 <span style="color: #8D8D84; background-color: #FFFFE0;"># </span><span style=
 "color: #8D8D84; background-color: #FFFFE0; font-style: italic;">initialize some stuff</span><span style="background-color: #FFFFE0;">
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 
-<span style="color: #8D8D84; font-style: italic;"># Local Variables:</span>
+<span style="color: #8D8D84; font-style: italic;"># Local variables:</span>
 <span style=
 "color: #8D8D84; font-style: italic;"># eval: (org-sbe "init")</span>
 <span style="color: #8D8D84; font-style: italic;"># End:</span>
@@ -1037,9 +1039,9 @@ nil
                   export target:</p>
 
                   <ul class="org-ul">
-                    <li>a =.pdf= image for LaTeX export and</li>
+                    <li>a <code>.pdf</code> image for LaTeX export and</li>
 
-                    <li>a =.png= image for HTML export.</li>
+                    <li>a <code>.png</code> image for HTML export.</li>
                   </ul>
 
                   <div class="org-src-container">
@@ -1519,8 +1521,8 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
           arguments</h4>
 
           <div class="outline-text-4" id="text-4-1-4">
-            <p>In contrast to property lines, a =:PROPERTIES:= block is only
-            valid for the given tree (and subtrees).</p>
+            <p>In contrast to property lines, a <code>:PROPERTIES:</code> block
+            is only valid for the given tree (and subtrees).</p>
           </div>
         </div>
 
@@ -1656,11 +1658,11 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
           <div class="outline-text-4" id="text-4-3-1">
             <dl class="org-dl">
-              <dt>=:cache no=</dt>
+              <dt><code>:cache no</code></dt>
 
               <dd>(default)</dd>
 
-              <dt>=:cache yes=</dt>
+              <dt><code>:cache yes</code></dt>
 
               <dd>Avoids re-evaluating unchanged code blocks by associating a
               <b>hash</b> of the <i>expanded</i> code block (= code block and
@@ -1690,9 +1692,9 @@ date
 </pre>
             </div>
 
-            <p>Though, this code block shouldn’t be marked =:cache= unless the
-            desired (and odd) behavior is to have a datestamp that is only
-            updated when the user forcibly re-evaluates the block (with
+            <p>Though, this code block shouldn’t be marked <code>:cache</code>
+            unless the desired (and odd) behavior is to have a datestamp that
+            is only updated when the user forcibly re-evaluates the block (with
             <code>C-u C-c C-v C-e</code>).</p>
           </div>
         </div>
@@ -1712,7 +1714,7 @@ date
               <div class="org-src-container">
                 <pre class="src src-org">
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src sh :eval yes :results verbatim :cache yes</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src sh :eval yes :results verbatim :cache yes</span>
 <span style="background-color: #FFFFE0;">printf </span><span style=
 "color: #036A07; background-color: #FFFFE0;">"Please wait (this can take a while)...\n"</span><span style="background-color: #FFFFE0;">
 sleep 5
@@ -1720,7 +1722,7 @@ printf </span><span style=
 "color: #036A07; background-color: #FFFFE0;">"Done!\n"</span><span style=
 "background-color: #FFFFE0;">
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 </pre>
               </div>
 
@@ -1731,13 +1733,11 @@ printf </span><span style=
                 <pre class="src src-org">
 <span style=
 "color: #008ED1; background-color: #EAEAFF;">#+results[af6f...]:</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_example</span>
+<span style="color: #008ED1; background-color: #EAEAFF;">#+begin_example</span>
 <span style=
 "color: #000088; background-color: #FFFFE0;">Please wait (this can take a while)...</span>
 <span style="color: #000088; background-color: #FFFFE0;">Done!</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_example</span>
+<span style="color: #008ED1; background-color: #EAEAFF;">#+end_example</span>
 </pre>
               </div>
             </div>
@@ -1805,7 +1805,7 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
 
               <dd>(default)</dd>
 
-              <dt>=:cmdline …=</dt>
+              <dt><code>:cmdline ...</code></dt>
             </dl>
           </div>
         </div>
@@ -1814,8 +1814,8 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
           <h4 id="sec-4-4-2">Remarks</h4>
 
           <div class="outline-text-4" id="text-4-4-2">
-            <p>The =:cmdline= header argument is supported by a couple of
-            languages.</p>
+            <p>The <code>:cmdline</code> header argument is supported by a
+            couple of languages.</p>
           </div>
         </div>
 
@@ -1868,22 +1868,22 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
               table before processing if the input table looks like it has
               column names (because its second row is an hline).</dd>
 
-              <dt>=:colnames no=</dt>
+              <dt><code>:colnames no</code></dt>
 
               <dd>(default for Emacs Lisp code blocks) Don’t strip the header.
               Re-add headers (post-processing).</dd>
 
-              <dt>=:colnames yes=</dt>
+              <dt><code>:colnames yes</code></dt>
 
               <dd>Tells Org Babel that your first row contains column names.
               Applies the code block to the body of the input table.</dd>
 
-              <dt>=:colnames &lt;LIST&gt;=</dt>
+              <dt><code>:colnames &lt;LIST&gt;</code></dt>
 
               <dd>Specifies to use <code>&lt;LIST&gt;</code> as column
               names.</dd>
 
-              <dt>=:colnames '()=</dt>
+              <dt><code>:colnames '()</code></dt>
 
               <dd><b>Unsets</b> the header argument if set at a higher level.
               Is the same as “none” WHEN NOT SET AT A HIGHER LEVEL.</dd>
@@ -1897,7 +1897,7 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
           <div class="outline-text-4" id="text-4-5-2">
             <p>By default, the first row will be used for column names if
             followed by a <code>hline</code> XXX???XXX. Without a
-            <code>hline</code>, use =:colnames yes=.</p>
+            <code>hline</code>, use <code>:colnames yes</code>.</p>
 
             <table id="colrownamestbl" border="2" cellspacing="0" cellpadding=
             "6" rules="groups" frame="hsides">
@@ -2035,7 +2035,8 @@ rownames(data)
           </div>
 
           <div id="outline-container-sec-4-5-3-1" class="outline-5">
-            <h5 id="sec-4-5-3-1">Using no =:colnames= header argument</h5>
+            <h5 id="sec-4-5-3-1">Using no <code>:colnames</code> header
+            argument</h5>
 
             <div class="outline-text-5" id="text-4-5-3-1">
               <p>The following example outputs the table without column
@@ -2100,7 +2101,7 @@ rownames(data)
           </div>
 
           <div id="outline-container-sec-4-5-3-2" class="outline-5">
-            <h5 id="sec-4-5-3-2">Using =:colnames no=</h5>
+            <h5 id="sec-4-5-3-2">Using <code>:colnames no</code></h5>
 
             <div class="outline-text-5" id="text-4-5-3-2">
               <p>The following example outputs all the rows of the table,
@@ -2171,7 +2172,7 @@ rownames(data)
           </div>
 
           <div id="outline-container-sec-4-5-3-3" class="outline-5">
-            <h5 id="sec-4-5-3-3">Using =:colnames yes=</h5>
+            <h5 id="sec-4-5-3-3">Using <code>:colnames yes</code></h5>
 
             <div class="outline-text-5" id="text-4-5-3-3">
               <p>The following example outputs the table with its column
@@ -2482,40 +2483,40 @@ rownames(data)
 
           <div class="outline-text-4" id="text-4-6-1">
             <dl class="org-dl">
-              <dt>=:comments no=</dt>
+              <dt><code>:comments no</code></dt>
 
               <dd>(default) Does not insert any comments in tangled files
               (beyond those which may already exist in the body of the code
               block).</dd>
 
-              <dt>=:comments link=</dt>
+              <dt><code>:comments link</code></dt>
 
               <dd>Inserts “tangled from X” comments around the code blocks in
               the tangled file (with <b>links</b> back to the original Org mode
               file).</dd>
 
-              <dt>=:comments noweb=</dt>
+              <dt><code>:comments noweb</code></dt>
 
               <dd>Inserts comment wrappers (with <b>links</b> back to the
               original Org mode file) around all <b>embedded noweb</b>
-              sections. Is an enhanced version of =:comments link=, that can
-              break newlines in <code>&lt;&lt;block&gt;&gt; + 1</code>, for
-              example. XXX</dd>
+              sections. Is an enhanced version of <code>:comments link</code>,
+              that can break newlines in <code>&lt;&lt;block&gt;&gt; +
+              1</code>, for example. XXX</dd>
 
-              <dt>=:comments org=</dt>
+              <dt><code>:comments org</code></dt>
 
               <dd>Includes <b>preceding text</b> from the Org mode file as a
               comment before the code block (but does not wrap the code with
               links back to the original Org file).</dd>
 
-              <dt>=:comments both=</dt>
+              <dt><code>:comments both</code></dt>
 
               <dd>Turns on both the <code>link</code> and <code>org</code>
               comment options.</dd>
 
-              <dt>=:comments yes=</dt>
+              <dt><code>:comments yes</code></dt>
 
-              <dd>(deprecated) Is the same as =:comments link=.</dd>
+              <dd>(deprecated) Is the same as <code>:comments link</code>.</dd>
             </dl>
           </div>
         </div>
@@ -2564,7 +2565,7 @@ rownames(data)
               <dd>Uses the directory associated with the <b>current
               buffer</b>.</dd>
 
-              <dt>=:dir &lt;DIR&gt;=</dt>
+              <dt><code>:dir &lt;DIR&gt;</code></dt>
 
               <dd>Specifies to use <code>DIR</code> as the <b>default
               directory</b> for code block execution.</dd>
@@ -2576,12 +2577,12 @@ rownames(data)
           <h4 id="sec-4-7-2">Remarks</h4>
 
           <div class="outline-text-4" id="text-4-7-2">
-            <p>You can use the =:dir= header argument for <b>remote
+            <p>You can use the <code>:dir</code> header argument for <b>remote
             execution</b>. The directory is specified using using <a href=
             "http://www.gnu.org/software/emacs/manual/html_node/tramp/Filename-Syntax.html">
             Tramp filename syntax</a>.</p>
 
-            <p>=:results output= seems to be necessary!</p>
+            <p><code>:results output</code> seems to be necessary!</p>
           </div>
         </div>
 
@@ -2649,14 +2650,14 @@ ls -la
 
           <div class="outline-text-4" id="text-4-8-1">
             <dl class="org-dl">
-              <dt>=:epilogue ""=</dt>
+              <dt><code>:epilogue ""</code></dt>
 
               <dd>(default)</dd>
 
-              <dt>=:epilogue &lt;TEXT&gt;=</dt>
+              <dt><code>:epilogue &lt;TEXT&gt;</code></dt>
 
-              <dd>Appends the value of the =:epilogue= header argument to the
-              code block body before execution.</dd>
+              <dd>Appends the value of the <code>:epilogue</code> header
+              argument to the code block body before execution.</dd>
             </dl>
           </div>
         </div>
@@ -2689,47 +2690,47 @@ ls -la
 
           <div class="outline-text-4" id="text-4-9-1">
             <dl class="org-dl">
-              <dt>=:eval yes=</dt>
+              <dt><code>:eval yes</code></dt>
 
               <dd>(default) Allows evaluation of the code block (both
               interactively and during export) WITHOUT A CONFIRMATION FROM THE
               USER?.</dd>
 
-              <dt>=:eval query=</dt>
+              <dt><code>:eval query</code></dt>
 
               <dd>Requires confirmation before evaluating the code block (both
               interactively and during export), regardless of the value of the
               <code>org-confirm-babel-evaluate</code> variable.</dd>
 
-              <dt>=:eval query-export=</dt>
+              <dt><code>:eval query-export</code></dt>
 
               <dd>Allows interactive evaluation of the code block, but requires
               confirmation before evaluating it during export, regardless of
               the value of the <code>org-confirm-babel-evaluate</code>
               variable.</dd>
 
-              <dt>=:eval never=</dt>
+              <dt><code>:eval never</code></dt>
 
               <dd>Inhibits (silently) evaluation of the code block (both
               interactively and during export). This is useful for protecting
               against the evaluation of dangerous code blocks.</dd>
 
-              <dt>=:eval never-export=</dt>
+              <dt><code>:eval never-export</code></dt>
 
               <dd>Allows interactive evaluation of the code block, but inhibits
               its evaluation during export.</dd>
 
-              <dt>=:eval no=</dt>
+              <dt><code>:eval no</code></dt>
 
-              <dd>Is the same as =:eval never=.</dd>
+              <dd>Is the same as <code>:eval never</code>.</dd>
 
-              <dt>=:eval no-export=</dt>
+              <dt><code>:eval no-export</code></dt>
 
-              <dd>Is the same as =:eval never-export=.</dd>
+              <dd>Is the same as <code>:eval never-export</code>.</dd>
 
-              <dt>=:noeval=</dt>
+              <dt><code>:noeval</code></dt>
 
-              <dd>Is the same as =:eval no=.</dd>
+              <dd>Is the same as <code>:eval no</code>.</dd>
             </dl>
           </div>
         </div>
@@ -2741,8 +2742,8 @@ ls -la
             <p>Sometimes, to <b>switch off execution</b> of code blocks
             <b>during export</b>, you can find it easy to simply manually
             generate the results of a code block (e.g., through an interactive
-            evaluation), and set the =:eval= property of the code block to
-            <code>never-export</code>.</p>
+            evaluation), and set the <code>:eval</code> property of the code
+            block to <code>never-export</code>.</p>
 
             <p>Note that, unlike <a href="#tangle">tangling</a>, evaluation
             requires the specific language to be supported for both performing
@@ -2789,23 +2790,23 @@ ls -la
 
           <div class="outline-text-4" id="text-4-10-1">
             <dl class="org-dl">
-              <dt>=:exports none=</dt>
+              <dt><code>:exports none</code></dt>
 
               <dd>Doesn’t include anything in the exported file.</dd>
 
-              <dt>=:exports code=</dt>
+              <dt><code>:exports code</code></dt>
 
               <dd>(default) (default for Org code blocks) Includes (only) the
               body of the code block into the exported file.</dd>
 
-              <dt>=:exports results=</dt>
+              <dt><code>:exports results</code></dt>
 
               <dd>(default for <i>inline</i> code blocks) (default for LaTeX
               code blocks) (default for code blocks in graphics-only languages)
               Includes (only) the <b>results block</b> in the exported
               file.</dd>
 
-              <dt>=:exports both=</dt>
+              <dt><code>:exports both</code></dt>
 
               <dd>Includes both the code block and the <a href=
               "#eval">results</a> in the exported file.</dd>
@@ -2818,7 +2819,7 @@ ls -la
 
           <div class="outline-text-4" id="text-4-10-2">
             <ul class="org-ul">
-              <li>When =:exports= is set to <code>none</code> or
+              <li>When <code>:exports</code> is set to <code>none</code> or
               <code>code</code>, Org Babel will <b>not <a href=
               "#eval">run</a></b> the code block <b>during export</b>, avoiding
               to (re-)generate the results on every export. In particular, use
@@ -2829,19 +2830,19 @@ ls -la
                 "#eval">evaluation</a></b>, though.</p>
               </li>
 
-              <li>When =:exports= is set to <code>results</code> or
+              <li>When <code>:exports</code> is set to <code>results</code> or
               <code>both</code>, if evaluation is allowed during export, the
               code block will be (re-)<a href="#eval">evaluated</a> during
               export. Otherwise, the current (unchanged) results block, when
               present, will be included <b>in the exported file</b>.</li>
 
-              <li>Note that the =:exports= option is only relevant for code
-              blocks, not inline code.</li>
+              <li>Note that the <code>:exports</code> option is only relevant
+              for code blocks, not inline code.</li>
 
-              <li>A code block in a subtree tagged =:noexport:= will still be
-              evaluated, if evaluation is allowed during export, because its
-              side-effects may be needed for code run elsewhere. If you don’t
-              want that, set =:eval= accordingly.</li>
+              <li>A code block in a subtree tagged <code>:noexport:</code> will
+              still be evaluated, if evaluation is allowed during export,
+              because its side-effects may be needed for code run elsewhere. If
+              you don’t want that, set <code>:eval</code> accordingly.</li>
             </ul>
           </div>
         </div>
@@ -2875,7 +2876,7 @@ ls -la
 
           <div class="outline-text-4" id="text-4-11-1">
             <dl class="org-dl">
-              <dt>=:file &lt;FILENAME&gt;=</dt>
+              <dt><code>:file &lt;FILENAME&gt;</code></dt>
 
               <dd>Writes the <b>results</b> from the code block evaluation to
               <code>&lt;FILENAME&gt;</code> and inserts (for the <b>results
@@ -2889,8 +2890,8 @@ ls -la
           <h4 id="sec-4-11-2">Remarks</h4>
 
           <div class="outline-text-4" id="text-4-11-2">
-            <p>Extension can be everything: =.png=, =.pdf=, =.txt=, =.csv=,
-            etc.</p>
+            <p>Extension can be everything: <code>.png</code>,
+            <code>.pdf</code>, <code>.txt</code>, <code>.csv</code>, etc.</p>
 
             <p>When relative, the filename is interpreted relatively to the
             <a href="#dir">default directory</a>.</p>
@@ -2906,12 +2907,14 @@ ls -la
               written to file is the <b>normal Org Babel results</b> (string,
               number, table).
 
-                <p>When generating <b>graphics</b>, including the =:results
-                graphics= header argument is <b>required</b>, in addition to
-                =:file &lt;FILENAME&gt;=, in order for graphical output to be
-                sent automatically to file. If =:file= is supplied, but not
-                =:results graphics=, then non-graphical (<code>value</code> or
-                <code>output</code>) results are written to file.</p>
+                <p>When generating <b>graphics</b>, including the
+                <code>:results graphics</code> header argument is
+                <b>required</b>, in addition to <code>:file
+                &lt;FILENAME&gt;</code>, in order for graphical output to be
+                sent automatically to file. If <code>:file</code> is supplied,
+                but not <code>:results graphics</code>, then non-graphical
+                (<code>value</code> or <code>output</code>) results are written
+                to file.</p>
               </li>
             </ul>
 
@@ -2923,14 +2926,14 @@ ls -la
             image from within your Org buffer.</p>
 
             <p>Some languages including <i>R</i>, <i>gnuplot</i>, <i>dot</i>,
-            and <i>ditaa</i> provide special handling of the =:file= header
-            argument automatically wrapping the code block body in the
+            and <i>ditaa</i> provide special handling of the <code>:file</code>
+            header argument automatically wrapping the code block body in the
             boilerplate code required to save output to the specified file.
             This is often useful for saving graphical output of a code block to
             the specified file.</p>
 
-            <p><i>This means that the argument of the =:file= header can be
-            omitted and the file name can be generated within the source
+            <p><i>This means that the argument of the <code>:file</code> header
+            can be omitted and the file name can be generated within the source
             block.</i></p>
           </div>
         </div>
@@ -2956,7 +2959,7 @@ ls -l
 
               <p><a href="dirlisting.txt">dirlisting.txt</a></p>
 
-              <p>Recall that =:results value= is the default.</p>
+              <p>Recall that <code>:results value</code> is the default.</p>
             </div>
           </div>
 
@@ -3014,8 +3017,8 @@ digraph <span style="color: #006699;">G</span> {
                     <p><img src="images/dot.png" alt="dot.png" /></p>
                   </div>
 
-                  <p>Recall that =:exports results= is the default for
-                  graphics-only languages.</p>
+                  <p>Recall that <code>:exports results</code> is the default
+                  for graphics-only languages.</p>
                 </div>
               </li>
 
@@ -3073,11 +3076,11 @@ plot(1:10, (1:10)^2)
 
           <div class="outline-text-4" id="text-4-13-1">
             <dl class="org-dl">
-              <dt>=:hlines no=</dt>
+              <dt><code>:hlines no</code></dt>
 
               <dd>(default) Strips horizontal lines from the input table.</dd>
 
-              <dt>=:hlines yes=</dt>
+              <dt><code>:hlines yes</code></dt>
 
               <dd>(default for Emacs Lisp code blocks) Preserves horizontal
               lines in the input table.</dd>
@@ -3196,8 +3199,8 @@ plot(1:10, (1:10)^2)
 </pre>
             </div>
 
-            <p>The =:hlines yes= header argument must be set on the call line
-            itself.</p>
+            <p>The <code>:hlines yes</code> header argument must be set on the
+            call line itself.</p>
             <pre class="example">
 ((1 "one") (2 "two") (3 "three"))
 </pre>
@@ -3235,9 +3238,9 @@ plot(1:10, (1:10)^2)
 
           <div class="outline-text-4" id="text-4-14-1">
             <dl class="org-dl">
-              <dt>=:mkdirp no=</dt>
+              <dt><code>:mkdirp no</code></dt>
 
-              <dt>=:mkdirp yes=</dt>
+              <dt><code>:mkdirp yes</code></dt>
             </dl>
           </div>
         </div>
@@ -3247,18 +3250,26 @@ plot(1:10, (1:10)^2)
         <h3 id="no-expand"><a id="sec-4-15" name="sec-4-15"></a>:no-expand</h3>
 
         <div class="outline-text-3" id="text-no-expand">
-          <p>During tangling.</p>
+          <p>Turns off the code blocks expansion <b>during tangling</b>.</p>
         </div>
 
         <div id="outline-container-sec-4-15-1" class="outline-4">
-          <h4 id="sec-4-15-1">See also</h4>
+          <h4 id="sec-4-15-1">Remarks</h4>
 
-          <div class="outline-text-4" id="text-4-15-1"></div>
+          <div class="outline-text-4" id="text-4-15-1">
+            <p><code>:no-expand</code> has no effect during execution.</p>
+          </div>
+        </div>
 
-          <div id="outline-container-sec-4-15-1-1" class="outline-5">
-            <h5 id="sec-4-15-1-1">Reference</h5>
+        <div id="outline-container-sec-4-15-2" class="outline-4">
+          <h4 id="sec-4-15-2">See also</h4>
 
-            <div class="outline-text-5" id="text-4-15-1-1">
+          <div class="outline-text-4" id="text-4-15-2"></div>
+
+          <div id="outline-container-sec-4-15-2-1" class="outline-5">
+            <h5 id="sec-4-15-2-1">Reference</h5>
+
+            <div class="outline-text-5" id="text-4-15-2-1">
               <p><a href="#noweb">:noweb</a><br />
               <a href="#noweb-ref">:noweb-ref</a><br />
               <a href="#noweb-sep">:noweb-sep</a><br /></p>
@@ -3280,32 +3291,32 @@ plot(1:10, (1:10)^2)
 
           <div class="outline-text-4" id="text-4-16-1">
             <dl class="org-dl">
-              <dt>=:noweb no=</dt>
+              <dt><code>:noweb no</code></dt>
 
               <dd>(default)</dd>
 
-              <dt>=:noweb yes=</dt>
+              <dt><code>:noweb yes</code></dt>
 
               <dd>Expands noweb references in code blocks during both tangling
               and evaluation (interactively and during export).</dd>
 
-              <dt>=:noweb strip-export=</dt>
+              <dt><code>:noweb strip-export</code></dt>
 
               <dd>Expands noweb references in code blocks before the block is
               tangled or evaluated. However, they will be <b>stripped on
               export</b>.</dd>
 
-              <dt>=:noweb no-export=</dt>
+              <dt><code>:noweb no-export</code></dt>
 
               <dd>Expands noweb references during tangling and interactive
               evaluation, but not during export.</dd>
 
-              <dt>=:noweb tangle=</dt>
+              <dt><code>:noweb tangle</code></dt>
 
               <dd>Expands noweb references only during tangling, but not during
               interactive evaluation nor during export.</dd>
 
-              <dt>=:noweb eval=</dt>
+              <dt><code>:noweb eval</code></dt>
 
               <dd>Expands noweb references <b>only</b> during interactive
               evaluation.</dd>
@@ -3419,32 +3430,28 @@ in x
 <span style=
 "color: #00BB00; background-color: #EAFFEA; font-weight: bold;">    :END:</span>
 
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src org</span>
+<span style="color: #008ED1; background-color: #EAEAFF;">#+begin_src org</span>
 <span style="background-color: #FFFFE0;">first
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src org</span>
+<span style="color: #008ED1; background-color: #EAEAFF;">#+begin_src org</span>
 <span style="background-color: #FFFFE0;">second
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src sh :results output :noweb yes</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src sh :results output :noweb yes</span>
 <span style=
 "color: #006FE0; background-color: #FFFFE0;">echo</span><span style="background-color: #FFFFE0;"> &lt;&lt;accumulated&gt;&gt;
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 
 <span style="color: #008ED1; background-color: #EAEAFF;">#+results:</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_example</span>
+<span style="color: #008ED1; background-color: #EAEAFF;">#+begin_example</span>
 <span style="color: #000088; background-color: #FFFFE0;">first</span>
 <span style="color: #000088; background-color: #FFFFE0;">second</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_example</span>
+<span style="color: #008ED1; background-color: #EAEAFF;">#+end_example</span>
 </pre>
             </div>
           </div>
@@ -3520,11 +3527,11 @@ in x
 
           <div class="outline-text-4" id="text-4-19-1">
             <dl class="org-dl">
-              <dt>=:padline yes=</dt>
+              <dt><code>:padline yes</code></dt>
 
               <dd>(default)</dd>
 
-              <dt>=:padline no=</dt>
+              <dt><code>:padline no</code></dt>
 
               <dd>Gets rid of the <b>first blank line</b> preceding tangled
               output.</dd>
@@ -3586,9 +3593,10 @@ data
               allowing passing of results to other code blocks, or direct
               execution via Emacs Lisp.</li>
 
-              <li>For example, the =:post= header argument could link to an
-              Emacs Lisp source code block which does automatically refresh the
-              inline images of (only) certain blocks (and not others).</li>
+              <li>For example, the <code>:post</code> header argument could
+              link to an Emacs Lisp source code block which does automatically
+              refresh the inline images of (only) certain blocks (and not
+              others).</li>
             </ul>
           </div>
         </div>
@@ -3635,14 +3643,14 @@ data
 
           <div class="outline-text-4" id="text-4-21-1">
             <dl class="org-dl">
-              <dt>=:prologue ""=</dt>
+              <dt><code>:prologue ""</code></dt>
 
               <dd>(default)</dd>
 
-              <dt>=:prologue &lt;TEXT&gt;=</dt>
+              <dt><code>:prologue &lt;TEXT&gt;</code></dt>
 
-              <dd>Prepends the value of the =:prologue= header argument to the
-              code block body before execution.</dd>
+              <dd>Prepends the value of the <code>:prologue</code> header
+              argument to the code block body before execution.</dd>
             </dl>
           </div>
         </div>
@@ -3683,13 +3691,13 @@ data
               code block’s evaluation.</p>
 
               <dl class="org-dl">
-                <dt>=:results value= (aka functional mode)</dt>
+                <dt><code>:results value</code> (aka functional mode)</dt>
 
                 <dd>(default) Specifies that the results of the block is the
                 <b>value of the last statement</b> in your code, turned into an
                 <b>Org mode table</b> if it is a list/vector type object.</dd>
 
-                <dt>=:results output= (aka scripting mode)</dt>
+                <dt><code>:results output</code> (aka scripting mode)</dt>
 
                 <dd>(default for Ledger code blocks) Specifies that the results
                 will be <b>everything printed to stdout</b> during execution of
@@ -3699,7 +3707,7 @@ data
               </dl>
 
               <p>If you get the message <code>Source block produced no
-              output</code>, try adding =:results output=.</p>
+              output</code>, try adding <code>:results output</code>.</p>
             </div>
           </div>
 
@@ -3717,12 +3725,12 @@ data
                   the buffer</b>.</p>
 
                   <dl class="org-dl">
-                    <dt>=:results replace=</dt>
+                    <dt><code>:results replace</code></dt>
 
                     <dd>(default) Inserts results after the code block,
                     replacing any previously inserted results.</dd>
 
-                    <dt>=:results silent=</dt>
+                    <dt><code>:results silent</code></dt>
 
                     <dd>(default for Org and Screen code blocks) Sends the
                     commands, echoes the results in the minibuffer (to see code
@@ -3730,17 +3738,17 @@ data
                     buffer</b> (even during export, <b>no results are
                     inserted</b> into the exported document).</dd>
 
-                    <dt>=:results none=</dt>
+                    <dt><code>:results none</code></dt>
 
                     <dd>Silents the results, even for the minibuffer. By
                     definition, such a code block is run for its side
                     effects.</dd>
 
-                    <dt>=:results append=</dt>
+                    <dt><code>:results append</code></dt>
 
                     <dd>Builds new results onto existing results.</dd>
 
-                    <dt>=:results prepend=</dt>
+                    <dt><code>:results prepend</code></dt>
 
                     <dd>Is the same as <code>append</code>, but puts new
                     results before the existing results.</dd>
@@ -3755,7 +3763,7 @@ data
                   <b>interpreted</b>.</p>
 
                   <dl class="org-dl">
-                    <dt>=:results verbatim=</dt>
+                    <dt><code>:results verbatim</code></dt>
 
                     <dd>
                       (default for <code>raw</code>, <code>org</code> and
@@ -3781,12 +3789,12 @@ data
                       </div>
                     </dd>
 
-                    <dt>=:results table=</dt>
+                    <dt><code>:results table</code></dt>
 
                     <dd>(default) Interprets the results as an Org mode
                     table.</dd>
 
-                    <dt>=:results list=</dt>
+                    <dt><code>:results list</code></dt>
 
                     <dd>
                       Writes an Org mode list.
@@ -3803,24 +3811,24 @@ data
                       </div>
                     </dd>
 
-                    <dt>=:results file=</dt>
+                    <dt><code>:results file</code></dt>
 
                     <dd>(default for code blocks in graphics-only languages)
                     <b>Interprets the results as a file path</b>, and insert it
                     into the buffer using the Org mode file syntax.</dd>
 
-                    <dt>=:results graphics=</dt>
+                    <dt><code>:results graphics</code></dt>
 
                     <dd>(extra option for code blocks in maxima, octave and R)
                     XXX</dd>
 
-                    <dt>=:results vector=</dt>
+                    <dt><code>:results vector</code></dt>
 
-                    <dd>Is the same as =:results table=.</dd>
+                    <dd>Is the same as <code>:results table</code>.</dd>
 
-                    <dt>=:results scalar=</dt>
+                    <dt><code>:results scalar</code></dt>
 
-                    <dd>Is the same as =:results verbatim=.</dd>
+                    <dd>Is the same as <code>:results verbatim</code>.</dd>
                   </dl>
                 </div>
               </li>
@@ -3832,7 +3840,7 @@ data
                   return.</p>
 
                   <dl class="org-dl">
-                    <dt>=:results raw=</dt>
+                    <dt><code>:results raw</code></dt>
 
                     <dd>
                       (default for Org code blocks) (implies
@@ -3852,12 +3860,13 @@ data
                       change the result.</p>
                     </dd>
 
-                    <dt>=:results html=</dt>
+                    <dt><code>:results html</code></dt>
 
                     <dd>
                       Specifies that the <b>results</b> of the code block is
                       <b>raw HTML code</b> (which can be included correctly in
-                      HTML-based export targets). Is the same as =:wrap HTML=.
+                      HTML-based export targets). Is the same as <code>:wrap
+                      HTML</code>.
 
                       <p>Inserts the results inside a <code>#+BEGIN_HTML</code>
                       block.</p>
@@ -3870,13 +3879,13 @@ data
                       </div>output <b>HTML</b> formatted text
                     </dd>
 
-                    <dt>=:results latex=</dt>
+                    <dt><code>:results latex</code></dt>
 
                     <dd>
                       (default for LaTeX code blocks) Specifies that the
                       <b>results</b> of the code block is <b>raw LaTeX code</b>
                       (which can be included correctly in LaTeX-based export
-                      targets). Is the same as =:wrap LaTeX=.
+                      targets). Is the same as <code>:wrap LaTeX</code>.
 
                       <p>Inserts the results inside a
                       <code>#+BEGIN_LaTeX</code> block.</p>
@@ -3894,7 +3903,7 @@ tex(exp(-x)/x);
                       </div>
                     </dd>
 
-                    <dt>=:results org=</dt>
+                    <dt><code>:results org</code></dt>
 
                     <dd>
                       (implies <code>verbatim</code> results, unless otherwise
@@ -3919,12 +3928,12 @@ Paragraph
                       </div>
                     </dd>
 
-                    <dt>=:results drawer=</dt>
+                    <dt><code>:results drawer</code></dt>
 
                     <dd>
-                      (replacement of =:results wrap=, since Org 7.9.2)
-                      (implies <code>verbatim</code> results, unless otherwise
-                      stated) <b>Wraps code block results</b> in a
+                      (replacement of <code>:results wrap</code>, since Org
+                      7.9.2) (implies <code>verbatim</code> results, unless
+                      otherwise stated) <b>Wraps code block results</b> in a
                       <code>RESULTS</code> drawer. This has the benefit of
                       delimiting your results, and can be useful for really
                       inserting pure <b>Org mode syntax</b> in the buffer (live
@@ -3976,7 +3985,7 @@ Paragraph
                       <p><a href="./plots/file2.pdf">./plots/file2.pdf</a></p>
                     </dd>
 
-                    <dt>=:results code=</dt>
+                    <dt><code>:results code</code></dt>
 
                     <dd>
                       This will be <b>exported as &lt;LANG&gt; code block</b>
@@ -3996,7 +4005,7 @@ Paragraph
                       </div>
                     </dd>
 
-                    <dt>=:results pp=</dt>
+                    <dt><code>:results pp</code></dt>
 
                     <dd>
                       Prints data. Puts the output in an <code>EXAMPLE</code>
@@ -4024,10 +4033,10 @@ Paragraph
           <div class="outline-text-4" id="text-4-22-2">
             <p>With <code>raw</code>, as there are <b>no obvious markers to
             delimit the results</b> in the Org mode buffer, there is no way to
-            know where raw results begin or end. So, =:results raw replace=
-            will never work as expected: <b>raw results cannot be removed</b>
-            (they become part of the buffer), and you’ll get duplicates when
-            re-evaluating the code block.</p>
+            know where raw results begin or end. So, <code>:results raw
+            replace</code> will never work as expected: <b>raw results cannot
+            be removed</b> (they become part of the buffer), and you’ll get
+            duplicates when re-evaluating the code block.</p>
 
             <p>The sole purpose of <code>raw</code> results is to allow
             inserting an headline (a real headline, not comma protected) in the
@@ -4095,11 +4104,11 @@ savefig(<span style="color: #036A07;">'images/test.png'</span>)
 
           <div class="outline-text-4" id="text-4-23-1">
             <dl class="org-dl">
-              <dt>=:rownames no=</dt>
+              <dt><code>:rownames no</code></dt>
 
               <dd>(default)</dd>
 
-              <dt>=:rownames yes=</dt>
+              <dt><code>:rownames yes</code></dt>
 
               <dd>Tells Org that your first column contains row names.</dd>
             </dl>
@@ -4139,7 +4148,7 @@ savefig(<span style="color: #036A07;">'images/test.png'</span>)
 
               <dd>Uses TAB as default separator.</dd>
 
-              <dt>=:sep &lt;SEPARATOR&gt;=</dt>
+              <dt><code>:sep &lt;SEPARATOR&gt;</code></dt>
 
               <dd>Sets separator to <code>&lt;SEPARATOR&gt;</code>.</dd>
             </dl>
@@ -4155,7 +4164,8 @@ savefig(<span style="color: #036A07;">'images/test.png'</span>)
             <h5 id="sec-4-24-2-1">Saving the tabular output to a CSV file</h5>
 
             <div class="outline-text-5" id="text-4-24-2-1">
-              <p>Save the output of <code>ls -l</code> as a =.csv= file.</p>
+              <p>Save the output of <code>ls -l</code> as a <code>.csv</code>
+              file.</p>
 
               <div class="org-src-container">
                 <pre class="src src-sh">
@@ -4163,7 +4173,7 @@ ls -l
 </pre>
               </div>
 
-              <p>Recall that =:results value= is the default.</p>
+              <p>Recall that <code>:results value</code> is the default.</p>
             </div>
           </div>
         </div>
@@ -4196,11 +4206,11 @@ ls -l
 
           <div class="outline-text-4" id="text-4-25-1">
             <dl class="org-dl">
-              <dt>=:session none=</dt>
+              <dt><code>:session none</code></dt>
 
               <dd>(default) Disables session-based evaluation.</dd>
 
-              <dt>=:session &lt;NAME&gt;=</dt>
+              <dt><code>:session &lt;NAME&gt;</code></dt>
 
               <dd>
                 Performs evaluation using a persistently running inferior
@@ -4262,7 +4272,7 @@ ls -l
 
           <div class="outline-text-4" id="text-4-26-1">
             <dl class="org-dl">
-              <dt>=:shebang &lt;SHEBANG&gt;=</dt>
+              <dt><code>:shebang &lt;SHEBANG&gt;</code></dt>
 
               <dd>Specifies the shebang.</dd>
             </dl>
@@ -4310,16 +4320,16 @@ printf <span style=
 
           <div class="outline-text-4" id="text-4-27-1">
             <dl class="org-dl">
-              <dt>=:tangle no=</dt>
+              <dt><code>:tangle no</code></dt>
 
               <dd>(default)</dd>
 
-              <dt>=:tangle yes=</dt>
+              <dt><code>:tangle yes</code></dt>
 
               <dd>Tangles to a target file named after the name of the Org mode
               file (<code>$(basename).&lt;MODE-EXT&gt;</code>).</dd>
 
-              <dt>=:tangle &lt;FILENAME&gt;=</dt>
+              <dt><code>:tangle &lt;FILENAME&gt;</code></dt>
 
               <dd>Specifies an alternate target file.</dd>
             </dl>
@@ -4384,7 +4394,7 @@ printf <span style=
 
           <div class="outline-text-4" id="text-4-29-1">
             <dl class="org-dl">
-              <dt>=:var &lt;NAME&gt;=&lt;VALUE&gt;=</dt>
+              <dt><code>:var &lt;NAME&gt;=&lt;VALUE&gt;</code></dt>
 
               <dd>Assigns a <b>default</b> value (literal or reference to a
               literal, a table, a list or a code block) to the argument.</dd>
@@ -4396,8 +4406,8 @@ printf <span style=
           <h4 id="sec-4-29-2">Remarks</h4>
 
           <div class="outline-text-4" id="text-4-29-2">
-            <p>Multiple <code>var</code> specifications behind a single =:var=
-            are allowed. The multiple var arguments must be
+            <p>Multiple <code>var</code> specifications behind a single
+            <code>:var</code> are allowed. The multiple var arguments must be
             comma-separated:</p>
 
             <div class="org-src-container">
@@ -4405,10 +4415,10 @@ printf <span style=
 <span style=
 "color: #008ED1; background-color: #EAEAFF;">#+PROPERTY: var foo=1, bar=2</span>
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src emacs-lisp</span>
 <span style="background-color: #FFFFE0;">(+ foo bar)
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 
 <span style="color: #008ED1; background-color: #EAEAFF;">#+results:</span>
 <span style="color: #007300; background-color: #EBF5EB;">: 3</span>
@@ -4420,12 +4430,12 @@ printf <span style=
             <div class="org-src-container">
               <pre class="src src-org">
 <span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var foo="hello", bar="world"</span>
+"color: #008ED1; background-color: #EAEAFF;">#+begin_src emacs-lisp :var foo="hello", bar="world"</span>
 <span style="background-color: #FFFFE0;">(concat foo </span><span style=
 "color: #036A07; background-color: #FFFFE0;">" "</span><span style=
 "background-color: #FFFFE0;"> bar)
 </span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+"color: #008ED1; background-color: #EAEAFF;">#+end_src</span>
 
 <span style="color: #008ED1; background-color: #EAEAFF;">#+results:</span>
 <span style="color: #007300; background-color: #EBF5EB;">: hello world</span>
@@ -4441,7 +4451,7 @@ printf <span style=
                   <b>Question about prefix char</b><br />
 
                   <p>So, the prefix char of such lines should be
-                  <code>|</code>, =:= or =-=?</p>
+                  <code>|</code>, <code>:</code> or <code>-</code>?</p>
                 </td>
               </tr>
             </table>
@@ -4507,8 +4517,8 @@ printf <span style=
             </ul>
 
             <p>To reference a variable in an external file, use the syntax
-            =:var data=&lt;FILE&gt;:&lt;VAR&gt;=. Note that, in order to work,
-            the files must be in the same directory.</p>
+            <code>:var data=&lt;FILE&gt;:&lt;VAR&gt;</code>. Note that, in
+            order to work, the files must be in the same directory.</p>
 
             <p>:var introduces code block dependencies. include anything in the
             Org mode file that takes a @code{#+NAME:}, @code{#+BEGIN_EXAMPLE}
@@ -4757,7 +4767,7 @@ hline
 
             <div class="outline-text-5" id="text-4-29-3-6">
               <p>It is possible to <b>chain code blocks</b> (possibly in
-              different languages) in =:var= lines, as shown:</p>
+              different languages) in <code>:var</code> lines, as shown:</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
@@ -4786,12 +4796,12 @@ rowSums(x)
               <dd>(default) Tells Org Babel <b>not</b> to <b>wrap</b> the
               results.</dd>
 
-              <dt>=:wrap=</dt>
+              <dt><code>:wrap</code></dt>
 
               <dd>Specifies to wrap the results in a
               <code>#+BEGIN/END_RESULTS</code> block.</dd>
 
-              <dt>=:wrap &lt;MARKUP&gt;=</dt>
+              <dt><code>:wrap &lt;MARKUP&gt;</code></dt>
 
               <dd>Specifies the name of the block
               (<code>#+BEGIN/END_&lt;MARKUP&gt;</code>) with which to wrap the
@@ -4806,8 +4816,8 @@ rowSums(x)
           <h4 id="sec-4-30-2">Remarks</h4>
 
           <div class="outline-text-4" id="text-4-30-2">
-            <p>The =:wrap= header argument gives you control over the
-            formatting of results from code blocks.</p>
+            <p>The <code>:wrap</code> header argument gives you control over
+            the formatting of results from code blocks.</p>
           </div>
         </div>
 
@@ -4817,7 +4827,7 @@ rowSums(x)
           <div class="outline-text-4" id="text-4-30-3"></div>
 
           <div id="outline-container-sec-4-30-3-1" class="outline-5">
-            <h5 id="sec-4-30-3-1">Using =:wrap= with no value</h5>
+            <h5 id="sec-4-30-3-1">Using <code>:wrap</code> with no value</h5>
 
             <div class="outline-text-5" id="text-4-30-3-1">
               <p>The following example wraps the results in
@@ -4871,7 +4881,8 @@ rowSums(x)
           </div>
 
           <div id="outline-container-sec-4-30-3-2" class="outline-5">
-            <h5 id="sec-4-30-3-2">Using =:wrap= with a string value</h5>
+            <h5 id="sec-4-30-3-2">Using <code>:wrap</code> with a string
+            value</h5>
 
             <div class="outline-text-5" id="text-4-30-3-2">
               <p>The following examples puts the <b>output in an
@@ -4883,8 +4894,8 @@ Some results wrapped in an example block.
           </div>
 
           <div id="outline-container-sec-4-30-3-3" class="outline-5">
-            <h5 id="sec-4-30-3-3">Using =:wrap= to produce a source code block
-            in a named language</h5>
+            <h5 id="sec-4-30-3-3">Using <code>:wrap</code> to produce a source
+            code block in a named language</h5>
 
             <div class="outline-text-5" id="text-4-30-3-3">
               <p>The following examples puts the results into a
@@ -5064,7 +5075,7 @@ Some results wrapped in an example block.
             <tr>
               <td class="left">:headers</td>
 
-              <td class="left">*:stdin*</td>
+              <td class="left"><b>:stdin</b></td>
             </tr>
 
             <tr>
@@ -5092,7 +5103,7 @@ Some results wrapped in an example block.
             </tr>
 
             <tr>
-              <td class="left">*:includes*</td>
+              <td class="left"><b>:includes</b></td>
 
               <td class="left">&nbsp;</td>
             </tr>
