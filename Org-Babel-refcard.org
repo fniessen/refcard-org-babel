@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-03-31 Mon 12:16>
+#+Time-stamp: <2014-04-04 Fri 16:57>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -414,7 +414,7 @@ code blocks
 Return the results of calling ~NAME~ with ~VARIABLES~.
 
 #+begin_src org
-(org-sbe '<NAME> <VARIABLES>)
+(org-sbe <NAME> <VARIABLES>)
 #+end_src
 
 Each element of ~VARIABLES~ should be a two element list, whose
@@ -444,13 +444,13 @@ From [[http://osdir.com/ml/emacs-orgmode-gnu/2010-03/msg00651.html][Re: {Orgmode
 
 | prefix   | remaining characters |
 |----------+----------------------|
-| ob-      |                  nil |
-| org-b-   |                  nil |
-| orgb-    |                  nil |
-| org-bbl- |                  nil |
-| bbl-     |                  nil |
-| babel-   |                  nil |
-#+TBLFM: $2='(org-sbe leftover (prefix $$1))
+| ob-      | nil                  |
+| org-b-   | nil                  |
+| orgb-    | nil                  |
+| org-bbl- | nil                  |
+| bbl-     | nil                  |
+| babel-   | nil                  |
+#+TBLFM: $2='(org-sbe "leftover" (prefix $$1))
 
 **** Remarks
 
@@ -470,10 +470,10 @@ There is no way to *map* a *code block* over the *rows of a table*. You could us
 the ~org-sbe~ macro and a spreadsheet formula to call a code block on multiple table
 cells, but the results would be inserted back into the table.
 
-| A       |           nil |
-| B       |           nil |
-| eric    |           nil |
-| schulte |           nil |
+| A       | nil |
+| B       | nil |
+| eric    | nil |
+| schulte | nil |
 #+TBLFM: $2='(org-sbe foo (in $$1))
 
 #+name: foo
@@ -485,7 +485,7 @@ Also remember you can use ELisp in formulas:
 
 | Date 1                  | Date 2                  | Duration |
 |-------------------------+-------------------------+----------|
-| [2013-12-21 sam. 00:00] | [2013-12-22 dim. 00:00] | 86400.0  |
+| [2013-12-21 sam. 00:00] | [2013-12-22 dim. 00:00] |  86400.0 |
 #+TBLFM: $3='(- (org-time-string-to-seconds "$2") (org-time-string-to-seconds "$1"));L
 
 Note the quotes around "$2" and "$1", they are necessary so that the date is
@@ -1157,15 +1157,15 @@ data
 
 The following example outputs the table with its column names.
 
-#+begin_src R :var data=without-header :exports results :colnames yes :eval yes
-data
-#+end_src
-
-#+results:
-| X1 | one   |
-|----+-------|
-|  2 | two   |
-|  3 | three |
+# #+begin_src R :var data=without-header :exports results :colnames yes :eval yes
+# data
+# #+end_src
+#
+# #+results:
+# | X1 | one   |
+# |----+-------|
+# |  2 | two   |
+# |  3 | three |
 
 #+begin_src sh :var data=without-header :colnames yes :eval yes
 echo "$data"
@@ -1177,16 +1177,16 @@ echo "$data"
 | 2 | two   |
 | 3 | three |
 
-#+begin_src R :var data=with-a-header :exports results :colnames yes :eval yes
-data
-#+end_src
-
-#+results:
-| num | word  |
-|-----+-------|
-|   1 | one   |
-|   2 | two   |
-|   3 | three |
+# #+begin_src R :var data=with-a-header :exports results :colnames yes :eval yes
+# data
+# #+end_src
+#
+# #+results:
+# | num | word  |
+# |-----+-------|
+# |   1 | one   |
+# |   2 | two   |
+# |   3 | three |
 
 #+begin_src emacs-lisp :var data=with-a-header :exports results :colnames yes :results scalar :eval yes
 data
@@ -2715,18 +2715,18 @@ Some results wrapped in an example block.
 The following examples puts the results into a ~SRC~ code block (associated to
 the ~c++~ mode).
 
-#+begin_src R :exports results :results raw :wrap SRC c++
-print("for (int i = 0; i < random; i++) {
-  number[i] = rand();
-}")
-#+end_src
-
-#+results:
-#+BEGIN_SRC c++
-for (int i = 0; i < random; i++) {
-  number[i] = rand();
-}
-#+END_SRC
+# #+begin_src R :exports results :results raw :wrap SRC c++
+# print("for (int i = 0; i < random; i++) {
+#   number[i] = rand();
+# }")
+# #+end_src
+#
+# #+results:
+# #+BEGIN_SRC c++
+# for (int i = 0; i < random; i++) {
+#   number[i] = rand();
+# }
+# #+END_SRC
 
 On LaTeX export, the ~SRC~ block will be exported as ~c++~ code under ~listings~
 instead of being wrapped in a ~\begin{verbatim}..\end{verbatim}~ environment.
