@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-04-04 Fri 16:57>
+#+Time-stamp: <2014-04-04 Fri 17:02>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -765,6 +765,184 @@ Will lisp-2 export call_lisp-2() with a newline?
 Will python-2 export call_python-2() with a newline?
 
 Will r-2 export call_r-2() with a newline?
+
+* Key bindings
+
+Babel commands can now be used as *speed commands* when the point is on the
+beginning of a code block!!
+
+Org-babel is now making use of the newly available =C-c C-v= key binding.
+All Org-babel keybindings are now located behind this prefix.
+
+** Help
+
+- ~C-c C-v h~ ::
+     Describe all key bindings behind Org Babel key prefix.
+
+** Edit the code
+
+- ~C-c '~ ::
+     Edit the code block in a dedicated buffer.
+
+- ~C-c C-v C-x TAB~ (or ~C-c C-v x TAB~) ::
+     Insert a language-native TAB in code block.
+
+- ~C-c C-v C-x M-;~ ::
+     Comment region according to language.
+
+- ~C-c C-v C-x C-M-\~ ::
+     Indent region according to language.
+
+- ~C-c C-v d~ ::
+     Demarcate code block (i.e., wrap the region in a block, or split the
+     block around point).
+
+- ~C-c C-v C-M-h~ ::
+     Mark (= select) the whole code block.
+
+- ~C-c C-v I~ ::
+     Display information on the current source block. This includes header
+     arguments, language and name.
+
+- ~C-c C-v j~ ::
+     *Insert a header argument* and its value using completing read in the
+     minibuffer.
+
+     #+begin_src emacs-lisp
+     (defun my-org-babel-deactivate ()
+       (interactive)
+       (org-babel-insert-header-arg "eval" "never")
+       (org-babel-insert-header-arg "tangle" "no"))
+     #+end_src
+
+- ~C-c C-v c~ ::
+     Check for /suspicious/ (that is, unknown) header arguments. This may prove
+     useful if you get into the habit of using it as your first step in
+     *debugging* code blocks.
+
+  Languages are permitted to add and use *any* arbitrary new header argument, so
+  there is no /wrong/ (that is, disallowed) header argument.
+
+** SHA1 hash
+
+- ~C-c C-v C-a~ (or ~C-c C-v a~) ::
+     View sha1 hash of the current code block.
+
+You could use the hash returned by that function to manually replace the
+original one in the block, and avoid reevaluating the block in case of purely
+cosmetic changes.
+
+** Navigate
+
+- ~C-c C-v g~ ::
+     Go to a *named code block* (with completing read).
+
+     The target src block is guessed from:
+     1. noweb-reference
+     2. #+call:
+     3. #+results:
+     4. symbol-at-point
+     if one of these is found (in that order).
+
+     The point being pushed to the ~org-mark-ring~, you can return to it with
+     ~C-c &~.
+
+- ~C-c C-v r~ ::
+     Go to a *named result* (with completing read).
+
+- ~C-c C-v n~ (or ~C-c C-v C-n~) ::
+     Go to the *next* code block.
+
+- ~C-c C-v p~ ::
+     Go to the *previous* code block.
+
+- ~C-c C-v u~ ::
+     Go to the head of this code block (jump to the enclosing structural
+     block).
+
+** Execute (or "evaluate")
+
+- ~C-c C-v C-b~ (or ~C-c C-v b~) ::
+     Evaluate all the code blocks *in the current buffer*.
+
+- ~C-c C-v C-s~ (or ~C-c C-v s~) ::
+     Evaluate all the code blocks *in the current subtree*.
+
+- ~C-c C-v C-e~ (or ~C-c C-v e~) ::
+     Evaluate the code block *at point*.
+
+     With ~C-u C-c C-v C-e~, forcibly re-evaluate the block (marked ~:cache~).
+
+** Tangle
+
+- ~C-c C-v C-t~ (or ~C-c C-v t~) ::
+     *Tangle all the code blocks* in current file.
+
+     Run the tangle with a prefix argument (e.g., ~C-u C-c C-v t~) to only
+     tangle the *block under your cursor* (current code block).
+
+     Press ~C-u C-u C-c C-v t~ to tangle *all blocks* belonging to the *target file
+     of the block at point* (that is, having the same tangle file name).
+
+- ~C-c C-v C-f~ (or ~C-c C-v f~) ::
+     *Tangle all the code blocks* in supplied file.
+
+In many languages constructs like <<foo>> are valid code, so it would be
+inappropriate for tangling to raise errors by default. It is possible to turn
+on such errors on a language-by-language basis, by customizing the following
+variable.
+
+,----[org-babel-noweb-error-langs]
+| org-babel-noweb-error-langs is a variable defined in `ob.el'.     |
+| Its value is nil                                                  |
+|                                                                   |
+| Documentation:                                                    |
+| Languages for which Babel will raise literate programming errors. |
+| List of languages for which errors should be raised when the      |
+| source code block satisfying a noweb reference in this language   |
+| can not be resolved.                                              |
+`----
+
+** View the results
+
+- ~C-c C-v C-v~ (or ~C-c C-v v~) ::
+     *View the expanded body* of the code block at point. This view of code
+     blocks is not editable.
+
+- ~C-c C-o~ ::
+     *Open the results* of the code block at point.
+
+- ~C-c C-v C-z~ ::
+     *Switch to the session* of the current code block (first, you need to add
+     ~:session~ to it).
+
+     Use ~C-u C-c C-v C-z~ to bring up the session with the input variable
+     pre-loaded.
+
+     ~C-c C-v z~ (~org-babel-switch-to-session-with-code~) is a variant of
+     ~C-c C-v C-z~ (~org-babel-switch-to-session~): instead of switching to the
+     session buffer, it splits the window between:
+
+     + the session buffer, and
+     + a language major-mode edit buffer for the code block in question.
+
+     This can be convenient for using language major mode for interacting with
+     the session buffer.
+
+- ~C-c C-v k~ ::
+     *Delete* code block *results*, inline code block results, and call line
+     results. When called without a prefix argument, it only applies to the
+     current code block. When called with a prefix argument, it applies to the
+     entire buffer.
+
+** Library of Babel
+
+- ~C-c C-v C-i~ (or ~C-c C-v i~) ::
+     Add all named code blocks from supplied file into the (in memory?)
+     Library of Babel.
+
+- ~C-c C-v C-l~ (or ~C-c C-v l~) ::
+     Ingest all code blocks in supplied file into the Library of Babel.
 
 * Header arguments
   :PROPERTIES:
