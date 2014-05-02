@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-04-04 Fri 17:02>
+#+Time-stamp: <2014-05-02 Fri 14:17>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -444,12 +444,12 @@ From [[http://osdir.com/ml/emacs-orgmode-gnu/2010-03/msg00651.html][Re: {Orgmode
 
 | prefix   | remaining characters |
 |----------+----------------------|
-| ob-      | nil                  |
-| org-b-   | nil                  |
-| orgb-    | nil                  |
-| org-bbl- | nil                  |
-| bbl-     | nil                  |
-| babel-   | nil                  |
+| ob-      |                  nil |
+| org-b-   |                  nil |
+| orgb-    |                  nil |
+| org-bbl- |                  nil |
+| bbl-     |                  nil |
+| babel-   |                  nil |
 #+TBLFM: $2='(org-sbe "leftover" (prefix $$1))
 
 **** Remarks
@@ -485,7 +485,7 @@ Also remember you can use ELisp in formulas:
 
 | Date 1                  | Date 2                  | Duration |
 |-------------------------+-------------------------+----------|
-| [2013-12-21 sam. 00:00] | [2013-12-22 dim. 00:00] |  86400.0 |
+| [2013-12-21 sam. 00:00] | [2013-12-22 dim. 00:00] | 86400.0  |
 #+TBLFM: $3='(- (org-time-string-to-seconds "$2") (org-time-string-to-seconds "$1"));L
 
 Note the quotes around "$2" and "$1", they are necessary so that the date is
@@ -670,9 +670,11 @@ with header arguments.
 
 - If you set the following
 
-  #+begin_src emacs-lisp
-  (setq org-babel-inline-result-wrap "$%s$")
-  #+end_src
+  # XXX This break the HTML export (C-c C-e h o)
+
+  # #+begin_src emacs-lisp
+  # (setq org-babel-inline-result-wrap "$%s$")
+  # #+end_src
 
   then inline code snippets will be wrapped into the formatting string.
 
@@ -716,7 +718,7 @@ for markup that produces verbatim text.
 
 **** Examples
 
-    Simple examples for inline call:
+Simple examples for inline call:
 
 #+name: square
 #+begin_src emacs-lisp :var x=0
@@ -746,7 +748,7 @@ call_foo(bar=(+ 2 2))
 ***** Similar code in three languages
 
 #+name: lisp-2
-#+begin_src lisp
+#+begin_src emacs-lisp
 (+ 1 1)
 #+end_src
 
@@ -768,11 +770,12 @@ Will r-2 export call_r-2() with a newline?
 
 * Key bindings
 
-Babel commands can now be used as *speed commands* when the point is on the
-beginning of a code block!!
+Babel commands can be used as *speed commands* when the point is on the beginning
+of a code block!! (or in column 0 -- not the same if code block does not begin
+at column 0).
 
-Org-babel is now making use of the newly available =C-c C-v= key binding.
-All Org-babel keybindings are now located behind this prefix.
+Org-babel is making use of the =C-c C-v= key binding.
+All Org-babel keybindings are located behind this prefix.
 
 ** Help
 
@@ -808,12 +811,14 @@ All Org-babel keybindings are now located behind this prefix.
      *Insert a header argument* and its value using completing read in the
      minibuffer.
 
-     #+begin_src emacs-lisp
-     (defun my-org-babel-deactivate ()
-       (interactive)
-       (org-babel-insert-header-arg "eval" "never")
-       (org-babel-insert-header-arg "tangle" "no"))
-     #+end_src
+     # XXX This breaks HTML export
+
+     # #+begin_src emacs-lisp
+     # (defun my-org-babel-deactivate ()
+     #   (interactive)
+     #   (org-babel-insert-header-arg "eval" "never")
+     #   (org-babel-insert-header-arg "tangle" "no"))
+     # #+end_src
 
 - ~C-c C-v c~ ::
      Check for /suspicious/ (that is, unknown) header arguments. This may prove
@@ -826,7 +831,7 @@ All Org-babel keybindings are now located behind this prefix.
 ** SHA1 hash
 
 - ~C-c C-v C-a~ (or ~C-c C-v a~) ::
-     View sha1 hash of the current code block.
+     View SHA1 hash of the current code block.
 
 You could use the hash returned by that function to manually replace the
 original one in the block, and avoid reevaluating the block in case of purely
@@ -922,7 +927,6 @@ variable.
      ~C-c C-v z~ (~org-babel-switch-to-session-with-code~) is a variant of
      ~C-c C-v C-z~ (~org-babel-switch-to-session~): instead of switching to the
      session buffer, it splits the window between:
-
      + the session buffer, and
      + a language major-mode edit buffer for the code block in question.
 
@@ -937,12 +941,12 @@ variable.
 
 ** Library of Babel
 
-- ~C-c C-v C-i~ (or ~C-c C-v i~) ::
-     Add all named code blocks from supplied file into the (in memory?)
-     Library of Babel.
+- ~C-c C-v i~ ::
+     Add all named code blocks from supplied file into the Library of Babel (in
+     memory).
 
 - ~C-c C-v C-l~ (or ~C-c C-v l~) ::
-     Ingest all code blocks in supplied file into the Library of Babel.
+     Ingest all NAMED? code blocks in supplied file into the Library of Babel.
 
 * Header arguments
   :PROPERTIES:
@@ -1185,7 +1189,7 @@ x <- 'side effect'
 
 *** Options
 
-- none ::
+- nothing ::
      (default)
 
 - ~:cmdline ...~ ::
@@ -1227,14 +1231,15 @@ Handles *column names in tables*.
 
 *** Options
 
-- none ::
-     (default) Removes the header (and the top hline) from the table before
+- nothing ::
+     Removes the header (and the top hline) from the table before
      processing if the input table looks like it has column names (because its
-     second row is an hline).
+     second row is an hline). \\
+     (default)
 
 - ~:colnames no~ ::
+     Don't strip the header. Re-add headers (post-processing). \\
      (default for Emacs Lisp code blocks)
-     Don't strip the header. Re-add headers (post-processing).
 
 - ~:colnames yes~ ::
      Tells Org Babel that your first row contains column names. Applies the
@@ -1335,6 +1340,8 @@ data
 
 The following example outputs the table with its column names.
 
+# XXX This broke org2html
+
 # #+begin_src R :var data=without-header :exports results :colnames yes :eval yes
 # data
 # #+end_src
@@ -1354,6 +1361,8 @@ echo "$data"
 |---+-------|
 | 2 | two   |
 | 3 | three |
+
+# XXX This broke org2html
 
 # #+begin_src R :var data=with-a-header :exports results :colnames yes :eval yes
 # data
@@ -1454,9 +1463,9 @@ which the code was tangled).
 *** Options
 
 - ~:comments no~ ::
-     (default)
      Does not insert any comments in tangled files (beyond those which may
-     already exist in the body of the code block).
+     already exist in the body of the code block). \\
+     (default)
 
 - ~:comments link~ ::
      Inserts "tangled from X" comments around the code blocks in the tangled
@@ -1476,8 +1485,8 @@ which the code was tangled).
      Turns on both the ~link~ and ~org~ comment options.
 
 - ~:comments yes~ ::
+     Is the same as ~:comments link~. \\
      (deprecated)
-     Is the same as ~:comments link~.
 
 *** See also
 
@@ -1500,7 +1509,7 @@ Specifies the default (possibly *remote*) directory during code block execution.
 
 *** Options
 
-- none ::
+- nothing ::
      Uses the directory associated with the *current buffer*.
 
 - ~:dir <DIR>~ ::
@@ -1579,9 +1588,9 @@ Specifies permissions for /every/ execution of code blocks.
 *** Options
 
 - ~:eval yes~ ::
-     (default)
      Allows evaluation of the code block (both interactively and during
-     export) WITHOUT A CONFIRMATION FROM THE USER?.
+     export) WITHOUT A CONFIRMATION FROM THE USER?. \\
+     (default)
 
 - ~:eval query~ ::
      Requires confirmation before evaluating the code block (both
@@ -1646,15 +1655,15 @@ Specifies how code and/or results should be handled *during export*.
      Doesn't include anything in the exported file.
 
 - ~:exports code~ ::
-     (default)
+     Includes (only) the body of the code block into the exported file. \\
+     (default) \\
      (default for Org code blocks)
-     Includes (only) the body of the code block into the exported file.
 
 - ~:exports results~ ::
-     (default for /inline/ code blocks)
-     (default for LaTeX code blocks)
+     Includes (only) the *results block* in the exported file. \\
+     (default for /inline/ code blocks) \\
+     (default for LaTeX code blocks) \\
      (default for code blocks in graphics-only languages)
-     Includes (only) the *results block* in the exported file.
 
 - ~:exports both~ ::
      Includes both the code block and the [[#eval][results]] in the exported file.
@@ -1817,12 +1826,12 @@ Handles *horizontal lines* in input tables.
 *** Options
 
 - ~:hlines no~ ::
+     Strips horizontal lines from the input table. \\
      (default)
-     Strips horizontal lines from the input table.
 
 - ~:hlines yes~ ::
+     Preserves horizontal lines in the input table. \\
      (default for Emacs Lisp code blocks)
-     Preserves horizontal lines in the input table.
 
 *** Remarks
 
@@ -2181,16 +2190,16 @@ Specifies how the results should be *collected* from the code block's
 evaluation.
 
 - ~:results value~ (aka functional mode) ::
-     (default)
      Specifies that the results of the block is the *value of the last
      statement* in your code, turned into an *Org mode table* if it is a
-     list/vector type object.
+     list/vector type object. \\
+     (default)
 
 - ~:results output~ (aka scripting mode) ::
-     (default for Ledger code blocks)
      Specifies that the results will be *everything printed to stdout* during
      execution of the code block. The strings collected from ~stdout~ are not
-     treated as values, but rather as *raw strings*.
+     treated as values, but rather as *raw strings*. \\
+     (default for Ledger code blocks)
 
 If you get the message =Source block produced no output=, try adding ~:results
 output~.
@@ -2202,15 +2211,15 @@ output~.
 Specifies if and how the results should be *inserted in the buffer*.
 
 - ~:results replace~ ::
-     (default)
      Inserts results after the code block, replacing any previously inserted
-     results.
+     results. \\
+     (default)
 
 - ~:results silent~ ::
-     (default for Org and Screen code blocks)
      Sends the commands, echoes the results in the minibuffer (to see code
      block output), but *does not change the Org mode buffer* (even during
-     export, *no results are inserted* into the exported document).
+     export, *no results are inserted* into the exported document). \\
+     (default for Org and Screen code blocks)
 
 - ~:results none~ ::
      Silents the results, even for the minibuffer. By definition, such a code
@@ -2227,35 +2236,37 @@ Specifies if and how the results should be *inserted in the buffer*.
 Specifies how the results should be *interpreted*.
 
 - ~:results verbatim~ ::
-     (default for ~raw~, ~org~ and ~drawer~ results)
      Informs explicitly the code block that you will be returning a string, to
      *inhibit its interpretation* as a value --- the output will neither be
-     converted into a table nor into a list.
+     converted into a table nor into a list. \\
+     (default for ~raw~, ~org~ and ~drawer~ results)
 
-     #+begin_src emacs-lisp :var data="" :results verbatim
-     (concat "\\begin{mdframed}\n" data "\n")
-     #+end_src
+     # XXX This breaks HTML export
 
-     #+results:
-     #+begin_example
-     "\\begin{mdframed}
+     # #+begin_src emacs-lisp :var data="" :results verbatim
+     # (concat "\\begin{mdframed}\n" data "\n")
+     # #+end_src
+     #
+     # #+results:
+     # #+begin_example
+     # "\\begin{mdframed}
+     #
+     # "
+     # #+end_example
 
-     "
-     #+end_example
-
-     #+begin_src emacs-lisp :var data="string"
-     (concat "\\begin{mdframed}\n" data "\n")
-     #+end_src
-
-     #+results:
-     #+begin_example
-     \begin{mdframed}
-     string
-     #+end_example
+     # #+begin_src emacs-lisp :var data="string"
+     # (concat "\\begin{mdframed}\n" data "\n")
+     # #+end_src
+     #
+     # #+results:
+     # #+begin_example
+     # \begin{mdframed}
+     # string
+     # #+end_example
 
 - ~:results table~ ::
+     Interprets the results as an Org mode table. \\
      (default)
-     Interprets the results as an Org mode table.
 
 - ~:results list~ ::
       Writes an Org mode list.
@@ -2274,9 +2285,9 @@ Specifies how the results should be *interpreted*.
      :END:
 
 - ~:results file~ ::
+     *Interprets the results as a file path*, and insert it into the buffer using
+     the Org mode file syntax. \\
      (default for code blocks in graphics-only languages)
-     *Interprets the results as a file path*, and insert it into the buffer
-     using the Org mode file syntax.
 
 - ~:results graphics~ ::
      (extra option for code blocks in maxima, octave and R)
@@ -2293,13 +2304,16 @@ Specifies how the results should be *interpreted*.
 Specifies what type of results the code block will return.
 
 - ~:results raw~ ::
-     (default for Org code blocks)
+     Means that the input is a string (so hline processing is not
+     performed). \\
+     (default for Org code blocks) \\
      (implies ~verbatim~ results, unless otherwise stated)
-     Means that the input is a string (so hline processing is not performed).
 
-     #+begin_src emacs-lisp :results raw :exports both
-     "* Headline\nParagraph"
-     #+end_src
+     # XXX This breaks HTML export
+
+     # #+begin_src emacs-lisp :results raw :exports both
+     # "* Headline\nParagraph"
+     # #+end_src
 
      Note that it is allowable for raw results to include newlines (if the code
      block returns a newline): the purpose of raw results is specifically to
@@ -2312,31 +2326,35 @@ Specifies what type of results the code block will return.
 
      Inserts the results inside a ~#+BEGIN_HTML~ block.
 
-     #+begin_src emacs-lisp :results html :exports both
-     "output <b>HTML</b> formatted text"
-     #+end_src
+     # XXX This breaks HTML export
 
-     #+results:
-     #+BEGIN_HTML
-     output <b>HTML</b> formatted text
-     #+END_HTML
+     # #+begin_src emacs-lisp :results html :exports both
+     # "output <b>HTML</b> formatted text"
+     # #+end_src
+     #
+     # #+results:
+     # #+BEGIN_HTML
+     # output <b>HTML</b> formatted text
+     # #+END_HTML
 
 - ~:results latex~ ::
-     (default for LaTeX code blocks)
      Specifies that the *results* of the code block is *raw LaTeX code* (which can
      be included correctly in LaTeX-based export targets). Is the same as
-     ~:wrap LaTeX~.
+     ~:wrap LaTeX~. \\
+     (default for LaTeX code blocks)
 
      Inserts the results inside a ~#+BEGIN_LaTeX~ block.
 
-     #+begin_src emacs-lisp :results latex :exports both
-     "output \\textbf{\\LaTeX} formatted text"
-     #+end_src
+     # XXX This breaks HTML export
 
-     #+results:
-     #+BEGIN_LaTeX
-     output \textbf{\LaTeX} formatted text
-     #+END_LaTeX
+     # #+begin_src emacs-lisp :results latex :exports both
+     # "output \\textbf{\\LaTeX} formatted text"
+     # #+end_src
+     #
+     # #+results:
+     # #+BEGIN_LaTeX
+     # output \textbf{\LaTeX} formatted text
+     # #+END_LaTeX
 
      #+begin_src maxima :results output latex
      tex(exp(-x)/x);
@@ -2353,15 +2371,17 @@ Specifies what type of results the code block will return.
      *comma-escaped lines*). This will be *exported as Org code block* (as
      ~verbatim~ or ~listings~ to LaTeX).
 
-     #+begin_src emacs-lisp :results org :exports both
-     "* Headline\nParagraph"
-     #+end_src
+     # XXX This breaks HTML export
 
-     #+results:
-     #+BEGIN_SRC org
-     ,* Headline
-     Paragraph
-     #+END_SRC
+     # #+begin_src emacs-lisp :results org :exports both
+     # "* Headline\nParagraph"
+     # #+end_src
+     #
+     # #+results:
+     # #+BEGIN_SRC org
+     # ,* Headline
+     # Paragraph
+     # #+END_SRC
 
 - ~:results drawer~ ::
      (replacement of ~:results wrap~, since Org 7.9.2)
@@ -2398,25 +2418,29 @@ Specifies what type of results the code block will return.
      This will be *exported as <LANG> code block* (as ~verbatim~ or ~listings~ to
      LaTeX).
 
-     #+begin_src emacs-lisp :results code :exports both
-     "* Headline\nParagraph"
-     #+end_src
+     # XXX This breaks HTML export
 
-     #+results:
-     #+BEGIN_SRC emacs-lisp
-     "* Headline\nParagraph"
-     #+END_SRC
+     # #+begin_src emacs-lisp :results code :exports both
+     # "* Headline\nParagraph"
+     # #+end_src
+     #
+     # #+results:
+     # #+BEGIN_SRC emacs-lisp
+     # "* Headline\nParagraph"
+     # #+END_SRC
 
 - ~:results pp~ ::
      Prints data.
      Puts the output in an ~EXAMPLE~ block? XXX
 
-     #+begin_src emacs-lisp :results pp :exports both
-     "* Headline\nParagraph"
-     #+end_src
+     # XXX This breaks HTML export
 
-     #+results:
-     : "* Headline\nParagraph"
+     # #+begin_src emacs-lisp :results pp :exports both
+     # "* Headline\nParagraph"
+     # #+end_src
+     #
+     # #+results:
+     # : "* Headline\nParagraph"
 
 *** Remarks
 
@@ -2486,7 +2510,7 @@ Specifies a delimiter for reading or writing *tabular results*.
 
 *** Options
 
-- none ::
+- nothing ::
      Uses TAB as default separator.
 
 - ~:sep <SEPARATOR>~ ::
@@ -2523,13 +2547,12 @@ Shares data and persists state between (evaluation of) different code blocks.
 *** Options
 
 - ~:session none~ ::
+     Disables session-based evaluation. \\
      (default)
-     Disables session-based evaluation.
 
 - ~:session <NAME>~ ::
      Performs evaluation using a persistently running inferior process to
-     which the code block is submitted.
-
+     which the code block is submitted. \\
      (default for Screen code blocks: session name set to ~default~)
 
 *** Remarks
@@ -2647,6 +2670,7 @@ arguments must be comma-separated:
 
 #+begin_src org
 ,#+PROPERTY: var foo=1, bar=2
+
 ,#+begin_src emacs-lisp
 (+ foo bar)
 ,#+end_src
@@ -2838,9 +2862,9 @@ Delimit the results (of source block evaluation).
 
 *** Options
 
-- none ::
+- nothing ::
+     Tells Org Babel *not* to *wrap* the results. \\
      (default)
-     Tells Org Babel *not* to *wrap* the results.
 
 - ~:wrap~ ::
      Specifies to wrap the results in a ~#+BEGIN/END_RESULTS~ block.
@@ -2893,6 +2917,8 @@ Some results wrapped in an example block.
 The following examples puts the results into a ~SRC~ code block (associated to
 the ~c++~ mode).
 
+# XXX This broke org2html
+
 # #+begin_src R :exports results :results raw :wrap SRC c++
 # print("for (int i = 0; i < random; i++) {
 #   number[i] = rand();
@@ -2912,22 +2938,24 @@ instead of being wrapped in a ~\begin{verbatim}..\end{verbatim}~ environment.
 Alternatively, you can use the :post header argument to wrap the results in a
 source block.
 
-#+name: wrap-src-cpp
-#+begin_src emacs-lisp :var text="" :results raw
-(concat "#+BEGIN_SRC c++\n" text "\n#+END_SRC")
-#+end_src
+     # XXX This breaks HTML export
 
-#+name: example
-#+begin_src c++ :results replace drawer :exports results :post wrap-src-cpp(text=*this*)
-for (int i = 0; i < random; i++) {
-  number[i] = rand();
-}
-#+end_src
-
-#+results: example
-:RESULTS:
-nil
-:END:
+# #+name: wrap-src-cpp
+# #+begin_src emacs-lisp :var text="" :results raw
+# (concat "#+BEGIN_SRC c++\n" text "\n#+END_SRC")
+# #+end_src
+#
+# #+name: example
+# #+begin_src c++ :results replace drawer :exports results :post wrap-src-cpp(text=*this*)
+# for (int i = 0; i < random; i++) {
+#   number[i] = rand();
+# }
+# #+end_src
+#
+# #+results: example
+# :RESULTS:
+# nil
+# :END:
 
 *** See also
 
