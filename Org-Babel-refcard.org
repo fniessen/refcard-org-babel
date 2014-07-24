@@ -1,7 +1,7 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-05-02 Fri 14:17>
+#+Time-stamp: <2014-06-25 Wed 09:27>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -47,9 +47,13 @@ This allows you to insert in your Org document:
 
 following the principles of *reproducible research* (RR).
 
-* Evaluation
+* Code evaluation
 
-** Code blocks
+Org mode basically just runs the code every time you export the document.  But,
+if you've changed some code and want a refresh, you can press [[id:b1b4977c-5c27-4385-a9ce-2fb8346822b5][~C-c C-v C-b~]] and
+it will run it for sure then.
+
+** Embedding code blocks
 
 A *code block* is some sort of subprogram which does the desired job.
 
@@ -60,15 +64,18 @@ acts as an *implicit call*.
 
 **** Syntax
 
-The code block is a block element which can be *anonymous* or *named*.
+The code block is a block element which can be *anonymous* (without a label) or
+*named* (with a label).
 
 #+begin_src org
+,#+name: <LABEL>
 ,#+begin_src <LANGUAGE> <HEADER-ARGS>
 <BODY>
 ,#+end_src
 #+end_src
 
-Anonymous code blocks will be immediately followed by the results block.
+Anonymous code blocks will be immediately followed by the results block upon
+evaluation.
 
 #+begin_src sh :exports both
 printf "I'm anonymous"
@@ -633,9 +640,11 @@ The following works great. (note the tick in the ~(boundp 'backend)~).
 And you could wrap up the extra-long Emacs Lisp in a function or macro in your
 init to avoid the overlength header argument.
 
-** Inline code blocks
+** Embedding inline code
 
-*** Inline code blocks
+You can also evaluate code inline as follows.
+
+*** Inline expressions
 
 An *inline source block* is a code block which is placed /inline/ within textual
 elements such as paragraphs of text or lists.
@@ -740,7 +749,7 @@ This one should not be exported ~call_square(x=2)~ because it is quoted.
 Finally this next one should export, even though it starts a line
 call_square(x=3) because sometimes inline blocks fold with a paragraph.
 
-And, a call with raw results call_square(4)[:results raw] should not have
+And, a *call with raw results* call_square(4)[:results raw] should not have
 quoted results.
 
 call_foo(bar=(+ 2 2))
@@ -866,6 +875,9 @@ cosmetic changes.
      block).
 
 ** Execute (or "evaluate")
+   :PROPERTIES:
+   :ID:       b1b4977c-5c27-4385-a9ce-2fb8346822b5
+   :END:
 
 - ~C-c C-v C-b~ (or ~C-c C-v b~) ::
      Evaluate all the code blocks *in the current buffer*.
@@ -1032,6 +1044,10 @@ This can also be done file-wide (for certain files) through the use of:
 A ~#+PROPERTY:~ line located *anywhere* in a buffer affects the entire file: it
 sets a *global* property.
 
+Header arguments can either be specified:
+- as *separate property* (could be deprecated in the future)
+- with the *header-args property* (faster system to fetch block properties)
+
 For example, when you want to tangle all source blocks in an Org file, include
 the line:
 
@@ -1046,10 +1062,16 @@ Multiple lines may be used to specify multiple properties:
 
 : #+PROPERTY: results output code append
 : #+PROPERTY: cache yes
-: #+PROPERTY: tangle force-the-output-to-that-file.el
 
 In the case of two ~#+PROPERTY:~ lines for the same property, the property will
 have the later value.
+
+You can also specify *multiple header arguments as one Org mode property* through
+the use of:
+
+: #+PROPERTY: header-args :results output code append :cache yes
+
+That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] basis.
 
 The property mechanism is a general mechanism for the concatenation of property
 strings. Any property specification unless it is postfixed with a ~+~ will /reset/
@@ -1061,7 +1083,14 @@ the value of that property to its current value.
     :END:
 
 In contrast to property lines, a ~:PROPERTIES:~ block is only valid for the given
-tree (and subtrees).
+tree (and subtrees):
+
+#+begin_src org
+,* Outline heading
+  :PROPERTIES:
+  :header-args:    :results output code append :cache yes
+  :END:
+#+end_src
 
 *** Code block header arguments
     :PROPERTIES:
@@ -2020,6 +2049,25 @@ This allows you to *avoid repeating the reference name* in your Org document: if
 you set this header argument at the file or subtree level, the code blocks will
 be concatenated into the *propagated* reference name -- if *property inheritance*
 is turned on for the ~noweb-ref~ property.
+
+>> About =org-babel-use-quick-and-dirty-noweb-expansion=: should it be
+>> set to 't' by default ? I'd be tempted to say yes, given the dramatic
+>> performance gain
+>
+> should org-tangle and org-weave enable
+> "org-babel-use-quick-and-dirty-noweb-expansion" before doing their
+> jobs ? For now I let the default value to be =nil=, and I was
+> wondering if it wouldn't be bette to do the opposite instead, that is,
+> enable "quick-and-dirty-noweb-expansion" by default and provide a
+> -noquick option.
+> What do you think ?
+
+The quick and dirty approach removes the ability for headings to
+inherit the noweb properties of, and override, the properties of its
+parent header.
+
+That feature enables the true literate programming to remove it would
+be a great loss.
 
 *** Examples
 

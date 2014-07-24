@@ -1,4 +1,4 @@
-<!-- <xml version="1.0"> -->
+<!-- <xml version="1.0" encoding="utf-8"> -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -109,12 +109,17 @@
     </div>
 
     <div id="outline-container-sec-3" class="outline-2">
-      <h2 id="sec-3">Evaluation</h2>
+      <h2 id="sec-3">Code evaluation</h2>
 
-      <div class="outline-text-2" id="text-3"></div>
+      <div class="outline-text-2" id="text-3">
+        <p>Org mode basically just runs the code every time you export the
+        document. But, if you’ve changed some code and want a refresh, you can
+        press <a href="#sec-4-5"><code>C-c C-v C-b</code></a> and it will run
+        it for sure then.</p>
+      </div>
 
       <div id="outline-container-sec-3-1" class="outline-3">
-        <h3 id="sec-3-1">Code blocks</h3>
+        <h3 id="sec-3-1">Embedding code blocks</h3>
 
         <div class="outline-text-3" id="text-3-1">
           <p>A <b>code block</b> is some sort of subprogram which does the
@@ -134,24 +139,25 @@
 
             <div class="outline-text-5" id="text-3-1-1-1">
               <p>The code block is a block element which can be
-              <b>anonymous</b> or <b>named</b>.</p>
+              <b>anonymous</b> (without a label) or <b>named</b> (with a
+              label).</p>
 
               <div class="org-src-container">
                 <pre class="src src-org">
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src &lt;LANGUAGE&gt; &lt;HEADER-ARGS&gt;</span>
-<span style="background-color: #FFFFE0;">&lt;BODY&gt;
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class="org-org-meta-line">#+name: &lt;LABEL&gt;</span>
+<span class=
+"org-org-block-begin-line">#+begin_src &lt;LANGUAGE&gt; &lt;HEADER-ARGS&gt;</span>
+<span class="org-org-block-background">&lt;BODY&gt;
+</span><span class="org-org-block-end-line">#+end_src</span>
 </pre>
               </div>
 
               <p>Anonymous code blocks will be immediately followed by the
-              results block.</p>
+              results block upon evaluation.</p>
 
               <div class="org-src-container">
                 <pre class="src src-sh">
-printf <span style="color: #036A07;">"I'm anonymous"</span>
+printf <span class="org-string">"I'm anonymous"</span>
 </pre>
               </div>
               <pre class="example">
@@ -163,8 +169,8 @@ I'm anonymous
 
               <div class="org-src-container">
                 <pre class="src src-sh" id="example">
-printf <span style=
-"color: #036A07;">"As I'm named, my results may live anywhere in the file."</span>
+printf <span class=
+"org-string">"As I'm named, my results may live anywhere in the file."</span>
 </pre>
               </div>
 
@@ -196,9 +202,9 @@ As I'm named, my results may live anywhere in the file.
 
               <div class="org-src-container">
                 <pre class="src src-emacs-lisp">
-(add-to-list 'org-src-lang-modes '(<span style=
-"color: #036A07;">"&lt;LANGUAGE&gt;"</span> . <span style=
-"color: #036A07;">"&lt;MAJOR-MODE&gt;"</span>))
+(add-to-list 'org-src-lang-modes '(<span class=
+"org-string">"&lt;LANGUAGE&gt;"</span> . <span class=
+"org-string">"&lt;MAJOR-MODE&gt;"</span>))
 </pre>
               </div>
 
@@ -285,7 +291,7 @@ As I'm named, my results may live anywhere in the file.
                   <div class="org-src-container">
                     <pre class="src src-emacs-lisp" id=
                     "export-hdr-arg-backend-dep">
-(message <span style="color: #036A07;">"do stuff"</span>)
+(message <span class="org-string">"do stuff"</span>)
 </pre>
                   </div>
                 </div>
@@ -366,28 +372,31 @@ As I'm named, my results may live anywhere in the file.
 
               <div class="org-src-container">
                 <pre class="src src-org">
-<span style=
-"color: #008ED1; background-color: #EAEAFF;">#+name: &lt;CALL-LINE-NAME&gt;</span>
-<span style=
-"color: #008ED1; background-color: #EAEAFF;">#+call: &lt;NAME&gt;[&lt;HEADER-ARGS-FOR-BLOCK&gt;](&lt;ARGUMENTS&gt;) &lt;HEADER-ARGS-FOR-CALL-LINE&gt;</span>
+<span class="org-org-meta-line">#+name: &lt;CALL-LINE-NAME&gt;</span>
+<span class=
+"org-org-meta-line">#+call: &lt;NAME&gt;[&lt;HEADER-ARGS-FOR-BLOCK&gt;](&lt;ARGUMENTS&gt;) &lt;HEADER-ARGS-FOR-CALL-LINE&gt;</span>
 </pre>
               </div>
 
               <dl class="org-dl">
                 <dt>NAME</dt>
 
-                <dd>Name of the code block to be evaluated.</dd>
+                <dd>
+                  <p>Name of the code block to be evaluated.</p>
+                </dd>
 
                 <dt>ARGUMENTS</dt>
 
-                <dd>XXX Describe how to pass args.</dd>
+                <dd>
+                  <p>XXX Describe how to pass args.</p>
+                </dd>
 
                 <dt>HEADER-ARGS-FOR-BLOCK</dt>
 
                 <dd>
-                  Header arguments applied to the <b>evaluation of the code
+                  <p>Header arguments applied to the <b>evaluation of the code
                   block</b>. They affect how the code block is evaluated: they
-                  <b>change the inputs</b>.
+                  <b>change the inputs</b>.</p>
 
                   <p>For example, <code>:session *org-R*</code> or
                   <code>:results output</code>.</p>
@@ -396,9 +405,9 @@ As I'm named, my results may live anywhere in the file.
                 <dt>HEADER-ARGS-FOR-CALL-LINE</dt>
 
                 <dd>
-                  Header arguments applied to the <b>evaluation of the #+CALL:
-                  line</b>. They do not affect evaluation of the named code
-                  block.
+                  <p>Header arguments applied to the <b>evaluation of the
+                  #+CALL: line</b>. They do not affect evaluation of the named
+                  code block.</p>
 
                   <p>For example, <code>:exports results</code> or
                   <code>:results html</code>.</p>
@@ -421,11 +430,10 @@ As I'm named, my results may live anywhere in the file.
 
               <div class="org-src-container">
                 <pre class="src src-org">
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var result=&lt;NAME&gt;(&lt;ARGUMENTS&gt;) &lt;HEADER-ARGS-FOR-BLOCK&gt;</span>
-<span style="background-color: #FFFFE0;">,  result
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class=
+"org-org-block-begin-line">#+begin_src emacs-lisp :var result=&lt;NAME&gt;(&lt;ARGUMENTS&gt;) &lt;HEADER-ARGS-FOR-BLOCK&gt;</span>
+<span class="org-org-block-background">,  result
+</span><span class="org-org-block-end-line">#+end_src</span>
 </pre>
               </div>
 
@@ -439,10 +447,13 @@ As I'm named, my results may live anywhere in the file.
               arguments:</p>
 
               <ul class="org-ul">
-                <li>one to pass header arguments to the original code block
-                being called, and</li>
+                <li>
+                  <p>one to pass header arguments to the original code block
+                  being called, and</p>
+                </li>
 
-                <li>one for local effect in the ephemeral block.
+                <li>
+                  <p>one for local effect in the ephemeral block.</p>
 
                   <p>Advice (from Rick Frankel): As to the “call” lines, think
                   of the output of the “called” block as being input to an
@@ -482,8 +493,7 @@ As I'm named, my results may live anywhere in the file.
                 <div class="outline-text-6" id="text-3-1-2-3-2">
                   <div class="org-src-container">
                     <pre class="src src-org">
-<span style=
-"color: #008ED1; background-color: #EAEAFF;">#+call: foo(bar=1)</span>
+<span class="org-org-meta-line">#+call: foo(bar=1)</span>
 </pre>
                   </div>
 
@@ -491,11 +501,10 @@ As I'm named, my results may live anywhere in the file.
 
                   <div class="org-src-container">
                     <pre class="src src-org">
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var results=foo(bar=1)</span>
-<span style="background-color: #FFFFE0;">,  results
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class=
+"org-org-block-begin-line">#+begin_src emacs-lisp :var results=foo(bar=1)</span>
+<span class="org-org-block-background">,  results
+</span><span class="org-org-block-end-line">#+end_src</span>
 </pre>
                   </div>
                 </div>
@@ -529,7 +538,7 @@ As I'm named, my results may live anywhere in the file.
 
                   <div class="org-src-container">
                     <pre class="src src-sh" id="where">
-  <span style="color: #006FE0;">pwd</span>
+  <span class="org-builtin">pwd</span>
 </pre>
                   </div>
 
@@ -548,8 +557,8 @@ As I'm named, my results may live anywhere in the file.
 
                   <div class="org-src-container">
                     <pre class="src src-sh" id="echo-string">
-  <span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"input=$input"</span>
+  <span class="org-builtin">echo</span> <span class=
+"org-string">"input=$input"</span>
 </pre>
                   </div>
 
@@ -565,8 +574,8 @@ input=new
 
                   <div class="org-src-container">
                     <pre class="src src-sh">
-  <span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"this=$input"</span>
+  <span class="org-builtin">echo</span> <span class=
+"org-string">"this=$input"</span>
 </pre>
                   </div>
                 </div>
@@ -634,11 +643,11 @@ input=new
               <div class="org-src-container">
                 <pre class="src src-emacs-lisp" id="leftover">
  (-
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">length w/o .el</span>
-  (- 13 (length <span style="color: #036A07;">".el"</span>))
-  <span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">length of prefix</span>
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">length w/o .el</span>
+  (- 13 (length <span class="org-string">".el"</span>))
+  <span class="org-comment-delimiter">;; </span><span class=
+"org-comment">length of prefix</span>
   (length prefix))
 </pre>
               </div>
@@ -714,11 +723,10 @@ input=new
 
               <div class="org-src-container">
                 <pre class="src src-org">
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var results=NAME(n=val_at_col_2, m=3) :results silent</span>
-<span style="background-color: #FFFFE0;">results
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class=
+"org-org-block-begin-line">#+begin_src emacs-lisp :var results=NAME(n=val_at_col_2, m=3) :results silent</span>
+<span class="org-org-block-background">results
+</span><span class="org-org-block-end-line">#+end_src</span>
 </pre>
               </div>
 
@@ -764,7 +772,7 @@ input=new
 
               <div class="org-src-container">
                 <pre class="src src-emacs-lisp" id="foo">
-(format <span style="color: #036A07;">"--&gt;%s&lt;--"</span> in)
+(format <span class="org-string">"--&gt;%s&lt;--"</span> in)
 </pre>
               </div>
 
@@ -846,18 +854,16 @@ input=new
 
                   <div class="org-src-container">
                     <pre class="src src-python" id="account-rules-python">
-<span style="color: #0000FF;">for</span> line <span style=
-"color: #0000FF;">in</span> data:
-    <span style="color: #0000FF;">print</span> <span style=
-"color: #036A07;">"---"</span>
-    <span style="color: #0000FF;">print</span> <span style=
-"color: #036A07;">"- 'm/"</span> + line[0] + <span style=
-"color: #036A07;">"/'"</span>
-    <span style="color: #0000FF;">print</span> <span style=
-"color: #036A07;">"- ''"</span>
-    <span style="color: #0000FF;">print</span> <span style=
-"color: #036A07;">"- '"</span> + line[1] + <span style=
-"color: #036A07;">"'"</span>
+<span class="org-keyword">for</span> line <span class=
+"org-keyword">in</span> data:
+    <span class="org-keyword">print</span> <span class=
+"org-string">"---"</span>
+    <span class="org-keyword">print</span> <span class=
+"org-string">"- 'm/"</span> + line[0] + <span class="org-string">"/'"</span>
+    <span class="org-keyword">print</span> <span class=
+"org-string">"- ''"</span>
+    <span class="org-keyword">print</span> <span class=
+"org-string">"- '"</span> + line[1] + <span class="org-string">"'"</span>
 </pre>
                   </div>
 
@@ -891,7 +897,7 @@ nil
                 <div class="outline-text-6" id="text-3-1-3-3-2">
                   <div class="org-src-container">
                     <pre class="src src-emacs-lisp" id="mean">
-  (<span style="color: #0000FF;">let</span> ((num (car l))
+  (<span class="org-keyword">let</span> ((num (car l))
         (nums (cdr l)))
     (/ (float (+ num (apply #'+ nums)))
        (1+ (length nums))))
@@ -983,18 +989,18 @@ nil
 
                   <div class="org-src-container">
                     <pre class="src src-org">
-<span style="color: #008ED1; background-color: #EAEAFF;">#+name: init</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src R :session *R*</span>
-<span style="color: #8D8D84; background-color: #FFFFE0;"># </span><span style=
-"color: #8D8D84; background-color: #FFFFE0; font-style: italic;">initialize some stuff</span><span style="background-color: #FFFFE0;">
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class="org-org-meta-line">#+name: init</span>
+<span class="org-org-block-begin-line">#+begin_src R :session *R*</span>
+<span class="org-comment-delimiter"><span class=
+"org-org-block-background"># </span></span><span class=
+"org-comment"><span class=
+"org-org-block-background">initialize some stuff</span></span><span class=
+"org-org-block-background">
+</span><span class="org-org-block-end-line">#+end_src</span>
 
-<span style="color: #8D8D84; font-style: italic;"># Local Variables:</span>
-<span style=
-"color: #8D8D84; font-style: italic;"># eval: (org-sbe "init")</span>
-<span style="color: #8D8D84; font-style: italic;"># End:</span>
+<span class="org-comment"># Local Variables:</span>
+<span class="org-comment"># eval: (org-sbe "init")</span>
+<span class="org-comment"># End:</span>
 </pre>
                   </div>
 
@@ -1008,11 +1014,11 @@ nil
                 <div class="outline-text-6" id="text-3-1-3-3-5">
                   <div class="org-src-container">
                     <pre class="src src-sh" id="counter">
-<span style="color: #0000FF;">for</span> i<span style=
-"color: #0000FF;"> in</span> $(seq 1 $<span style=
-"color: #BA36A5;">to</span>); <span style="color: #0000FF;">do</span>
-   printf $<span style="color: #BA36A5;">i</span>;
-<span style="color: #0000FF;">done</span>
+<span class="org-keyword">for</span> i<span class=
+"org-keyword"> in</span> $(seq 1 $<span class=
+"org-variable-name">to</span>); <span class="org-keyword">do</span>
+   printf $<span class="org-variable-name">i</span>;
+<span class="org-keyword">done</span>
 </pre>
                   </div>
 
@@ -1021,7 +1027,7 @@ nil
 
                   <div class="org-src-container">
                     <pre class="src src-org">
-<span style="color: #006DAF; text-decoration: underline;"><a href=
+<span class="org-org-link"><a href=
 "elisp:(org-sbe%20counter%20(to%20&quot;3&quot;))">count to 3</a></span>
 </pre>
                   </div>
@@ -1046,15 +1052,15 @@ nil
 
                   <div class="org-src-container">
                     <pre class="src src-emacs-lisp" id="get-file-path">
-(<span style="color: #0000FF;">if</span> (and (boundp 'latexp) latexp)
-    <span style="color: #036A07;">"Rplots.pdf"</span>
-  <span style="color: #036A07;">"Rplots.png"</span>)
+(<span class="org-keyword">if</span> (and (boundp 'latexp) latexp)
+    <span class="org-string">"Rplots.pdf"</span>
+  <span class="org-string">"Rplots.png"</span>)
 </pre>
                   </div>
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-x <span style="color: #D0372D;">&lt;-</span> seq(-pi, pi, by=0.05)
+x <span class="org-constant">&lt;-</span> seq(-pi, pi, by=0.05)
 plot(x, sin(x))
 </pre>
                   </div>
@@ -1064,7 +1070,7 @@ rev-3.14
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-x <span style="color: #D0372D;">&lt;-</span> seq(-pi, pi, by=0.05)
+x <span class="org-constant">&lt;-</span> seq(-pi, pi, by=0.05)
 plot(x, sin(x))
 </pre>
                   </div>
@@ -1083,12 +1089,14 @@ plot(x, sin(x))
       </div>
 
       <div id="outline-container-sec-3-2" class="outline-3">
-        <h3 id="sec-3-2">Inline code blocks</h3>
+        <h3 id="sec-3-2">Embedding inline code</h3>
 
-        <div class="outline-text-3" id="text-3-2"></div>
+        <div class="outline-text-3" id="text-3-2">
+          <p>You can also evaluate code inline as follows.</p>
+        </div>
 
         <div id="outline-container-sec-3-2-1" class="outline-4">
-          <h4 id="sec-3-2-1">Inline code blocks</h4>
+          <h4 id="sec-3-2-1">Inline expressions</h4>
 
           <div class="outline-text-4" id="text-3-2-1">
             <p>An <b>inline source block</b> is a code block which is placed
@@ -1128,23 +1136,30 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
             <div class="outline-text-5" id="text-3-2-1-2">
               <ul class="org-ul">
-                <li><b>Inline code blocks don’t associate themselves with their
-                results</b>, they are <b>only expected to be evaluated during
-                export</b>. They are not intended to be executed in the buffer
-                during normal use.</li>
+                <li>
+                  <p><b>Inline code blocks don’t associate themselves with
+                  their results</b>, they are <b>only expected to be evaluated
+                  during export</b>. They are not intended to be executed in
+                  the buffer during normal use.</p>
+                </li>
 
-                <li>Inline code blocks are treated just like code blocks,
-                however they have different default header arguments: see
-                <code>org-babel-default-inline-header-args</code>.</li>
+                <li>
+                  <p>Inline code blocks are treated just like code blocks,
+                  however they have different default header arguments: see
+                  <code>org-babel-default-inline-header-args</code>.</p>
+                </li>
 
-                <li>If you set the following
+                <li>
+                  <p>If you set the following</p>
 
                   <p>then inline code snippets will be wrapped into the
                   formatting string.</p>
                 </li>
 
-                <li>Currently, inline code blocks are not fontified even when
-                <code>org-src-fontify-natively</code> is non-nil.</li>
+                <li>
+                  <p>Currently, inline code blocks are not fontified even when
+                  <code>org-src-fontify-natively</code> is non-nil.</p>
+                </li>
               </ul>
             </div>
           </div>
@@ -1231,7 +1246,7 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
               <p>Finally this next one should export, even though it starts a
               line because sometimes inline blocks fold with a paragraph.</p>
 
-              <p>And, a call with raw results should not have quoted
+              <p>And, a <b>call with raw results</b> should not have quoted
               results.</p>
 
               <p>)</p>
@@ -1249,7 +1264,7 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
                   <div class="org-src-container">
                     <pre class="src src-python" id="python-2">
-<span style="color: #0000FF;">return</span>(1 + 1)
+<span class="org-keyword">return</span>(1 + 1)
 </pre>
                   </div>
 
@@ -1303,46 +1318,62 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
           <dl class="org-dl">
             <dt><code>C-c '</code></dt>
 
-            <dd>Edit the code block in a dedicated buffer.</dd>
+            <dd>
+              <p>Edit the code block in a dedicated buffer.</p>
+            </dd>
 
             <dt><code>C-c C-v C-x TAB</code> (or <code>C-c C-v x
             TAB</code>)</dt>
 
-            <dd>Insert a language-native TAB in code block.</dd>
+            <dd>
+              <p>Insert a language-native TAB in code block.</p>
+            </dd>
 
             <dt><code>C-c C-v C-x M-;</code></dt>
 
-            <dd>Comment region according to language.</dd>
+            <dd>
+              <p>Comment region according to language.</p>
+            </dd>
 
             <dt><code>C-c C-v C-x C-M-\</code></dt>
 
-            <dd>Indent region according to language.</dd>
+            <dd>
+              <p>Indent region according to language.</p>
+            </dd>
 
             <dt><code>C-c C-v d</code></dt>
 
-            <dd>Demarcate code block (i.e., wrap the region in a block, or
-            split the block around point).</dd>
+            <dd>
+              <p>Demarcate code block (i.e., wrap the region in a block, or
+              split the block around point).</p>
+            </dd>
 
             <dt><code>C-c C-v C-M-h</code></dt>
 
-            <dd>Mark (= select) the whole code block.</dd>
+            <dd>
+              <p>Mark (= select) the whole code block.</p>
+            </dd>
 
             <dt><code>C-c C-v I</code></dt>
 
-            <dd>Display information on the current source block. This includes
-            header arguments, language and name.</dd>
+            <dd>
+              <p>Display information on the current source block. This includes
+              header arguments, language and name.</p>
+            </dd>
 
             <dt><code>C-c C-v j</code></dt>
 
-            <dd><b>Insert a header argument</b> and its value using completing
-            read in the minibuffer.</dd>
+            <dd>
+              <p><b>Insert a header argument</b> and its value using completing
+              read in the minibuffer.</p>
+            </dd>
 
             <dt><code>C-c C-v c</code></dt>
 
             <dd>
-              Check for <i>suspicious</i> (that is, unknown) header arguments.
-              This may prove useful if you get into the habit of using it as
-              your first step in <b>debugging</b> code blocks.
+              <p>Check for <i>suspicious</i> (that is, unknown) header
+              arguments. This may prove useful if you get into the habit of
+              using it as your first step in <b>debugging</b> code blocks.</p>
 
               <p>Languages are permitted to add and use <b>any</b> arbitrary
               new header argument, so there is no <i>wrong</i> (that is,
@@ -1376,7 +1407,7 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
             <dt><code>C-c C-v g</code></dt>
 
             <dd>
-              Go to a <b>named code block</b> (with completing read).
+              <p>Go to a <b>named code block</b> (with completing read).</p>
 
               <p>The target src block is guessed from:</p>
 
@@ -1398,42 +1429,56 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
             <dt><code>C-c C-v r</code></dt>
 
-            <dd>Go to a <b>named result</b> (with completing read).</dd>
+            <dd>
+              <p>Go to a <b>named result</b> (with completing read).</p>
+            </dd>
 
             <dt><code>C-c C-v n</code> (or <code>C-c C-v C-n</code>)</dt>
 
-            <dd>Go to the <b>next</b> code block.</dd>
+            <dd>
+              <p>Go to the <b>next</b> code block.</p>
+            </dd>
 
             <dt><code>C-c C-v p</code></dt>
 
-            <dd>Go to the <b>previous</b> code block.</dd>
+            <dd>
+              <p>Go to the <b>previous</b> code block.</p>
+            </dd>
 
             <dt><code>C-c C-v u</code></dt>
 
-            <dd>Go to the head of this code block (jump to the enclosing
-            structural block).</dd>
+            <dd>
+              <p>Go to the head of this code block (jump to the enclosing
+              structural block).</p>
+            </dd>
           </dl>
         </div>
       </div>
 
       <div id="outline-container-sec-4-5" class="outline-3">
-        <h3 id="sec-4-5">Execute (or “evaluate”)</h3>
+        <h3 id="sec-4-5"><a id="ID-b1b4977c-5c27-4385-a9ce-2fb8346822b5" name=
+        "ID-b1b4977c-5c27-4385-a9ce-2fb8346822b5"></a>Execute (or
+        “evaluate”)</h3>
 
         <div class="outline-text-3" id="text-4-5">
           <dl class="org-dl">
             <dt><code>C-c C-v C-b</code> (or <code>C-c C-v b</code>)</dt>
 
-            <dd>Evaluate all the code blocks <b>in the current buffer</b>.</dd>
+            <dd>
+              <p>Evaluate all the code blocks <b>in the current buffer</b>.</p>
+            </dd>
 
             <dt><code>C-c C-v C-s</code> (or <code>C-c C-v s</code>)</dt>
 
-            <dd>Evaluate all the code blocks <b>in the current
-            subtree</b>.</dd>
+            <dd>
+              <p>Evaluate all the code blocks <b>in the current
+              subtree</b>.</p>
+            </dd>
 
             <dt><code>C-c C-v C-e</code> (or <code>C-c C-v e</code>)</dt>
 
             <dd>
-              Evaluate the code block <b>at point</b>.
+              <p>Evaluate the code block <b>at point</b>.</p>
 
               <p>With <code>C-u C-c C-v C-e</code>, forcibly re-evaluate the
               block (marked <code>:cache</code>).</p>
@@ -1450,7 +1495,7 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
             <dt><code>C-c C-v C-t</code> (or <code>C-c C-v t</code>)</dt>
 
             <dd>
-              <b>Tangle all the code blocks</b> in current file.
+              <p><b>Tangle all the code blocks</b> in current file.</p>
 
               <p>Run the tangle with a prefix argument (e.g., <code>C-u C-c C-v
               t</code>) to only tangle the <b>block under your cursor</b>
@@ -1463,7 +1508,9 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
             <dt><code>C-c C-v C-f</code> (or <code>C-c C-v f</code>)</dt>
 
-            <dd><b>Tangle all the code blocks</b> in supplied file.</dd>
+            <dd>
+              <p><b>Tangle all the code blocks</b> in supplied file.</p>
+            </dd>
           </dl>
 
           <p>In many languages constructs like <a id="foo" name="foo"></a> are
@@ -1530,18 +1577,22 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
           <dl class="org-dl">
             <dt><code>C-c C-v C-v</code> (or <code>C-c C-v v</code>)</dt>
 
-            <dd><b>View the expanded body</b> of the code block at point. This
-            view of code blocks is not editable.</dd>
+            <dd>
+              <p><b>View the expanded body</b> of the code block at point. This
+              view of code blocks is not editable.</p>
+            </dd>
 
             <dt><code>C-c C-o</code></dt>
 
-            <dd><b>Open the results</b> of the code block at point.</dd>
+            <dd>
+              <p><b>Open the results</b> of the code block at point.</p>
+            </dd>
 
             <dt><code>C-c C-v C-z</code></dt>
 
             <dd>
-              <b>Switch to the session</b> of the current code block (first,
-              you need to add <code>:session</code> to it).
+              <p><b>Switch to the session</b> of the current code block (first,
+              you need to add <code>:session</code> to it).</p>
 
               <p>Use <code>C-u C-c C-v C-z</code> to bring up the session with
               the input variable pre-loaded.</p>
@@ -1565,10 +1616,12 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
             <dt><code>C-c C-v k</code></dt>
 
-            <dd><b>Delete</b> code block <b>results</b>, inline code block
-            results, and call line results. When called without a prefix
-            argument, it only applies to the current code block. When called
-            with a prefix argument, it applies to the entire buffer.</dd>
+            <dd>
+              <p><b>Delete</b> code block <b>results</b>, inline code block
+              results, and call line results. When called without a prefix
+              argument, it only applies to the current code block. When called
+              with a prefix argument, it applies to the entire buffer.</p>
+            </dd>
           </dl>
         </div>
       </div>
@@ -1653,11 +1706,11 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
-<span style="color: #8D8D84;">;; </span><span style=
-"color: #8D8D84; font-style: italic;">add default arguments to use when evaluating a source block</span>
+<span class="org-comment-delimiter">;; </span><span class=
+"org-comment">add default arguments to use when evaluating a source block</span>
 (add-to-list 'org-babel-default-header-args
-             '(<span style="color: #006FE0;">:noweb</span> . <span style=
-"color: #036A07;">"yes"</span>))
+             '(<span class="org-builtin">:noweb</span> . <span class=
+"org-string">"yes"</span>))
 </pre>
             </div>
 
@@ -1769,12 +1822,12 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
             <div class="org-src-container">
               <pre class="src src-emacs-lisp">
 (add-to-list 'org-babel-default-header-args:R
-             '(<span style="color: #006FE0;">:session</span> . <span style=
-"color: #036A07;">"*org-R*"</span>))
+             '(<span class="org-builtin">:session</span> . <span class=
+"org-string">"*org-R*"</span>))
 
 (add-to-list 'org-babel-default-header-args:R
-             '((<span style=
-"color: #006FE0;">:width</span> . 640) (<span style="color: #006FE0;">:height</span> . 640)))
+             '((<span class="org-builtin">:width</span> . 640) (<span class=
+"org-builtin">:height</span> . 640)))
 </pre>
             </div>
 
@@ -1799,6 +1852,16 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
             buffer affects the entire file: it sets a <b>global</b>
             property.</p>
 
+            <p>Header arguments can either be specified:</p>
+
+            <ul class="org-ul">
+              <li>as <b>separate property</b> (could be deprecated in the
+              future)</li>
+
+              <li>with the <b>header-args property</b> (faster system to fetch
+              block properties)</li>
+            </ul>
+
             <p>For example, when you want to tangle all source blocks in an Org
             file, include the line:</p>
             <pre class="example">
@@ -1816,11 +1879,19 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
             <pre class="example">
 #+PROPERTY: results output code append
 #+PROPERTY: cache yes
-#+PROPERTY: tangle force-the-output-to-that-file.el
 </pre>
 
             <p>In the case of two <code>#+PROPERTY:</code> lines for the same
             property, the property will have the later value.</p>
+
+            <p>You can also specify <b>multiple header arguments as one Org
+            mode property</b> through the use of:</p>
+            <pre class="example">
+#+PROPERTY: header-args :results output code append :cache yes
+</pre>
+
+            <p>That can be over-ridden on a <a href=
+            "#sec-5-1-4">per-subtree</a> basis.</p>
 
             <p>The property mechanism is a general mechanism for the
             concatenation of property strings. Any property specification
@@ -1836,7 +1907,17 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
           <div class="outline-text-4" id="text-5-1-4">
             <p>In contrast to property lines, a <code>:PROPERTIES:</code> block
-            is only valid for the given tree (and subtrees).</p>
+            is only valid for the given tree (and subtrees):</p>
+
+            <div class="org-src-container">
+              <pre class="src src-org">
+<span class="org-org-level-1">* Outline heading</span>
+<span class="org-org-special-keyword">  :PROPERTIES:</span>
+  <span class="org-org-special-keyword">:header-args:</span>    <span class=
+"org-org-property-value">:results output code append :cache yes</span>
+<span class="org-org-special-keyword">  :END:</span>
+</pre>
+            </div>
           </div>
         </div>
 
@@ -2027,16 +2108,16 @@ date
 
               <div class="org-src-container">
                 <pre class="src src-org">
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src sh :eval yes :results verbatim :cache yes</span>
-<span style="background-color: #FFFFE0;">printf </span><span style=
-"color: #036A07; background-color: #FFFFE0;">"Please wait (this can take a while)...\n"</span><span style="background-color: #FFFFE0;">
+<span class=
+"org-org-block-begin-line">#+begin_src sh :eval yes :results verbatim :cache yes</span>
+<span class="org-org-block-background">printf </span><span class=
+"org-string"><span class=
+"org-org-block-background">"Please wait (this can take a while)...\n"</span></span><span class="org-org-block-background">
 sleep 5
-printf </span><span style=
-"color: #036A07; background-color: #FFFFE0;">"Done!\n"</span><span style=
-"background-color: #FFFFE0;">
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+printf </span><span class="org-string"><span class=
+"org-org-block-background">"Done!\n"</span></span><span class=
+"org-org-block-background">
+</span><span class="org-org-block-end-line">#+end_src</span>
 </pre>
               </div>
 
@@ -2045,15 +2126,11 @@ printf </span><span style=
 
               <div class="org-src-container">
                 <pre class="src src-org">
-<span style=
-"color: #008ED1; background-color: #EAEAFF;">#+results[af6f...]:</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_example</span>
-<span style=
-"color: #000088; background-color: #FFFFE0;">Please wait (this can take a while)...</span>
-<span style="color: #000088; background-color: #FFFFE0;">Done!</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_example</span>
+<span class="org-org-meta-line">#+results[af6f...]:</span>
+<span class="org-org-block-begin-line">#+begin_example</span>
+<span class="org-org-block">Please wait (this can take a while)...</span>
+<span class="org-org-block">Done!</span>
+<span class="org-org-block-end-line">#+end_example</span>
 </pre>
               </div>
             </div>
@@ -2070,21 +2147,20 @@ printf </span><span style=
 
               <div class="org-src-container">
                 <pre class="src src-sh" id="R-pid">
-ps -a | grep <span style="color: #036A07;">"$R"</span> | grep -v <span style=
-"color: #036A07;">'grep'</span> | awk <span style=
-"color: #036A07;">'{print $2}'</span>
+ps -a | grep <span class="org-string">"$R"</span> | grep -v <span class=
+"org-string">'grep'</span> | awk <span class="org-string">'{print $2}'</span>
 </pre>
               </div>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">code to perform side effect</span>
-x <span style="color: #D0372D;">&lt;-</span> <span style=
-"color: #036A07;">'side effect'</span>
-<span style="color: #036A07;">'done'</span> <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">add something small to get a results block</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">code to perform side effect</span>
+x <span class="org-constant">&lt;-</span> <span class=
+"org-string">'side effect'</span>
+<span class="org-string">'done'</span> <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">add something small to get a results block</span>
 </pre>
               </div>
             </div>
@@ -2144,8 +2220,7 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #006FE0;">echo</span> $<span style=
-"color: #BA36A5;">2</span>
+<span class="org-builtin">echo</span> $<span class="org-variable-name">2</span>
 </pre>
             </div>
 
@@ -2154,8 +2229,7 @@ x <span style="color: #D0372D;">&lt;-</span> <span style=
 
             <div class="org-src-container">
               <pre class="src src-sh">
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"$@"</span>
+<span class="org-builtin">echo</span> <span class="org-string">"$@"</span>
 </pre>
             </div>
 
@@ -2498,8 +2572,7 @@ rownames(data)
 
               <div class="org-src-container">
                 <pre class="src src-sh">
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"$data"</span>
+<span class="org-builtin">echo</span> <span class="org-string">"$data"</span>
 </pre>
               </div>
               <pre class="example">
@@ -2697,8 +2770,8 @@ rownames(data)
 
               <div class="org-src-container">
                 <pre class="src src-emacs-lisp">
-(mapcar (<span style=
-"color: #0000FF;">lambda</span> (row) (mapcar #'length row)) in)
+(mapcar (<span class=
+"org-keyword">lambda</span> (row) (mapcar #'length row)) in)
 </pre>
               </div>
             </div>
@@ -2853,9 +2926,9 @@ hostname
 
             <div class="org-src-container">
               <pre class="src src-python">
-<span style="color: #0000FF;">import</span> socket
+<span class="org-keyword">import</span> socket
 
-<span style="color: #0000FF;">print</span> socket.gethostname()
+<span class="org-keyword">print</span> socket.gethostname()
 </pre>
             </div>
 
@@ -2867,10 +2940,9 @@ ls -la
 
             <div class="org-src-container">
               <pre class="src src-sql">
-<span style="color: #0000FF;">SELECT</span> 2+2 <span style=
-"color: #0000FF;">AS</span> <span style=
-"color: #036A07;">'four'</span>, 1+1 <span style=
-"color: #0000FF;">AS</span> <span style="color: #036A07;">'one'</span>;
+<span class="org-keyword">SELECT</span> 2+2 <span class=
+"org-keyword">AS</span> <span class=
+"org-string">'four'</span>, 1+1 <span class="org-keyword">AS</span> <span class="org-string">'one'</span>;
 </pre>
             </div>
           </div>
@@ -3075,30 +3147,38 @@ ls -la
 
           <div class="outline-text-4" id="text-5-10-2">
             <ul class="org-ul">
-              <li>When <code>:exports</code> is set to <code>none</code> or
-              <code>code</code>, Org Babel will <b>not <a href=
-              "#eval">run</a></b> the code block <b>during export</b>, avoiding
-              to (re-)generate the results on every export. In particular, use
-              that on code blocks which cannot be <a href="#eval">executed</a>
-              on their own.
+              <li>
+                <p>When <code>:exports</code> is set to <code>none</code> or
+                <code>code</code>, Org Babel will <b>not <a href=
+                "#eval">run</a></b> the code block <b>during export</b>,
+                avoiding to (re-)generate the results on every export. In
+                particular, use that on code blocks which cannot be <a href=
+                "#eval">executed</a> on their own.</p>
 
                 <p>This has <b>no effect on interactive <a href=
                 "#eval">evaluation</a></b>, though.</p>
               </li>
 
-              <li>When <code>:exports</code> is set to <code>results</code> or
-              <code>both</code>, if evaluation is allowed during export, the
-              code block will be (re-)<a href="#eval">evaluated</a> during
-              export. Otherwise, the current (unchanged) results block, when
-              present, will be included <b>in the exported file</b>.</li>
+              <li>
+                <p>When <code>:exports</code> is set to <code>results</code> or
+                <code>both</code>, if evaluation is allowed during export, the
+                code block will be (re-)<a href="#eval">evaluated</a> during
+                export. Otherwise, the current (unchanged) results block, when
+                present, will be included <b>in the exported file</b>.</p>
+              </li>
 
-              <li>Note that the <code>:exports</code> option is only relevant
-              for code blocks, not inline code.</li>
+              <li>
+                <p>Note that the <code>:exports</code> option is only relevant
+                for code blocks, not inline code.</p>
+              </li>
 
-              <li>A code block in a subtree tagged <code>:noexport:</code> will
-              still be evaluated, if evaluation is allowed during export,
-              because its side-effects may be needed for code run elsewhere. If
-              you don’t want that, set <code>:eval</code> accordingly.</li>
+              <li>
+                <p>A code block in a subtree tagged <code>:noexport:</code>
+                will still be evaluated, if evaluation is allowed during
+                export, because its side-effects may be needed for code run
+                elsewhere. If you don’t want that, set <code>:eval</code>
+                accordingly.</p>
+              </li>
             </ul>
           </div>
         </div>
@@ -3153,15 +3233,18 @@ ls -la
             <a href="#dir">default directory</a>.</p>
 
             <ul class="org-ul">
-              <li>For <b>graphics-only languages</b> (e.g. <i>asymptote</i>,
-              <i>ditaa</i>, <i>dot</i>, <i>gnuplot</i>, <i>mscgen</i>,
-              <i>plantuml</i>), the “results” is the <b>graphics</b>, and a
-              link to the image is placed in the Org buffer.</li>
+              <li>
+                <p>For <b>graphics-only languages</b> (e.g. <i>asymptote</i>,
+                <i>ditaa</i>, <i>dot</i>, <i>gnuplot</i>, <i>mscgen</i>,
+                <i>plantuml</i>), the “results” is the <b>graphics</b>, and a
+                link to the image is placed in the Org buffer.</p>
+              </li>
 
-              <li>For <b>general-purpose languages</b> (e.g. <i>emacs-lisp</i>,
-              <i>python</i>, <i>R</i>, <i>ruby</i>, <i>sh</i>), the “results”
-              written to file is the <b>normal Org Babel results</b> (string,
-              number, table).
+              <li>
+                <p>For <b>general-purpose languages</b> (e.g.
+                <i>emacs-lisp</i>, <i>python</i>, <i>R</i>, <i>ruby</i>,
+                <i>sh</i>), the “results” written to file is the <b>normal Org
+                Babel results</b> (string, number, table).</p>
 
                 <p>When generating <b>graphics</b>, including the
                 <code>:results graphics</code> header argument is
@@ -3250,21 +3333,20 @@ plot(1:10, (1:10)^2)
                 <div class="outline-text-6" id="text-5-11-3-3-1">
                   <div class="org-src-container">
                     <pre class="src src-dot">
-digraph <span style="color: #006699;">G</span> {
-  a -&gt; b [<span style="color: #BA36A5;">label=</span><span style=
-"color: #036A07;">"hello"</span>, <span style=
-"color: #BA36A5;">style=</span><span style="color: #D0372D;">dashed</span>];
-  a -&gt; c [<span style="color: #BA36A5;">label=</span><span style=
-"color: #036A07;">"world"</span>];
+digraph <span class="org-function-name">G</span> {
+  a -&gt; b [<span class="org-variable-name">label=</span><span class=
+"org-string">"hello"</span>, <span class=
+"org-variable-name">style=</span><span class="org-constant">dashed</span>];
+  a -&gt; c [<span class="org-variable-name">label=</span><span class=
+"org-string">"world"</span>];
   b -&gt; c;
-  b [<span style="color: #BA36A5;">shape=</span><span style=
-"color: #D0372D;">Mdiamond</span>, <span style=
-"color: #BA36A5;">label=</span><span style=
-"color: #036A07;">"this is b"</span>];
-  c [<span style="color: #BA36A5;">shape=</span><span style=
-"color: #D0372D;">polygon</span>, <span style=
-"color: #BA36A5;">sides=</span>5, <span style=
-"color: #BA36A5;">peripheries=</span>3];
+  b [<span class="org-variable-name">shape=</span><span class=
+"org-constant">Mdiamond</span>, <span class=
+"org-variable-name">label=</span><span class="org-string">"this is b"</span>];
+  c [<span class="org-variable-name">shape=</span><span class=
+"org-constant">polygon</span>, <span class=
+"org-variable-name">sides=</span>5, <span class=
+"org-variable-name">peripheries=</span>3];
 }
 </pre>
                   </div>
@@ -3598,11 +3680,9 @@ plot(1:10, (1:10)^2)
 
               <div class="org-src-container">
                 <pre class="src src-sh" id="testing">
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"["</span>
-ls *.org | sed <span style="color: #036A07;">'s/$/;/'</span>
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"]"</span>
+<span class="org-builtin">echo</span> <span class="org-string">"["</span>
+ls *.org | sed <span class="org-string">'s/$/;/'</span>
+<span class="org-builtin">echo</span> <span class="org-string">"]"</span>
 </pre>
               </div>
 
@@ -3669,6 +3749,25 @@ in x
             subtree level, the code blocks will be concatenated into the
             <b>propagated</b> reference name – if <b>property inheritance</b>
             is turned on for the <code>noweb-ref</code> property.</p>
+
+            <p>&gt;&gt; About
+            <code>org-babel-use-quick-and-dirty-noweb-expansion</code>: should
+            it be &gt;&gt; set to ‘t’ by default ? I’d be tempted to say yes,
+            given the dramatic &gt;&gt; performance gain &gt; &gt; should
+            org-tangle and org-weave enable &gt;
+            “org-babel-use-quick-and-dirty-noweb-expansion” before doing their
+            &gt; jobs ? For now I let the default value to be <code>nil</code>,
+            and I was &gt; wondering if it wouldn’t be bette to do the opposite
+            instead, that is, &gt; enable “quick-and-dirty-noweb-expansion” by
+            default and provide a &gt; -noquick option. &gt; What do you think
+            ?</p>
+
+            <p>The quick and dirty approach removes the ability for headings to
+            inherit the noweb properties of, and override, the properties of
+            its parent header.</p>
+
+            <p>That feature enables the true literate programming to remove it
+            would be a great loss.</p>
           </div>
         </div>
 
@@ -3678,41 +3777,32 @@ in x
           <div class="outline-text-4" id="text-5-17-3">
             <div class="org-src-container">
               <pre class="src src-org">
-<span style=
-"color: #005522; background-color: #EFFFEF; font-weight: bold;">*** Some subtree</span>
-<span style=
-"color: #00BB00; background-color: #EAFFEA; font-weight: bold;">    :PROPERTIES:</span>
-    <span style=
-"color: #00BB00; background-color: #EAFFEA; font-weight: bold;">:noweb-ref:</span> <span style="color: #00A000;">accumulated</span>
-<span style=
-"color: #00BB00; background-color: #EAFFEA; font-weight: bold;">    :END:</span>
+<span class="org-org-level-3">*** Some subtree</span>
+<span class="org-org-special-keyword">    :PROPERTIES:</span>
+    <span class="org-org-special-keyword">:noweb-ref:</span> <span class=
+"org-org-property-value">accumulated</span>
+<span class="org-org-special-keyword">    :END:</span>
 
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src org</span>
-<span style="background-color: #FFFFE0;">first
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class="org-org-block-begin-line">#+begin_src org</span>
+<span class="org-org-block-background">first
+</span><span class="org-org-block-end-line">#+end_src</span>
 
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src org</span>
-<span style="background-color: #FFFFE0;">second
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class="org-org-block-begin-line">#+begin_src org</span>
+<span class="org-org-block-background">second
+</span><span class="org-org-block-end-line">#+end_src</span>
 
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src sh :results output :noweb yes</span>
-<span style=
-"color: #006FE0; background-color: #FFFFE0;">echo</span><span style="background-color: #FFFFE0;"> &lt;&lt;accumulated&gt;&gt;
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class=
+"org-org-block-begin-line">#+begin_src sh :results output :noweb yes</span>
+<span class="org-builtin"><span class=
+"org-org-block-background">echo</span></span><span class=
+"org-org-block-background"> &lt;&lt;accumulated&gt;&gt;
+</span><span class="org-org-block-end-line">#+end_src</span>
 
-<span style="color: #008ED1; background-color: #EAEAFF;">#+results:</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_example</span>
-<span style="color: #000088; background-color: #FFFFE0;">first</span>
-<span style="color: #000088; background-color: #FFFFE0;">second</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_example</span>
+<span class="org-org-meta-line">#+results:</span>
+<span class="org-org-block-begin-line">#+begin_example</span>
+<span class="org-org-block">first</span>
+<span class="org-org-block">second</span>
+<span class="org-org-block-end-line">#+end_example</span>
 </pre>
             </div>
           </div>
@@ -3836,28 +3926,33 @@ in x
 
           <div class="outline-text-4" id="text-5-20-1">
             <ul class="org-ul">
-              <li>Post blocks must return results, eventually by adding a
-              variable to them. For example:
+              <li>
+                <p>Post blocks must return results, eventually by adding a
+                variable to them. For example:</p>
 
                 <div class="org-src-container">
                   <pre class="src src-emacs-lisp" id="notify">
-(shell-command <span style="color: #036A07;">"beep"</span>)
+(shell-command <span class="org-string">"beep"</span>)
 data
 </pre>
                 </div>
               </li>
 
-              <li>When a post argument is given, the results of the code block
-              will temporarily be bound to the <code>*this*</code> variable.
-              This variable may then be included in header argument forms such
-              as those used in <code>var</code> header argument specifications
-              allowing passing of results to other code blocks, or direct
-              execution via Emacs Lisp.</li>
+              <li>
+                <p>When a post argument is given, the results of the code block
+                will temporarily be bound to the <code>*this*</code> variable.
+                This variable may then be included in header argument forms
+                such as those used in <code>var</code> header argument
+                specifications allowing passing of results to other code
+                blocks, or direct execution via Emacs Lisp.</p>
+              </li>
 
-              <li>For example, the <code>:post</code> header argument could
-              link to an Emacs Lisp source code block which does automatically
-              refresh the inline images of (only) certain blocks (and not
-              others).</li>
+              <li>
+                <p>For example, the <code>:post</code> header argument could
+                link to an Emacs Lisp source code block which does
+                automatically refresh the inline images of (only) certain
+                blocks (and not others).</p>
+              </li>
             </ul>
           </div>
         </div>
@@ -4028,54 +4123,66 @@ data
                   <dl class="org-dl">
                     <dt><code>:results verbatim</code></dt>
 
-                    <dd>Informs explicitly the code block that you will be
-                    returning a string, to <b>inhibit its interpretation</b> as
-                    a value — the output will neither be converted into a table
-                    nor into a list.<br />
-                    (default for <code>raw</code>, <code>org</code> and
-                    <code>drawer</code> results)</dd>
+                    <dd>
+                      <p>Informs explicitly the code block that you will be
+                      returning a string, to <b>inhibit its interpretation</b>
+                      as a value — the output will neither be converted into a
+                      table nor into a list.<br />
+                      (default for <code>raw</code>, <code>org</code> and
+                      <code>drawer</code> results)</p>
+                    </dd>
 
                     <dt><code>:results table</code></dt>
 
-                    <dd>Interprets the results as an Org mode table.<br />
-                    (default)</dd>
+                    <dd>
+                      <p>Interprets the results as an Org mode table.<br />
+                      (default)</p>
+                    </dd>
 
                     <dt><code>:results list</code></dt>
 
                     <dd>
-                      Writes an Org mode list.
+                      <p>Writes an Org mode list.</p>
 
                       <div class="org-src-container">
                         <pre class="src src-sh">
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"vino blanco"</span>
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"vino rosso"</span>
-<span style="color: #006FE0;">echo</span> <span style=
-"color: #036A07;">"vino tinto"</span>
+<span class="org-builtin">echo</span> <span class=
+"org-string">"vino blanco"</span>
+<span class="org-builtin">echo</span> <span class=
+"org-string">"vino rosso"</span>
+<span class="org-builtin">echo</span> <span class=
+"org-string">"vino tinto"</span>
 </pre>
                       </div>
                     </dd>
 
                     <dt><code>:results file</code></dt>
 
-                    <dd><b>Interprets the results as a file path</b>, and
-                    insert it into the buffer using the Org mode file
-                    syntax.<br />
-                    (default for code blocks in graphics-only languages)</dd>
+                    <dd>
+                      <p><b>Interprets the results as a file path</b>, and
+                      insert it into the buffer using the Org mode file
+                      syntax.<br />
+                      (default for code blocks in graphics-only languages)</p>
+                    </dd>
 
                     <dt><code>:results graphics</code></dt>
 
-                    <dd>(extra option for code blocks in maxima, octave and R)
-                    XXX</dd>
+                    <dd>
+                      <p>(extra option for code blocks in maxima, octave and R)
+                      XXX</p>
+                    </dd>
 
                     <dt><code>:results vector</code></dt>
 
-                    <dd>Is the same as <code>:results table</code>.</dd>
+                    <dd>
+                      <p>Is the same as <code>:results table</code>.</p>
+                    </dd>
 
                     <dt><code>:results scalar</code></dt>
 
-                    <dd>Is the same as <code>:results verbatim</code>.</dd>
+                    <dd>
+                      <p>Is the same as <code>:results verbatim</code>.</p>
+                    </dd>
                   </dl>
                 </div>
               </li>
@@ -4090,11 +4197,11 @@ data
                     <dt><code>:results raw</code></dt>
 
                     <dd>
-                      Means that the input is a string (so hline processing is
-                      not performed).<br />
+                      <p>Means that the input is a string (so hline processing
+                      is not performed).<br />
                       (default for Org code blocks)<br />
                       (implies <code>verbatim</code> results, unless otherwise
-                      stated)
+                      stated)</p>
 
                       <p>Note that it is allowable for raw results to include
                       newlines (if the code block returns a newline): the
@@ -4105,10 +4212,10 @@ data
                     <dt><code>:results html</code></dt>
 
                     <dd>
-                      Specifies that the <b>results</b> of the code block is
+                      <p>Specifies that the <b>results</b> of the code block is
                       <b>raw HTML code</b> (which can be included correctly in
                       HTML-based export targets). Is the same as <code>:wrap
-                      HTML</code>.
+                      HTML</code>.</p>
 
                       <p>Inserts the results inside a <code>#+BEGIN_HTML</code>
                       block.</p>
@@ -4117,11 +4224,11 @@ data
                     <dt><code>:results latex</code></dt>
 
                     <dd>
-                      Specifies that the <b>results</b> of the code block is
+                      <p>Specifies that the <b>results</b> of the code block is
                       <b>raw LaTeX code</b> (which can be included correctly in
                       LaTeX-based export targets). Is the same as <code>:wrap
                       LaTeX</code>.<br />
-                      (default for LaTeX code blocks)
+                      (default for LaTeX code blocks)</p>
 
                       <p>Inserts the results inside a
                       <code>#+BEGIN_LaTeX</code> block.</p>
@@ -4135,38 +4242,38 @@ tex(exp(-x)/x);
 
                     <dt><code>:results org</code></dt>
 
-                    <dd>(implies <code>verbatim</code> results, unless
-                    otherwise stated) <b>Wraps raw Org mode results</b> in a
-                    <code>#+BEGIN_SRC org</code> block (dead data,
-                    <b>comma-escaped lines</b>). This will be <b>exported as
-                    Org code block</b> (as <code>verbatim</code> or
-                    <code>listings</code> to LaTeX).</dd>
+                    <dd>
+                      <p>(implies <code>verbatim</code> results, unless
+                      otherwise stated) <b>Wraps raw Org mode results</b> in a
+                      <code>#+BEGIN_SRC org</code> block (dead data,
+                      <b>comma-escaped lines</b>). This will be <b>exported as
+                      Org code block</b> (as <code>verbatim</code> or
+                      <code>listings</code> to LaTeX).</p>
+                    </dd>
 
                     <dt><code>:results drawer</code></dt>
 
                     <dd>
-                      (replacement of <code>:results wrap</code>, since Org
+                      <p>(replacement of <code>:results wrap</code>, since Org
                       7.9.2) (implies <code>verbatim</code> results, unless
                       otherwise stated) <b>Wraps code block results</b> in a
                       <code>RESULTS</code> drawer. This has the benefit of
                       delimiting your results, and can be useful for really
                       inserting pure <b>Org mode syntax</b> in the buffer (live
                       data, <b>not escaped</b>) — which can be included
-                      correctly <b>in all export targets</b>.
+                      correctly <b>in all export targets</b>.</p>
 
                       <div class="org-src-container">
                         <pre class="src src-sh">
      cat &lt;&lt;EOF
-<span style="color: #0000ff; background-color: #EEF5FE;">     | a | b |</span>
-<span style="color: #0000ff; background-color: #EEF5FE;">     |---+---|</span>
-<span style="color: #0000ff; background-color: #EEF5FE;">     | 1 | 2 |</span>
+<span class="org-sh-heredoc">     | a | b |</span>
+<span class="org-sh-heredoc">     |---+---|</span>
+<span class="org-sh-heredoc">     | 1 | 2 |</span>
 
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">     [[./plots/file1.pdf]]</span>
+<span class="org-sh-heredoc">     [[./plots/file1.pdf]]</span>
 
-<span style=
-"color: #0000ff; background-color: #EEF5FE;">     [[./plots/file2.pdf]]</span>
-<span style="color: #0000ff; background-color: #EEF5FE;">   EOF</span>
+<span class="org-sh-heredoc">     [[./plots/file2.pdf]]</span>
+<span class="org-sh-heredoc">   EOF</span>
 </pre>
                       </div>
 
@@ -4201,14 +4308,18 @@ tex(exp(-x)/x);
 
                     <dt><code>:results code</code></dt>
 
-                    <dd>This will be <b>exported as &lt;LANG&gt; code block</b>
-                    (as <code>verbatim</code> or <code>listings</code> to
-                    LaTeX).</dd>
+                    <dd>
+                      <p>This will be <b>exported as &lt;LANG&gt; code
+                      block</b> (as <code>verbatim</code> or
+                      <code>listings</code> to LaTeX).</p>
+                    </dd>
 
                     <dt><code>:results pp</code></dt>
 
-                    <dd>Prints data. Puts the output in an <code>EXAMPLE</code>
-                    block? XXX</dd>
+                    <dd>
+                      <p>Prints data. Puts the output in an
+                      <code>EXAMPLE</code> block? XXX</p>
+                    </dd>
                   </dl>
                 </div>
               </li>
@@ -4253,11 +4364,11 @@ tex(exp(-x)/x);
             <div class="outline-text-5" id="text-5-22-3-1">
               <div class="org-src-container">
                 <pre class="src src-python">
-<span style="color: #0000FF;">from</span> pylab <span style=
-"color: #0000FF;">import</span> *
+<span class="org-keyword">from</span> pylab <span class=
+"org-keyword">import</span> *
 plot(rand(10))
-savefig(<span style="color: #036A07;">'images/test.png'</span>)
-<span style="color: #036A07;">'images/test.png'</span>
+savefig(<span class="org-string">'images/test.png'</span>)
+<span class="org-string">'images/test.png'</span>
 </pre>
               </div>
             </div>
@@ -4487,8 +4598,8 @@ ls -l
 
             <div class="org-src-container">
               <pre class="src src-sh">
-printf <span style=
-"color: #036A07;">"with a shebang line, I can be run as a script!\n"</span>
+printf <span class=
+"org-string">"with a shebang line, I can be run as a script!\n"</span>
 </pre>
             </div>
           </div>
@@ -4599,16 +4710,14 @@ printf <span style=
 
             <div class="org-src-container">
               <pre class="src src-org">
-<span style=
-"color: #008ED1; background-color: #EAEAFF;">#+PROPERTY: var foo=1, bar=2</span>
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp</span>
-<span style="background-color: #FFFFE0;">(+ foo bar)
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class="org-org-meta-line">#+PROPERTY: var foo=1, bar=2</span>
 
-<span style="color: #008ED1; background-color: #EAEAFF;">#+results:</span>
-<span style="color: #007300; background-color: #EBF5EB;">: 3</span>
+<span class="org-org-block-begin-line">#+begin_src emacs-lisp</span>
+<span class="org-org-block-background">(+ foo bar)
+</span><span class="org-org-block-end-line">#+end_src</span>
+
+<span class="org-org-meta-line">#+results:</span>
+<span class="org-org-code">: 3</span>
 </pre>
             </div>
 
@@ -4616,16 +4725,16 @@ printf <span style=
 
             <div class="org-src-container">
               <pre class="src src-org">
-<span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: underline;">#+begin_src emacs-lisp :var foo="hello", bar="world"</span>
-<span style="background-color: #FFFFE0;">(concat foo </span><span style=
-"color: #036A07; background-color: #FFFFE0;">" "</span><span style=
-"background-color: #FFFFE0;"> bar)
-</span><span style=
-"color: #555555; background-color: #E2E1D5; text-decoration: overline;">#+end_src</span>
+<span class=
+"org-org-block-begin-line">#+begin_src emacs-lisp :var foo="hello", bar="world"</span>
+<span class="org-org-block-background">(concat foo </span><span class=
+"org-string"><span class=
+"org-org-block-background">" "</span></span><span class=
+"org-org-block-background"> bar)
+</span><span class="org-org-block-end-line">#+end_src</span>
 
-<span style="color: #008ED1; background-color: #EAEAFF;">#+results:</span>
-<span style="color: #007300; background-color: #EBF5EB;">: hello world</span>
+<span class="org-org-meta-line">#+results:</span>
+<span class="org-org-code">: hello world</span>
 </pre>
             </div>
 
@@ -4646,7 +4755,8 @@ printf <span style=
             <p>The value passed to an argument can be:</p>
 
             <ul class="org-ul">
-              <li>a <b>literal</b> value
+              <li>
+                <p>a <b>literal</b> value</p>
 
                 <ul class="org-ul">
                   <li>string (value wrapped in double quotes)</li>
@@ -4655,7 +4765,8 @@ printf <span style=
                 </ul>
               </li>
 
-              <li>a <b>reference</b> to <b>named data</b>
+              <li>
+                <p>a <b>reference</b> to <b>named data</b></p>
 
                 <ul class="org-ul">
                   <li>literal <b>example block</b></li>
@@ -4668,11 +4779,13 @@ printf <span style=
                 </ul>
               </li>
 
-              <li>a <b>reference</b> to the results of a <b>named code
-              block</b></li>
+              <li>
+                <p>a <b>reference</b> to the results of a <b>named code
+                block</b></p>
+              </li>
 
               <li>
-                <b>Emacs Lisp code</b>
+                <p><b>Emacs Lisp code</b></p>
 
                 <p>Look in the manual at the description of what causes header
                 arguments to be interpreted as Emacs Lisp.</p>
