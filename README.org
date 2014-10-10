@@ -1,7 +1,6 @@
 #+TITLE:     Org Babel quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-09-08 Mon 09:35>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -471,18 +470,26 @@ From [[http://osdir.com/ml/emacs-orgmode-gnu/2010-03/msg00651.html][Re: {Orgmode
 
 | prefix   | remaining characters |
 |----------+----------------------|
-| ob-      | nil                  |
-| org-b-   | nil                  |
-| orgb-    | nil                  |
-| org-bbl- | nil                  |
-| bbl-     | nil                  |
-| babel-   | nil                  |
+| ob-      |                  nil |
+| org-b-   |                  nil |
+| orgb-    |                  nil |
+| org-bbl- |                  nil |
+| bbl-     |                  nil |
+| babel-   |                  nil |
 #+TBLFM: $2='(org-sbe "leftover" (prefix $$1))
 
 **** Remarks
 
+#+begin_warning
+~#+TBLFM: $2='(org-sbe 'fibbd (n $1))~ is wrong.
+
+Unquote the name or double quote it (optional):
+~#+TBLFM: $2='(org-sbe fibbd (n $1))~ or
+~#+TBLFM: $2='(org-sbe "fibbd" (n $1))~.
+#+end_warning
+
 #+begin_src org
-(org-sbe 'NAME (n $2) (m 3))
+(org-sbe NAME (n $2) (m 3))
 #+end_src
 
 The preceding call to ~org-sbe~ is equivalent to the following source code block.
@@ -512,7 +519,7 @@ Also remember you can use ELisp in formulas:
 
 | Date 1                  | Date 2                  | Duration |
 |-------------------------+-------------------------+----------|
-| [2013-12-21 sam. 00:00] | [2013-12-22 dim. 00:00] |  86400.0 |
+| [2013-12-21 sam. 00:00] | [2013-12-22 dim. 00:00] | 86400.0  |
 #+TBLFM: $3='(- (org-time-string-to-seconds "$2") (org-time-string-to-seconds "$1"));L
 
 Note the quotes around "$2" and "$1", they are necessary so that the date is
@@ -2610,6 +2617,35 @@ Specifies what type of results the code block will return.
      #
      # #+results:
      # : "* Headline\nParagraph"
+
+     >> #+begin_src R :results pp replace
+     >>  c("** New header2", "[[./graph1.pdf]]", "", "** and second header", "and some text" )
+     >> #+end_src
+     >>
+     >> #+results:
+     >> : ** New header2
+     >> : [[./graph1.pdf]]
+     >> :
+     >> : ** and second header
+     >> : and some text
+
+>>>> I don't quite understand your code below and what it is supposed to do.
+>>>
+>>> Drawers are probably better in most cases, but this code lets you use
+>>> ':results pp replace' while developing, but converts the fixed-width pp
+>>> results into raw results when desired (e.g. in a buffer copy before some
+>>> action is taken).
+>>
+>> OK - I see. But what is the advantage in this approach? Drawer do
+>> perfectly what I want, i.e. encapsulating an org structure in a for
+>> replacement when re-calculated, inside the drawer they behave like
+>> normal org structure (folding, ...) and upon export they are exported as
+>> org code would be - or am I missing something?
+>
+> There are none (for you) then, but it might be useful anyway in some
+> situations, at least the results look more like part of the document
+> when you care about the looks of the org file too (not only the export
+> results).
 
 *** Remarks
 
