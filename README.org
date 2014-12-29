@@ -955,20 +955,11 @@ cosmetic changes.
      *Tangle all the code blocks* in supplied file.
 
 In many languages constructs like <<foo>> are valid code, so it would be
-inappropriate for tangling to raise errors by default. It is possible to turn
-on such errors on a language-by-language basis, by customizing the following
-variable.
-
-,----[org-babel-noweb-error-langs]
-| org-babel-noweb-error-langs is a variable defined in `ob.el'.     |
-| Its value is nil                                                  |
-|                                                                   |
-| Documentation:                                                    |
-| Languages for which Babel will raise literate programming errors. |
-| List of languages for which errors should be raised when the      |
-| source code block satisfying a noweb reference in this language   |
-| can not be resolved.                                              |
-`----
+inappropriate for tangling to raise errors by default. It is possible to turn on
+such errors on a language-by-language basis, by customizing the variable
+~org-babel-noweb-error-langs~ (list of languages for which Babel will raise
+literate programming errors when the source code block satisfying a noweb
+reference in this language can not be resolved).
 
 *** View the results
 
