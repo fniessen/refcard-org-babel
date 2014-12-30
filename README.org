@@ -15,6 +15,10 @@ Welcome to Org Babel reference card. It contains the reference documentation
 that describes how to perform *code execution* within Org mode documents using
 Org Babel 8.
 
+#+begin_warning
+Prolonged use may cause addiction!
+#+end_warning
+
 ** Compendium principles
 
 *** Literate Programming
