@@ -1390,6 +1390,22 @@ rownames(data)
 : [1] "Alpha" "Beta"  "Gamma"
 : [1] "First"  "Second" "Third"
 
+***** Notes
+
+"Tables" occur in at least three contexts in babel source code blocks.  There
+are input tables, :var mytable, there are "tables" within the code block,
+represented in R as a dataframe or a matrix, and there are output tables, which
+are placed in the Org mode buffer as a result.
+
+I use :colnames to keep the column names of input tables associated with the
+"tables" within the code block, and typically have them represented in the
+output, whether that is a "table" written to file, or output to the Org mode
+buffer as an Org mode table, either by default or (more rarely) through use
+of :results table.
+
+In my experience :results table is mostly useful for coercing a value that babel
+would otherwise interpret as a scalar into a single element table.
+
 **** Examples
 
 Consider the following input tables, one without column names, one with column
@@ -1715,9 +1731,11 @@ Specifies permissions for /every/ execution of code blocks.
 
 **** Options
 
-- ~:eval yes~ ::
-     Allows evaluation of the code block (both interactively and during
-     export) WITHOUT A CONFIRMATION FROM THE USER?. \\
+- ~:eval <any-value-other-than-the-reserved-ones>~ ::
+     If the ~org-confirm-babel-evaluate~ variable is non-nil, allows evaluation of
+     the code block (both interactively and during export) without
+     a confirmation from the user.  It undoes the effect of ~:eval no~ (and other
+     values disabling evaluation) set at the file or sub-tree level. \\
      (default)
 
 - ~:eval query~ ::
@@ -1731,7 +1749,7 @@ Specifies permissions for /every/ execution of code blocks.
      of the ~org-confirm-babel-evaluate~ variable.
 
 - ~:eval never~ ::
-     Inhibits (silently) evaluation of the code block (both interactively and
+     *Inhibits* (silently) *evaluation* of the code block (both interactively and
      during export). This is useful for protecting against the evaluation of
      dangerous code blocks.
 
