@@ -1731,12 +1731,17 @@ Specifies permissions for /every/ execution of code blocks.
 
 **** Options
 
+- nothing ::
+     If the ~org-confirm-babel-evaluate~ variable is non-nil, allows evaluation of
+     the code block (both interactively and during export) without
+     a confirmation from the user. \\
+     (default)
+
 - ~:eval <any-value-other-than-the-reserved-ones>~ ::
      If the ~org-confirm-babel-evaluate~ variable is non-nil, allows evaluation of
      the code block (both interactively and during export) without
-     a confirmation from the user.  It undoes the effect of ~:eval no~ (and other
-     values disabling evaluation) set at the file or sub-tree level. \\
-     (default)
+     a confirmation from the user.  It *undoes the effect of ~:eval no~* (and
+     other values disabling evaluation) set at the file or sub-tree level.
 
 - ~:eval query~ ::
      Requires confirmation before evaluating the code block (both
