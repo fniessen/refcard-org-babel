@@ -1146,10 +1146,12 @@ the value of that property to its current value.
 
 Awesome! Indeed, this works, for reference:
 
-#+PROPERTY: header-args:R :exports results
-#+PROPERTY: header-args   :results output graphics
-
-#+PROPERTY: header-args:R+ :width 800
+#+begin_src org
+,#+PROPERTY: header-args:R :exports results
+,#+PROPERTY: header-args   :results output graphics
+# Above line will crash some exports with msg "No :file header argument given; cannot create graphical result."
+,#+PROPERTY: header-args:R+ :width 800
+#+end_src
 
 Also, don't forget to =C-c C-c= on these arguments (just one of them
 in your preamble) to make sure they're updated before trying another
@@ -1308,7 +1310,8 @@ x <- 'side effect'
 - nothing ::
      (default)
 
-- ~:cmdline ...~ ::
+- ~:cmdline <...>~ ::
+     Pass some command line arguments.
 
 **** Remarks
 
@@ -2065,8 +2068,10 @@ Toggles creation of parent directories of target files during tangling.
 **** Options
 
 - ~:mkdirp no~ ::
+      Don't create the directories if they don't exist.
 
 - ~:mkdirp yes~ ::
+      Create the directories if they don't exist.
 
 *** :no-expand
     :PROPERTIES:
