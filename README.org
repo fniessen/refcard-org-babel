@@ -79,7 +79,7 @@ The code block is a block element which can be *anonymous* (without a label) or
 Anonymous code blocks will be immediately followed by the results block upon
 evaluation.
 
-#+begin_src sh :exports both
+#+begin_src shell :exports both
 printf "I'm anonymous"
 #+end_src
 
@@ -90,7 +90,7 @@ Named source code blocks will refresh the corresponding named *results blocks
 anywhere* in the file.
 
 #+name: example
-#+begin_src sh :results output :exports both
+#+begin_src shell :results output :exports both
 printf "As I'm named, my results may live anywhere in the file."
 #+end_src
 
@@ -384,7 +384,7 @@ is equivalent to
 It is possible to pass the ~:dir~ header argument through a call line.
 
 #+name: where
-#+begin_src sh
+#+begin_src shell
   pwd
 #+end_src
 
@@ -403,7 +403,7 @@ Call the above from somewhere else.
 Let's assume, the original code block takes an argument.
 
 #+name: echo-string
-#+begin_src sh :var input="original"
+#+begin_src shell :var input="original"
   echo "input=$input"
 #+end_src
 
@@ -421,7 +421,7 @@ result of calling that code block with a specific argument.
 
 As ~#+call:~ lines can be named, it is possible to reference that result.
 
-#+begin_src sh :var input=echo-new()
+#+begin_src shell :var input=echo-new()
   echo "this=$input"
 #+end_src
 
@@ -611,7 +611,7 @@ Emacs will evaluate the set-up block(s), after asking for confirmation.
 ****** Using ~org-sbe~ inside of an elisp link
 
 #+name: counter
-#+begin_src sh :results output :var to=6
+#+begin_src shell :results output :var to=6
 for i in $(seq 1 $to); do
    printf $i;
 done
@@ -739,7 +739,7 @@ session.
 The following code and its result src_emacs-lisp[:exports both]{(message
 "foo!")}  should be inline.
 
-The following src_sh[:exports code]{eval `cat ~/.emacs`;} should also be
+The following src_shell[:exports code]{eval `cat ~/.emacs`;} should also be
 inline.
 
 Ibid for src_emacs-lisp[:exports code]{(let ((x 10)) (< (* x 3) 2))} and
@@ -843,47 +843,51 @@ All Org-babel keybindings are located behind this prefix.
 *** Help
 
 - ~C-c C-v h~ ::
-     Describe all key bindings behind Org Babel key prefix.
+     *Describe* all *key bindings* behind Org Babel key prefix.
 
 *** Edit the code
 
 - ~C-c '~ ::
      Edit the code block in a dedicated buffer.
 
-- ~C-c C-v C-x TAB~ (or ~C-c C-v x TAB~) ::
-     Insert a language-native TAB in code block.
+- ~C-c C-v C-x~ (or ~C-c C-v x~) ::
+     Read *key sequence* and *execute* the command in edit buffer (in the language
+     major mode).
 
-- ~C-c C-v C-x M-;~ ::
-     Comment region according to language.
+     For example:
 
-- ~C-c C-v C-x C-M-\~ ::
-     Indent region according to language.
+     + ~C-c C-v C-x TAB~ (or ~C-c C-v x TAB~) ::
+          Insert a language-native *TAB* in code block.
 
-- ~C-c C-v d~ ::
-     Demarcate code block (i.e., wrap the region in a block, or split the
+     + ~C-c C-v C-x M-;~ (or ~C-c C-v x M-;~) ::
+          *Comment* region according to language.
+
+     + ~C-c C-v C-x C-M-\~ (or ~C-c C-v x C-M-\~) ::
+          *Indent* region according to language.
+
+- ~C-c C-v d~ (or ~C-c C-v C-d~) ::
+     *Demarcate code block* (i.e., wrap the region in a block, or split the
      block around point).
 
 - ~C-c C-v C-M-h~ ::
-     Mark (= select) the whole code block.
+     *Mark* (= select) the *whole* code block.
 
-- ~C-c C-v I~ ::
-     Display information on the current source block. This includes header
+- ~C-c C-v I~ (or ~C-c C-v C-I~) ::
+     *Display information* on the current source block. This includes header
      arguments, language and name.
 
-- ~C-c C-v j~ ::
+- ~C-c C-v j~ (or ~C-c C-v C-j~) ::
      *Insert a header argument* and its value using completing read in the
      minibuffer.
 
-     # XXX This breaks HTML export
+     #+begin_src emacs-lisp
+     (defun my-org-babel-deactivate ()
+       (interactive)
+       (org-babel-insert-header-arg "eval" "never")
+       (org-babel-insert-header-arg "tangle" "no"))
+     #+end_src
 
-     # #+begin_src emacs-lisp
-     # (defun my-org-babel-deactivate ()
-     #   (interactive)
-     #   (org-babel-insert-header-arg "eval" "never")
-     #   (org-babel-insert-header-arg "tangle" "no"))
-     # #+end_src
-
-- ~C-c C-v c~ ::
+- ~C-c C-v c~ (or ~C-c C-v C-c~) ::
      Check for /suspicious/ (that is, unknown) header arguments. This may prove
      useful if you get into the habit of using it as your first step in
      *debugging* code blocks.
@@ -893,8 +897,8 @@ All Org-babel keybindings are located behind this prefix.
 
 *** SHA1 hash
 
-- ~C-c C-v C-a~ (or ~C-c C-v a~) ::
-     View SHA1 hash of the current code block.
+- ~C-c C-v a~ (or ~C-c C-v C-a~) ::
+     *View SHA1 hash* of the current code block.
 
 You could use the hash returned by that function to manually replace the
 original one in the block, and avoid reevaluating the block in case of purely
@@ -915,16 +919,16 @@ cosmetic changes.
      The point being pushed to the ~org-mark-ring~, you can return to it with
      ~C-c &~.
 
-- ~C-c C-v r~ ::
+- ~C-c C-v r~ (or ~C-c C-v C-r~) ::
      Go to a *named result* (with completing read).
 
 - ~C-c C-v n~ (or ~C-c C-v C-n~) ::
      Go to the *next* code block.
 
-- ~C-c C-v p~ ::
+- ~C-c C-v p~ (or ~C-c C-v C-p~) ::
      Go to the *previous* code block.
 
-- ~C-c C-v u~ ::
+- ~C-c C-v u~ (or ~C-c C-v C-u~) ::
      Go to the head of this code block (jump to the enclosing structural
      block).
 
@@ -933,20 +937,20 @@ cosmetic changes.
     :ID:       b1b4977c-5c27-4385-a9ce-2fb8346822b5
     :END:
 
-- ~C-c C-v C-b~ (or ~C-c C-v b~) ::
+- ~C-c C-v b~ (or ~C-c C-v C-b~) ::
      Evaluate all the code blocks *in the current buffer*.
 
-- ~C-c C-v C-s~ (or ~C-c C-v s~) ::
+- ~C-c C-v s~ (or ~C-c C-v C-s~) ::
      Evaluate all the code blocks *in the current subtree*.
 
-- ~C-c C-v C-e~ (or ~C-c C-v e~) ::
+- ~C-c C-v e~ (or ~C-c C-v C-e~) ::
      Evaluate the code block *at point*.
 
      With ~C-u C-c C-v C-e~, forcibly re-evaluate the block (marked ~:cache~).
 
 *** Tangle
 
-- ~C-c C-v C-t~ (or ~C-c C-v t~) ::
+- ~C-c C-v t~ (or ~C-c C-v C-t~) ::
      *Tangle all the code blocks* in current file.
 
      Run the tangle with a prefix argument (e.g., ~C-u C-c C-v t~) to only
@@ -955,7 +959,7 @@ cosmetic changes.
      Press ~C-u C-u C-c C-v t~ to tangle *all blocks* belonging to the *target file
      of the block at point* (that is, having the same tangle file name).
 
-- ~C-c C-v C-f~ (or ~C-c C-v f~) ::
+- ~C-c C-v f~ (or ~C-c C-v C-f~) ::
      *Tangle all the code blocks* in supplied file.
 
 In many languages constructs like <<foo>> are valid code, so it would be
@@ -967,11 +971,11 @@ reference in this language can not be resolved).
 
 *** View the results
 
-- ~C-c C-v C-v~ (or ~C-c C-v v~) ::
+- ~C-c C-v v~ (or ~C-c C-v C-v~) ::
      *View the expanded body* of the code block at point. This view of code
      blocks is not editable.
 
-- ~C-c C-o~ ::
+- ~C-c C-v o~ (or ~C-c C-v C-o~) ::
      *Open the results* of the code block at point.
 
 - ~C-c C-v C-z~ ::
@@ -981,9 +985,9 @@ reference in this language can not be resolved).
      Use ~C-u C-c C-v C-z~ to bring up the session with the input variable
      pre-loaded.
 
-     ~C-c C-v z~ (~org-babel-switch-to-session-with-code~) is a variant of
-     ~C-c C-v C-z~ (~org-babel-switch-to-session~): instead of switching to the
-     session buffer, it splits the window between:
+- ~C-c C-v z~ ::
+     ~C-c C-v z~ is a variant of ~C-c C-v C-z~. Instead of switching to the session
+     buffer, it splits the window between:
      + the session buffer, and
      + a language major-mode edit buffer for the code block in question.
 
@@ -992,18 +996,22 @@ reference in this language can not be resolved).
 
 - ~C-c C-v k~ ::
      *Delete* code block *results*, inline code block results, and call line
-     results. When called without a prefix argument, it only applies to the
-     current code block. When called with a prefix argument, it applies to the
-     entire buffer.
+     results.
+
+     When called without a prefix argument, it only applies to the *current code
+     block*.
+
+     When called with a prefix argument, it applies to the *entire buffer*.
 
 *** Library of Babel
 
-- ~C-c C-v i~ ::
-     Add all named code blocks from supplied file into the Library of Babel (in
-     memory).
+- ~C-c C-v i~ (or ~C-c C-v C-i~) ::
+     *Ingest all named code blocks* from supplied file into the Library of Babel
+     (in memory).
 
-- ~C-c C-v C-l~ (or ~C-c C-v l~) ::
-     Ingest all NAMED? code blocks in supplied file into the Library of Babel.
+- ~C-c C-v l~ (or ~C-c C-v C-l~) ::
+     *Load the current code* block into the Library of Babel and enter the
+     *session*.
 
 ** Header arguments
    :PROPERTIES:
@@ -1240,7 +1248,7 @@ in the Org mode file: you must first evaluate it manually, leaving the results
 
 Note that same input does *not* always *guarantee the same output*, e.g.,
 
-#+begin_src sh
+#+begin_src shell
 date
 #+end_src
 
@@ -1256,7 +1264,7 @@ The following example uses the cache optimization for a very long running code
 block.
 
 #+begin_src org
-,#+begin_src sh :eval yes :results verbatim :cache yes
+,#+begin_src shell :eval yes :results verbatim :cache yes
 printf "Please wait (this can take a while)...\n"
 sleep 5
 printf "Done!\n"
@@ -1280,7 +1288,7 @@ The following example allows to include the PID of the R process in the results
 hash, so that the code would be rerun only if the R process (session) restarts.
 
 #+name: R-pid
-#+begin_src sh :var R="/usr/lib64/R/bin/exec/R"
+#+begin_src shell :var R="/usr/lib64/R/bin/exec/R"
 ps -a | grep "$R" | grep -v 'grep' | awk '{print $2}'
 #+end_src
 
@@ -1322,7 +1330,7 @@ The ~:cmdline~ header argument is supported by a couple of languages.
 For shell, this allows to make the code inside a Babel code block similar to
 a real shell script.
 
-#+begin_src sh :cmdline "foo bar baz"
+#+begin_src shell :cmdline "foo bar baz"
 echo $2
 #+end_src
 
@@ -1331,7 +1339,7 @@ echo $2
 
 The script can use ~$@~ for its positional parameters.
 
-#+begin_src sh :cmdline "foo bar baz"
+#+begin_src shell :cmdline "foo bar baz"
 echo "$@"
 #+end_src
 
@@ -1488,7 +1496,7 @@ The following example outputs the table with its column names.
 # |  2 | two   |
 # |  3 | three |
 
-#+begin_src sh :var data=without-header :colnames yes :eval yes
+#+begin_src shell :var data=without-header :colnames yes :eval yes
 echo "$data"
 #+end_src
 
@@ -1673,7 +1681,7 @@ specified using using [[http://www.gnu.org/software/emacs/manual/html_node/tramp
 
 WHY DON'T WE HAVE TO SPECIFY :OUTPUT FOR THE SH BLOCK?
 
-#+begin_src sh :dir /ssh:tortilla:/tmp
+#+begin_src shell :dir /ssh:tortilla:/tmp
 hostname
 #+end_src
 
@@ -1689,7 +1697,7 @@ print socket.gethostname()
 #+results:
 : tortilla
 
-#+begin_src sh :dir /ssh:username@domain.org:
+#+begin_src shell :dir /ssh:username@domain.org:
 ls -la
 #+end_src
 
@@ -1904,7 +1912,7 @@ file name can be generated within the source block./
 
 Send the text output of ~ls -l~ directly to a file:
 
-#+begin_src sh :results output :file dirlisting.txt :exports both
+#+begin_src shell :results output :file dirlisting.txt :exports both
 ls -l
 #+end_src
 
@@ -2132,7 +2140,7 @@ Specifies when expansion of "noweb" style references should occur.
 Note the parens in the noweb reference:
 
 #+name: testing
-#+BEGIN_SRC sh :results raw
+#+BEGIN_src shell :results raw
 echo "["
 ls *.org | sed 's/$/;/'
 echo "]"
@@ -2212,7 +2220,7 @@ first
 second
 ,#+end_src
 
-,#+begin_src sh :results output :noweb yes
+,#+begin_src shell :results output :noweb yes
 echo <<accumulated>>
 ,#+end_src
 
@@ -2493,7 +2501,7 @@ Specifies how the results should be *interpreted*.
 - ~:results list~ ::
       Writes an Org mode *list*.
 
-     #+begin_src sh :results drawer list
+     #+begin_src shell :results drawer list
      echo "vino blanco"
      echo "vino rosso"
      echo "vino tinto"
@@ -2615,7 +2623,7 @@ Specifies what type of results the code block will return.
      a headline, or another drawer, within the results drawer, thus breaking
      the document!
 
-     #+begin_src sh :results drawer :exports both
+     #+begin_src shell :results drawer :exports both
      cat <<EOF
      | a | b |
      |---+---|
@@ -2811,7 +2819,7 @@ Specifies a delimiter for reading or writing *tabular results*.
 
 Save the output of ~ls -l~ as a ~.csv~ file.
 
-#+begin_src sh :file dirlisting.csv :sep ,
+#+begin_src shell :file dirlisting.csv :sep ,
 ls -l
 #+end_src
 
@@ -2885,7 +2893,7 @@ at the source-code level*.
 
 Set the shebang.
 
-#+begin_src sh :shebang #!/usr/bin/env sh :tangle t.sh
+#+begin_src shell :shebang #!/usr/bin/env sh :tangle t.sh
 printf "with a shebang line, I can be run as a script!\n"
 #+end_src
 
@@ -3321,10 +3329,10 @@ script produced an error.  Try this instead when you don't know what the
 return code of the last command will be or if you know that it isn't zero
 even when no error occured:
 
-#+BEGIN_SRC sh :exports results :results output
+#+begin_src shell :exports results :results output
 diff testdiff.txt.orig testdiff.txt
 :
-#+END_SRC
+#+end_src
 
 > Is this this a bug?
 

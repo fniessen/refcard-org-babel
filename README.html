@@ -218,7 +218,7 @@
                   results block upon evaluation.</p>
 
                   <div class="org-src-container">
-                    <pre class="src src-sh">
+                    <pre class="src src-shell">
 printf <span class="org-string">"I'm anonymous"</span>
 </pre>
                   </div>
@@ -230,7 +230,7 @@ I'm anonymous
                   named <b>results blocks anywhere</b> in the file.</p>
 
                   <div class="org-src-container">
-                    <pre class="src src-sh" id="example">
+                    <pre class="src src-shell" id="example">
 printf <span class=
 "org-string">"As I'm named, my results may live anywhere in the file."</span>
 </pre>
@@ -634,7 +634,7 @@ As I'm named, my results may live anywhere in the file.
                       argument through a call line.</p>
 
                       <div class="org-src-container">
-                        <pre class="src src-sh" id="where">
+                        <pre class="src src-shell" id="where">
   <span class="org-builtin">pwd</span>
 </pre>
                       </div>
@@ -655,7 +655,7 @@ As I'm named, my results may live anywhere in the file.
                       argument.</p>
 
                       <div class="org-src-container">
-                        <pre class="src src-sh" id="echo-string">
+                        <pre class="src src-shell" id="echo-string">
   <span class="org-builtin">echo</span> <span class=
 "org-string">"input=$input"</span>
 </pre>
@@ -672,7 +672,7 @@ input=new
                       possible to reference that result.</p>
 
                       <div class="org-src-container">
-                        <pre class="src src-sh">
+                        <pre class="src src-shell">
   <span class="org-builtin">echo</span> <span class=
 "org-string">"this=$input"</span>
 </pre>
@@ -1133,7 +1133,7 @@ nil
 
                     <div class="outline-text-7" id="text-unnumbered-40">
                       <div class="org-src-container">
-                        <pre class="src src-sh" id="counter">
+                        <pre class="src src-shell" id="counter">
 <span class="org-keyword">for</span> i<span class=
 "org-keyword"> in</span> $(seq 1 $<span class=
 "org-variable-name">to</span>); <span class="org-keyword">do</span>
@@ -1316,7 +1316,7 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
                   <p>The following code and its result src_emacs-lisp[:exports
                   both]{(message “foo!”)} should be inline.</p>
 
-                  <p>The following <code class="src src-sh"><span class=
+                  <p>The following <code class="src src-shell"><span class=
                   "org-builtin">eval</span> <span class=
                   "org-sh-quoted-exec">`cat ~/.emacs`</span>;</code> should
                   also be inline.</p>
@@ -1475,7 +1475,8 @@ Here is a call_square(x=4), stuck in the middle of some prose.
             <dl class="org-dl">
               <dt><code>C-c C-v h</code></dt>
 
-              <dd>Describe all key bindings behind Org Babel key prefix.</dd>
+              <dd><b>Describe</b> all <b>key bindings</b> behind Org Babel key
+              prefix.</dd>
             </dl>
           </div>
         </div>
@@ -1489,41 +1490,66 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
               <dd>Edit the code block in a dedicated buffer.</dd>
 
-              <dt><code>C-c C-v C-x TAB</code> (or <code>C-c C-v x
-              TAB</code>)</dt>
+              <dt><code>C-c C-v C-x</code> (or <code>C-c C-v x</code>)</dt>
 
-              <dd>Insert a language-native TAB in code block.</dd>
+              <dd>
+                <p>Read <b>key sequence</b> and <b>execute</b> the command in
+                edit buffer (in the language major mode).</p>
 
-              <dt><code>C-c C-v C-x M-;</code></dt>
+                <p>For example:</p>
 
-              <dd>Comment region according to language.</dd>
+                <dl class="org-dl">
+                  <dt><code>C-c C-v C-x TAB</code> (or <code>C-c C-v x
+                  TAB</code>)</dt>
 
-              <dt><code>C-c C-v C-x C-M-\</code></dt>
+                  <dd>Insert a language-native <b>TAB</b> in code block.</dd>
 
-              <dd>Indent region according to language.</dd>
+                  <dt><code>C-c C-v C-x M-;</code> (or <code>C-c C-v x
+                  M-;</code>)</dt>
 
-              <dt><code>C-c C-v d</code></dt>
+                  <dd><b>Comment</b> region according to language.</dd>
 
-              <dd>Demarcate code block (i.e., wrap the region in a block, or
-              split the block around point).</dd>
+                  <dt><code>C-c C-v C-x C-M-\</code> (or <code>C-c C-v x
+                  C-M-\</code>)</dt>
+
+                  <dd><b>Indent</b> region according to language.</dd>
+                </dl>
+              </dd>
+
+              <dt><code>C-c C-v d</code> (or <code>C-c C-v C-d</code>)</dt>
+
+              <dd><b>Demarcate code block</b> (i.e., wrap the region in a
+              block, or split the block around point).</dd>
 
               <dt><code>C-c C-v C-M-h</code></dt>
 
-              <dd>Mark (= select) the whole code block.</dd>
+              <dd><b>Mark</b> (= select) the <b>whole</b> code block.</dd>
 
-              <dt><code>C-c C-v I</code></dt>
+              <dt><code>C-c C-v I</code> (or <code>C-c C-v C-I</code>)</dt>
 
-              <dd>Display information on the current source block. This
+              <dd><b>Display information</b> on the current source block. This
               includes header arguments, language and name.</dd>
 
-              <dt><code>C-c C-v j</code></dt>
+              <dt><code>C-c C-v j</code> (or <code>C-c C-v C-j</code>)</dt>
 
               <dd>
                 <p><b>Insert a header argument</b> and its value using
                 completing read in the minibuffer.</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-emacs-lisp">
+(<span class="org-keyword">defun</span> <span class=
+"org-function-name">my-org-babel-deactivate</span> ()
+  (interactive)
+  (org-babel-insert-header-arg <span class=
+"org-string">"eval"</span> <span class="org-string">"never"</span>)
+  (org-babel-insert-header-arg <span class=
+"org-string">"tangle"</span> <span class="org-string">"no"</span>))
+</pre>
+                </div>
               </dd>
 
-              <dt><code>C-c C-v c</code></dt>
+              <dt><code>C-c C-v c</code> (or <code>C-c C-v C-c</code>)</dt>
 
               <dd>
                 <p>Check for <i>suspicious</i> (that is, unknown) header
@@ -1544,9 +1570,9 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
           <div class="outline-text-4" id="text-unnumbered-55">
             <dl class="org-dl">
-              <dt><code>C-c C-v C-a</code> (or <code>C-c C-v a</code>)</dt>
+              <dt><code>C-c C-v a</code> (or <code>C-c C-v C-a</code>)</dt>
 
-              <dd>View SHA1 hash of the current code block.</dd>
+              <dd><b>View SHA1 hash</b> of the current code block.</dd>
             </dl>
 
             <p>You could use the hash returned by that function to manually
@@ -1583,7 +1609,7 @@ Here is a call_square(x=4), stuck in the middle of some prose.
                 you can return to it with <code>C-c &amp;</code>.</p>
               </dd>
 
-              <dt><code>C-c C-v r</code></dt>
+              <dt><code>C-c C-v r</code> (or <code>C-c C-v C-r</code>)</dt>
 
               <dd>Go to a <b>named result</b> (with completing read).</dd>
 
@@ -1591,11 +1617,11 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
               <dd>Go to the <b>next</b> code block.</dd>
 
-              <dt><code>C-c C-v p</code></dt>
+              <dt><code>C-c C-v p</code> (or <code>C-c C-v C-p</code>)</dt>
 
               <dd>Go to the <b>previous</b> code block.</dd>
 
-              <dt><code>C-c C-v u</code></dt>
+              <dt><code>C-c C-v u</code> (or <code>C-c C-v C-u</code>)</dt>
 
               <dd>Go to the head of this code block (jump to the enclosing
               structural block).</dd>
@@ -1611,17 +1637,17 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
           <div class="outline-text-4" id="text-unnumbered-57">
             <dl class="org-dl">
-              <dt><code>C-c C-v C-b</code> (or <code>C-c C-v b</code>)</dt>
+              <dt><code>C-c C-v b</code> (or <code>C-c C-v C-b</code>)</dt>
 
               <dd>Evaluate all the code blocks <b>in the current
               buffer</b>.</dd>
 
-              <dt><code>C-c C-v C-s</code> (or <code>C-c C-v s</code>)</dt>
+              <dt><code>C-c C-v s</code> (or <code>C-c C-v C-s</code>)</dt>
 
               <dd>Evaluate all the code blocks <b>in the current
               subtree</b>.</dd>
 
-              <dt><code>C-c C-v C-e</code> (or <code>C-c C-v e</code>)</dt>
+              <dt><code>C-c C-v e</code> (or <code>C-c C-v C-e</code>)</dt>
 
               <dd>
                 <p>Evaluate the code block <b>at point</b>.</p>
@@ -1638,7 +1664,7 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
           <div class="outline-text-4" id="text-unnumbered-58">
             <dl class="org-dl">
-              <dt><code>C-c C-v C-t</code> (or <code>C-c C-v t</code>)</dt>
+              <dt><code>C-c C-v t</code> (or <code>C-c C-v C-t</code>)</dt>
 
               <dd>
                 <p><b>Tangle all the code blocks</b> in current file.</p>
@@ -1652,7 +1678,7 @@ Here is a call_square(x=4), stuck in the middle of some prose.
                 point</b> (that is, having the same tangle file name).</p>
               </dd>
 
-              <dt><code>C-c C-v C-f</code> (or <code>C-c C-v f</code>)</dt>
+              <dt><code>C-c C-v f</code> (or <code>C-c C-v C-f</code>)</dt>
 
               <dd><b>Tangle all the code blocks</b> in supplied file.</dd>
             </dl>
@@ -1673,12 +1699,12 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
           <div class="outline-text-4" id="text-unnumbered-59">
             <dl class="org-dl">
-              <dt><code>C-c C-v C-v</code> (or <code>C-c C-v v</code>)</dt>
+              <dt><code>C-c C-v v</code> (or <code>C-c C-v C-v</code>)</dt>
 
               <dd><b>View the expanded body</b> of the code block at point.
               This view of code blocks is not editable.</dd>
 
-              <dt><code>C-c C-o</code></dt>
+              <dt><code>C-c C-v o</code> (or <code>C-c C-v C-o</code>)</dt>
 
               <dd><b>Open the results</b> of the code block at point.</dd>
 
@@ -1690,13 +1716,14 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
                 <p>Use <code>C-u C-c C-v C-z</code> to bring up the session
                 with the input variable pre-loaded.</p>
+              </dd>
 
-                <p><code>C-c C-v z</code>
-                (<code>org-babel-switch-to-session-with-code</code>) is a
-                variant of <code>C-c C-v C-z</code>
-                (<code>org-babel-switch-to-session</code>): instead of
-                switching to the session buffer, it splits the window
-                between:</p>
+              <dt><code>C-c C-v z</code></dt>
+
+              <dd>
+                <p><code>C-c C-v z</code> is a variant of <code>C-c C-v
+                C-z</code>. Instead of switching to the session buffer, it
+                splits the window between:</p>
 
                 <ul class="org-ul">
                   <li>the session buffer, and</li>
@@ -1711,10 +1738,16 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
               <dt><code>C-c C-v k</code></dt>
 
-              <dd><b>Delete</b> code block <b>results</b>, inline code block
-              results, and call line results. When called without a prefix
-              argument, it only applies to the current code block. When called
-              with a prefix argument, it applies to the entire buffer.</dd>
+              <dd>
+                <p><b>Delete</b> code block <b>results</b>, inline code block
+                results, and call line results.</p>
+
+                <p>When called without a prefix argument, it only applies to
+                the <b>current code block</b>.</p>
+
+                <p>When called with a prefix argument, it applies to the
+                <b>entire buffer</b>.</p>
+              </dd>
             </dl>
           </div>
         </div>
@@ -1724,15 +1757,15 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
           <div class="outline-text-4" id="text-unnumbered-60">
             <dl class="org-dl">
-              <dt><code>C-c C-v i</code></dt>
+              <dt><code>C-c C-v i</code> (or <code>C-c C-v C-i</code>)</dt>
 
-              <dd>Add all named code blocks from supplied file into the Library
-              of Babel (in memory).</dd>
+              <dd><b>Ingest all named code blocks</b> from supplied file into
+              the Library of Babel (in memory).</dd>
 
-              <dt><code>C-c C-v C-l</code> (or <code>C-c C-v l</code>)</dt>
+              <dt><code>C-c C-v l</code> (or <code>C-c C-v C-l</code>)</dt>
 
-              <dd>Ingest all NAMED? code blocks in supplied file into the
-              Library of Babel.</dd>
+              <dd><b>Load the current code</b> block into the Library of Babel
+              and enter the <b>session</b>.</dd>
             </dl>
           </div>
         </div>
@@ -2237,7 +2270,7 @@ Here is a call_square(x=4), stuck in the middle of some prose.
               same output</b>, e.g.,</p>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 date
 </pre>
               </div>
@@ -2266,7 +2299,7 @@ date
                   <div class="org-src-container">
                     <pre class="src src-org">
 <span class=
-"org-org-block-begin-line">#+begin_src sh :eval yes :results verbatim :cache yes</span>
+"org-org-block-begin-line">#+begin_src shell :eval yes :results verbatim :cache yes</span>
 printf <span class=
 "org-string">"Please wait (this can take a while)...\n"</span>
 sleep 5
@@ -2300,7 +2333,7 @@ printf <span class="org-string">"Done!\n"</span>
                   only if the R process (session) restarts.</p>
 
                   <div class="org-src-container">
-                    <pre class="src src-sh" id="R-pid">
+                    <pre class="src src-shell" id="R-pid">
 ps -a | grep <span class="org-string">"$R"</span> | grep -v <span class=
 "org-string">'grep'</span> | awk <span class="org-string">'{print $2}'</span>
 </pre>
@@ -2379,7 +2412,7 @@ x <span class="org-constant">&lt;-</span> <span class=
               block similar to a real shell script.</p>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-builtin">echo</span> $<span class="org-variable-name">2</span>
 </pre>
               </div>
@@ -2388,7 +2421,7 @@ x <span class="org-constant">&lt;-</span> <span class=
               parameters.</p>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 <span class="org-builtin">echo</span> <span class="org-string">"$@"</span>
 </pre>
               </div>
@@ -2766,7 +2799,7 @@ x <span class="org-constant">&lt;-</span> <span class=
                   names.</p>
 
                   <div class="org-src-container">
-                    <pre class="src src-sh">
+                    <pre class="src src-shell">
 <span class="org-builtin">echo</span> <span class="org-string">"$data"</span>
 </pre>
                   </div>
@@ -3144,7 +3177,7 @@ x <span class="org-constant">&lt;-</span> <span class=
               <p>WHY DON’T WE HAVE TO SPECIFY :OUTPUT FOR THE SH BLOCK?</p>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 hostname
 </pre>
               </div>
@@ -3158,7 +3191,7 @@ hostname
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 ls -la
 </pre>
               </div>
@@ -3540,7 +3573,7 @@ ls -la
                   file:</p>
 
                   <div class="org-src-container">
-                    <pre class="src src-sh">
+                    <pre class="src src-shell">
 ls -l
 </pre>
                   </div>
@@ -3962,7 +3995,7 @@ digraph <span class="org-function-name">G</span> {
                   <p>Note the parens in the noweb reference:</p>
 
                   <div class="org-src-container">
-                    <pre class="src src-sh" id="testing">
+                    <pre class="src src-shell" id="testing">
 <span class="org-builtin">echo</span> <span class="org-string">"["</span>
 ls *.org | sed <span class="org-string">'s/$/;/'</span>
 <span class="org-builtin">echo</span> <span class="org-string">"]"</span>
@@ -4075,7 +4108,7 @@ second
 <span class="org-org-block-end-line">#+end_src</span>
 
 <span class=
-"org-org-block-begin-line">#+begin_src sh :results output :noweb yes</span>
+"org-org-block-begin-line">#+begin_src shell :results output :noweb yes</span>
 <span class="org-builtin">echo</span> &lt;&lt;accumulated&gt;&gt;
 <span class="org-org-block-end-line">#+end_src</span>
 
@@ -4490,7 +4523,7 @@ data
                           <p>Writes an Org mode <b>list</b>.</p>
 
                           <div class="org-src-container">
-                            <pre class="src src-sh">
+                            <pre class="src src-shell">
 <span class="org-builtin">echo</span> <span class=
 "org-string">"vino blanco"</span>
 <span class="org-builtin">echo</span> <span class=
@@ -4607,7 +4640,7 @@ tex(exp(-x)/x);
                           document!</p>
 
                           <div class="org-src-container">
-                            <pre class="src src-sh">
+                            <pre class="src src-shell">
      cat &lt;&lt;EOF
 <span class="org-sh-heredoc">     | a | b |</span>
 <span class="org-sh-heredoc">     |---+---|</span>
@@ -4886,7 +4919,7 @@ savefig(<span class="org-string">'images/test.png'</span>)
                   <code>.csv</code> file.</p>
 
                   <div class="org-src-container">
-                    <pre class="src src-sh">
+                    <pre class="src src-shell">
 ls -l
 </pre>
                   </div>
@@ -5026,7 +5059,7 @@ ls -l
               <p>Set the shebang.</p>
 
               <div class="org-src-container">
-                <pre class="src src-sh">
+                <pre class="src src-shell">
 printf <span class=
 "org-string">"with a shebang line, I can be run as a script!\n"</span>
 </pre>
