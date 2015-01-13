@@ -1461,8 +1461,8 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
         <div class="outline-text-3" id="text-unnumbered-52">
           <p>Babel commands can be used as <b>speed commands</b> when the point
-          is on the beginning of a code block!! (or in column 0 – not the same
-          if code block does not begin at column 0).</p>
+          is at the beginning of a code block (specifically, at the beginning
+          of the <code>#+begin_src</code> line, in column <code>0</code>).</p>
 
           <p>Org-babel is making use of the <code>C-c C-v</code> key binding.
           All Org-babel keybindings are located behind this prefix.</p>
@@ -1488,7 +1488,7 @@ Here is a call_square(x=4), stuck in the middle of some prose.
             <dl class="org-dl">
               <dt><code>C-c '</code></dt>
 
-              <dd>Edit the code block in a dedicated buffer.</dd>
+              <dd><b>Edit</b> the code block in a <b>dedicated buffer</b>.</dd>
 
               <dt><code>C-c C-v C-x</code> (or <code>C-c C-v x</code>)</dt>
 
@@ -1623,8 +1623,8 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
               <dt><code>C-c C-v u</code> (or <code>C-c C-v C-u</code>)</dt>
 
-              <dd>Go to the head of this code block (jump to the enclosing
-              structural block).</dd>
+              <dd>Go to the <b>beginning</b> of the current code block (jump to
+              the enclosing structural block).</dd>
             </dl>
           </div>
         </div>

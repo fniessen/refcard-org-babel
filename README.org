@@ -833,12 +833,12 @@ Will r-2 export call_r-2() with a newline?
 
 ** Key bindings
 
-Babel commands can be used as *speed commands* when the point is on the beginning
-of a code block!! (or in column 0 -- not the same if code block does not begin
-at column 0).
+Babel commands can be used as *speed commands* when the point is at the beginning
+of a code block (specifically, at the beginning of the ~#+begin_src~ line, in
+column ~0~).
 
-Org-babel is making use of the =C-c C-v= key binding.
-All Org-babel keybindings are located behind this prefix.
+Org-babel is making use of the =C-c C-v= key binding. All Org-babel keybindings
+are located behind this prefix.
 
 *** Help
 
@@ -848,7 +848,7 @@ All Org-babel keybindings are located behind this prefix.
 *** Edit the code
 
 - ~C-c '~ ::
-     Edit the code block in a dedicated buffer.
+     *Edit* the code block in a *dedicated buffer*.
 
 - ~C-c C-v C-x~ (or ~C-c C-v x~) ::
      Read *key sequence* and *execute* the command in edit buffer (in the language
@@ -929,8 +929,8 @@ cosmetic changes.
      Go to the *previous* code block.
 
 - ~C-c C-v u~ (or ~C-c C-v C-u~) ::
-     Go to the head of this code block (jump to the enclosing structural
-     block).
+     Go to the *beginning* of the current code block (jump to the enclosing
+     structural block).
 
 *** Execute (or "evaluate")
     :PROPERTIES:
