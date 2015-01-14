@@ -306,7 +306,7 @@ It has the following syntax, where each header argument portion is optional.
      For example, ~:session *org-R*~ or ~:results output~.
 
 - HEADER-ARGS-FOR-CALL-LINE ("end header argument") ::
-     Header arguments applied to the *evaluation of the #+CALL: line*.  They do
+     Header arguments applied to the *evaluation of the #+call: line*.  They do
      not affect evaluation of the named code block; instead, they /affect how
      the results are incorporated/ into the Org mode buffer.
 
@@ -347,7 +347,7 @@ Code blocks are sometimes located in a separate file (called "library of
 Babel") which can be included in other Org files that wish to use the code
 blocks.
 
-The result of named code blocks evaluated with a ~#+CALL:~ line is wrapped
+The result of named code blocks evaluated with a ~#+call:~ line is wrapped
 according to the value of ~org-babel-inline-result-wrap~, which by default is
 : "=%s="
 for markup that produces verbatim text.
@@ -377,12 +377,12 @@ is equivalent to
   (+ x 1)
 #+end_src
 
-#+CALL: add1(x=4)
+#+call: add1(x=4)
 
 #+results: add1(x=4)
 : 5
 
-#+CALL: add1(6)
+#+call: add1(6)
 
 #+results: add1(6)
 : 7
@@ -443,11 +443,11 @@ As ~#+call:~ lines can be named, it is possible to reference that result.
 
 ****** Raw results
 
->> #+CALL: org-figure-to-slide[:exports none :results raw]()
+>> #+call: org-figure-to-slide[:exports none :results raw]()
 >
 > Does the following call line do what you want?
 >
-> #+CALL: org-figure-to-slide() :results raw
+> #+call: org-figure-to-slide() :results raw
 
 *Note -- No square bracket for the end header arguments!*
 
@@ -1107,13 +1107,13 @@ This can also be done file-wide through the use of /file local variables/.
 
 Header arguments which have different defaults between languages:
 
-| Languages                      | :exports | :hlines | :results       |
-|--------------------------------+----------+---------+----------------|
-| general-purpose languages + /sh/ | code     | no      | replace        |
-| /ledger/                         | code     | no      | output replace |
-| /org/                            | code     | no      | silent raw     |
-| /latex/                          | results  | no      | latex replace  |
-| graphics-only languages        | results  | no      | file replace   |
+| Languages                         | :exports | :hlines | :results       |
+|-----------------------------------+----------+---------+----------------|
+| general-purpose languages + /shell/ | code     | no      | replace        |
+| /ledger/                            | code     | no      | output replace |
+| /org/                               | code     | no      | silent raw     |
+| /latex/                             | results  | no      | latex replace  |
+| graphics-only languages           | results  | no      | file replace   |
 
 These default language-specific header arguments can be changed by the user:
 
@@ -1626,10 +1626,10 @@ print (ascii (table (data)), type = "org")
 | 5 |
 | 4 |
 
-***** #+CALL get the first row of output table lost when using latex export
+***** #+call get the first row of output table lost when using latex export
 
-~org-babel-execute:python~ does its own formatting.  ~#+CALL:~ OTOH passes the
-results to Babel.
+~org-babel-execute:python~ does its own formatting.  ~#+call:~ on the other hand
+passes the results to Babel.
 
 The workaround is to use:
 
@@ -1717,7 +1717,7 @@ specified using using [[http://www.gnu.org/software/emacs/manual/html_node/tramp
 
 **** Examples
 
-WHY DON'T WE HAVE TO SPECIFY :OUTPUT FOR THE SH BLOCK?
+WHY DON'T WE HAVE TO SPECIFY :OUTPUT FOR THE SHELL BLOCK?
 
 #+begin_src shell :dir /ssh:tortilla:/tmp
 hostname
@@ -3383,7 +3383,7 @@ Specifies a different results separator.
 
 ** Subtleties
 
-*** Sh-mode
+*** Shell mode
 
 > Why is the `diff' command alone not exported while the piped `diff' via
 > `cat' works?

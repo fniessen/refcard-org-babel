@@ -533,7 +533,7 @@ As I'm named, my results may live anywhere in the file.
 
                     <dd>
                       <p>Header arguments applied to the <b>evaluation of the
-                      #+CALL: line</b>. They do not affect evaluation of the
+                      #+call: line</b>. They do not affect evaluation of the
                       named code block; instead, they <i>affect how the results
                       are incorporated</i> into the Org mode buffer.</p>
 
@@ -596,7 +596,7 @@ As I'm named, my results may live anywhere in the file.
                   Org files that wish to use the code blocks.</p>
 
                   <p>The result of named code blocks evaluated with a
-                  <code>#+CALL:</code> line is wrapped according to the value
+                  <code>#+call:</code> line is wrapped according to the value
                   of <code>org-babel-inline-result-wrap</code>, which by
                   default is</p>
                   <pre class="example">
@@ -719,9 +719,9 @@ input=new
                     results<br />
 
                     <div class="outline-text-7" id="text-unnumbered-31">
-                      <p>&gt;&gt; #+CALL: org-figure-to-slide[:exports none
+                      <p>&gt;&gt; #+call: org-figure-to-slide[:exports none
                       :results raw]() &gt; &gt; Does the following call line do
-                      what you want? &gt; &gt; #+CALL: org-figure-to-slide()
+                      what you want? &gt; &gt; #+call: org-figure-to-slide()
                       :results raw</p>
 
                       <p><b>Note – No square bracket for the end header
@@ -1901,7 +1901,8 @@ expr 1 + 1
 
                 <tbody>
                   <tr>
-                    <td class="left">general-purpose languages + <i>sh</i></td>
+                    <td class="left">general-purpose languages +
+                    <i>shell</i></td>
 
                     <td class="left">code</td>
 
@@ -3013,13 +3014,13 @@ x <span class="org-constant">&lt;-</span> <span class=
               </li>
 
               <li>
-                <a id="unnumbered-93" name="unnumbered-93"></a>#+CALL get the
+                <a id="unnumbered-93" name="unnumbered-93"></a>#+call get the
                 first row of output table lost when using latex export<br />
 
                 <div class="outline-text-6" id="text-unnumbered-93">
                   <p><code>org-babel-execute:python</code> does its own
-                  formatting. <code>#+CALL:</code> OTOH passes the results to
-                  Babel.</p>
+                  formatting. <code>#+call:</code> on the other hand passes the
+                  results to Babel.</p>
 
                   <p>The workaround is to use:</p>
 
@@ -3180,7 +3181,7 @@ x <span class="org-constant">&lt;-</span> <span class=
             <h5 id="unnumbered-104">Examples</h5>
 
             <div class="outline-text-5" id="text-unnumbered-104">
-              <p>WHY DON’T WE HAVE TO SPECIFY :OUTPUT FOR THE SH BLOCK?</p>
+              <p>WHY DON’T WE HAVE TO SPECIFY :OUTPUT FOR THE SHELL BLOCK?</p>
 
               <div class="org-src-container">
                 <pre class="src src-shell">
@@ -5941,7 +5942,7 @@ Some results wrapped in an example block.
         <div class="outline-text-3" id="text-unnumbered-241"></div>
 
         <div id="outline-container-unnumbered-242" class="outline-4">
-          <h4 id="unnumbered-242">Sh-mode</h4>
+          <h4 id="unnumbered-242">Shell mode</h4>
 
           <div class="outline-text-4" id="text-unnumbered-242">
             <p>&gt; Why is the `diff’ command alone not exported while the
