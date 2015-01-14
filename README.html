@@ -828,9 +828,10 @@ input=new
                     <p><code>#+TBLFM: $2='(org-sbe 'fibbd (n $1))</code> is
                     wrong.</p>
 
-                    <p>Unquote the name or double quote it (optional):
-                    <code>#+TBLFM: $2='(org-sbe fibbd (n $1))</code> or
-                    <code>#+TBLFM: $2='(org-sbe "fibbd" (n $1))</code>.</p>
+                    <p>Unquote the name: <code>#+TBLFM: $2='(org-sbe fibbd (n
+                    $1))</code>,<br />
+                    or double quote it (optional): <code>#+TBLFM: $2='(org-sbe
+                    "fibbd" (n $1))</code>.</p>
                   </div>
 
                   <div class="org-src-container">
@@ -1349,8 +1350,8 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
                 <div class="outline-text-6" id="text-unnumbered-48">
                   <p>The syntax for inline evaluation of named code blocks is
-                  the following, where each header argument portion is
-                  optional.</p>
+                  the following, where each header argument portion is optional
+                  (so are the square brackets).</p>
 
                   <div class="org-src-container">
                     <pre class="src src-org">

@@ -1,7 +1,7 @@
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
 #+DESCRIPTION: Org Babel reference card
-#+KEYWORDS:  org-mode, org-babel, eric shulte, dan davison
+#+KEYWORDS:  org-mode, org-babel, eric shulte, dan davison, sweave
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:nil
 
@@ -207,15 +207,17 @@ Pass by value.
 Code can (possibly) be easier to read/write when splitting header arguments
 among multiple lines, by writing the options above the code block.
 
-#+header: :file test.png :fit yes
-#+header: :imagemagick yes :iminoptions -density 600 :imoutoptions -geometry 400
-#+header: :results (if (and (boundp 'backend) (eq backend 'latex)) "latex" "file")
-#+begin_src latex :exports results :noweb yes :headers '("\\usepackage{tikz}")
+#+begin_src org
+,#+header: :file test.png :fit yes
+,#+header: :imagemagick yes :iminoptions -density 600 :imoutoptions -geometry 400
+,#+header: :results (if (and (boundp 'backend) (eq backend 'latex)) "latex" "file")
+,#+begin_src latex :exports results :noweb yes :headers '("\\usepackage{tikz}")
   \begin{tikzpicture}
     \node[red!50!black] (a) {A};
     \node (b) [right of=a] {B};
     \draw[->] (a) -- (b);
   \end{tikzpicture}
+,#+end_src
 #+end_src
 
 ****** Do stuff conditional to the export backend
@@ -290,23 +292,28 @@ It has the following syntax, where each header argument portion is optional.
 ,#+call: <NAME>[<HEADER-ARGS-FOR-BLOCK>](<ARGUMENTS>) <HEADER-ARGS-FOR-CALL-LINE>
 #+end_src
 
+*Note -- No square bracket for the end header arguments!*
+
 - NAME ::
      Name of the code block to be evaluated.
 
 - ARGUMENTS ::
      XXX Describe how to pass args.
 
-- HEADER-ARGS-FOR-BLOCK ::
-     Header arguments applied to the *evaluation of the code block*. They affect
-     how the code block is evaluated: they *change the inputs*.
+- HEADER-ARGS-FOR-BLOCK ("inside header argument") ::
+     Header arguments applied to the *evaluation of the code block*. They /affect
+     how the code block is evaluated/: they *change the inputs*.
 
      For example, ~:session *org-R*~ or ~:results output~.
 
-- HEADER-ARGS-FOR-CALL-LINE ::
-     Header arguments applied to the *evaluation of the #+CALL: line*. They do
-     not affect evaluation of the named code block.
+- HEADER-ARGS-FOR-CALL-LINE ("end header argument") ::
+     Header arguments applied to the *evaluation of the #+CALL: line*. They do not
+     affect evaluation of the named code block; instead, they /affect how the
+     results are incorporated/ into the Org mode buffer.
 
      For example, ~:exports results~ or ~:results html~.
+
+     # See section 14.5 of the manual.
 
 ***** Remarks
 
@@ -435,6 +442,30 @@ As ~#+call:~ lines can be named, it is possible to reference that result.
 #+RESULTS:
 : this=input=new
 
+****** Raw results
+
+>> #+CALL: org-figure-to-slide[:exports none :results raw]()
+>
+> Does the following call line do what you want?
+>
+> #+CALL: org-figure-to-slide() :results raw
+
+*Note -- No square bracket for the end header arguments!*
+
+Thanks for your quick answer. Nevertheless, adding :results raw at the end
+changes the formatting output but embeds everything within paren.  Given your
+advice, I am pretty closed to what I want to do by adding another :results raw
+command either as an inside header arguments or directly when declaring the
+=org-figure-to-slide= code like
+
+#+NAME: org-figure-to-slide
+#+HEADERS: :var title="Empty title"
+#+HEADERS: :var dir="./figures" :var ext="*.pdf"
+#+HEADERS: :var options=""
+#+begin_src shell :results raw
+# ...
+#+end_src
+
 **** Calling a code block from other elements
 
 Using the ~org-sbe~ (for "source block evaluate") macro, you may call arbitrary
@@ -493,8 +524,9 @@ From [[http://osdir.com/ml/emacs-orgmode-gnu/2010-03/msg00651.html][Re: {Orgmode
 #+begin_warning
 ~#+TBLFM: $2='(org-sbe 'fibbd (n $1))~ is wrong.
 
-Unquote the name or double quote it (optional):
-~#+TBLFM: $2='(org-sbe fibbd (n $1))~ or
+Unquote the name:
+~#+TBLFM: $2='(org-sbe fibbd (n $1))~, \\
+or double quote it (optional):
 ~#+TBLFM: $2='(org-sbe "fibbd" (n $1))~.
 #+end_warning
 
@@ -535,29 +567,29 @@ Also remember you can use ELisp in formulas:
 Note the quotes around "$2" and "$1", they are necessary so that the date is
 not literally inserted in the formulas when Org is computing it.
 
-****** Test looping over a table: "noweb" call blocks
-
-http://lists.gnu.org/archive/html/emacs-orgmode/2010-11/msg01014.html
-
-#+tblname: accounts
-| EBAY | Expenses:Advertising         |
-| Q8   | Expenses:Auto:Fuel           |
-| VISA | Liabilities:Credit-Card:Visa |
-
-#+name: account-rules-python
-#+begin_src python :var data=accounts :exports code :results output :tangle no
-for line in data:
-    print "---"
-    print "- 'm/" + line[0] + "/'"
-    print "- ''"
-    print "- '" + line[1] + "'"
-#+end_src
-
-#+begin_src yaml :tangle AccountMatches.yaml :noweb yes
-# This is the file header...
-
-<<account-rules-python()>>
-#+end_src
+# ****** Test looping over a table: "noweb" call blocks
+#
+# http://lists.gnu.org/archive/html/emacs-orgmode/2010-11/msg01014.html
+#
+# #+tblname: accounts
+# | EBAY | Expenses:Advertising         |
+# | Q8   | Expenses:Auto:Fuel           |
+# | VISA | Liabilities:Credit-Card:Visa |
+#
+# #+name: account-rules-python
+# #+begin_src python :var data=accounts :exports code :results output :tangle no
+# for line in data:
+#     print "---"
+#     print "- 'm/" + line[0] + "/'"
+#     print "- ''"
+#     print "- '" + line[1] + "'"
+# #+end_src
+#
+# #+begin_src yaml :tangle AccountMatches.yaml :noweb yes
+# # This is the file header...
+#
+# <<account-rules-python()>>
+# #+end_src
 
 ***** Examples
 
@@ -757,7 +789,7 @@ src_emacs-lisp[:exports both]{(message "foo!\nbar!")} (as expected?).
 ***** Syntax
 
 The syntax for inline evaluation of named code blocks is the following, where
-each header argument portion is optional.
+each header argument portion is optional (so are the square brackets).
 
 #+begin_src org
 ... call_<NAME>[<HEADER-ARGS-FOR-BLOCK>](<ARGUMENTS>)[<HEADER-ARGS-FOR-CALL-LINE>] ...
@@ -822,9 +854,9 @@ block.
 (+ 1 1)
 #+end_src
 
-#+name: python-2
-#+begin_src python
-return(1 + 1)
+#+name: shell-2
+#+begin_src shell
+expr 1 + 1
 #+end_src
 
 #+name: r-2
@@ -834,7 +866,7 @@ return(1 + 1)
 
 Will lisp-2 export call_lisp-2() with a newline?
 
-Will python-2 export call_python-2() with a newline?
+Will shell-2 export call_shell-2() with a newline?
 
 Will r-2 export call_r-2() with a newline?
 
