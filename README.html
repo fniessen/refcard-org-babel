@@ -13,7 +13,7 @@
   <meta name="author" content="Fabrice Niessen" />
   <meta name="description" content="Org Babel reference card" />
   <meta name="keywords" content=
-  "org-mode, org-babel, eric shulte, dan davison" />
+  "org-mode, org-babel, eric shulte, dan davison, sweave" />
   <link rel="stylesheet" type="text/css" href=
   "http://www.pirilampo.org/styles/bigblow/css/htmlize.css" />
   <link rel="stylesheet" type="text/css" href=
@@ -377,6 +377,28 @@ As I'm named, my results may live anywhere in the file.
                       <p>Code can (possibly) be easier to read/write when
                       splitting header arguments among multiple lines, by
                       writing the options above the code block.</p>
+
+                      <div class="org-src-container">
+                        <pre class="src src-org">
+<span class="org-org-meta-line">#+header: :file test.png :fit yes</span>
+<span class=
+"org-org-meta-line">#+header: :imagemagick yes :iminoptions -density 600 :imoutoptions -geometry 400</span>
+<span class=
+"org-org-meta-line">#+header: :results (if (and (boundp 'backend) (eq backend 'latex)) "latex" "file")</span>
+<span class=
+"org-org-block-begin-line">#+begin_src latex :exports results :noweb yes :headers '("\\usepackage{tikz}")</span>
+  <span class="org-keyword"><span class=
+"org-font-latex-sedate">\begin</span></span>{<span class=
+"org-function-name">tikzpicture</span>}
+    <span class="org-font-latex-sedate">\node</span>[red!50!black] (a) {A};
+    <span class="org-font-latex-sedate">\node</span> (b) [right of=a] {B};
+    <span class="org-font-latex-sedate">\draw</span>[-&gt;] (a) -- (b);
+  <span class="org-keyword"><span class=
+"org-font-latex-sedate">\end</span></span>{<span class=
+"org-function-name">tikzpicture</span>}
+<span class="org-org-block-end-line">#+end_src</span>
+</pre>
+                      </div>
                     </div>
                   </li>
 
@@ -484,6 +506,9 @@ As I'm named, my results may live anywhere in the file.
 </pre>
                   </div>
 
+                  <p><b>Note – No square bracket for the end header
+                  arguments!</b></p>
+
                   <dl class="org-dl">
                     <dt>NAME</dt>
 
@@ -493,23 +518,24 @@ As I'm named, my results may live anywhere in the file.
 
                     <dd>XXX Describe how to pass args.</dd>
 
-                    <dt>HEADER-ARGS-FOR-BLOCK</dt>
+                    <dt>HEADER-ARGS-FOR-BLOCK (“inside header argument”)</dt>
 
                     <dd>
                       <p>Header arguments applied to the <b>evaluation of the
-                      code block</b>. They affect how the code block is
-                      evaluated: they <b>change the inputs</b>.</p>
+                      code block</b>. They <i>affect how the code block is
+                      evaluated</i>: they <b>change the inputs</b>.</p>
 
                       <p>For example, <code>:session *org-R*</code> or
                       <code>:results output</code>.</p>
                     </dd>
 
-                    <dt>HEADER-ARGS-FOR-CALL-LINE</dt>
+                    <dt>HEADER-ARGS-FOR-CALL-LINE (“end header argument”)</dt>
 
                     <dd>
                       <p>Header arguments applied to the <b>evaluation of the
                       #+CALL: line</b>. They do not affect evaluation of the
-                      named code block.</p>
+                      named code block; instead, they <i>affect how the results
+                      are incorporated</i> into the Org mode buffer.</p>
 
                       <p>For example, <code>:exports results</code> or
                       <code>:results html</code>.</p>
@@ -687,16 +713,46 @@ input=new
                       </div>
                     </div>
                   </li>
+
+                  <li>
+                    <a id="unnumbered-31" name="unnumbered-31"></a>Raw
+                    results<br />
+
+                    <div class="outline-text-7" id="text-unnumbered-31">
+                      <p>&gt;&gt; #+CALL: org-figure-to-slide[:exports none
+                      :results raw]() &gt; &gt; Does the following call line do
+                      what you want? &gt; &gt; #+CALL: org-figure-to-slide()
+                      :results raw</p>
+
+                      <p><b>Note – No square bracket for the end header
+                      arguments!</b></p>
+
+                      <p>Thanks for your quick answer. Nevertheless, adding
+                      :results raw at the end changes the formatting output but
+                      embeds everything within paren. Given your advice, I am
+                      pretty closed to what I want to do by adding another
+                      :results raw command either as an inside header arguments
+                      or directly when declaring the
+                      <code>org-figure-to-slide</code> code like</p>
+
+                      <div class="org-src-container">
+                        <pre class="src src-shell" id="org-figure-to-slide">
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">...</span>
+</pre>
+                      </div>
+                    </div>
+                  </li>
                 </ul>
               </li>
             </ul>
           </div>
 
-          <div id="outline-container-unnumbered-31" class="outline-5">
-            <h5 id="unnumbered-31">Calling a code block from other
+          <div id="outline-container-unnumbered-32" class="outline-5">
+            <h5 id="unnumbered-32">Calling a code block from other
             elements</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-31">
+            <div class="outline-text-5" id="text-unnumbered-32">
               <p>Using the <code>org-sbe</code> (for “source block evaluate”)
               macro, you may call arbitrary code blocks</p>
 
@@ -714,9 +770,9 @@ input=new
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-32" name="unnumbered-32"></a>Syntax<br />
+                <a id="unnumbered-33" name="unnumbered-33"></a>Syntax<br />
 
-                <div class="outline-text-6" id="text-unnumbered-32">
+                <div class="outline-text-6" id="text-unnumbered-33">
                   <p>Return the results of calling <code>NAME</code> with
                   <code>VARIABLES</code>.</p>
 
@@ -821,9 +877,9 @@ input=new
               </li>
 
               <li>
-                <a id="unnumbered-33" name="unnumbered-33"></a>Remarks<br />
+                <a id="unnumbered-34" name="unnumbered-34"></a>Remarks<br />
 
-                <div class="outline-text-6" id="text-unnumbered-33">
+                <div class="outline-text-6" id="text-unnumbered-34">
                   <div class="warning">
                     <p><code>#+TBLFM: $2='(org-sbe 'fibbd (n $1))</code> is
                     wrong.</p>
@@ -937,70 +993,6 @@ results
                   so that the date is not literally inserted in the formulas
                   when Org is computing it.</p>
                 </div>
-
-                <ul class="org-ul">
-                  <li>
-                    <a id="unnumbered-34" name="unnumbered-34"></a>Test looping
-                    over a table: “noweb” call blocks<br />
-
-                    <div class="outline-text-7" id="text-unnumbered-34">
-                      <p><a href=
-                      "http://lists.gnu.org/archive/html/emacs-orgmode/2010-11/msg01014.html">
-                      http://lists.gnu.org/archive/html/emacs-orgmode/2010-11/msg01014.html</a></p>
-
-                      <table id="accounts" border="2" cellspacing="0"
-                      cellpadding="6" rules="groups" frame="hsides">
-                        <colgroup>
-                          <col class="left" />
-                          <col class="left" />
-                        </colgroup>
-
-                        <tbody>
-                          <tr>
-                            <td class="left">EBAY</td>
-
-                            <td class="left">Expenses:Advertising</td>
-                          </tr>
-
-                          <tr>
-                            <td class="left">Q8</td>
-
-                            <td class="left">Expenses:Auto:Fuel</td>
-                          </tr>
-
-                          <tr>
-                            <td class="left">VISA</td>
-
-                            <td class="left">Liabilities:Credit-Card:Visa</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                      <div class="org-src-container">
-                        <pre class="src src-python" id="account-rules-python">
-<span class="org-keyword">for</span> line <span class=
-"org-keyword">in</span> data:
-    <span class="org-keyword">print</span> <span class=
-"org-string">"---"</span>
-    <span class="org-keyword">print</span> <span class=
-"org-string">"- 'm/"</span> + line[0] + <span class="org-string">"/'"</span>
-    <span class="org-keyword">print</span> <span class=
-"org-string">"- ''"</span>
-    <span class="org-keyword">print</span> <span class=
-"org-string">"- '"</span> + line[1] + <span class="org-string">"'"</span>
-</pre>
-                      </div>
-
-                      <div class="org-src-container">
-                        <pre class="src src-yaml">
-# This is the file header...
-
-nil
-</pre>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
               </li>
 
               <li>
@@ -1439,8 +1431,8 @@ Here is a call_square(x=4), stuck in the middle of some prose.
                       </div>
 
                       <div class="org-src-container">
-                        <pre class="src src-python" id="python-2">
-<span class="org-keyword">return</span>(1 + 1)
+                        <pre class="src src-shell" id="shell-2">
+expr 1 + 1
 </pre>
                       </div>
 
@@ -1453,7 +1445,7 @@ Here is a call_square(x=4), stuck in the middle of some prose.
 
                       <p>Will lisp-2 export with a newline?</p>
 
-                      <p>Will python-2 export with a newline?</p>
+                      <p>Will shell-2 export with a newline?</p>
 
                       <p>Will r-2 export with a newline?</p>
                     </div>
@@ -3196,14 +3188,6 @@ hostname
               </div>
 
               <div class="org-src-container">
-                <pre class="src src-python">
-<span class="org-keyword">import</span> socket
-
-<span class="org-keyword">print</span> socket.gethostname()
-</pre>
-              </div>
-
-              <div class="org-src-container">
                 <pre class="src src-shell">
 ls -la
 </pre>
@@ -4044,14 +4028,6 @@ ls *.org | sed <span class="org-string">'s/$/;/'</span>
 <span class="org-builtin">echo</span> <span class="org-string">"]"</span>
 </pre>
                   </div>
-
-                  <div class="org-src-container">
-                    <pre class="src src-ocaml">
-let x =
-nil
-in x
-</pre>
-                  </div>
                 </div>
               </li>
 
@@ -4642,12 +4618,6 @@ data
 
                           <p>Inserts the results inside a
                           <code>#+BEGIN_LaTeX</code> block.</p>
-
-                          <div class="org-src-container">
-                            <pre class="src src-maxima">
-tex(exp(-x)/x);
-</pre>
-                          </div>
                         </dd>
 
                         <dt><code>:results org</code></dt>
@@ -4844,17 +4814,7 @@ tex(exp(-x)/x);
                 <a id="unnumbered-189" name="unnumbered-189"></a>Interpreting
                 the results as a file path<br />
 
-                <div class="outline-text-6" id="text-unnumbered-189">
-                  <div class="org-src-container">
-                    <pre class="src src-python">
-<span class="org-keyword">from</span> pylab <span class=
-"org-keyword">import</span> *
-plot(rand(10))
-savefig(<span class="org-string">'images/test.png'</span>)
-<span class="org-string">'images/test.png'</span>
-</pre>
-                  </div>
-                </div>
+                <div class="outline-text-6" id="text-unnumbered-189"></div>
               </li>
             </ul>
           </div>

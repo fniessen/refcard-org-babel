@@ -1728,14 +1728,14 @@ hostname
 #+results:
 : tortilla
 
-#+begin_src python :dir /ssh:tortilla:/tmp :results output
-import socket
-
-print socket.gethostname()
-#+end_src
-
-#+results:
-: tortilla
+# #+begin_src python :dir /ssh:tortilla:/tmp :results output
+# import socket
+#
+# print socket.gethostname()
+# #+end_src
+#
+# #+results:
+# : tortilla
 
 #+begin_src shell :dir /ssh:username@domain.org:
 ls -la
@@ -2203,11 +2203,11 @@ ls *.org | sed 's/$/;/'
 echo "]"
 #+END_SRC
 
-#+BEGIN_SRC ocaml :noweb yes
-let x =
-<<testing()>>
-in x
-#+END_SRC
+# #+BEGIN_SRC ocaml :noweb yes
+# let x =
+# <<testing()>>
+# in x
+# #+END_SRC
 
 ***** Expand variable in tangled code
 
@@ -2639,14 +2639,14 @@ Specifies what type of results the code block will return.
      # output \textbf{\LaTeX} formatted text
      # #+END_LaTeX
 
-     #+begin_src maxima :results output latex
-     tex(exp(-x)/x);
-     #+end_src
-
-     #+results:
-     #+BEGIN_LaTeX
-     $${{e^ {- x }}\over{x}}$$
-     #+END_LaTeX
+     # #+begin_src maxima :results output latex
+     # tex(exp(-x)/x);
+     # #+end_src
+     #
+     # #+results:
+     # #+BEGIN_LaTeX
+     # $${{e^ {- x }}\over{x}}$$
+     # #+END_LaTeX
 
 - ~:results org~ ::
      (implies ~verbatim~ results, unless otherwise stated)
@@ -2788,9 +2788,9 @@ way, the results will appear only in the *temporary* copy of the buffer
 is parsed for export and one does need to worry about demarcating the
 output with a :RESULTS: drawer...
 
-#+begin_src perl :exports results :results output org raw
-[code to generate org source]
-#+end_src
+# #+begin_src perl :exports results :results output org raw
+# [code to generate org source]
+# #+end_src
 
 Workaround: a block wrapper makes it possible for the entirety of the results
 to be clearly located, regardless of their contents, and replaced (with new
@@ -2818,12 +2818,12 @@ export mechanism.
 
 ***** Interpreting the results as a file path
 
-#+begin_src python :results file
-from pylab import *
-plot(rand(10))
-savefig('images/test.png')
-'images/test.png'
-#+end_src
+# #+begin_src python :results file
+# from pylab import *
+# plot(rand(10))
+# savefig('images/test.png')
+# 'images/test.png'
+# #+end_src
 
 **** See also
 
