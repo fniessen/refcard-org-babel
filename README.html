@@ -1709,8 +1709,13 @@ Here is a call_square(x=4), stuck in the middle of some prose.
             <dl class="org-dl">
               <dt><code>C-c C-v v</code> (or <code>C-c C-v C-v</code>)</dt>
 
-              <dd><b>View the expanded body</b> of the code block at point.
-              This view of code blocks is not editable.</dd>
+              <dd>
+                <p><b>View the expanded body</b> of the code block at point.
+                This view of code blocks is not editable.</p>
+
+                <p>This facility of <b>previewing</b> the expanded contents is
+                useful for <b>debugging</b>.</p>
+              </dd>
 
               <dt><code>C-c C-v o</code> (or <code>C-c C-v C-o</code>)</dt>
 
@@ -1719,25 +1724,24 @@ Here is a call_square(x=4), stuck in the middle of some prose.
               <dt><code>C-c C-v C-z</code></dt>
 
               <dd>
-                <p><b>Switch to the session</b> of the current code block
-                (first, you need to add <code>:session</code> to it).</p>
+                <p><b>Switch to the session buffer</b> of the current code
+                block (first, you need to add <code>:session</code> to it).</p>
 
                 <p>Use <code>C-u C-c C-v C-z</code> to bring up the session
                 with the input variable pre-loaded.</p>
               </dd>
 
-              <dt><code>C-c C-v z</code></dt>
+              <dt><code>C-c C-v z</code> (variant of <code>C-c C-v
+              C-z</code>)</dt>
 
               <dd>
-                <p><code>C-c C-v z</code> is a variant of <code>C-c C-v
-                C-z</code>. Instead of switching to the session buffer, it
-                splits the window between:</p>
+                <p><b>Split</b> the window between:</p>
 
                 <ul class="org-ul">
-                  <li>the session buffer, and</li>
+                  <li>the <b>session buffer</b>, and</li>
 
-                  <li>a language major-mode edit buffer for the code block in
-                  question.</li>
+                  <li>a language major-mode <b>edit buffer</b> for the code
+                  block in question.</li>
                 </ul>
 
                 <p>This can be convenient for using language major mode for
@@ -3987,19 +3991,49 @@ digraph <span class="org-function-name">G</span> {
           </div>
 
           <div id="outline-container-unnumbered-148" class="outline-5">
-            <h5 id="unnumbered-148">Examples</h5>
+            <h5 id="unnumbered-148">Syntax of noweb references</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-148"></div>
+            <div class="outline-text-5" id="text-unnumbered-148">
+              <dl class="org-dl">
+                <dt><code>&lt;&lt;code-block-name&gt;&gt;</code></dt>
+
+                <dd>Insert the literal body of <b>code</b> block
+                <code>code-block-name</code> itself.</dd>
+
+                <dt><code>&lt;&lt;code-block-name()&gt;&gt;</code></dt>
+
+                <dd><b>Insert the *results</b> of evaluating the code block
+                <code>code-block-name</code> (as obtained with
+                <code>org-babel-execute-src-block</code>). That can be of
+                different types: LaTeX, etc.</dd>
+
+                <dt><code>&lt;&lt;code-block-name(x=3.3)&gt;&gt;</code></dt>
+
+                <dd>Insert the <b>results</b> of evaluating it with the
+                specified argument value.</dd>
+              </dl>
+
+              <p>Note that you can customize
+              <code>org-babel-noweb-wrap-start</code> and
+              <code>org-babel-noweb-wrap-end</code> to use something else than
+              angle brackets (for example, double quotes).</p>
+            </div>
+          </div>
+
+          <div id="outline-container-unnumbered-149" class="outline-5">
+            <h5 id="unnumbered-149">Examples</h5>
+
+            <div class="outline-text-5" id="text-unnumbered-149"></div>
 
             <ul class="org-ul">
-              <li><a id="unnumbered-149" name="unnumbered-149"></a>Expand
+              <li><a id="unnumbered-150" name="unnumbered-150"></a>Expand
               block<br /></li>
 
               <li>
-                <a id="unnumbered-150" name="unnumbered-150"></a>Execute
+                <a id="unnumbered-151" name="unnumbered-151"></a>Execute
                 block<br />
 
-                <div class="outline-text-6" id="text-unnumbered-150">
+                <div class="outline-text-6" id="text-unnumbered-151">
                   <p>Note the parens in the noweb reference:</p>
 
                   <div class="org-src-container">
@@ -4020,22 +4054,22 @@ in x
                 </div>
               </li>
 
-              <li><a id="unnumbered-151" name="unnumbered-151"></a>Expand
+              <li><a id="unnumbered-152" name="unnumbered-152"></a>Expand
               variable in tangled code<br /></li>
             </ul>
           </div>
 
-          <div id="outline-container-unnumbered-152" class="outline-5">
-            <h5 id="unnumbered-152">See also</h5>
+          <div id="outline-container-unnumbered-153" class="outline-5">
+            <h5 id="unnumbered-153">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-152"></div>
+            <div class="outline-text-5" id="text-unnumbered-153"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-153" name=
-                "unnumbered-153"></a>Reference<br />
+                <a id="unnumbered-154" name=
+                "unnumbered-154"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-153">
+                <div class="outline-text-6" id="text-unnumbered-154">
                   <p><a href="#comments">:comments</a><br />
                   <a href="#no-expand">:no-expand</a><br />
                   <a href="#noweb-ref">:noweb-ref</a><br />
@@ -4046,9 +4080,9 @@ in x
               </li>
 
               <li>
-                <a id="unnumbered-154" name="unnumbered-154"></a>Concepts<br />
+                <a id="unnumbered-155" name="unnumbered-155"></a>Concepts<br />
 
-                <div class="outline-text-6" id="text-unnumbered-154">
+                <div class="outline-text-6" id="text-unnumbered-155">
                   <p>Noweb references</p>
                 </div>
               </li>
@@ -4057,21 +4091,21 @@ in x
         </div>
 
         <div id="outline-container-noweb-ref" class="outline-4">
-          <h4 id="noweb-ref"><a id="unnumbered-155" name=
-          "unnumbered-155"></a>:noweb-ref</h4>
+          <h4 id="noweb-ref"><a id="unnumbered-156" name=
+          "unnumbered-156"></a>:noweb-ref</h4>
 
           <div class="outline-text-4" id="text-noweb-ref">
             <p>Specifies block’s noweb reference resolution target.</p>
           </div>
 
-          <div id="outline-container-unnumbered-156" class="outline-5">
-            <h5 id="unnumbered-156">Options</h5>
+          <div id="outline-container-unnumbered-157" class="outline-5">
+            <h5 id="unnumbered-157">Options</h5>
           </div>
 
-          <div id="outline-container-unnumbered-157" class="outline-5">
-            <h5 id="unnumbered-157">Remarks</h5>
+          <div id="outline-container-unnumbered-158" class="outline-5">
+            <h5 id="unnumbered-158">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-157">
+            <div class="outline-text-5" id="text-unnumbered-158">
               <p>This allows you to <b>avoid repeating the reference name</b>
               in your Org document: if you set this header argument at the file
               or subtree level, the code blocks will be concatenated into the
@@ -4099,10 +4133,10 @@ in x
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-158" class="outline-5">
-            <h5 id="unnumbered-158">Examples</h5>
+          <div id="outline-container-unnumbered-159" class="outline-5">
+            <h5 id="unnumbered-159">Examples</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-158">
+            <div class="outline-text-5" id="text-unnumbered-159">
               <div class="org-src-container">
                 <pre class="src src-org">
 <span class="org-org-level-3">*** Some subtree</span>
@@ -4130,27 +4164,27 @@ second
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-159" class="outline-5">
-            <h5 id="unnumbered-159">See also</h5>
+          <div id="outline-container-unnumbered-160" class="outline-5">
+            <h5 id="unnumbered-160">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-159"></div>
+            <div class="outline-text-5" id="text-unnumbered-160"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-160" name=
-                "unnumbered-160"></a>Reference<br />
+                <a id="unnumbered-161" name=
+                "unnumbered-161"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-160">
+                <div class="outline-text-6" id="text-unnumbered-161">
                   <p><a href="#noweb">:noweb</a><br />
                   <a href="#noweb-sep">:noweb-sep</a></p>
                 </div>
               </li>
 
               <li>
-                <a id="unnumbered-161" name="unnumbered-161"></a>Other
+                <a id="unnumbered-162" name="unnumbered-162"></a>Other
                 resources<br />
 
-                <div class="outline-text-6" id="text-unnumbered-161">
+                <div class="outline-text-6" id="text-unnumbered-162">
                   <p>The variable
                   <code>org-babel-use-quick-and-dirty-noweb-expansion</code>
                   controls XXX</p>
@@ -4161,33 +4195,33 @@ second
         </div>
 
         <div id="outline-container-noweb-sep" class="outline-4">
-          <h4 id="noweb-sep"><a id="unnumbered-162" name=
-          "unnumbered-162"></a>:noweb-sep</h4>
+          <h4 id="noweb-sep"><a id="unnumbered-163" name=
+          "unnumbered-163"></a>:noweb-sep</h4>
 
           <div class="outline-text-4" id="text-noweb-sep">
             <p>Specifies the string to use to separate accumulated noweb
             references.</p>
           </div>
 
-          <div id="outline-container-unnumbered-163" class="outline-5">
-            <h5 id="unnumbered-163">Options</h5>
+          <div id="outline-container-unnumbered-164" class="outline-5">
+            <h5 id="unnumbered-164">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-163">
+            <div class="outline-text-5" id="text-unnumbered-164">
               <p>By default a newline is used.</p>
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-164" class="outline-5">
-            <h5 id="unnumbered-164">See also</h5>
+          <div id="outline-container-unnumbered-165" class="outline-5">
+            <h5 id="unnumbered-165">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-164"></div>
+            <div class="outline-text-5" id="text-unnumbered-165"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-165" name=
-                "unnumbered-165"></a>Reference<br />
+                <a id="unnumbered-166" name=
+                "unnumbered-166"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-165">
+                <div class="outline-text-6" id="text-unnumbered-166">
                   <p><a href="#noweb">:noweb</a><br />
                   <a href="#noweb-ref">:noweb-ref</a></p>
                 </div>
@@ -4197,17 +4231,17 @@ second
         </div>
 
         <div id="outline-container-padline" class="outline-4">
-          <h4 id="padline"><a id="unnumbered-166" name=
-          "unnumbered-166"></a>:padline</h4>
+          <h4 id="padline"><a id="unnumbered-167" name=
+          "unnumbered-167"></a>:padline</h4>
 
           <div class="outline-text-4" id="text-padline">
             <p>Controls insertion of padding lines in tangled code files.</p>
           </div>
 
-          <div id="outline-container-unnumbered-167" class="outline-5">
-            <h5 id="unnumbered-167">Options</h5>
+          <div id="outline-container-unnumbered-168" class="outline-5">
+            <h5 id="unnumbered-168">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-167">
+            <div class="outline-text-5" id="text-unnumbered-168">
               <dl class="org-dl">
                 <dt><code>:padline yes</code></dt>
 
@@ -4221,26 +4255,26 @@ second
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-168" class="outline-5">
-            <h5 id="unnumbered-168">Remarks</h5>
+          <div id="outline-container-unnumbered-169" class="outline-5">
+            <h5 id="unnumbered-169">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-168">
+            <div class="outline-text-5" id="text-unnumbered-169">
               <p>The padline is not inserted at the top of the file, only
               between blocks.</p>
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-169" class="outline-5">
-            <h5 id="unnumbered-169">See also</h5>
+          <div id="outline-container-unnumbered-170" class="outline-5">
+            <h5 id="unnumbered-170">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-169"></div>
+            <div class="outline-text-5" id="text-unnumbered-170"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-170" name=
-                "unnumbered-170"></a>Reference<br />
+                <a id="unnumbered-171" name=
+                "unnumbered-171"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-170">
+                <div class="outline-text-6" id="text-unnumbered-171">
                   <p><a href="#noweb">:noweb</a></p>
                 </div>
               </li>
@@ -4249,17 +4283,17 @@ second
         </div>
 
         <div id="outline-container-post" class="outline-4">
-          <h4 id="post"><a id="unnumbered-171" name=
-          "unnumbered-171"></a>:post</h4>
+          <h4 id="post"><a id="unnumbered-172" name=
+          "unnumbered-172"></a>:post</h4>
 
           <div class="outline-text-4" id="text-post">
             <p><b>Post-processes</b> the <b>results</b> of a code block.</p>
           </div>
 
-          <div id="outline-container-unnumbered-172" class="outline-5">
-            <h5 id="unnumbered-172">Remarks</h5>
+          <div id="outline-container-unnumbered-173" class="outline-5">
+            <h5 id="unnumbered-173">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-172">
+            <div class="outline-text-5" id="text-unnumbered-173">
               <ul class="org-ul">
                 <li>
                   <p>Post blocks must return results, eventually by adding a
@@ -4292,10 +4326,10 @@ data
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-173" class="outline-5">
-            <h5 id="unnumbered-173">Examples</h5>
+          <div id="outline-container-unnumbered-174" class="outline-5">
+            <h5 id="unnumbered-174">Examples</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-173">
+            <div class="outline-text-5" id="text-unnumbered-174">
               <p>We can have a sequence of forward chained blocks with length
               &gt; 2.</p>
 
@@ -4321,10 +4355,10 @@ data
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-174" class="outline-5">
-            <h5 id="unnumbered-174">Buggy?</h5>
+          <div id="outline-container-unnumbered-175" class="outline-5">
+            <h5 id="unnumbered-175">Buggy?</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-174">
+            <div class="outline-text-5" id="text-unnumbered-175">
               <p>&gt; whats wrong with this :post header arg:</p>
 
               <p>THE FACT THAT THE VALUE OF :POST SHOULD BE A BABEL CALL!</p>
@@ -4356,17 +4390,17 @@ data
         </div>
 
         <div id="outline-container-prologue" class="outline-4">
-          <h4 id="prologue"><a id="unnumbered-175" name=
-          "unnumbered-175"></a>:prologue</h4>
+          <h4 id="prologue"><a id="unnumbered-176" name=
+          "unnumbered-176"></a>:prologue</h4>
 
           <div class="outline-text-4" id="text-prologue">
             <p>Prepends text to code block body.</p>
           </div>
 
-          <div id="outline-container-unnumbered-176" class="outline-5">
-            <h5 id="unnumbered-176">Options</h5>
+          <div id="outline-container-unnumbered-177" class="outline-5">
+            <h5 id="unnumbered-177">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-176">
+            <div class="outline-text-5" id="text-unnumbered-177">
               <dl class="org-dl">
                 <dt><code>:prologue ""</code></dt>
 
@@ -4380,17 +4414,17 @@ data
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-177" class="outline-5">
-            <h5 id="unnumbered-177">See also</h5>
+          <div id="outline-container-unnumbered-178" class="outline-5">
+            <h5 id="unnumbered-178">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-177"></div>
+            <div class="outline-text-5" id="text-unnumbered-178"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-178" name=
-                "unnumbered-178"></a>Reference<br />
+                <a id="unnumbered-179" name=
+                "unnumbered-179"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-178">
+                <div class="outline-text-6" id="text-unnumbered-179">
                   <p><a href="#epilogue">:epilogue</a></p>
                 </div>
               </li>
@@ -4399,25 +4433,25 @@ data
         </div>
 
         <div id="outline-container-results" class="outline-4">
-          <h4 id="results"><a id="unnumbered-179" name=
-          "unnumbered-179"></a>:results</h4>
+          <h4 id="results"><a id="unnumbered-180" name=
+          "unnumbered-180"></a>:results</h4>
 
           <div class="outline-text-4" id="text-results">
             <p>Specifies the type of results and how they will be collected and
             handled.</p>
           </div>
 
-          <div id="outline-container-unnumbered-180" class="outline-5">
-            <h5 id="unnumbered-180">Options</h5>
+          <div id="outline-container-unnumbered-181" class="outline-5">
+            <h5 id="unnumbered-181">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-180"></div>
+            <div class="outline-text-5" id="text-unnumbered-181"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-181" name="unnumbered-181"></a>How the code
+                <a id="unnumbered-182" name="unnumbered-182"></a>How the code
                 block is evaluated<br />
 
-                <div class="outline-text-6" id="text-unnumbered-181">
+                <div class="outline-text-6" id="text-unnumbered-182">
                   <p>Specifies how the results should be <b>collected</b> from
                   the code block’s evaluation.</p>
 
@@ -4445,15 +4479,15 @@ data
               </li>
 
               <li>
-                <a id="unnumbered-182" name="unnumbered-182"></a>How the
+                <a id="unnumbered-183" name="unnumbered-183"></a>How the
                 results are inserted into the Org mode buffer<br />
 
                 <ul class="org-ul">
                   <li>
-                    <a id="unnumbered-183" name="unnumbered-183"></a>Handling
+                    <a id="unnumbered-184" name="unnumbered-184"></a>Handling
                     params<br />
 
-                    <div class="outline-text-7" id="text-unnumbered-183">
+                    <div class="outline-text-7" id="text-unnumbered-184">
                       <p>Specifies if and how the results should be <b>inserted
                       in the buffer</b>.</p>
 
@@ -4492,9 +4526,9 @@ data
                   </li>
 
                   <li>
-                    <a id="unnumbered-184" name="unnumbered-184"></a>Type<br />
+                    <a id="unnumbered-185" name="unnumbered-185"></a>Type<br />
 
-                    <div class="outline-text-7" id="text-unnumbered-184">
+                    <div class="outline-text-7" id="text-unnumbered-185">
                       <p>Specifies how the results should be
                       <b>interpreted</b>.</p>
 
@@ -4559,10 +4593,10 @@ data
                   </li>
 
                   <li>
-                    <a id="unnumbered-185" name=
-                    "unnumbered-185"></a>Format<br />
+                    <a id="unnumbered-186" name=
+                    "unnumbered-186"></a>Format<br />
 
-                    <div class="outline-text-7" id="text-unnumbered-185">
+                    <div class="outline-text-7" id="text-unnumbered-186">
                       <p>Specifies what type of results the code block will
                       return.</p>
 
@@ -4743,10 +4777,10 @@ tex(exp(-x)/x);
             </ul>
           </div>
 
-          <div id="outline-container-unnumbered-186" class="outline-5">
-            <h5 id="unnumbered-186">Remarks</h5>
+          <div id="outline-container-unnumbered-187" class="outline-5">
+            <h5 id="unnumbered-187">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-186">
+            <div class="outline-text-5" id="text-unnumbered-187">
               <p>With <code>raw</code>, as there are <b>no obvious markers to
               delimit the results</b> in the Org mode buffer, there is no way
               to know where raw results begin or end. So, <code>:results raw
@@ -4799,17 +4833,17 @@ tex(exp(-x)/x);
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-187" class="outline-5">
-            <h5 id="unnumbered-187">Examples</h5>
+          <div id="outline-container-unnumbered-188" class="outline-5">
+            <h5 id="unnumbered-188">Examples</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-187"></div>
+            <div class="outline-text-5" id="text-unnumbered-188"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-188" name="unnumbered-188"></a>Interpreting
+                <a id="unnumbered-189" name="unnumbered-189"></a>Interpreting
                 the results as a file path<br />
 
-                <div class="outline-text-6" id="text-unnumbered-188">
+                <div class="outline-text-6" id="text-unnumbered-189">
                   <div class="org-src-container">
                     <pre class="src src-python">
 <span class="org-keyword">from</span> pylab <span class=
@@ -4824,17 +4858,17 @@ savefig(<span class="org-string">'images/test.png'</span>)
             </ul>
           </div>
 
-          <div id="outline-container-unnumbered-189" class="outline-5">
-            <h5 id="unnumbered-189">See also</h5>
+          <div id="outline-container-unnumbered-190" class="outline-5">
+            <h5 id="unnumbered-190">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-189"></div>
+            <div class="outline-text-5" id="text-unnumbered-190"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-190" name=
-                "unnumbered-190"></a>Reference<br />
+                <a id="unnumbered-191" name=
+                "unnumbered-191"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-190">
+                <div class="outline-text-6" id="text-unnumbered-191">
                   <p><a href="#exports">:exports</a><br />
                   <a href="#file">:file</a><br />
                   <a href="#wrap">:wrap</a></p>
@@ -4845,17 +4879,17 @@ savefig(<span class="org-string">'images/test.png'</span>)
         </div>
 
         <div id="outline-container-rownames" class="outline-4">
-          <h4 id="rownames"><a id="unnumbered-191" name=
-          "unnumbered-191"></a>:rownames</h4>
+          <h4 id="rownames"><a id="unnumbered-192" name=
+          "unnumbered-192"></a>:rownames</h4>
 
           <div class="outline-text-4" id="text-rownames">
             <p>Handles row names in tables.</p>
           </div>
 
-          <div id="outline-container-unnumbered-192" class="outline-5">
-            <h5 id="unnumbered-192">Options</h5>
+          <div id="outline-container-unnumbered-193" class="outline-5">
+            <h5 id="unnumbered-193">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-192">
+            <div class="outline-text-5" id="text-unnumbered-193">
               <dl class="org-dl">
                 <dt><code>:rownames no</code></dt>
 
@@ -4868,17 +4902,17 @@ savefig(<span class="org-string">'images/test.png'</span>)
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-193" class="outline-5">
-            <h5 id="unnumbered-193">See also</h5>
+          <div id="outline-container-unnumbered-194" class="outline-5">
+            <h5 id="unnumbered-194">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-193"></div>
+            <div class="outline-text-5" id="text-unnumbered-194"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-194" name=
-                "unnumbered-194"></a>Reference<br />
+                <a id="unnumbered-195" name=
+                "unnumbered-195"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-194">
+                <div class="outline-text-6" id="text-unnumbered-195">
                   <p><a href="#colnames">:colnames</a><br />
                   <a href="#wrap">:wrap</a></p>
                 </div>
@@ -4888,18 +4922,18 @@ savefig(<span class="org-string">'images/test.png'</span>)
         </div>
 
         <div id="outline-container-sep" class="outline-4">
-          <h4 id="sep"><a id="unnumbered-195" name=
-          "unnumbered-195"></a>:sep</h4>
+          <h4 id="sep"><a id="unnumbered-196" name=
+          "unnumbered-196"></a>:sep</h4>
 
           <div class="outline-text-4" id="text-sep">
             <p>Specifies a delimiter for reading or writing <b>tabular
             results</b>.</p>
           </div>
 
-          <div id="outline-container-unnumbered-196" class="outline-5">
-            <h5 id="unnumbered-196">Options</h5>
+          <div id="outline-container-unnumbered-197" class="outline-5">
+            <h5 id="unnumbered-197">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-196">
+            <div class="outline-text-5" id="text-unnumbered-197">
               <dl class="org-dl">
                 <dt>nothing</dt>
 
@@ -4912,17 +4946,17 @@ savefig(<span class="org-string">'images/test.png'</span>)
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-197" class="outline-5">
-            <h5 id="unnumbered-197">Examples</h5>
+          <div id="outline-container-unnumbered-198" class="outline-5">
+            <h5 id="unnumbered-198">Examples</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-197"></div>
+            <div class="outline-text-5" id="text-unnumbered-198"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-198" name="unnumbered-198"></a>Saving the
+                <a id="unnumbered-199" name="unnumbered-199"></a>Saving the
                 tabular output to a CSV file<br />
 
-                <div class="outline-text-6" id="text-unnumbered-198">
+                <div class="outline-text-6" id="text-unnumbered-199">
                   <p>Save the output of <code>ls -l</code> as a
                   <code>.csv</code> file.</p>
 
@@ -4939,17 +4973,17 @@ ls -l
             </ul>
           </div>
 
-          <div id="outline-container-unnumbered-199" class="outline-5">
-            <h5 id="unnumbered-199">See also</h5>
+          <div id="outline-container-unnumbered-200" class="outline-5">
+            <h5 id="unnumbered-200">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-199"></div>
+            <div class="outline-text-5" id="text-unnumbered-200"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-200" name=
-                "unnumbered-200"></a>Reference<br />
+                <a id="unnumbered-201" name=
+                "unnumbered-201"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-200">
+                <div class="outline-text-6" id="text-unnumbered-201">
                   <p><a href="#file">:file</a></p>
                 </div>
               </li>
@@ -4958,18 +4992,18 @@ ls -l
         </div>
 
         <div id="outline-container-session" class="outline-4">
-          <h4 id="session"><a id="unnumbered-201" name=
-          "unnumbered-201"></a>:session</h4>
+          <h4 id="session"><a id="unnumbered-202" name=
+          "unnumbered-202"></a>:session</h4>
 
           <div class="outline-text-4" id="text-session">
             <p>Shares data and persists state between (evaluation of) different
             code blocks.</p>
           </div>
 
-          <div id="outline-container-unnumbered-202" class="outline-5">
-            <h5 id="unnumbered-202">Options</h5>
+          <div id="outline-container-unnumbered-203" class="outline-5">
+            <h5 id="unnumbered-203">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-202">
+            <div class="outline-text-5" id="text-unnumbered-203">
               <dl class="org-dl">
                 <dt><code>:session none</code></dt>
 
@@ -4986,41 +5020,54 @@ ls -l
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-203" class="outline-5">
-            <h5 id="unnumbered-203">Remarks</h5>
+          <div id="outline-container-unnumbered-204" class="outline-5">
+            <h5 id="unnumbered-204">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-203">
-              <p>Even if you don’t need to share data between blocks, you can
-              still use sessions in order not to wait for the interpreter to
-              start up for each block!</p>
-
-              <p>It also allows for manual inspection of the results of
-              evaluation.</p>
-
-              <p>When you work on different files at the same time, you may
-              want to use:</p>
-
+            <div class="outline-text-5" id="text-unnumbered-204">
               <ul class="org-ul">
-                <li>the same session, or</li>
+                <li>If a code block has a <code>:session</code> header
+                argument, then it is assumed that the block should be evaluated
+                regardless of it’s <code>:exports</code> header argument,
+                because it could change the state of the session.</li>
 
-                <li>differently named sessions (running their own
-                process).</li>
+                <li>Even if you don’t need to share data between blocks, you
+                can still use sessions in order not to wait for the interpreter
+                to start up for each block!</li>
+
+                <li>This also allows for manual inspection of the results of
+                evaluation.</li>
+
+                <li>When you work on different files at the same time, you may
+                want to use:
+
+                  <ul class="org-ul">
+                    <li>the same session, or</li>
+
+                    <li>differently named sessions (running their own
+                    process).</li>
+                  </ul>
+                </li>
+
+                <li>Adding session to a shell source block has the following
+                impact: commands will be run from <code>~</code> directory
+                (instead of the local one).</li>
               </ul>
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-204" class="outline-5">
-            <h5 id="unnumbered-204">See also</h5>
+          <div id="outline-container-unnumbered-205" class="outline-5">
+            <h5 id="unnumbered-205">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-204"></div>
+            <div class="outline-text-5" id="text-unnumbered-205"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-205" name=
-                "unnumbered-205"></a>Reference<br />
+                <a id="unnumbered-206" name=
+                "unnumbered-206"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-205">
-                  <p><a href="#eval">:eval</a></p>
+                <div class="outline-text-6" id="text-unnumbered-206">
+                  <p><a href="#eval">:eval</a><br />
+                  <a href="#exports">:exports</a></p>
                 </div>
               </li>
             </ul>
@@ -5028,17 +5075,17 @@ ls -l
         </div>
 
         <div id="outline-container-shebang" class="outline-4">
-          <h4 id="shebang"><a id="unnumbered-206" name=
-          "unnumbered-206"></a>:shebang</h4>
+          <h4 id="shebang"><a id="unnumbered-207" name=
+          "unnumbered-207"></a>:shebang</h4>
 
           <div class="outline-text-4" id="text-shebang">
             <p>Uses preamble for tangled files (and make them executable).</p>
           </div>
 
-          <div id="outline-container-unnumbered-207" class="outline-5">
-            <h5 id="unnumbered-207">Options</h5>
+          <div id="outline-container-unnumbered-208" class="outline-5">
+            <h5 id="unnumbered-208">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-207">
+            <div class="outline-text-5" id="text-unnumbered-208">
               <dl class="org-dl">
                 <dt><code>:shebang &lt;SHEBANG&gt;</code></dt>
 
@@ -5047,10 +5094,10 @@ ls -l
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-208" class="outline-5">
-            <h5 id="unnumbered-208">Remarks</h5>
+          <div id="outline-container-unnumbered-209" class="outline-5">
+            <h5 id="unnumbered-209">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-208">
+            <div class="outline-text-5" id="text-unnumbered-209">
               <p>The preamble line is only used for tangling, not during
               evaluation.</p>
 
@@ -5060,10 +5107,10 @@ ls -l
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-209" class="outline-5">
-            <h5 id="unnumbered-209">Examples</h5>
+          <div id="outline-container-unnumbered-210" class="outline-5">
+            <h5 id="unnumbered-210">Examples</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-209">
+            <div class="outline-text-5" id="text-unnumbered-210">
               <p>Set the shebang.</p>
 
               <div class="org-src-container">
@@ -5077,17 +5124,17 @@ printf <span class=
         </div>
 
         <div id="outline-container-tangle" class="outline-4">
-          <h4 id="tangle"><a id="unnumbered-210" name=
-          "unnumbered-210"></a>:tangle</h4>
+          <h4 id="tangle"><a id="unnumbered-211" name=
+          "unnumbered-211"></a>:tangle</h4>
 
           <div class="outline-text-4" id="text-tangle">
             <p>Toggles tangling and specify file name.</p>
           </div>
 
-          <div id="outline-container-unnumbered-211" class="outline-5">
-            <h5 id="unnumbered-211">Options</h5>
+          <div id="outline-container-unnumbered-212" class="outline-5">
+            <h5 id="unnumbered-212">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-211">
+            <div class="outline-text-5" id="text-unnumbered-212">
               <dl class="org-dl">
                 <dt><code>:tangle no</code></dt>
 
@@ -5105,10 +5152,10 @@ printf <span class=
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-212" class="outline-5">
-            <h5 id="unnumbered-212">Remarks</h5>
+          <div id="outline-container-unnumbered-213" class="outline-5">
+            <h5 id="unnumbered-213">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-212">
+            <div class="outline-text-5" id="text-unnumbered-213">
               <p>Tangling works for <b>any</b> programming language (even those
               which have yet to be created and have no explicit Emacs or Org
               mode support) because, on tangling, the code block is simply
@@ -5127,17 +5174,17 @@ printf <span class=
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-213" class="outline-5">
-            <h5 id="unnumbered-213">See also</h5>
+          <div id="outline-container-unnumbered-214" class="outline-5">
+            <h5 id="unnumbered-214">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-213"></div>
+            <div class="outline-text-5" id="text-unnumbered-214"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-214" name=
-                "unnumbered-214"></a>Reference<br />
+                <a id="unnumbered-215" name=
+                "unnumbered-215"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-214">
+                <div class="outline-text-6" id="text-unnumbered-215">
                   <p><a href="#noweb">:noweb</a></p>
                 </div>
               </li>
@@ -5146,8 +5193,8 @@ printf <span class=
         </div>
 
         <div id="outline-container-tangle-mode" class="outline-4">
-          <h4 id="tangle-mode"><a id="unnumbered-215" name=
-          "unnumbered-215"></a>:tangle-mode</h4>
+          <h4 id="tangle-mode"><a id="unnumbered-216" name=
+          "unnumbered-216"></a>:tangle-mode</h4>
 
           <div class="outline-text-4" id="text-tangle-mode">
             <p>Controls the permissions of tangled files.</p>
@@ -5155,17 +5202,17 @@ printf <span class=
         </div>
 
         <div id="outline-container-var" class="outline-4">
-          <h4 id="var"><a id="unnumbered-216" name=
-          "unnumbered-216"></a>:var</h4>
+          <h4 id="var"><a id="unnumbered-217" name=
+          "unnumbered-217"></a>:var</h4>
 
           <div class="outline-text-4" id="text-var">
             <p><b>Passes arguments</b> to code blocks.</p>
           </div>
 
-          <div id="outline-container-unnumbered-217" class="outline-5">
-            <h5 id="unnumbered-217">Options</h5>
+          <div id="outline-container-unnumbered-218" class="outline-5">
+            <h5 id="unnumbered-218">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-217">
+            <div class="outline-text-5" id="text-unnumbered-218">
               <dl class="org-dl">
                 <dt><code>:var &lt;NAME&gt;=&lt;VALUE&gt;</code></dt>
 
@@ -5175,10 +5222,10 @@ printf <span class=
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-218" class="outline-5">
-            <h5 id="unnumbered-218">Remarks</h5>
+          <div id="outline-container-unnumbered-219" class="outline-5">
+            <h5 id="unnumbered-219">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-218">
+            <div class="outline-text-5" id="text-unnumbered-219">
               <p>Multiple <code>var</code> specifications behind a single
               <code>:var</code> are allowed. The multiple var arguments must be
               comma-separated:</p>
@@ -5302,17 +5349,17 @@ printf <span class=
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-219" class="outline-5">
-            <h5 id="unnumbered-219">Examples</h5>
+          <div id="outline-container-unnumbered-220" class="outline-5">
+            <h5 id="unnumbered-220">Examples</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-219"></div>
+            <div class="outline-text-5" id="text-unnumbered-220"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-220" name="unnumbered-220"></a>Literal
+                <a id="unnumbered-221" name="unnumbered-221"></a>Literal
                 string<br />
 
-                <div class="outline-text-6" id="text-unnumbered-220">
+                <div class="outline-text-6" id="text-unnumbered-221">
                   <pre class="example">
 value
 </pre>
@@ -5320,10 +5367,10 @@ value
               </li>
 
               <li>
-                <a id="unnumbered-221" name="unnumbered-221"></a>Literal
+                <a id="unnumbered-222" name="unnumbered-222"></a>Literal
                 number<br />
 
-                <div class="outline-text-6" id="text-unnumbered-221">
+                <div class="outline-text-6" id="text-unnumbered-222">
                   <pre class="example">
 42
 </pre>
@@ -5331,10 +5378,10 @@ value
               </li>
 
               <li>
-                <a id="unnumbered-222" name="unnumbered-222"></a>Reference to a
+                <a id="unnumbered-223" name="unnumbered-223"></a>Reference to a
                 literal example block<br />
 
-                <div class="outline-text-6" id="text-unnumbered-222">
+                <div class="outline-text-6" id="text-unnumbered-223">
                   <pre class="example">
 Les sanglots longs
 des violons de l'automne
@@ -5360,10 +5407,10 @@ des violons de l'automne
               </li>
 
               <li>
-                <a id="unnumbered-223" name="unnumbered-223"></a>Reference to
+                <a id="unnumbered-224" name="unnumbered-224"></a>Reference to
                 part of a table<br />
 
-                <div class="outline-text-6" id="text-unnumbered-223">
+                <div class="outline-text-6" id="text-unnumbered-224">
                   <table id="data3x3" border="2" cellspacing="0" cellpadding=
                   "6" rules="groups" frame="hsides">
                     <colgroup>
@@ -5504,10 +5551,10 @@ hline
               </li>
 
               <li>
-                <a id="unnumbered-224" name="unnumbered-224"></a>Reference to a
+                <a id="unnumbered-225" name="unnumbered-225"></a>Reference to a
                 list<br />
 
-                <div class="outline-text-6" id="text-unnumbered-224">
+                <div class="outline-text-6" id="text-unnumbered-225">
                   <ul class="org-ul">
                     <li>foo</li>
 
@@ -5538,10 +5585,10 @@ hline
               </li>
 
               <li>
-                <a id="unnumbered-225" name="unnumbered-225"></a>Reference to a
+                <a id="unnumbered-226" name="unnumbered-226"></a>Reference to a
                 code block<br />
 
-                <div class="outline-text-6" id="text-unnumbered-225">
+                <div class="outline-text-6" id="text-unnumbered-226">
                   <p>It is possible to <b>chain code blocks</b> (possibly in
                   different languages) in <code>:var</code> lines, as
                   shown:</p>
@@ -5559,17 +5606,17 @@ hline
         </div>
 
         <div id="outline-container-wrap" class="outline-4">
-          <h4 id="wrap"><a id="unnumbered-226" name=
-          "unnumbered-226"></a>:wrap</h4>
+          <h4 id="wrap"><a id="unnumbered-227" name=
+          "unnumbered-227"></a>:wrap</h4>
 
           <div class="outline-text-4" id="text-wrap">
             <p>Delimit the results (of source block evaluation).</p>
           </div>
 
-          <div id="outline-container-unnumbered-227" class="outline-5">
-            <h5 id="unnumbered-227">Options</h5>
+          <div id="outline-container-unnumbered-228" class="outline-5">
+            <h5 id="unnumbered-228">Options</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-227">
+            <div class="outline-text-5" id="text-unnumbered-228">
               <dl class="org-dl">
                 <dt>nothing</dt>
 
@@ -5593,26 +5640,26 @@ hline
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-228" class="outline-5">
-            <h5 id="unnumbered-228">Remarks</h5>
+          <div id="outline-container-unnumbered-229" class="outline-5">
+            <h5 id="unnumbered-229">Remarks</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-228">
+            <div class="outline-text-5" id="text-unnumbered-229">
               <p>The <code>:wrap</code> header argument gives you control over
               the formatting of results from code blocks.</p>
             </div>
           </div>
 
-          <div id="outline-container-unnumbered-229" class="outline-5">
-            <h5 id="unnumbered-229">Examples</h5>
+          <div id="outline-container-unnumbered-230" class="outline-5">
+            <h5 id="unnumbered-230">Examples</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-229"></div>
+            <div class="outline-text-5" id="text-unnumbered-230"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-230" name="unnumbered-230"></a>Using
+                <a id="unnumbered-231" name="unnumbered-231"></a>Using
                 <code>:wrap</code> with no value<br />
 
-                <div class="outline-text-6" id="text-unnumbered-230">
+                <div class="outline-text-6" id="text-unnumbered-231">
                   <p>The following example wraps the results in
                   <code>#+BEGIN_RESULTS</code> … <code>#+END_RESULTS</code>
                   block.</p>
@@ -5664,10 +5711,10 @@ hline
               </li>
 
               <li>
-                <a id="unnumbered-231" name="unnumbered-231"></a>Using
+                <a id="unnumbered-232" name="unnumbered-232"></a>Using
                 <code>:wrap</code> with a string value<br />
 
-                <div class="outline-text-6" id="text-unnumbered-231">
+                <div class="outline-text-6" id="text-unnumbered-232">
                   <p>The following examples puts the <b>output in an
                   <code>EXAMPLE</code> block</b>.</p>
                   <pre class="example">
@@ -5677,11 +5724,11 @@ Some results wrapped in an example block.
               </li>
 
               <li>
-                <a id="unnumbered-232" name="unnumbered-232"></a>Using
+                <a id="unnumbered-233" name="unnumbered-233"></a>Using
                 <code>:wrap</code> to produce a source code block in a named
                 language<br />
 
-                <div class="outline-text-6" id="text-unnumbered-232">
+                <div class="outline-text-6" id="text-unnumbered-233">
                   <p>The following examples puts the results into a
                   <code>SRC</code> code block (associated to the
                   <code>c++</code> mode).</p>
@@ -5699,17 +5746,17 @@ Some results wrapped in an example block.
             </ul>
           </div>
 
-          <div id="outline-container-unnumbered-233" class="outline-5">
-            <h5 id="unnumbered-233">See also</h5>
+          <div id="outline-container-unnumbered-234" class="outline-5">
+            <h5 id="unnumbered-234">See also</h5>
 
-            <div class="outline-text-5" id="text-unnumbered-233"></div>
+            <div class="outline-text-5" id="text-unnumbered-234"></div>
 
             <ul class="org-ul">
               <li>
-                <a id="unnumbered-234" name=
-                "unnumbered-234"></a>Reference<br />
+                <a id="unnumbered-235" name=
+                "unnumbered-235"></a>Reference<br />
 
-                <div class="outline-text-6" id="text-unnumbered-234">
+                <div class="outline-text-6" id="text-unnumbered-235">
                   <p><a href="#results">:results</a></p>
                 </div>
               </li>
@@ -5718,10 +5765,10 @@ Some results wrapped in an example block.
         </div>
       </div>
 
-      <div id="outline-container-unnumbered-235" class="outline-3">
-        <h3 id="unnumbered-235">Extra language-specific header arguments</h3>
+      <div id="outline-container-unnumbered-236" class="outline-3">
+        <h3 id="unnumbered-236">Extra language-specific header arguments</h3>
 
-        <div class="outline-text-3" id="text-unnumbered-235">
+        <div class="outline-text-3" id="text-unnumbered-236">
           <p>The following table lists the header arguments that some languages
           use.</p>
 
@@ -5883,8 +5930,8 @@ Some results wrapped in an example block.
         </div>
 
         <div id="outline-container-preamble" class="outline-4">
-          <h4 id="preamble"><a id="unnumbered-236" name=
-          "unnumbered-236"></a>:preamble</h4>
+          <h4 id="preamble"><a id="unnumbered-237" name=
+          "unnumbered-237"></a>:preamble</h4>
 
           <div class="outline-text-4" id="text-preamble">
             <p>Specifies code block prefix for code evaluation.</p>
@@ -5892,8 +5939,8 @@ Some results wrapped in an example block.
         </div>
 
         <div id="outline-container-separator" class="outline-4">
-          <h4 id="separator"><a id="unnumbered-237" name=
-          "unnumbered-237"></a>:separator</h4>
+          <h4 id="separator"><a id="unnumbered-238" name=
+          "unnumbered-238"></a>:separator</h4>
 
           <div class="outline-text-4" id="text-separator">
             <p>Specifies a different results separator.</p>
@@ -5901,14 +5948,14 @@ Some results wrapped in an example block.
         </div>
       </div>
 
-      <div id="outline-container-unnumbered-238" class="outline-3">
-        <h3 id="unnumbered-238">Data types</h3>
+      <div id="outline-container-unnumbered-239" class="outline-3">
+        <h3 id="unnumbered-239">Data types</h3>
       </div>
 
-      <div id="outline-container-unnumbered-239" class="outline-3">
-        <h3 id="unnumbered-239">Hooks</h3>
+      <div id="outline-container-unnumbered-240" class="outline-3">
+        <h3 id="unnumbered-240">Hooks</h3>
 
-        <div class="outline-text-3" id="text-unnumbered-239">
+        <div class="outline-text-3" id="text-unnumbered-240">
           <dl class="org-dl">
             <dt><code>org-babel-post-tangle-hook</code></dt>
 
@@ -5924,15 +5971,15 @@ Some results wrapped in an example block.
         </div>
       </div>
 
-      <div id="outline-container-unnumbered-240" class="outline-3">
-        <h3 id="unnumbered-240">Subtleties</h3>
+      <div id="outline-container-unnumbered-241" class="outline-3">
+        <h3 id="unnumbered-241">Subtleties</h3>
 
-        <div class="outline-text-3" id="text-unnumbered-240"></div>
+        <div class="outline-text-3" id="text-unnumbered-241"></div>
 
-        <div id="outline-container-unnumbered-241" class="outline-4">
-          <h4 id="unnumbered-241">Sh-mode</h4>
+        <div id="outline-container-unnumbered-242" class="outline-4">
+          <h4 id="unnumbered-242">Sh-mode</h4>
 
-          <div class="outline-text-4" id="text-unnumbered-241">
+          <div class="outline-text-4" id="text-unnumbered-242">
             <p>&gt; Why is the `diff’ command alone not exported while the
             piped `diff’ via &gt; `cat’ works?</p>
 
@@ -5953,10 +6000,10 @@ Some results wrapped in an example block.
         </div>
       </div>
 
-      <div id="outline-container-unnumbered-242" class="outline-3">
-        <h3 id="unnumbered-242">References</h3>
+      <div id="outline-container-unnumbered-243" class="outline-3">
+        <h3 id="unnumbered-243">References</h3>
 
-        <div class="outline-text-3" id="text-unnumbered-242">
+        <div class="outline-text-3" id="text-unnumbered-243">
           <ul class="org-ul">
             <li><a href="http://orgmode.org/org.pdf">The Org Manual</a></li>
 
@@ -5968,15 +6015,15 @@ Some results wrapped in an example block.
         </div>
       </div>
 
-      <div id="outline-container-unnumbered-243" class="outline-3">
-        <h3 id="unnumbered-243">Contributing</h3>
+      <div id="outline-container-unnumbered-244" class="outline-3">
+        <h3 id="unnumbered-244">Contributing</h3>
 
-        <div class="outline-text-3" id="text-unnumbered-243"></div>
+        <div class="outline-text-3" id="text-unnumbered-244"></div>
 
-        <div id="outline-container-unnumbered-244" class="outline-4">
-          <h4 id="unnumbered-244">Issues</h4>
+        <div id="outline-container-unnumbered-245" class="outline-4">
+          <h4 id="unnumbered-245">Issues</h4>
 
-          <div class="outline-text-4" id="text-unnumbered-244">
+          <div class="outline-text-4" id="text-unnumbered-245">
             <p>Report issues and suggest features and improvements on the
             <a href=
             "https://github.com/fniessen/refcard-org-babel%20/issues/new">GitHub
@@ -5984,19 +6031,19 @@ Some results wrapped in an example block.
           </div>
         </div>
 
-        <div id="outline-container-unnumbered-245" class="outline-4">
-          <h4 id="unnumbered-245">Patches</h4>
+        <div id="outline-container-unnumbered-246" class="outline-4">
+          <h4 id="unnumbered-246">Patches</h4>
 
-          <div class="outline-text-4" id="text-unnumbered-245">
+          <div class="outline-text-4" id="text-unnumbered-246">
             <p>I love contributions! Patches under any form are always
             welcome!</p>
           </div>
         </div>
 
-        <div id="outline-container-unnumbered-246" class="outline-4">
-          <h4 id="unnumbered-246">Donations</h4>
+        <div id="outline-container-unnumbered-247" class="outline-4">
+          <h4 id="unnumbered-247">Donations</h4>
 
-          <div class="outline-text-4" id="text-unnumbered-246">
+          <div class="outline-text-4" id="text-unnumbered-247">
             <p>If you like the refcard-org-babel project, you can show your
             appreciation and support future development by making a <a href=
             "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard-org-babel&amp;currency_code=EUR&amp;bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted">
@@ -6008,10 +6055,10 @@ Some results wrapped in an example block.
         </div>
       </div>
 
-      <div id="outline-container-unnumbered-247" class="outline-3">
-        <h3 id="unnumbered-247">License</h3>
+      <div id="outline-container-unnumbered-248" class="outline-3">
+        <h3 id="unnumbered-248">License</h3>
 
-        <div class="outline-text-3" id="text-unnumbered-247">
+        <div class="outline-text-3" id="text-unnumbered-248">
           <p>Copyright (C) 2014-2015 Free Software Foundation, Inc.</p>
 
           <p>Author: Fabrice Niessen<br />

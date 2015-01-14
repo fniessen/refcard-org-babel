@@ -982,21 +982,22 @@ reference in this language can not be resolved).
      *View the expanded body* of the code block at point. This view of code
      blocks is not editable.
 
+     This facility of *previewing* the expanded contents is useful for *debugging*.
+
 - ~C-c C-v o~ (or ~C-c C-v C-o~) ::
      *Open the results* of the code block at point.
 
 - ~C-c C-v C-z~ ::
-     *Switch to the session* of the current code block (first, you need to add
-     ~:session~ to it).
+     *Switch to the session buffer* of the current code block (first, you need to
+     add ~:session~ to it).
 
      Use ~C-u C-c C-v C-z~ to bring up the session with the input variable
      pre-loaded.
 
-- ~C-c C-v z~ ::
-     ~C-c C-v z~ is a variant of ~C-c C-v C-z~. Instead of switching to the session
-     buffer, it splits the window between:
-     + the session buffer, and
-     + a language major-mode edit buffer for the code block in question.
+- ~C-c C-v z~ (variant of ~C-c C-v C-z~) ::
+     *Split* the window between:
+     + the *session buffer*, and
+     + a language major-mode *edit buffer* for the code block in question.
 
      This can be convenient for using language major mode for interacting with
      the session buffer.
@@ -2138,6 +2139,23 @@ Specifies when expansion of "noweb" style references should occur.
 - ~:noweb eval~ ::
      Expands noweb references *only* during interactive evaluation.
 
+**** Syntax of noweb references
+
+- ~<<code-block-name>>~ ::
+     Insert the literal body of *code* block ~code-block-name~ itself.
+
+- ~<<code-block-name()>>~ ::
+     *Insert the *results* of evaluating the code block ~code-block-name~ (as
+     obtained with ~org-babel-execute-src-block~). That can be of different types:
+     LaTeX, etc.
+
+- ~<<code-block-name(x=3.3)>>~ ::
+     Insert the *results* of evaluating it with the specified argument value.
+
+Note that you can customize ~org-babel-noweb-wrap-start~ and
+~org-babel-noweb-wrap-end~ to use something else than angle brackets (for example,
+double quotes).
+
 **** Examples
 
 ***** Expand block
@@ -2861,20 +2879,28 @@ Shares data and persists state between (evaluation of) different code blocks.
 
 **** Remarks
 
-Even if you don't need to share data between blocks, you can still use
-sessions in order not to wait for the interpreter to start up for each block!
+- If a code block has a =:session= header argument, then it is assumed that the
+  block should be evaluated regardless of it's =:exports= header argument, because
+  it could change the state of the session.
 
-It also allows for manual inspection of the results of evaluation.
+- Even if you don't need to share data between blocks, you can still use
+  sessions in order not to wait for the interpreter to start up for each block!
 
-When you work on different files at the same time, you may want to use:
-- the same session, or
-- differently named sessions (running their own process).
+- This also allows for manual inspection of the results of evaluation.
+
+- When you work on different files at the same time, you may want to use:
+  + the same session, or
+  + differently named sessions (running their own process).
+
+- Adding session to a shell source block has the following impact: commands will
+  be run from =~= directory (instead of the local one).
 
 **** See also
 
 ***** Reference
 
-[[#eval][:eval]]
+[[#eval][:eval]] \\
+[[#exports][:exports]]
 
 *** :shebang
     :PROPERTIES:
