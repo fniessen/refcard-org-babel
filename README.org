@@ -1,7 +1,7 @@
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
 #+DESCRIPTION: Org Babel reference card
-#+KEYWORDS: org-mode, org-babel
+#+KEYWORDS:  org-mode, org-babel, eric shulte, dan davison
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:nil
 
@@ -15,9 +15,13 @@ Welcome to Org Babel reference card. It contains the reference documentation
 that describes how to perform *code execution* within Org mode documents using
 Org Babel 8.
 
-#+begin_warning
+In a nutshell, Org Babel is like Sweave (for [[id:1663ff41-af51-4b07-abc8-6bfed9395b2b][reproducible research]]) but it takes
+a *large number of possible languages* (R, python, Java, ...) and Org mode can
+produce *HTML* as well as *PDF*.
+
+#+begin_note
 Prolonged use may cause addiction!
-#+end_warning
+#+end_note
 
 ** Compendium principles
 
@@ -34,6 +38,9 @@ Prolonged use may cause addiction!
      (generally in HTML or LaTeX).
 
 *** Reproducible Research
+    :PROPERTIES:
+    :ID:       1663ff41-af51-4b07-abc8-6bfed9395b2b
+    :END:
 
 Above those, Org Babel adds /in situ/ code evaluation:
 
