@@ -281,10 +281,10 @@ As I'm named, my results may live anywhere in the file.
 
                   <p>so that font lock and editing source do work.</p>
 
-                  <p>Currently, a <code>bash</code> code block will be run with
-                  <code>bash</code>, and a <code>shell</code> code block will
-                  be run with <code>sh</code>. Both will use
-                  <code>shell-script-mode</code>.</p>
+                  <p>XXX Currently, a <code>bash</code> code block will be run
+                  with <code>bash</code>, and a <code>shell</code> code block
+                  will be run with <code>sh</code>. Both will use
+                  <code>shell-script-mode</code>. XXX</p>
                 </div>
               </li>
 
@@ -428,9 +428,9 @@ As I'm named, my results may live anywhere in the file.
                       keyword used to refer to the source that generated this
                       element. &gt;&gt; &gt;&gt; Cross-references only react to
                       #+name keyword. &gt; &gt; Sorry, this is confusing. Is it
-                      then the case that we are naming the &gt; source block to
-                      ensure that captions stick to the corresponding &gt;
-                      results block?</p>
+                      then the case that we are naming the source &gt; block to
+                      ensure that captions stick to the corresponding results
+                      block?</p>
 
                       <p>Source block captions apply to the source block, not
                       to the results. You have to define a separate caption for
@@ -2111,10 +2111,10 @@ expr 1 + 1
             <div class="outline-text-5" id="text-unnumbered-67">
               <div class="org-src-container">
                 <pre class="src src-org">
-<span class="org-org-meta-line">#+HEADER: :exports code :var data=2</span>
-<span class="org-org-block-begin-line">#+BEGIN_SRC emacs-lisp</span>
+<span class="org-org-meta-line">#+header: :exports code :var data=2</span>
+<span class="org-org-block-begin-line">#+begin_src emacs-lisp</span>
 ... some code ...
-<span class="org-org-block-end-line">#+END_SRC</span>
+<span class="org-org-block-end-line">#+end_src</span>
 </pre>
               </div>
             </div>
@@ -3017,14 +3017,15 @@ x <span class="org-constant">&lt;-</span> <span class=
                 first row of output table lost when using latex export<br />
 
                 <div class="outline-text-6" id="text-unnumbered-93">
-                  <p>org-babel-execute:python does its own formatting. #+CALL:
-                  OTOH passes the results to babel.</p>
+                  <p><code>org-babel-execute:python</code> does its own
+                  formatting. <code>#+CALL:</code> OTOH passes the results to
+                  Babel.</p>
 
                   <p>The workaround is to use:</p>
 
                   <div class="org-src-container">
                     <pre class="src src-org">
-<span class="org-org-meta-line">#+CALL: t1() :colnames yes</span>
+<span class="org-org-meta-line">#+call: t1() :colnames yes</span>
 </pre>
                   </div>
                 </div>
@@ -4624,8 +4625,9 @@ data
 
                         <dd>
                           <p>(implies <code>verbatim</code> results, unless
-                          otherwise stated) <b>Wraps raw Org mode results</b>
-                          in a <code>#+BEGIN_SRC org</code> block (dead data,
+                          otherwise stated)<br />
+                          <b>Wraps raw Org mode results</b> in a
+                          <code>#+begin_src org</code> block (dead data,
                           <b>comma-escaped lines</b>). This will be <b>exported
                           as Org code block</b> (as <code>verbatim</code> or
                           <code>listings</code> to LaTeX).</p>
@@ -4635,14 +4637,15 @@ data
 
                         <dd>
                           <p>(replacement of <code>:results wrap</code>, since
-                          Org 7.9.2) (implies <code>verbatim</code> results,
-                          unless otherwise stated) <b>Wraps code block
-                          results</b> in a <code>RESULTS</code> drawer. This
-                          has the benefit of delimiting your results, and can
-                          be useful for really inserting pure <b>Org mode
-                          syntax</b> in the buffer (live data, <b>not
-                          escaped</b>) — which can be included correctly <b>in
-                          all export targets</b>.</p>
+                          Org 7.9.2)<br />
+                          (implies <code>verbatim</code> results, unless
+                          otherwise stated)<br />
+                          <b>Wraps code block results</b> in a
+                          <code>RESULTS</code> drawer. This has the benefit of
+                          delimiting your results, and can be useful for really
+                          inserting pure <b>Org mode syntax</b> in the buffer
+                          (live data, <b>not escaped</b>) — which can be
+                          included correctly <b>in all export targets</b>.</p>
 
                           <p>You can put anything in your drawer besides a
                           headline and another drawer.</p>
@@ -4795,8 +4798,8 @@ data
               but render them as &gt; raw on export (which removes the drawer
               and replaces with raw results). &gt; &gt; Like so: &gt; &gt;
               #+header: :results (if (boundp ‘backend) “raw” “drawer”) &gt;
-              #+BEGIN_SRC emacs-lisp :exports both &gt; &gt; (format “*
-              headline\n1\n2\n5\n”) &gt; #+END_SRC</p>
+              #+begin_src emacs-lisp :exports both &gt; &gt; (format “*
+              headline\n1\n2\n5\n”) &gt; #+end_src</p>
 
               <p>That’s a very nice tip - one small weakness is that it’ll do
               the wrong thing if you just happen to have a binding for
@@ -5297,16 +5300,16 @@ printf <span class=
               <code>:var data=&lt;FILE&gt;:&lt;VAR&gt;</code>. Note that, in
               order to work, the files must be in the same directory.</p>
 
-              <p>:var introduces code block dependencies. include anything in
-              the Org mode file that takes a @code{#+NAME:},
-              @code{#+BEGIN_EXAMPLE} blocks, other code blocks, and the results
-              of other code blocks. +When a reference is made to another code
-              block, the referenced block will be+evaluated whenever needed, in
-              order to supply its value to the referencing+block. If the
-              referenced block is cached (see @ref{cache}), its value will+be
-              reused if possible, instead of being re-calculated. If the
-              referring code+block is cached, its hash value will depend on the
-              value of all the code+blocks it references.</p>
+              <p><code>:var</code> introduces code block dependencies. include
+              anything in the Org mode file that takes a <code>#+NAME:</code>,
+              <code>#+BEGIN_EXAMPLE</code> blocks, other code blocks, and the
+              results of other code blocks. When a reference is made to another
+              code block, the referenced block will be evaluated whenever
+              needed, in order to supply its value to the referencing block. If
+              the referenced block is cached (see @ref{cache}), its value will
+              be reused if possible, instead of being re-calculated. If the
+              referring code block is cached, its hash value will depend on the
+              value of all the code blocks it references.</p>
             </div>
           </div>
 

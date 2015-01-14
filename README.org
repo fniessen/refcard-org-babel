@@ -11,9 +11,9 @@
 
 * Org Babel reference card [[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]] [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif]]
 
-Welcome to Org Babel reference card. It contains the reference documentation
-that describes how to perform *code execution* within Org mode documents using
-Org Babel 8.
+Welcome to Org Babel reference card.  It contains the reference documentation
+that describes how to perform *code execution* within Org mode documents using Org
+Babel 8.
 
 In a nutshell, Org Babel is like Sweave (for [[id:1663ff41-af51-4b07-abc8-6bfed9395b2b][reproducible research]]) but it takes
 a *large number of possible languages* (R, python, Java, ...) and Org mode can
@@ -142,13 +142,13 @@ You can also add support for new languages:
 
 so that font lock and editing source do work.
 
-Currently, a ~bash~ code block will be run with ~bash~, and a ~shell~ code block will
-be run with ~sh~.  Both will use ~shell-script-mode~.
+XXX Currently, a ~bash~ code block will be run with ~bash~, and a ~shell~ code block will
+be run with ~sh~.  Both will use ~shell-script-mode~. XXX
 
 ***** Code block arguments
 
 You can create a code block with optional parameters by specifying a *default
-value* for optional parameters. When the code block is executed, the default
+value* for optional parameters.  When the code block is executed, the default
 value is used if no other value has been specified in the call.
 
 The way to define arguments is to declare them on the ~#+begin_src~ line.
@@ -161,10 +161,10 @@ The way to define arguments is to declare them on the ~#+begin_src~ line.
 Specifying default values is necessary because each variable must be
 initialized when the code block is executed.
 
-If the variable semantics vary by language (as they do), just say so (e.g.
-when defining a SQL function, vars are substituted into the body by prefixing
-the names with $, but in python they are local vars in non-session mode and
-global vars in session mode and so on. Maybe this doc section shouldn't try to
+If the variable semantics vary by language (as they do), just say so (e.g.  when
+defining a SQL function, vars are substituted into the body by prefixing the
+names with $, but in python they are local vars in non-session mode and global
+vars in session mode and so on.  Maybe this doc section shouldn't try to
 enumerate all those languages, but just redirect to the proper Worg Babel
 language page for details on arg handling.
 
@@ -233,17 +233,16 @@ Maybe you could do something like the following...
 
 ****** Cross-referencing a results block
 
->> #+results are never used for cross-references. This is a Babel internal
+>> #+results are never used for cross-references.  This is a Babel internal
 >> keyword used to refer to the source that generated this element.
 >>
 >> Cross-references only react to #+name keyword.
 >
-> Sorry, this is confusing. Is it then the case that we are naming the
-> source block to ensure that captions stick to the corresponding
-> results block?
+> Sorry, this is confusing.  Is it then the case that we are naming the source
+> block to ensure that captions stick to the corresponding results block?
 
-Source block captions apply to the source block, not to the results. You
-have to define a separate caption for the results.
+Source block captions apply to the source block, not to the results.  You have
+to define a separate caption for the results.
 
 Source block name will be used both as a label for cross referencing and
 as a Babel internal code for results correspondence.
@@ -252,8 +251,8 @@ as a Babel internal code for results correspondence.
 > a different name for it, so that the cross-references pick it up
 > correctly?
 
-Yes, the name given to the results block doesn't depend on the results
-keyword. You can give it any name, as long as it is unique.
+Yes, the name given to the results block doesn't depend on the results keyword.
+You can give it any name, as long as it is unique.
 
 Here is an example:
 
@@ -301,15 +300,15 @@ It has the following syntax, where each header argument portion is optional.
      XXX Describe how to pass args.
 
 - HEADER-ARGS-FOR-BLOCK ("inside header argument") ::
-     Header arguments applied to the *evaluation of the code block*. They /affect
-     how the code block is evaluated/: they *change the inputs*.
+     Header arguments applied to the *evaluation of the code block*.  They
+     /affect how the code block is evaluated/: they *change the inputs*.
 
      For example, ~:session *org-R*~ or ~:results output~.
 
 - HEADER-ARGS-FOR-CALL-LINE ("end header argument") ::
-     Header arguments applied to the *evaluation of the #+CALL: line*. They do not
-     affect evaluation of the named code block; instead, they /affect how the
-     results are incorporated/ into the Org mode buffer.
+     Header arguments applied to the *evaluation of the #+CALL: line*.  They do
+     not affect evaluation of the named code block; instead, they /affect how
+     the results are incorporated/ into the Org mode buffer.
 
      For example, ~:exports results~ or ~:results html~.
 
@@ -452,7 +451,7 @@ As ~#+call:~ lines can be named, it is possible to reference that result.
 
 *Note -- No square bracket for the end header arguments!*
 
-Thanks for your quick answer. Nevertheless, adding :results raw at the end
+Thanks for your quick answer.  Nevertheless, adding :results raw at the end
 changes the formatting output but embeds everything within paren.  Given your
 advice, I am pretty closed to what I want to do by adding another :results raw
 command either as an inside header arguments or directly when declaring the
@@ -490,8 +489,9 @@ Each element of ~VARIABLES~ should be a two element list, whose
 - second element is a *string* of its value.
 
 By default, string variable names are interpreted as references to source-code
-blocks. To force interpretation of a cell's value as a string, prefix the
-identifier with a ~$~ (e.g., ~$$2~ instead of ~$2~ or ~$@2$2~ instead of ~@2$2~).
+blocks.  To force interpretation of a cell's value as a string, prefix the
+identifier with a ~$~ (e.g., ~$$2~ instead of ~$2~ or ~$@2$2~ instead of
+~@2$2~).
 
 In order to differentiate between strings and reference names, we surround all
 strings in double quotes...
@@ -542,9 +542,9 @@ results
 ,#+end_src
 #+end_src
 
-There is no way to *map* a *code block* over the *rows of a table*. You could use
-the ~org-sbe~ macro and a spreadsheet formula to call a code block on multiple table
-cells, but the results would be inserted back into the table.
+There is no way to *map* a *code block* over the *rows of a table*.  You could
+use the ~org-sbe~ macro and a spreadsheet formula to call a code block on
+multiple table cells, but the results would be inserted back into the table.
 
 | A       | nil |
 | B       | nil |
@@ -559,9 +559,9 @@ cells, but the results would be inserted back into the table.
 
 Also remember you can use ELisp in formulas:
 
-| Date 1                  | Date 2                  | Duration |
-|-------------------------+-------------------------+----------|
-| [2013-12-21 sam. 00:00] | [2013-12-22 dim. 00:00] | 86400.0  |
+| Date 1                 | Date 2                 | Duration |
+|------------------------+------------------------+----------|
+| [2013-12-21 Sat 00:00] | [2013-12-22 Sun 00:00] | 86400.0  |
 #+TBLFM: $3='(- (org-time-string-to-seconds "$2") (org-time-string-to-seconds "$1"));L
 
 Note the quotes around "$2" and "$1", they are necessary so that the date is
@@ -616,9 +616,9 @@ not literally inserted in the formulas when Org is computing it.
 
 ****** Passing header arguments
 
-It is also possible to pass header arguments to the code block. In this case,
-a table cell should hold the string value of the header argument which can
-then be passed before all variables.
+It is also possible to pass header arguments to the code block.  In this case,
+a table cell should hold the string value of the header argument which can then
+be passed before all variables.
 
 #+name: test-org-sbe
 #+begin_src emacs-lisp :var x=0 :var y=0
@@ -667,7 +667,7 @@ Clicking on the following hyperlink will execute the code block.
 
 ****** Using ~org-sbe~ to assign header arguments
 
-You can use arbitrary Lisp forms to assign header arguments. For example, to
+You can use arbitrary Lisp forms to assign header arguments.  For example, to
 dynamically *compute the file name*.
 
 The following generates a file which is conditional to the export target:
@@ -702,7 +702,7 @@ plot(x, sin(x))
 #+results:
 [[file:Rplot_rev-3.14.png]]
 
-The following works great. (note the tick in the ~(boundp 'backend)~).
+The following works great.  (note the tick in the ~(boundp 'backend)~).
 
 # #+call: disc[:file (if (and (boundp 'backend) (equal backend 'html)) "fox.svg" "fox.pdf")]() :results file
 
@@ -739,7 +739,7 @@ with header arguments.
 ***** Remarks
 
 - *Inline code blocks don't associate themselves with their results*, they are
-  *only expected to be evaluated during export*. They are not intended to be
+  *only expected to be evaluated during export*.  They are not intended to be
   executed in the buffer during normal use.
 
 - Inline code blocks are treated just like code blocks, however they have
@@ -876,7 +876,7 @@ Babel commands can be used as *speed commands* when the point is at the beginnin
 of a code block (specifically, at the beginning of the ~#+begin_src~ line, in
 column ~0~).
 
-Org-babel is making use of the =C-c C-v= key binding. All Org-babel keybindings
+Org-babel is making use of the =C-c C-v= key binding.  All Org-babel keybindings
 are located behind this prefix.
 
 *** Help
@@ -912,7 +912,7 @@ are located behind this prefix.
      *Mark* (= select) the *whole* code block.
 
 - ~C-c C-v I~ (or ~C-c C-v C-I~) ::
-     *Display information* on the current source block. This includes header
+     *Display information* on the current source block.  This includes header
      arguments, language and name.
 
 - ~C-c C-v j~ (or ~C-c C-v C-j~) ::
@@ -927,7 +927,7 @@ are located behind this prefix.
      #+end_src
 
 - ~C-c C-v c~ (or ~C-c C-v C-c~) ::
-     Check for /suspicious/ (that is, unknown) header arguments. This may prove
+     Check for /suspicious/ (that is, unknown) header arguments.  This may prove
      useful if you get into the habit of using it as your first step in
      *debugging* code blocks.
 
@@ -1002,8 +1002,8 @@ cosmetic changes.
      *Tangle all the code blocks* in supplied file.
 
 In many languages constructs like <<foo>> are valid code, so it would be
-inappropriate for tangling to raise errors by default. It is possible to turn on
-such errors on a language-by-language basis, by customizing the variable
+inappropriate for tangling to raise errors by default.  It is possible to turn
+on such errors on a language-by-language basis, by customizing the variable
 ~org-babel-noweb-error-langs~ (list of languages for which Babel will raise
 literate programming errors when the source code block satisfying a noweb
 reference in this language can not be resolved).
@@ -1011,7 +1011,7 @@ reference in this language can not be resolved).
 *** View the results
 
 - ~C-c C-v v~ (or ~C-c C-v C-v~) ::
-     *View the expanded body* of the code block at point. This view of code
+     *View the expanded body* of the code block at point.  This view of code
      blocks is not editable.
 
      This facility of *previewing* the expanded contents is useful for *debugging*.
@@ -1162,19 +1162,18 @@ have the later value.
 #+begin_note
 The deprecated syntax for default header argument properties, using the name of
 the header argument as a property name directly, evaluates the property as seen
-by the corresponding source block definition. This behavior has been kept for
+by the corresponding source block definition.  This behavior has been kept for
 backwards compatibility.
 
 BUT...
 
-Eric Schulte has said <http://mid.gmane.org/87wqce0w9n.fsf@gmail.com>
-that the deprecation of this feature is “premature”.  I didn’t realize
-at the time that the deprecation was also included in the manual rather
-than just a code comment.  Possibly it should be un-deprecated.
+Eric Schulte has said <http://mid.gmane.org/87wqce0w9n.fsf@gmail.com> that the
+deprecation of this feature is "premature".  I didn't realize at the time that
+the deprecation was also included in the manual rather than just a code comment.
+Possibly it should be un-deprecated.
 
-Certainly I agree that the suggested replacement is less capable.  Sorry
-I can’t help more.  Maybe Eric or Achim (who introduced the deprecation)
-will comment.
+Certainly I agree that the suggested replacement is less capable.  Sorry I can't
+help more.  Maybe Eric or Achim (who introduced the deprecation) will comment.
 #+end_note
 
 You can also specify *multiple header arguments as one Org mode property* through
@@ -1185,8 +1184,8 @@ the use of:
 That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] basis.
 
 The property mechanism is a general mechanism for the concatenation of property
-strings. Any property specification unless it is postfixed with a ~+~ will /reset/
-the value of that property to its current value.
+strings.  Any property specification unless it is postfixed with a ~+~ will
+/reset/ the value of that property to its current value.
 
 : #+PROPERTY: header-args+ :results output scalar pp replace
 
@@ -1201,10 +1200,9 @@ Awesome! Indeed, this works, for reference:
 ,#+PROPERTY: header-args:R+ :width 800
 #+end_src
 
-Also, don't forget to =C-c C-c= on these arguments (just one of them
-in your preamble) to make sure they're updated before trying another
-export. (Only mentioning this as I often forget and then think
-something didn't work...)
+Also, don't forget to =C-c C-c= on these arguments (just one of them in your
+preamble) to make sure they're updated before trying another export.  (Only
+mentioning this as I often forget and then think something didn't work...)
 
 
 **** Subtree header arguments
@@ -1228,10 +1226,10 @@ tree (and subtrees):
      :END:
 
 #+begin_src org
-,#+HEADER: :exports code :var data=2
-,#+BEGIN_SRC emacs-lisp
+,#+header: :exports code :var data=2
+,#+begin_src emacs-lisp
 ... some code ...
-,#+END_SRC
+,#+end_src
 #+end_src
 
 **** Call line header arguments
@@ -1275,9 +1273,9 @@ Avoids re-evaluating unchanged code blocks.
 
 - ~:cache yes~ ::
      Avoids re-evaluating unchanged code blocks by associating a *hash* of the
-     /expanded/ code block (= code block and parameters) with the *results*. It
-     allows the results to be returned without having to re-run the code block
-     --- unless the code or the input parameters have changed.
+     /expanded/ code block (= code block and parameters) with the *results*.  It
+     allows the results to be returned without having to re-run the code
+     block --- unless the code or the input parameters have changed.
 
 **** Remarks
 
@@ -1399,17 +1397,17 @@ Handles *column names in tables*.
 **** Options
 
 - nothing ::
-     Removes the header (and the top hline) from the table before
-     processing if the input table looks like it has column names (because its
-     second row is an hline). \\
+     Removes the header (and the top hline) from the table before processing if
+     the input table looks like it has column names (because its second row is
+     an hline). \\
      (default)
 
 - ~:colnames no~ ::
-     Don't strip the header. Re-add headers (post-processing). \\
+     Don't strip the header.  Re-add headers (post-processing). \\
      (default for Emacs Lisp code blocks)
 
 - ~:colnames yes~ ::
-     Tells Org Babel that your first row contains column names. Applies the
+     Tells Org Babel that your first row contains column names.  Applies the
      code block to the body of the input table.
 
 - ~:colnames <LIST>~ ::
@@ -1423,7 +1421,7 @@ Handles *column names in tables*.
 **** Remarks
 
 By default, the first row will be used for column names if followed by a ~hline~
-XXX???XXX. Without a ~hline~, use ~:colnames yes~.
+XXX???XXX.  Without a ~hline~, use ~:colnames yes~.
 
 #+name: colrownamestbl
 |        | Alpha | Beta | Gamma |
@@ -1592,13 +1590,13 @@ data
 
 ***** Show the labels of the vertical and the horizontal axes
 
-#+BEGIN_SRC R :exports results :results output raw
+#+begin_src R :exports results :results output raw
 org.files <- c (1, 0, 2, 2, 2, 2, 1)
 happiness <- c (1, 0, 2, 2, 2, 1, 2)
 data <- data.frame (org.files, happiness)
 library (ascii)
 print (ascii (table (data)), type = "org")
-#+END_SRC
+#+end_src
 
 #+RESULTS:
 |           |   | *happiness* |      |      |
@@ -1630,14 +1628,14 @@ print (ascii (table (data)), type = "org")
 
 ***** #+CALL get the first row of output table lost when using latex export
 
-org-babel-execute:python does its own formatting. #+CALL: OTOH passes the
-results to babel.
+~org-babel-execute:python~ does its own formatting.  ~#+CALL:~ OTOH passes the
+results to Babel.
 
 The workaround is to use:
 
-#+BEGIN_SRC org
-,#+CALL: t1() :colnames yes
-#+END_SRC
+#+begin_src org
+,#+call: t1() :colnames yes
+#+end_src
 
 **** See also
 
@@ -1672,8 +1670,8 @@ which the code was tangled).
 
 - ~:comments noweb~ ::
      Inserts comment wrappers (with *links* back to the original Org mode file)
-     around all *embedded noweb* sections. Is an enhanced version of ~:comments
-     link~, that can break newlines in ~<<block>> + 1~, for example. XXX
+     around all *embedded noweb* sections.  Is an enhanced version of ~:comments
+     link~, that can break newlines in ~<<block>> + 1~, for example.  XXX
 
 - ~:comments org~ ::
      Includes *preceding text* from the Org mode file as a comment before the
@@ -1712,7 +1710,7 @@ Specifies the default (possibly *remote*) directory during code block execution.
 
 **** Remarks
 
-You can use the ~:dir~ header argument for *remote execution*. The directory is
+You can use the ~:dir~ header argument for *remote execution*.  The directory is
 specified using using [[http://www.gnu.org/software/emacs/manual/html_node/tramp/Filename-Syntax.html][Tramp filename syntax]].
 
 ~:results output~ seems to be necessary!
@@ -1783,8 +1781,8 @@ Specifies permissions for /every/ execution of code blocks.
 **** Options
 
 - nothing ::
-     If the ~org-confirm-babel-evaluate~ variable is non-nil, allows evaluation of
-     the code block (both interactively and during export) without
+     If the ~org-confirm-babel-evaluate~ variable is non-nil, allows evaluation
+     of the code block (both interactively and during export) without
      a confirmation from the user. \\
      (default)
 
@@ -1805,9 +1803,9 @@ Specifies permissions for /every/ execution of code blocks.
      of the ~org-confirm-babel-evaluate~ variable.
 
 - ~:eval never~ ::
-     *Inhibits* (silently) *evaluation* of the code block (both interactively and
-     during export). This is useful for protecting against the evaluation of
-     dangerous code blocks.
+     *Inhibits* (silently) *evaluation* of the code block (both interactively
+     and during export).  This is useful for protecting against the evaluation
+     of dangerous code blocks.
 
 - ~:eval no~ ::
      Is the same as ~:eval never~.
@@ -1873,13 +1871,14 @@ Specifies how code and/or results should be handled *during export*.
 **** Remarks
 
 - When ~:exports~ is set to ~none~ or ~code~, Org Babel will *not [[#eval][run]]* the code block
-  *during export*, avoiding to (re-)generate the results on every export. In
-  particular, use that on code blocks which cannot be [[#eval][executed]] on their own.
+  *during export*, avoiding to (re-)generate the results on every export.  In
+  particular, use that on code blocks which cannot be [[#eval][executed]] on
+  their own.
 
   This has *no effect on interactive [[#eval][evaluation]]*, though.
 
 - When ~:exports~ is set to ~results~ or ~both~, if evaluation is allowed during
-  export, the code block will be (re-)[[#eval][evaluated]] during export. Otherwise, the
+  export, the code block will be (re-)[[#eval][evaluated]] during export.  Otherwise, the
   current (unchanged) results block, when present, will be included *in the
   exported file*.
 
@@ -1919,18 +1918,18 @@ Extension can be everything: ~.png~, ~.pdf~, ~.txt~, ~.csv~, etc.
 When relative, the filename is interpreted relatively to the [[#dir][default
 directory]].
 
-- For *graphics-only languages* (e.g. /asymptote/, /ditaa/, /dot/, /gnuplot/, /mscgen/,
-  /plantuml/), the "results" is the *graphics*, and a link to the image is placed
-  in the Org buffer.
+- For *graphics-only languages* (e.g. /asymptote/, /ditaa/, /dot/, /gnuplot/,
+  /mscgen/, /plantuml/), the "results" is the *graphics*, and a link to the
+  image is placed in the Org buffer.
 
 - For *general-purpose languages* (e.g. /emacs-lisp/, /python/, /R/, /ruby/, /sh/), the
   "results" written to file is the *normal Org Babel results* (string, number,
   table).
 
   When generating *graphics*, including the ~:results graphics~ header argument is
-  *required*, in addition to ~:file <FILENAME>~, in order for graphical output to
-  be sent automatically to file. If ~:file~ is supplied, but not ~:results
-  graphics~, then non-graphical (~value~ or ~output~) results are written to file.
+  *required*, in addition to ~:file <FILENAME>~, in order for graphical output to be
+  sent automatically to file.  If ~:file~ is supplied, but not ~:results graphics~,
+  then non-graphical (~value~ or ~output~) results are written to file.
 
 Links to generated images will be expanded to include the contents of the
 images upon export.
@@ -1938,10 +1937,11 @@ images upon export.
 If you then turn on inline images with ~M-x org-toggle-inline-images~, you can
 preview the generated image from within your Org buffer.
 
-Some languages including /R/, /gnuplot/, /dot/, and /ditaa/ provide special handling
-of the ~:file~ header argument automatically wrapping the code block body in the
-boilerplate code required to save output to the specified file. This is often
-useful for saving graphical output of a code block to the specified file.
+Some languages including /R/, /gnuplot/, /dot/, and /ditaa/ provide special
+handling of the ~:file~ header argument automatically wrapping the code block
+body in the boilerplate code required to save output to the specified file.
+This is often useful for saving graphical output of a code block to the
+specified file.
 
 /This means that the argument of the ~:file~ header can be omitted and the
 file name can be generated within the source block./
@@ -2158,7 +2158,7 @@ Specifies when expansion of "noweb" style references should occur.
 
 - ~:noweb strip-export~ ::
      Expands noweb references in code blocks before the block is tangled or
-     evaluated. However, they will be *stripped on export*.
+     evaluated.  However, they will be *stripped on export*.
 
 - ~:noweb no-export~ ::
      Expands noweb references during tangling and interactive evaluation, but
@@ -2178,8 +2178,8 @@ Specifies when expansion of "noweb" style references should occur.
 
 - ~<<code-block-name()>>~ ::
      *Insert the *results* of evaluating the code block ~code-block-name~ (as
-     obtained with ~org-babel-execute-src-block~). That can be of different types:
-     LaTeX, etc.
+     obtained with ~org-babel-execute-src-block~).  That can be of different
+     types: LaTeX, etc.
 
 - ~<<code-block-name(x=3.3)>>~ ::
      Insert the *results* of evaluating it with the specified argument value.
@@ -2197,17 +2197,17 @@ double quotes).
 Note the parens in the noweb reference:
 
 #+name: testing
-#+BEGIN_src shell :results raw
+#+begin_src shell :results raw
 echo "["
 ls *.org | sed 's/$/;/'
 echo "]"
-#+END_SRC
+#+end_src
 
-# #+BEGIN_SRC ocaml :noweb yes
+# #+begin_src ocaml :noweb yes
 # let x =
 # <<testing()>>
 # in x
-# #+END_SRC
+# #+end_src
 
 ***** Expand variable in tangled code
 
@@ -2351,7 +2351,7 @@ The padline is not inserted at the top of the file, only between blocks.
 
 **** Remarks
 
-- Post blocks must return results, eventually by adding a variable to them. For
+- Post blocks must return results, eventually by adding a variable to them.  For
   example:
 
   #+name: notify
@@ -2360,18 +2360,18 @@ The padline is not inserted at the top of the file, only between blocks.
   data
   #+end_src
 
-- When a post argument is given, the results of the code block will
-  temporarily be bound to the ~*this*~ variable. This variable may then be
-  included in header argument forms such as those used in ~var~ header argument
-  specifications allowing passing of results to other code blocks, or direct
-  execution via Emacs Lisp.
+- When a post argument is given, the results of the code block will temporarily
+  be bound to the ~*this*~ variable.  This variable may then be included in header
+  argument forms such as those used in ~var~ header argument specifications
+  allowing passing of results to other code blocks, or direct execution via
+  Emacs Lisp.
 
 - For example, the ~:post~ header argument could link to an Emacs Lisp source
   code block which does automatically refresh the inline images of (only)
   certain blocks (and not others).
 
-- The value of ~:post~ should be a *Babel call* (in the same format as
-  e.g. a ~#+call~ line), not an Emacs Lisp form.
+- The value of ~:post~ should be a *Babel call* (in the same format as e.g. a ~#+call~
+  line), not an Emacs Lisp form.
 
 **** Examples
 
@@ -2472,13 +2472,13 @@ evaluation.
 
 - ~:results value~ (aka functional mode) ::
      Specifies that the results of the block is the *value of the last
-     statement* in your code, turned into an *Org mode table* if it is a
-     list/vector type object. \\
+     statement* in your code, turned into an *Org mode table* if it is
+     a list/vector type object. \\
      (default)
 
 - ~:results output~ (aka scripting mode) ::
      Specifies that the results will be *everything printed to stdout* during
-     execution of the code block. The strings collected from ~stdout~ are not
+     execution of the code block.  The strings collected from ~stdout~ are not
      treated as values, but rather as *raw strings*. \\
      (default for Ledger code blocks)
 
@@ -2497,13 +2497,13 @@ Specifies if and how the results should be *inserted in the buffer*.
      (default)
 
 - ~:results silent~ ::
-     Sends the commands, echoes the results in the minibuffer (to see code
-     block output), but *does not change the Org mode buffer* (even during
-     export, *no results are inserted* into the exported document). \\
+     Sends the commands, echoes the results in the minibuffer (to see code block
+     output), but *does not change the Org mode buffer* (even during export, *no
+     results are inserted* into the exported document). \\
      (default for Org and Screen code blocks)
 
 - ~:results none~ ::
-     Silents the results, even for the minibuffer. By definition, such a code
+     Silents the results, even for the minibuffer.  By definition, such a code
      block is run for its side effects.
 
 - ~:results append~ ::
@@ -2585,8 +2585,7 @@ Specifies how the results should be *interpreted*.
 Specifies what type of results the code block will return.
 
 - ~:results raw~ ::
-     Means that the input is a string (so hline processing is not
-     performed). \\
+     Means that the input is a string (so hline processing is not performed). \\
      (default for Org code blocks) \\
      (implies ~verbatim~ results, unless otherwise stated)
 
@@ -2649,10 +2648,10 @@ Specifies what type of results the code block will return.
      # #+END_LaTeX
 
 - ~:results org~ ::
-     (implies ~verbatim~ results, unless otherwise stated)
-     *Wraps raw Org mode results* in a ~#+BEGIN_SRC org~ block (dead data,
-     *comma-escaped lines*). This will be *exported as Org code block* (as
-     ~verbatim~ or ~listings~ to LaTeX).
+     (implies ~verbatim~ results, unless otherwise stated) \\
+     *Wraps raw Org mode results* in a ~#+begin_src org~ block (dead data,
+     *comma-escaped lines*).  This will be *exported as Org code block* (as ~verbatim~
+     or ~listings~ to LaTeX).
 
      # XXX This breaks HTML export
 
@@ -2661,15 +2660,15 @@ Specifies what type of results the code block will return.
      # #+end_src
      #
      # #+results:
-     # #+BEGIN_SRC org
+     # #+begin_src org
      # ,* Headline
      # Paragraph
-     # #+END_SRC
+     # #+end_src
 
 - ~:results drawer~ ::
-     (replacement of ~:results wrap~, since Org 7.9.2)
-     (implies ~verbatim~ results, unless otherwise stated)
-     *Wraps code block results* in a ~RESULTS~ drawer. This has the benefit of
+     (replacement of ~:results wrap~, since Org 7.9.2) \\
+     (implies ~verbatim~ results, unless otherwise stated) \\
+     *Wraps code block results* in a ~RESULTS~ drawer.  This has the benefit of
      delimiting your results, and can be useful for really inserting pure *Org
      mode syntax* in the buffer (live data, *not escaped*) --- which can be
      included correctly *in all export targets*.
@@ -2714,9 +2713,9 @@ Specifies what type of results the code block will return.
      # #+end_src
      #
      # #+results:
-     # #+BEGIN_SRC emacs-lisp
+     # #+begin_src emacs-lisp
      # "* Headline\nParagraph"
-     # #+END_SRC
+     # #+end_src
 
 - ~:results pp~ ::
      Prints data.
@@ -2762,11 +2761,11 @@ Specifies what type of results the code block will return.
 
 **** Remarks
 
-With ~raw~, as there are *no obvious markers to delimit the results* in the Org
-mode buffer, there is no way to know where raw results begin or end. So,
-~:results raw replace~ will never work as expected: *raw results cannot be removed*
-(they become part of the buffer), and you'll get duplicates when re-evaluating
-the code block.
+With ~raw~, as there are *no obvious markers to delimit the results* in the Org mode
+buffer, there is no way to know where raw results begin or end.  So, ~:results
+raw replace~ will never work as expected: *raw results cannot be removed* (they
+become part of the buffer), and you'll get duplicates when re-evaluating the
+code block.
 
 The sole purpose of ~raw~ results is to allow inserting an headline (a real
 headline, not comma protected) in the buffer, because headlines cannot be
@@ -2783,10 +2782,10 @@ In any other case, ~drawer+replace~ is the superior choice.
 The *best and simplest solution* for automatically generating org
 headlines for export is...
 
-...never to execute the source block by hand in org source file. That
-way, the results will appear only in the *temporary* copy of the buffer
-is parsed for export and one does need to worry about demarcating the
-output with a :RESULTS: drawer...
+...never to execute the source block by hand in org source file.  That way, the
+results will appear only in the *temporary* copy of the buffer is parsed for
+export and one does need to worry about demarcating the output with a :RESULTS:
+drawer...
 
 # #+begin_src perl :exports results :results output org raw
 # [code to generate org source]
@@ -2805,10 +2804,10 @@ contain headlines.
 > Like so:
 >
 > #+header: :results (if (boundp 'backend) "raw" "drawer")
-> #+BEGIN_SRC emacs-lisp :exports both
+> #+begin_src emacs-lisp :exports both
 >
 > (format "* headline\n1\n2\n5\n")
-> #+END_SRC
+> #+end_src
 
 That's a very nice tip - one small weakness is that it'll do the wrong
 thing if you just happen to have a binding for "backend" outside of the
@@ -2905,8 +2904,8 @@ Shares data and persists state between (evaluation of) different code blocks.
      (default)
 
 - ~:session <NAME>~ ::
-     Performs evaluation using a persistently running inferior process to
-     which the code block is submitted. \\
+     Performs evaluation using a persistently running inferior process to which
+     the code block is submitted. \\
      (default for Screen code blocks: session name set to ~default~)
 
 **** Remarks
@@ -3027,8 +3026,8 @@ Controls the permissions of tangled files.
 
 **** Remarks
 
-Multiple ~var~ specifications behind a single ~:var~ are allowed. The multiple var
-arguments must be comma-separated:
+Multiple ~var~ specifications behind a single ~:var~ are allowed.  The multiple
+var arguments must be comma-separated:
 
 #+begin_src org
 ,#+PROPERTY: var foo=1, bar=2
@@ -3090,18 +3089,18 @@ To specify a *subset* of a table, give a ~[row,column]~ index.
 - If row or column is empty, then all rows or all columns are taken.
 
 To reference a variable in an external file, use the syntax ~:var
-data=<FILE>:<VAR>~. Note that, in order to work, the files must be in the same
+data=<FILE>:<VAR>~.  Note that, in order to work, the files must be in the same
 directory.
 
-:var introduces code block dependencies.
-include anything in the Org mode file that takes a @code{#+NAME:},
-@code{#+BEGIN_EXAMPLE} blocks, other code blocks, and the results of other
-code blocks. +When a reference is made to another code block, the referenced
-block will be+evaluated whenever needed, in order to supply its value to the
-referencing+block. If the referenced block is cached (see @ref{cache}), its
-value will+be reused if possible, instead of being re-calculated. If the
-referring code+block is cached, its hash value will depend on the value of all
-the code+blocks it references.
+~:var~ introduces code block dependencies.
+include anything in the Org mode file that takes a ~#+NAME:~, ~#+BEGIN_EXAMPLE~
+blocks, other code blocks, and the results of other code blocks.  When
+a reference is made to another code block, the referenced block will be
+evaluated whenever needed, in order to supply its value to the referencing
+block.  If the referenced block is cached (see @ref{cache}), its value will be
+reused if possible, instead of being re-calculated.  If the referring code block
+is cached, its hash value will depend on the value of all the code blocks it
+references.
 
 **** Examples
 
@@ -3288,11 +3287,11 @@ the ~c++~ mode).
 # #+end_src
 #
 # #+results:
-# #+BEGIN_SRC c++
+# #+begin_src c++
 # for (int i = 0; i < random; i++) {
 #   number[i] = rand();
 # }
-# #+END_SRC
+# #+end_src
 
 On LaTeX export, the ~SRC~ block will be exported as ~c++~ code under ~listings~
 instead of being wrapped in a ~\begin{verbatim}..\end{verbatim}~ environment.
@@ -3304,7 +3303,7 @@ source block.
 
 # #+name: wrap-src-cpp
 # #+begin_src emacs-lisp :var text="" :results raw
-# (concat "#+BEGIN_SRC c++\n" text "\n#+END_SRC")
+# (concat "#+begin_src c++\n" text "\n#+end_src")
 # #+end_src
 #
 # #+name: example
@@ -3390,9 +3389,9 @@ Specifies a different results separator.
 > `cat' works?
 
 The exit code is not zero since diff found differences, so Babel assumes the
-script produced an error.  Try this instead when you don't know what the
-return code of the last command will be or if you know that it isn't zero
-even when no error occured:
+script produced an error.  Try this instead when you don't know what the return
+code of the last command will be or if you know that it isn't zero even when no
+error occured:
 
 #+begin_src shell :exports results :results output
 diff testdiff.txt.orig testdiff.txt
@@ -3401,8 +3400,8 @@ diff testdiff.txt.orig testdiff.txt
 
 > Is this this a bug?
 
-I don't think so, although Babel could give a more enlightening message
-about why it didn't evaluate STDOUT.  It gives this on your original example:
+I don't think so, although Babel could give a more enlightening message about
+why it didn't evaluate STDOUT.  It gives this on your original example:
 
 Babel evaluation exited with code 1
 Code block produced no output.
@@ -3447,10 +3446,10 @@ version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
-this program. If not, see http://www.gnu.org/licenses/.
+this program.  If not, see http://www.gnu.org/licenses/.
 
 #  LocalWords:  maxima Niessen fniessen pirilampo CSS SQL org-sbe TBLFM PID
 #  LocalWords:  elisp Inline inline hline noweb
