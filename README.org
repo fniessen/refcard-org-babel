@@ -319,6 +319,8 @@ It has the following syntax, where each header argument portion is optional.
 ~#+call:~ lines recently got ~#+names~, hopefully soon they will get ~#+header~
 arguments as well.
 
+Press ~C-c C-v C-e~ on the *call line* to *execute* the block.
+
 When *evaluating a call line*, it is converted into an ephemeral Emacs Lisp code
 block equivalent to the call line (and created at the point of the call line):
 
@@ -341,8 +343,6 @@ This is why call lines have *two* possible sets of header arguments:
     As to the "call" lines, think of the output of the "called" block as being
     input to an anonymous block (the #+call), so the hlines are stripped.
 
-Press ~C-c C-v C-e~ on the call line to *execute* the block.
-
 Code blocks are sometimes located in a separate file (called "library of
 Babel") which can be included in other Org files that wish to use the code
 blocks.
@@ -351,6 +351,9 @@ The result of named code blocks evaluated with a ~#+call:~ line is wrapped
 according to the value of ~org-babel-inline-result-wrap~, which by default is
 : "=%s="
 for markup that produces verbatim text.
+
+XXX This should be changed to
+: "~%s~"
 
 ***** Examples
 

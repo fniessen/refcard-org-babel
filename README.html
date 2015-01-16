@@ -552,6 +552,9 @@ As I'm named, my results may live anywhere in the file.
                   <code>#+names</code>, hopefully soon they will get
                   <code>#+header</code> arguments as well.</p>
 
+                  <p>Press <code>C-c C-v C-e</code> on the <b>call line</b> to
+                  <b>execute</b> the block.</p>
+
                   <p>When <b>evaluating a call line</b>, it is converted into
                   an ephemeral Emacs Lisp code block equivalent to the call
                   line (and created at the point of the call line):</p>
@@ -588,9 +591,6 @@ As I'm named, my results may live anywhere in the file.
                     </li>
                   </ul>
 
-                  <p>Press <code>C-c C-v C-e</code> on the call line to
-                  <b>execute</b> the block.</p>
-
                   <p>Code blocks are sometimes located in a separate file
                   (called “library of Babel”) which can be included in other
                   Org files that wish to use the code blocks.</p>
@@ -604,6 +604,11 @@ As I'm named, my results may live anywhere in the file.
 </pre>
 
                   <p>for markup that produces verbatim text.</p>
+
+                  <p>XXX This should be changed to</p>
+                  <pre class="example">
+"~%s~"
+</pre>
                 </div>
               </li>
 
