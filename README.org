@@ -1110,13 +1110,13 @@ This can also be done file-wide through the use of /file local variables/.
 
 Header arguments which have different defaults between languages:
 
-| Languages                         | :exports | :hlines | :results       |
-|-----------------------------------+----------+---------+----------------|
+| Languages                           | :exports | :hlines | :results       |
+|-------------------------------------+----------+---------+----------------|
 | general-purpose languages + /shell/ | code     | no      | replace        |
 | /ledger/                            | code     | no      | output replace |
 | /org/                               | code     | no      | silent raw     |
 | /latex/                             | results  | no      | latex replace  |
-| graphics-only languages           | results  | no      | file replace   |
+| graphics-only languages             | results  | no      | file replace   |
 
 These default language-specific header arguments can be changed by the user:
 
@@ -1247,20 +1247,20 @@ The following table lists the standard header arguments that Org Babel uses.
 # org-babel-common-header-args-w-values
 # http://orgmode.org/manual/Specific-header-arguments.html#Specific-header-arguments
 
-| [[#cache][:cache]]     | [[#noweb-ref][:noweb-ref]]   |
-| [[#cmdline][:cmdline]]   | [[#noweb-sep][:noweb-sep]]   |
-| [[#colnames][:colnames]]  | [[#padline][:padline]]     |
-| [[#comments][:comments]]  | [[#post][:post]]        |
-| [[#dir][:dir]]       | [[#prologue][:prologue]]    |
-| [[#epilogue][:epilogue]]  | [[#results][:results]]     |
-| [[#eval][:eval]]      | [[#rownames][:rownames]]    |
-| [[#exports][:exports]]   | [[#sep][:sep]]         |
-| [[#file][:file]]      | [[#session][:session]]     |
-| [[#file-desc][:file-desc]] | [[#shebang][:shebang]]     |
-| [[#hlines][:hlines]]    | [[#tangle][:tangle]]      |
-| [[#mkdirp][:mkdirp]]    | [[#tangle-mode][:tangle-mode]] |
-| [[#no-expand][:no-expand]] | [[#var][:var]]         |
-| [[#noweb][:noweb]]     | [[#wrap][:wrap]]        |
+| [[#cache][:cache]]         | [[#noweb-ref][:noweb-ref]]     |
+| [[#cmdline][:cmdline]]     | [[#noweb-sep][:noweb-sep]]     |
+| [[#colnames][:colnames]]   | [[#padline][:padline]]         |
+| [[#comments][:comments]]   | [[#post][:post]]               |
+| [[#dir][:dir]]             | [[#prologue][:prologue]]       |
+| [[#epilogue][:epilogue]]   | [[#results][:results]]         |
+| [[#eval][:eval]]           | [[#rownames][:rownames]]       |
+| [[#exports][:exports]]     | [[#sep][:sep]]                 |
+| [[#file][:file]]           | [[#session][:session]]         |
+| [[#file-desc][:file-desc]] | [[#shebang][:shebang]]         |
+| [[#hlines][:hlines]]       | [[#tangle][:tangle]]           |
+| [[#mkdirp][:mkdirp]]       | [[#tangle-mode][:tangle-mode]] |
+| [[#no-expand][:no-expand]] | [[#var][:var]]                 |
+| [[#noweb][:noweb]]         | [[#wrap][:wrap]]               |
 
 *** :cache
     :PROPERTIES:
@@ -1569,7 +1569,12 @@ data
 
 ***** Using specified column names
 
-*XXX Will work with (unapplied) patch of Eric, on [2013-04-08 Mon]*
+#+begin_note
+The following will work for R with an (unapplied) patch of Eric, sent on the
+Org-mode mailing list on [2013-04-08 Mon].
+
+It does already work in most other languages (such as shell blocks).
+#+end_note
 
 #+begin_src R :var data=without-header :exports results :colnames '(Rev Author)
 data
@@ -1602,12 +1607,12 @@ print (ascii (table (data)), type = "org")
 #+end_src
 
 #+RESULTS:
-|           |   | *happiness* |      |      |
-|           |   |         0 |    1 |    2 |
-|-----------+---+-----------+------+------|
-| *org.files* | 0 |      1.00 | 0.00 | 0.00 |
-|           | 1 |      0.00 | 1.00 | 1.00 |
-|           | 2 |      0.00 | 1.00 | 3.00 |
+|             |   | *happiness* |      |      |
+|             |   |           0 |    1 |    2 |
+|-------------+---+-------------+------+------|
+| *org.files* | 0 |        1.00 | 0.00 | 0.00 |
+|             | 1 |        0.00 | 1.00 | 1.00 |
+|             | 2 |        0.00 | 1.00 | 3.00 |
 
 ***** Utility function
 
@@ -3060,11 +3065,11 @@ and
 
 The value passed to an argument can be:
 
-- a *literal* value
+- a *literal* value:
   + string (value wrapped in double quotes)
   + number
 
-- a *reference* to *named data*
+- a *reference* to *named data*, such as:
   + literal *example block*
   + (part of) a *table* (when naming a table, ~#+name:~ should replace ~#+tblname:~,
     which still exists for backwards compatibility)
@@ -3331,30 +3336,30 @@ source block.
 
 The following table lists the header arguments that some languages use.
 
-| :border        | :java             |
-| :buffer        | :main             |
-| :classname     | :nullvalue        |
-| :cmd           | :out-file         |
-| :cmd-line      | :package          |
-| :cmpflag       | :packages         |
-| :colname-names | :pdf              |
-| :database      | :pdfheight        |
-| :db            | :pdfpng           |
-| :dbhost        | :pdfwidth         |
-| :dbpassword    | [[#preamble][:preamble]]         |
-| :dbuser        | :result-params    |
-| :defines       | :result-type      |
-| :engine        | :results_switches |
-| :eps           | :return           |
-| :filetype      | :rowname-names    |
-| :fit           | :scheme           |
-| :flags         | [[#separator][:separator]]        |
-| :headers       | *:stdin*            |
-| :imagemagick   | :tangle           |
-| :iminoptions   | :term             |
-| :imoutoptions  | :terminal         |
-| :in-file       | :xmp-option       |
-| *:includes*      |                   |
+| :border        | :java                      |
+| :buffer        | :main                      |
+| :classname     | :nullvalue                 |
+| :cmd           | :out-file                  |
+| :cmd-line      | :package                   |
+| :cmpflag       | :packages                  |
+| :colname-names | :pdf                       |
+| :database      | :pdfheight                 |
+| :db            | :pdfpng                    |
+| :dbhost        | :pdfwidth                  |
+| :dbpassword    | [[#preamble][:preamble]]   |
+| :dbuser        | :result-params             |
+| :defines       | :result-type               |
+| :engine        | :results_switches          |
+| :eps           | :return                    |
+| :filetype      | :rowname-names             |
+| :fit           | :scheme                    |
+| :flags         | [[#separator][:separator]] |
+| :headers       | *:stdin*                   |
+| :imagemagick   | :tangle                    |
+| :iminoptions   | :term                      |
+| :imoutoptions  | :terminal                  |
+| :in-file       | :xmp-option                |
+| *:includes*    |                            |
 
 XXX Title disappears!?
 
