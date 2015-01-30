@@ -269,7 +269,7 @@ Here is an example:
 
 ****** Other explanation
 
-You need to apply ~CAPTION~ and ~NAME~ keywords on the results, not the source
+You need to apply ~caption~ and ~name~ keywords on the results, not the source
 code.
 
 **** Calling a code block
@@ -718,8 +718,8 @@ You can also evaluate code inline as follows.
 
 **** Inline code blocks
 
-An *inline source block* is a code block which is placed /inline/ within textual
-elements such as paragraphs of text or lists.
+An *inline code block* (a.k.a. inline source block) is a code block which is
+placed /inline/ within textual elements such as paragraphs of text or lists.
 
 Its sole purpose is to include *results inline* in textual elements.
 
@@ -762,6 +762,13 @@ with header arguments.
 - Currently, inline code blocks are not fontified even when
   ~org-src-fontify-natively~ is non-nil.
 
+- Inline code block results are replaceable (i.e., removable) -- since commit
+  85ff663, on [2015-01-29 Thu] -- if they is wrapped in a ~{{{results(.*)}}}~ macro
+  call.
+
+  Insert current value in ~results~ macro possibly wrapping RESULT in an export
+  snippet or inline code block first.
+
 ***** Examples
 
 This file was exported on
@@ -803,20 +810,22 @@ each header argument portion is optional (so are the square brackets).
       :RESULTS:  raw
       :END:
 
-The result of named code blocks evaluated inline within a block of text is
-wrapped according to the value of ~org-babel-inline-result-wrap~, which by
-default is
-: "=%s="
-for markup that produces verbatim text.
+- The result of named code blocks evaluated inline within a block of text is
+  wrapped according to the value of ~org-babel-inline-result-wrap~, which by
+  default is
+  : "=%s="
+  for markup that produces verbatim text.
 
-When using ~:results raw~, you can use properties so that the ~call_foo()~ part
-stays a reasonable length:
+- When using ~:results raw~, you can use properties so that the ~call_foo()~ part
+  stays a reasonable length:
 
-#+begin_src org
-,* Description of the Hawaiian Stone Axes
+  #+begin_src org
+  ,* Description of the Hawaiian Stone Axes
 
-Here is a call_square(x=4), stuck in the middle of some prose.
-#+end_src
+  Here is a call_square(x=4), stuck in the middle of some prose.
+  #+end_src
+
+- Babel call results are also replaceable.
 
 ***** Examples
 
@@ -1085,7 +1094,7 @@ specific to a (group of) code block(s).
      :END:
 
 - Variable ~org-babel-default-header-args~ for source blocks
-- Variable ~org-babel-default-inline-header-args~ for inline source blocks
+- Variable ~org-babel-default-inline-header-args~ for inline code blocks
 - Variable ~org-babel-default-lob-header-args~ for ~#+call~ lines
 
 These default header arguments can be set by the user:
@@ -1110,13 +1119,13 @@ This can also be done file-wide through the use of /file local variables/.
 
 Header arguments which have different defaults between languages:
 
-| Languages                           | :exports | :hlines | :results       |
-|-------------------------------------+----------+---------+----------------|
+| Languages                         | :exports | :hlines | :results       |
+|-----------------------------------+----------+---------+----------------|
 | general-purpose languages + /shell/ | code     | no      | replace        |
 | /ledger/                            | code     | no      | output replace |
 | /org/                               | code     | no      | silent raw     |
 | /latex/                             | results  | no      | latex replace  |
-| graphics-only languages             | results  | no      | file replace   |
+| graphics-only languages           | results  | no      | file replace   |
 
 These default language-specific header arguments can be changed by the user:
 
@@ -1247,20 +1256,20 @@ The following table lists the standard header arguments that Org Babel uses.
 # org-babel-common-header-args-w-values
 # http://orgmode.org/manual/Specific-header-arguments.html#Specific-header-arguments
 
-| [[#cache][:cache]]         | [[#noweb-ref][:noweb-ref]]     |
-| [[#cmdline][:cmdline]]     | [[#noweb-sep][:noweb-sep]]     |
-| [[#colnames][:colnames]]   | [[#padline][:padline]]         |
-| [[#comments][:comments]]   | [[#post][:post]]               |
-| [[#dir][:dir]]             | [[#prologue][:prologue]]       |
-| [[#epilogue][:epilogue]]   | [[#results][:results]]         |
-| [[#eval][:eval]]           | [[#rownames][:rownames]]       |
-| [[#exports][:exports]]     | [[#sep][:sep]]                 |
-| [[#file][:file]]           | [[#session][:session]]         |
-| [[#file-desc][:file-desc]] | [[#shebang][:shebang]]         |
-| [[#hlines][:hlines]]       | [[#tangle][:tangle]]           |
-| [[#mkdirp][:mkdirp]]       | [[#tangle-mode][:tangle-mode]] |
-| [[#no-expand][:no-expand]] | [[#var][:var]]                 |
-| [[#noweb][:noweb]]         | [[#wrap][:wrap]]               |
+| [[#cache][:cache]]     | [[#noweb-ref][:noweb-ref]]   |
+| [[#cmdline][:cmdline]]   | [[#noweb-sep][:noweb-sep]]   |
+| [[#colnames][:colnames]]  | [[#padline][:padline]]     |
+| [[#comments][:comments]]  | [[#post][:post]]        |
+| [[#dir][:dir]]       | [[#prologue][:prologue]]    |
+| [[#epilogue][:epilogue]]  | [[#results][:results]]     |
+| [[#eval][:eval]]      | [[#rownames][:rownames]]    |
+| [[#exports][:exports]]   | [[#sep][:sep]]         |
+| [[#file][:file]]      | [[#session][:session]]     |
+| [[#file-desc][:file-desc]] | [[#shebang][:shebang]]     |
+| [[#hlines][:hlines]]    | [[#tangle][:tangle]]      |
+| [[#mkdirp][:mkdirp]]    | [[#tangle-mode][:tangle-mode]] |
+| [[#no-expand][:no-expand]] | [[#var][:var]]         |
+| [[#noweb][:noweb]]     | [[#wrap][:wrap]]        |
 
 *** :cache
     :PROPERTIES:
@@ -1607,12 +1616,12 @@ print (ascii (table (data)), type = "org")
 #+end_src
 
 #+RESULTS:
-|             |   | *happiness* |      |      |
-|             |   |           0 |    1 |    2 |
-|-------------+---+-------------+------+------|
-| *org.files* | 0 |        1.00 | 0.00 | 0.00 |
-|             | 1 |        0.00 | 1.00 | 1.00 |
-|             | 2 |        0.00 | 1.00 | 3.00 |
+|           |   | *happiness* |      |      |
+|           |   |         0 |    1 |    2 |
+|-----------+---+-----------+------+------|
+| *org.files* | 0 |      1.00 | 0.00 | 0.00 |
+|           | 1 |      0.00 | 1.00 | 1.00 |
+|           | 2 |      0.00 | 1.00 | 3.00 |
 
 ***** Utility function
 
@@ -3336,30 +3345,30 @@ source block.
 
 The following table lists the header arguments that some languages use.
 
-| :border        | :java                      |
-| :buffer        | :main                      |
-| :classname     | :nullvalue                 |
-| :cmd           | :out-file                  |
-| :cmd-line      | :package                   |
-| :cmpflag       | :packages                  |
-| :colname-names | :pdf                       |
-| :database      | :pdfheight                 |
-| :db            | :pdfpng                    |
-| :dbhost        | :pdfwidth                  |
-| :dbpassword    | [[#preamble][:preamble]]   |
-| :dbuser        | :result-params             |
-| :defines       | :result-type               |
-| :engine        | :results_switches          |
-| :eps           | :return                    |
-| :filetype      | :rowname-names             |
-| :fit           | :scheme                    |
-| :flags         | [[#separator][:separator]] |
-| :headers       | *:stdin*                   |
-| :imagemagick   | :tangle                    |
-| :iminoptions   | :term                      |
-| :imoutoptions  | :terminal                  |
-| :in-file       | :xmp-option                |
-| *:includes*    |                            |
+| :border        | :java             |
+| :buffer        | :main             |
+| :classname     | :nullvalue        |
+| :cmd           | :out-file         |
+| :cmd-line      | :package          |
+| :cmpflag       | :packages         |
+| :colname-names | :pdf              |
+| :database      | :pdfheight        |
+| :db            | :pdfpng           |
+| :dbhost        | :pdfwidth         |
+| :dbpassword    | [[#preamble][:preamble]]         |
+| :dbuser        | :result-params    |
+| :defines       | :result-type      |
+| :engine        | :results_switches |
+| :eps           | :return           |
+| :filetype      | :rowname-names    |
+| :fit           | :scheme           |
+| :flags         | [[#separator][:separator]]        |
+| :headers       | *:stdin*            |
+| :imagemagick   | :tangle           |
+| :iminoptions   | :term             |
+| :imoutoptions  | :terminal         |
+| :in-file       | :xmp-option       |
+| *:includes*      |                   |
 
 XXX Title disappears!?
 
