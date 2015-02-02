@@ -5,7 +5,7 @@
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:nil
 
-#+SETUPFILE: ~/src/org-style/setup/bigblow-pirilampo.setup
+#+SETUPFILE: bigblow-pirilampo.setup
 
 #+PROPERTY: eval no
 
