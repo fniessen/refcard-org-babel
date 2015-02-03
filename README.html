@@ -506,8 +506,9 @@ As I'm named, my results may live anywhere in the file.
 </pre>
                   </div>
 
-                  <p><b>Note – No square bracket for the end header
-                  arguments!</b></p>
+                  <div class="warning">
+                    <p>No square bracket for the “end header arguments”!</p>
+                  </div>
 
                   <dl class="org-dl">
                     <dt>NAME</dt>
@@ -729,8 +730,10 @@ input=new
                       what you want? &gt; &gt; #+call: org-figure-to-slide()
                       :results raw</p>
 
-                      <p><b>Note – No square bracket for the end header
-                      arguments!</b></p>
+                      <div class="warning">
+                        <p>No square bracket for the “end header
+                        arguments”!</p>
+                      </div>
 
                       <p>Thanks for your quick answer. Nevertheless, adding
                       :results raw at the end changes the formatting output but
@@ -785,6 +788,13 @@ input=new
                     <pre class="src src-org">
 (org-sbe &lt;NAME&gt; &lt;VARIABLES&gt;)
 </pre>
+                  </div>
+
+                  <p>Don’t quote the <code>NAME</code> or double quote it
+                  (optional).</p>
+
+                  <div class="warning">
+                    <p><code>(org-sbe 'foo)</code> is wrong.</p>
                   </div>
 
                   <p>Each element of <code>VARIABLES</code> should be a two
@@ -885,16 +895,6 @@ input=new
                 <a id="unnumbered-34" name="unnumbered-34"></a>Remarks<br />
 
                 <div class="outline-text-6" id="text-unnumbered-34">
-                  <div class="warning">
-                    <p><code>#+TBLFM: $2='(org-sbe 'fibbd (n $1))</code> is
-                    wrong.</p>
-
-                    <p>Unquote the name: <code>#+TBLFM: $2='(org-sbe fibbd (n
-                    $1))</code>,<br />
-                    or double quote it (optional): <code>#+TBLFM: $2='(org-sbe
-                    "fibbd" (n $1))</code>.</p>
-                  </div>
-
                   <div class="org-src-container">
                     <pre class="src src-org">
 (org-sbe NAME (n $2) (m 3))

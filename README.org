@@ -291,7 +291,9 @@ It has the following syntax, where each header argument portion is optional.
 ,#+call: <NAME>[<HEADER-ARGS-FOR-BLOCK>](<ARGUMENTS>) <HEADER-ARGS-FOR-CALL-LINE>
 #+end_src
 
-*Note -- No square bracket for the end header arguments!*
+#+begin_warning
+No square bracket for the "end header arguments"!
+#+end_warning
 
 - NAME ::
      Name of the code block to be evaluated.
@@ -452,7 +454,9 @@ As ~#+call:~ lines can be named, it is possible to reference that result.
 >
 > #+call: org-figure-to-slide() :results raw
 
-*Note -- No square bracket for the end header arguments!*
+#+begin_warning
+No square bracket for the "end header arguments"!
+#+end_warning
 
 Thanks for your quick answer.  Nevertheless, adding :results raw at the end
 changes the formatting output but embeds everything within paren.  Given your
@@ -485,6 +489,12 @@ Return the results of calling ~NAME~ with ~VARIABLES~.
 #+begin_src org
 (org-sbe <NAME> <VARIABLES>)
 #+end_src
+
+Don't quote the ~NAME~ or double quote it (optional).
+
+#+begin_warning
+~(org-sbe 'foo)~ is wrong.
+#+end_warning
 
 Each element of ~VARIABLES~ should be a two element list, whose
 
@@ -520,18 +530,9 @@ From [[http://osdir.com/ml/emacs-orgmode-gnu/2010-03/msg00651.html][Re: {Orgmode
 | org-bbl- |                  nil |
 | bbl-     |                  nil |
 | babel-   |                  nil |
-#+TBLFM: $2='(org-sbe "leftover" (prefix $$1))
+#+TBLFM: $2='(org-sbe leftover (prefix $$1))
 
 ***** Remarks
-
-#+begin_warning
-~#+TBLFM: $2='(org-sbe 'fibbd (n $1))~ is wrong.
-
-Unquote the name:
-~#+TBLFM: $2='(org-sbe fibbd (n $1))~, \\
-or double quote it (optional):
-~#+TBLFM: $2='(org-sbe "fibbd" (n $1))~.
-#+end_warning
 
 #+begin_src org
 (org-sbe NAME (n $2) (m 3))
