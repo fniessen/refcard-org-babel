@@ -778,9 +778,9 @@ The answer to 2 + 3 is src_emacs-lisp{(+ 2 3)}.
 
 One plus one equals src_R{1 + 1}.
 
-Two plus two equals src_lisp{(+ 2 2)}.
+Two plus two equals src_emacs-lisp{(+ 2 2)}.
 
-A definition returns "src_lisp[]{(defun x (y) (* y y))} ".
+A definition returns "src_emacs-lisp[]{(defun x (y) (* y y))} ".
 
 src_python[:session]{10*x}, where x is a variable existing in the python
 session.
@@ -1798,16 +1798,16 @@ Specifies permissions for /every/ execution of code blocks.
 **** Options
 
 - nothing ::
-     If the ~org-confirm-babel-evaluate~ variable is non-nil, allows evaluation
-     of the code block (both interactively and during export) without
-     a confirmation from the user. \\
+     If the ~org-confirm-babel-evaluate~ variable is nil, allows evaluation of the
+     code block (both interactively and during export) without a confirmation
+     from the user. \\
      (default)
 
 - ~:eval <any-value-other-than-the-reserved-ones>~ ::
-     If the ~org-confirm-babel-evaluate~ variable is non-nil, allows evaluation of
-     the code block (both interactively and during export) without
-     a confirmation from the user.  It *undoes the effect of ~:eval no~* (and
-     other values disabling evaluation) set at the file or sub-tree level.
+     If the ~org-confirm-babel-evaluate~ variable is nil, allows evaluation of the
+     code block (both interactively and during export) without a confirmation
+     from the user.  It *undoes the effect of ~:eval no~* (and other values
+     disabling evaluation) set at the file or sub-tree level.
 
 - ~:eval query~ ::
      Requires confirmation before evaluating the code block (both
