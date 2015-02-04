@@ -604,12 +604,7 @@ As I'm named, my results may live anywhere in the file.
 "=%s="
 </pre>
 
-                  <p>for markup that produces verbatim text.</p>
-
-                  <p>XXX This should be changed to</p>
-                  <pre class="example">
-"~%s~"
-</pre>
+                  <p>for markup that produces <i>verbatim</i> text.</p>
                 </div>
               </li>
 
@@ -790,8 +785,8 @@ input=new
 </pre>
                   </div>
 
-                  <p>Don’t quote the <code>NAME</code> or double quote it
-                  (optional).</p>
+                  <p>Don’t quote the <code>NAME</code> (or, optionally, double
+                  quote it).</p>
 
                   <div class="warning">
                     <p><code>(org-sbe 'foo)</code> is wrong.</p>
@@ -1291,6 +1286,12 @@ src_&lt;LANGUAGE&gt;[&lt;HEADER-ARGS&gt;]{&lt;BODY&gt;}
 
                     <li>
                       <p>If you set the following</p>
+
+                      <div class="org-src-container">
+                        <pre class="src src-emacs-lisp">
+(setq org-babel-inline-result-wrap <span class="org-string">"$%s$"</span>)
+</pre>
+                      </div>
 
                       <p>then inline code snippets will be wrapped into the
                       formatting string.</p>

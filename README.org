@@ -7,7 +7,7 @@
 
 #+SETUPFILE: bigblow-pirilampo.setup
 
-#+PROPERTY: eval no
+#+PROPERTY:  eval never
 
 * Org Babel reference card [[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]] [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif]]
 
@@ -30,7 +30,7 @@ Prolonged use may cause addiction!
 *Literate programming* (LP) offers 2 classical operations:
 
 - Tangle ::
-     Extract the source code blocks and generate *real working code* files for
+     Extract the source code blocks and *generate real working code* files for
      further compilation or execution, eventually outside of Emacs.
 
 - Weave ::
@@ -351,11 +351,10 @@ blocks.
 
 The result of named code blocks evaluated with a ~#+call:~ line is wrapped
 according to the value of ~org-babel-inline-result-wrap~, which by default is
-: "=%s="
-for markup that produces verbatim text.
 
-XXX This should be changed to
-: "~%s~"
+: "=%s="
+
+for markup that produces /verbatim/ text.
 
 ***** Examples
 
@@ -490,7 +489,7 @@ Return the results of calling ~NAME~ with ~VARIABLES~.
 (org-sbe <NAME> <VARIABLES>)
 #+end_src
 
-Don't quote the ~NAME~ or double quote it (optional).
+Don't quote the ~NAME~ (or, optionally, double quote it).
 
 #+begin_warning
 ~(org-sbe 'foo)~ is wrong.
@@ -572,14 +571,14 @@ Note the quotes around "$2" and "$1", they are necessary so that the date is
 not literally inserted in the formulas when Org is computing it.
 
 # ****** Test looping over a table: "noweb" call blocks
-#
+
 # http://lists.gnu.org/archive/html/emacs-orgmode/2010-11/msg01014.html
-#
+
 # #+tblname: accounts
 # | EBAY | Expenses:Advertising         |
 # | Q8   | Expenses:Auto:Fuel           |
 # | VISA | Liabilities:Credit-Card:Visa |
-#
+
 # #+name: account-rules-python
 # #+begin_src python :var data=accounts :exports code :results output :tangle no
 # for line in data:
@@ -588,10 +587,10 @@ not literally inserted in the formulas when Org is computing it.
 #     print "- ''"
 #     print "- '" + line[1] + "'"
 # #+end_src
-#
+
 # #+begin_src yaml :tangle AccountMatches.yaml :noweb yes
 # # This is the file header...
-#
+
 # <<account-rules-python()>>
 # #+end_src
 
@@ -752,11 +751,9 @@ with header arguments.
 
 - If you set the following
 
-  # XXX This break the HTML export (C-c C-e h o)
-
-  # #+begin_src emacs-lisp
-  # (setq org-babel-inline-result-wrap "$%s$")
-  # #+end_src
+  #+begin_src emacs-lisp
+  (setq org-babel-inline-result-wrap "$%s$")
+  #+end_src
 
   then inline code snippets will be wrapped into the formatting string.
 
