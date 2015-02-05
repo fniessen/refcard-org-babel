@@ -11,14 +11,18 @@
 #+PROPERTY:  eval never
 
 #+begin_html
-[[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]]
+<a href="http://opensource.org/licenses/GPL-3.0">
+  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+</a>
 
-[[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif]]
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+</a>
 #+end_html
 
 Welcome to Org Babel reference card.  It contains the reference documentation
 that describes how to perform *code execution* within Org mode documents using Org
-Babel 8.
+Babel 8.
 
 In a nutshell, Org Babel is like Sweave (for [[id:1663ff41-af51-4b07-abc8-6bfed9395b2b][reproducible research]]) but it takes
 a *large number of possible languages* (R, python, Java, ...) and Org mode can
