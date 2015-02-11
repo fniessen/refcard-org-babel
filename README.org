@@ -2,7 +2,7 @@
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
 #+DESCRIPTION: Org Babel reference card
-#+KEYWORDS:  org-mode, org-babel, eric shulte, dan davison, sweave
+#+KEYWORDS:  emacs, org-mode, org-babel, eric shulte, dan davison, literate programming, reproducible research, sweave
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:nil
 
@@ -809,6 +809,7 @@ The syntax for inline evaluation of named code blocks is the following, where
 each header argument portion is optional (so are the square brackets).
 
 #+begin_src org
+... call_<NAME>(<ARGUMENTS>) ...
 ... call_<NAME>[<HEADER-ARGS-FOR-BLOCK>](<ARGUMENTS>)[<HEADER-ARGS-FOR-CALL-LINE>] ...
 #+end_src
 
@@ -946,9 +947,9 @@ are located behind this prefix.
      #+end_src
 
 - ~C-c C-v c~ (or ~C-c C-v C-c~) ::
-     Check for /suspicious/ (that is, unknown) header arguments.  This may prove
-     useful if you get into the habit of using it as your first step in
-     *debugging* code blocks.
+     *Check* for /suspicious/ (that is, unknown or *misspelled*) header arguments.
+     This may prove useful if you get into the habit of using it as your first
+     step in *debugging* code blocks.
 
   Languages are permitted to add and use *any* arbitrary new header argument, so
   there is no /wrong/ (that is, disallowed) header argument.
@@ -1038,7 +1039,7 @@ reference in this language can not be resolved).
 - ~C-c C-v o~ (or ~C-c C-v C-o~) ::
      *Open the results* of the code block at point.
 
-- ~C-c C-v C-z~ ::
+- ~C-c C-v C-z~ (or ~<M-down>~) ::
      *Switch to the session buffer* of the current code block (first, you need to
      add ~:session~ to it).
 
@@ -1068,7 +1069,7 @@ reference in this language can not be resolved).
      *Ingest all named code blocks* from supplied file into the Library of Babel
      (in memory).
 
-- ~C-c C-v l~ (or ~C-c C-v C-l~) ::
+- ~C-c C-v l~ (or ~C-c C-v C-l~ or ~<M-up>~) ::
      *Load the current code* block into the Library of Babel and enter the
      *session*.
 
@@ -2458,6 +2459,35 @@ This works:
 #+results:
 : Do 4x then quit
 
+*** Additional header arguments
+
+Additional header arguments may be passed to the ~:post~-function.
+
+The following example illustrates the usage of the ~:post~ header argument.
+
+The example shows how to use ~:post~ together with the ~:colnames~ header argument.
+
+#+name: round-tbl
+#+begin_src emacs-lisp :var tbl="" fmt="%.3f"
+  (mapcar (lambda (row)
+            (mapcar (lambda (cell)
+                      (if (numberp cell)
+                          (format fmt cell)
+                        cell))
+                    row))
+          tbl)
+#+end_src
+
+#+begin_src R :colnames yes :post round-tbl[:colnames yes](*this*)
+set.seed(42)
+data.frame(foo=rnorm(1))
+#+end_src
+
+#+RESULTS:
+|   foo |
+|-------|
+| 1.371 |
+
 ** :prologue
    :PROPERTIES:
    :CUSTOM_ID: prologue
@@ -2745,6 +2775,13 @@ Specifies what type of results the code block will return.
      Prints data.
      Puts the output in an ~EXAMPLE~ block? XXX
 
+     You might try
+
+     #+begin_src emacs-lisp :results pp
+     (cons (org-entry-get (point) "header-args" t)
+           (nth 2 (org-babel-get-src-block-info)))
+     #+end_src
+
      # XXX This breaks HTML export
 
      # #+begin_src emacs-lisp :results pp :exports both
@@ -2962,7 +2999,7 @@ Shares data and persists state between (evaluation of) different code blocks.
    :CUSTOM_ID: shebang
    :END:
 
-Uses preamble for tangled files (and make them executable).
+Uses preamble for tangled files (and *make* them *executable*).
 
 *** Options
 
@@ -3034,6 +3071,12 @@ Propagating changes back from tangled code to Org mode blocks (aka
    :END:
 
 Controls the permissions of tangled files.
+
+*** Example
+
+#+begin_src R :tangle-mode (identity #o444)
+plot(1)
+#+end_src
 
 ** :var
    :PROPERTIES:
