@@ -1751,6 +1751,10 @@ hostname
 #+results:
 : tortilla
 
+#+begin_src shell :dir /myserver:~/
+hostname
+#+end_src
+
 # #+begin_src python :dir /ssh:tortilla:/tmp :results output
 # import socket
 #
