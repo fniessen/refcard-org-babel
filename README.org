@@ -2217,6 +2217,12 @@ Note that you can customize ~org-babel-noweb-wrap-start~ and
 ~org-babel-noweb-wrap-end~ to use something else than angle brackets (for example,
 double quotes).
 
+#+begin_tip
+The Noweb syntax allows the use of *blanks in names of code blocks* (hence,
+sentences for code block names, so that we can enjoy the literate in literate
+programming a lot more!) since 2015-02-18.
+#+end_tip
+
 *** Examples
 
 **** Expand block
