@@ -4,9 +4,10 @@
 #+DESCRIPTION: Org Babel reference card
 #+KEYWORDS:  emacs, org-mode, org-babel, eric shulte, dan davison, literate programming, reproducible research, sweave
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:nil
+#+OPTIONS:   H:4 num:nil toc:2
 
-#+SETUPFILE: bigblow-pirilampo.setup
+# #+SETUPFILE: bigblow-pirilampo.setup
+#+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
 #+PROPERTY:  eval never
 
@@ -28,9 +29,9 @@ In a nutshell, Org Babel is like Sweave (for [[id:1663ff41-af51-4b07-abc8-6bfed9
 a *large number of possible languages* (R, python, Java, ...) and Org mode can
 produce *HTML* as well as *PDF*.
 
-#+begin_note
+#+begin_warning
 Prolonged use may cause addiction!
-#+end_note
+#+end_warning
 
 * Compendium principles
 
@@ -239,6 +240,18 @@ Maybe you could do something like the following...
 #+end_src
 
 # #+call: export-hdr-arg-backend-dep() :exports (if (eq org-export-current-backend 'beamer) "none" "results")
+
+***** Backend-conditional results
+
+You can replace
+
+: (:results . "html")
+
+with
+
+: (:results . (or (and org-export-current-backend "html")  "none"))
+
+in the ~defvar~ to get the desired result.
 
 ***** Cross-referencing a results block
 
@@ -514,6 +527,12 @@ blocks.  To force interpretation of a cell's value as a string, prefix the
 identifier with a ~$~ (e.g., ~$$2~ instead of ~$2~ or ~$@2$2~ instead of
 ~@2$2~).
 
+#+begin_warning
+Babel apparently supports (undocumented) "filename:reference" syntax for
+foreign references. In your case, "tab:my_data" is mistakenly seen as
+a reference to "my_data" in the file "tab".
+#+end_warning
+
 In order to differentiate between strings and reference names, we surround all
 strings in double quotes...
 
@@ -770,7 +789,7 @@ with header arguments.
   ~org-src-fontify-natively~ is non-nil.
 
 - Inline code block results are replaceable (i.e., removable) -- since commit
-  85ff663, on [2015-01-29 Thu] -- if they is wrapped in a ~{{{results(.*)}}}~ macro
+  ~85ff663~, on [2015-01-29 Thu] -- if they is wrapped in a ~{{{results(.*)}}}~ macro
   call.
 
   Insert current value in ~results~ macro possibly wrapping RESULT in an export
@@ -969,10 +988,10 @@ cosmetic changes.
      Go to a *named code block* (with completing read).
 
      The target src block is guessed from:
-     1. noweb-reference
-     2. #+call:
-     3. #+results:
-     4. symbol-at-point
+     1. noweb reference
+     2. ~#+call:~
+     3. ~#+results:~
+     4. ~symbol-at-point~
      if one of these is found (in that order).
 
      The point being pushed to the ~org-mark-ring~, you can return to it with
@@ -1204,8 +1223,8 @@ the use of:
 That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] basis.
 
 The property mechanism is a general mechanism for the concatenation of property
-strings.  Any property specification unless it is postfixed with a ~+~ will
-/reset/ the value of that property to its current value.
+strings (accumulated values).  Any property specification unless it is postfixed
+with a ~+~ will /reset/ the value of that property to its current value.
 
 : #+PROPERTY: header-args+ :results output scalar pp replace
 
@@ -1278,6 +1297,13 @@ The following table lists the standard header arguments that Org Babel uses.
 | [[#mkdirp][:mkdirp]]    | [[#tangle-mode][:tangle-mode]] |
 | [[#no-expand][:no-expand]] | [[#var][:var]]         |
 | [[#noweb][:noweb]]     | [[#wrap][:wrap]]        |
+
+#+begin_note
+The argument of any header option can be replaced by an ELisp form -- which
+should return a string (or a list of strings, depending on the case).
+#+end_note
+
+-----
 
 ** :cache
    :PROPERTIES:
@@ -1366,6 +1392,8 @@ x <- 'side effect'
 [[#eval][:eval]] \\
 [[#exports][:exports]]
 
+-----
+
 ** :cmdline
    :PROPERTIES:
    :CUSTOM_ID: cmdline
@@ -1406,6 +1434,8 @@ echo "$@"
 
 Also, calling the script using ~#+call~ is like calling it from another shell
 script (supplying the value in the call line).
+
+-----
 
 ** :colnames
    :PROPERTIES:
@@ -1651,7 +1681,7 @@ print (ascii (table (data)), type = "org")
 | 5 |
 | 4 |
 
-**** #+call get the first row of output table lost when using latex export
+**** ~#+call~ get the first row of output table lost when using latex export
 
 ~org-babel-execute:python~ does its own formatting.  ~#+call:~ on the other hand
 passes the results to Babel.
@@ -1668,6 +1698,8 @@ The workaround is to use:
 
 [[#hlines][:hlines]] \\
 [[#rownames][:rownames]]
+
+-----
 
 ** :comments
    :PROPERTIES:
@@ -1717,6 +1749,8 @@ which the code was tangled).
 The variable ~org-babel-tangle-use-relative-file-links~ controls whether files
 and links in comments in tangled files use relative or absolute path names (it
 defaults to relative paths).
+
+-----
 
 ** :dir
    :PROPERTIES:
@@ -1778,6 +1812,8 @@ SELECT 2+2 AS 'four', 1+1 AS 'one';
 
 [[#file][:file]]
 
+-----
+
 ** :epilogue
    :PROPERTIES:
    :CUSTOM_ID: epilogue
@@ -1799,6 +1835,8 @@ Appends text to code block body.
 **** Reference
 
 [[#prologue][:prologue]]
+
+-----
 
 ** :eval
    :PROPERTIES:
@@ -1871,6 +1909,8 @@ supported for both performing the evaluation and collecting the [[#results][resu
 
 ~org-confirm-babel-evaluate~
 
+-----
+
 ** :exports
    :PROPERTIES:
    :CUSTOM_ID: exports
@@ -1925,6 +1965,8 @@ Specifies how code and/or results should be handled *during export*.
 [[#cache][:cache]] \\
 [[#eval][:eval]] \\
 [[#results][:results]]
+
+-----
 
 ** :file
    :PROPERTIES:
@@ -2040,12 +2082,16 @@ plot(1:10, (1:10)^2)
 [[#results][:results]] \\
 [[#sep][:sep]] (for saving tabular results)
 
+-----
+
 ** :file-desc
    :PROPERTIES:
    :CUSTOM_ID: file-desc
    :END:
 
 Specifies a description for file results.
+
+-----
 
 ** :hlines
    :PROPERTIES:
@@ -2135,6 +2181,8 @@ The ~:hlines yes~ header argument must be set on the call line itself.
 
 [[#colnames][:colnames]]
 
+-----
+
 ** :mkdirp
    :PROPERTIES:
    :CUSTOM_ID: mkdirp
@@ -2149,6 +2197,8 @@ Toggles creation of parent directories of target files during tangling.
 
 - ~:mkdirp yes~ ::
       Create the directories if they don't exist.
+
+-----
 
 ** :no-expand
    :PROPERTIES:
@@ -2168,6 +2218,8 @@ Turns off the code blocks expansion *during tangling*.
 [[#noweb][:noweb]] \\
 [[#noweb-ref][:noweb-ref]] \\
 [[#noweb-sep][:noweb-sep]] \\
+
+-----
 
 ** :noweb
    :PROPERTIES:
@@ -2261,6 +2313,8 @@ echo "]"
 
 Noweb references
 
+-----
+
 ** :noweb-ref
    :PROPERTIES:
    :CUSTOM_ID: noweb-ref
@@ -2334,6 +2388,8 @@ second
 
 The variable ~org-babel-use-quick-and-dirty-noweb-expansion~ controls XXX
 
+-----
+
 ** :noweb-sep
    :PROPERTIES:
    :CUSTOM_ID: noweb-sep
@@ -2351,6 +2407,8 @@ By default a newline is used.
 
 [[#noweb][:noweb]] \\
 [[#noweb-ref][:noweb-ref]]
+
+-----
 
 ** :padline
    :PROPERTIES:
@@ -2376,6 +2434,8 @@ The padline is not inserted at the top of the file, only between blocks.
 **** Reference
 
 [[#noweb][:noweb]]
+
+-----
 
 ** :post
    :PROPERTIES:
@@ -2498,6 +2558,8 @@ data.frame(foo=rnorm(1))
 |-------|
 | 1.371 |
 
+-----
+
 ** :prologue
    :PROPERTIES:
    :CUSTOM_ID: prologue
@@ -2519,6 +2581,8 @@ Prepends text to code block body.
 **** Reference
 
 [[#epilogue][:epilogue]]
+
+-----
 
 ** :results
    :PROPERTIES:
@@ -2669,7 +2733,7 @@ Specifies what type of results the code block will return.
 
      Is the same as ~:wrap HTML~.
 
-     Inserts the results inside a ~#+BEGIN_HTML~ block.
+     Inserts the results inside a ~#+begin_html~ block.
 
      # XXX This breaks HTML export
 
@@ -2678,9 +2742,9 @@ Specifies what type of results the code block will return.
      # #+end_src
      #
      # #+results:
-     # #+BEGIN_HTML
+     # #+begin_html
      # output <b>HTML</b> formatted text
-     # #+END_HTML
+     # #+end_html
 
 - ~:results latex~ ::
      Specifies that the *results* of the code block is *raw LaTeX code* (which can
@@ -2689,7 +2753,7 @@ Specifies what type of results the code block will return.
      Is the same as ~:wrap LaTeX~. \\
      (default for LaTeX code blocks)
 
-     Inserts the results inside a ~#+BEGIN_LaTeX~ block.
+     Inserts the results inside a ~#+begin_latex~ block.
 
      # XXX This breaks HTML export
 
@@ -2698,18 +2762,18 @@ Specifies what type of results the code block will return.
      # #+end_src
      #
      # #+results:
-     # #+BEGIN_LaTeX
+     # #+begin_latex
      # output \textbf{\LaTeX} formatted text
-     # #+END_LaTeX
+     # #+end_latex
 
      # #+begin_src maxima :results output latex
      # tex(exp(-x)/x);
      # #+end_src
      #
      # #+results:
-     # #+BEGIN_LaTeX
+     # #+begin_latex
      # $${{e^ {- x }}\over{x}}$$
-     # #+END_LaTeX
+     # #+end_latex
 
 - ~:results org~ ::
      (implies ~verbatim~ results, unless otherwise stated) \\
@@ -2884,6 +2948,9 @@ That's a very nice tip - one small weakness is that it'll do the wrong
 thing if you just happen to have a binding for "backend" outside of the
 export mechanism.
 
+A naked "~tildes~" will be marked up as "\verb~tildes~" under ~:results raw~ or
+~:results latex raw~, and as "~tildes~" under ~:results latex~.
+
 *** Examples
 
 **** Interpreting the results as a file path
@@ -2902,6 +2969,8 @@ export mechanism.
 [[#exports][:exports]] \\
 [[#file][:file]] \\
 [[#wrap][:wrap]]
+
+-----
 
 ** :rownames
    :PROPERTIES:
@@ -2924,6 +2993,8 @@ Handles row names in tables.
 
 [[#colnames][:colnames]] \\
 [[#wrap][:wrap]]
+
+-----
 
 ** :sep
    :PROPERTIES:
@@ -2960,6 +3031,8 @@ Recall that ~:results value~ is the default.
 **** Reference
 
 [[#file][:file]]
+
+-----
 
 ** :session
    :PROPERTIES:
@@ -3004,6 +3077,8 @@ Shares data and persists state between (evaluation of) different code blocks.
 [[#eval][:eval]] \\
 [[#exports][:exports]]
 
+-----
+
 ** :shebang
    :PROPERTIES:
    :CUSTOM_ID: shebang
@@ -3034,6 +3109,8 @@ printf "with a shebang line, I can be run as a script!\n"
 
 #+results:
 | with a shebang line | I can be run as a script! |
+
+-----
 
 ** :tangle
    :PROPERTIES:
@@ -3075,6 +3152,8 @@ Propagating changes back from tangled code to Org mode blocks (aka
 
 [[#noweb][:noweb]]
 
+-----
+
 ** :tangle-mode
    :PROPERTIES:
    :CUSTOM_ID: tangle-mode
@@ -3087,6 +3166,8 @@ Controls the permissions of tangled files.
 #+begin_src R :tangle-mode (identity #o444)
 plot(1)
 #+end_src
+
+-----
 
 ** :var
    :PROPERTIES:
@@ -3170,7 +3251,7 @@ data=<FILE>:<VAR>~.  Note that, in order to work, the files must be in the same
 directory.
 
 ~:var~ introduces code block dependencies.
-include anything in the Org mode file that takes a ~#+NAME:~, ~#+BEGIN_EXAMPLE~
+include anything in the Org mode file that takes a ~#+name:~, ~#+begin_example~
 blocks, other code blocks, and the results of other code blocks.  When
 a reference is made to another code block, the referenced block will be
 evaluated whenever needed, in order to supply its value to the referencing
@@ -3291,6 +3372,8 @@ rowSums(x)
 | 26 |
 | 30 |
 
+-----
+
 ** :wrap
    :PROPERTIES:
    :CUSTOM_ID: wrap
@@ -3305,10 +3388,10 @@ Delimit the results (of source block evaluation).
      (default)
 
 - ~:wrap~ ::
-     Specifies to wrap the results in a ~#+BEGIN/END_RESULTS~ block.
+     Specifies to wrap the results in a ~#+begin/end_results~ block.
 
 - ~:wrap <MARKUP>~ ::
-     Specifies the name of the block (~#+BEGIN/END_<MARKUP>~) with which to wrap
+     Specifies the name of the block (~#+begin/end_<markup>~) with which to wrap
      the results.
 
 *XXX How to unset it (when set in a higher level)?*
@@ -3322,7 +3405,7 @@ from code blocks.
 
 **** Using ~:wrap~ with no value
 
-The following example wraps the results in ~#+BEGIN_RESULTS~ ... ~#+END_RESULTS~
+The following example wraps the results in ~#+begin_results~ ... ~#+end_results~
 block.
 
 #+begin_src R :exports results :wrap
@@ -3331,24 +3414,24 @@ x
 #+end_src
 
 #+results:
-#+BEGIN_RESULTS
+#+begin_results
 | 1 | 4 | 7 | 10 |
 | 2 | 5 | 8 | 11 |
 | 3 | 6 | 9 | 12 |
-#+END_RESULTS
+#+end_results
 
 **** Using ~:wrap~ with a string value
 
-The following examples puts the *output in an ~EXAMPLE~ block*.
+The following examples puts the *output in an ~example~ block*.
 
-#+begin_src R :exports results :results raw :wrap EXAMPLE
+#+begin_src R :exports results :results raw :wrap example
 print("Some results wrapped in an example block.")
 #+end_src
 
 #+results:
-#+BEGIN_EXAMPLE
+#+begin_example
 Some results wrapped in an example block.
-#+END_EXAMPLE
+#+end_example
 
 **** Using ~:wrap~ to produce a source code block in a named language
 
