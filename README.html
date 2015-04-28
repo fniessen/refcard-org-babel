@@ -128,15 +128,14 @@
 <li><a href="#orgheadline218">Shell mode</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline220">References</a></li>
-<li><a href="#orgheadline224">Contributing</a>
+<li><a href="#orgheadline227">Colophon</a>
 <ul>
-<li><a href="#orgheadline221">Issues</a></li>
-<li><a href="#orgheadline222">Patches</a></li>
-<li><a href="#orgheadline223">Donations</a></li>
+<li><a href="#orgheadline220">References</a></li>
+<li><a href="#orgheadline224">Contributing</a></li>
+<li><a href="#orgheadline225">License</a></li>
+<li><a href="#orgheadline226">Change Log</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline225">License</a></li>
 </ul>
 </div>
 </div>
@@ -177,7 +176,7 @@
 <li>the full set of <b>outputs</b> you got,</li>
 </ul>
 <p>following the principles of <b>reproducible research</b> (RR).</p>
-</div>
+<hr /></div>
 </div>
 </div>
 <div id="outline-container-orgheadline5" class="outline-2">
@@ -913,7 +912,7 @@ expr 1 + 1
 <p>Will lisp-2 export with a newline?</p>
 <p>Will shell-2 export with a newline?</p>
 <p>Will r-2 export with a newline?</p>
-</div>
+<hr /></div>
 </li>
 </ul>
 </div>
@@ -1092,7 +1091,7 @@ expr 1 + 1
 <dt><code>C-c C-v l</code> (or <code>C-c C-v C-l</code> or <code>&lt;M-up&gt;</code>)</dt>
 <dd><b>Load the current code</b> block into the Library of Babel and enter the <b>session</b>.</dd>
 </dl>
-</div>
+<hr /></div>
 </div>
 </div>
 <div id="outline-container-orgheadline33" class="outline-2">
@@ -2765,8 +2764,34 @@ data
 </pre></div>
 </dd>
 </dl>
-<p>&gt;&gt; #+begin_src R :results pp replace &gt;&gt; c("<b>* New header2", "<a href="./graph1.pdf">./graph1.pdf</a>", "", "*</b> and second header", "and some text" ) &gt;&gt; #+end_src &gt;&gt; &gt;&gt; #+results: &gt;&gt; : ** New header2 &gt;&gt; : <a href="./graph1.pdf">./graph1.pdf</a> &gt;&gt; : &gt;&gt; : ** and second header &gt;&gt; : and some text</p>
-<p>&gt;&gt;&gt;&gt; I don't quite understand your code below and what it is supposed to do. &gt;&gt;&gt; &gt;&gt;&gt; Drawers are probably better in most cases, but this code lets you use &gt;&gt;&gt; ':results pp replace' while developing, but converts the fixed-width pp &gt;&gt;&gt; results into raw results when desired (e.g. in a buffer copy before some &gt;&gt;&gt; action is taken). &gt;&gt; &gt;&gt; OK - I see. But what is the advantage in this approach? Drawer do &gt;&gt; perfectly what I want, i.e. encapsulating an org structure in a for &gt;&gt; replacement when re-calculated, inside the drawer they behave like &gt;&gt; normal org structure (folding, …) and upon export they are exported as &gt;&gt; org code would be - or am I missing something? &gt; &gt; There are none (for you) then, but it might be useful anyway in some &gt; situations, at least the results look more like part of the document &gt; when you care about the looks of the org file too (not only the export &gt; results).</p>
+<p class="verse">     &gt;&gt; #+begin_src R :results pp replace<br />
+     &gt;&gt; c("<b>* New header2", "<a href="./graph1.pdf">./graph1.pdf</a>", "", "*</b> and second header", "and some text" )<br />
+     &gt;&gt; #+end_src<br />
+     &gt;&gt;<br />
+     &gt;&gt; #+results:<br />
+     &gt;&gt; : ** New header2<br />
+     &gt;&gt; : <a href="./graph1.pdf">./graph1.pdf</a><br />
+     &gt;&gt; :<br />
+     &gt;&gt; : ** and second header<br />
+     &gt;&gt; : and some text<br />
+<br />
+&gt;&gt;&gt;&gt; I don't quite understand your code below and what it is supposed to do.<br />
+&gt;&gt;&gt;<br />
+&gt;&gt;&gt; Drawers are probably better in most cases, but this code lets you use<br />
+&gt;&gt;&gt; ':results pp replace' while developing, but converts the fixed-width pp<br />
+&gt;&gt;&gt; results into raw results when desired (e.g. in a buffer copy before some<br />
+&gt;&gt;&gt; action is taken).<br />
+&gt;&gt;<br />
+&gt;&gt; OK - I see. But what is the advantage in this approach? Drawer do<br />
+&gt;&gt; perfectly what I want, i.e. encapsulating an org structure in a for<br />
+&gt;&gt; replacement when re-calculated, inside the drawer they behave like<br />
+&gt;&gt; normal org structure (folding, …) and upon export they are exported as<br />
+&gt;&gt; org code would be - or am I missing something?<br />
+&gt;<br />
+&gt; There are none (for you) then, but it might be useful anyway in some<br />
+&gt; situations, at least the results look more like part of the document<br />
+&gt; when you care about the looks of the org file too (not only the export<br />
+&gt; results).<br /></p>
 </div>
 </li>
 </ul>
@@ -2784,8 +2809,20 @@ data
 <p>…never to execute the source block by hand in org source file. That way, the results will appear only in the <b>temporary</b> copy of the buffer is parsed for export and one does need to worry about demarcating the output with a :RESULTS: drawer…</p>
 <p>Workaround: a block wrapper makes it possible for the entirety of the results to be clearly located, regardless of their contents, and replaced (with new results) by Babel upon code block re-evaluation.</p>
 <p>No matter how special the results drawer is, it cannot (and shouldn't) contain headlines.</p>
-<p>&gt; Or wrap the results in a drawer when you type C-c C-c, but render them as &gt; raw on export (which removes the drawer and replaces with raw results). &gt; &gt; Like so: &gt; &gt; #+header: :results (if (boundp 'backend) "raw" "drawer") &gt; #+begin_src emacs-lisp :exports both &gt; &gt; (format "* headline\n1\n2\n5\n") &gt; #+end_src</p>
-<p>That's a very nice tip - one small weakness is that it'll do the wrong thing if you just happen to have a binding for "backend" outside of the export mechanism.</p>
+<p class="verse">&gt; Or wrap the results in a drawer when you type C-c C-c, but render them as<br />
+&gt; raw on export (which removes the drawer and replaces with raw results).<br />
+&gt;<br />
+&gt; Like so:<br />
+&gt;<br />
+&gt; #+header: :results (if (boundp 'backend) "raw" "drawer")<br />
+&gt; #+begin_src emacs-lisp :exports both<br />
+&gt;<br />
+&gt; (format "* headline\n1\n2\n5\n")<br />
+&gt; #+end_src<br />
+<br />
+That's a very nice tip - one small weakness is that it'll do the wrong<br />
+thing if you just happen to have a binding for "backend" outside of the<br />
+export mechanism.<br /></p>
 <p>A naked "<code>tildes</code>" will be marked up as "\verb~tildes~" under <code>:results raw</code> or <code>:results latex raw</code>, and as "<code>tildes</code>" under <code>:results latex</code>.</p>
 </div>
 </div>
@@ -2889,7 +2926,7 @@ ls -l
 <h4 id="orgheadline188">Remarks</h4>
 <div class="outline-text-4" id="text-orgheadline188">
 <ul class="org-ul">
-<li>If a code block has a <code>:session</code> header argument, then it is assumed that the block should be evaluated regardless of it's <code>:exports</code> header argument, because it could change the state of the session.</li>
+<li>If a code block has a <code>:session</code> header argument, then it is assumed that the block should be evaluated regardless of its <code>:exports</code> header argument, because it could change the state of the session.</li>
 <li>Even if you don't need to share data between blocks, you can still use sessions in order not to wait for the interpreter to start up for each block!</li>
 <li>This also allows for manual inspection of the results of evaluation.</li>
 <li>When you work on different files at the same time, you may want to use:
@@ -3322,7 +3359,7 @@ Some results wrapped in an example block.
 <h4 id="orgheadline212">See also</h4>
 <div class="outline-text-4" id="text-orgheadline212">
 <p><a href="#orgheadline88">:results</a></p>
-</div>
+<hr /></div>
 </div>
 </div>
 </div>
@@ -3445,11 +3482,13 @@ Some results wrapped in an example block.
 <h3 id="separator"><a id="orgheadline214" name="orgheadline214"></a>:separator</h3>
 <div class="outline-text-3" id="text-separator">
 <p>Specifies a different results separator.</p>
-</div>
+<hr /></div>
 </div>
 </div>
 <div id="outline-container-orgheadline216" class="outline-2">
 <h2 id="orgheadline216">Data types</h2>
+<div class="outline-text-2" id="text-orgheadline216">
+<hr /></div>
 </div>
 <div id="outline-container-orgheadline217" class="outline-2">
 <h2 id="orgheadline217">Hooks</h2>
@@ -3461,7 +3500,7 @@ Some results wrapped in an example block.
 <p>Example applications could include post-processing, compilation or evaluation of tangled code files.</p>
 </dd>
 </dl>
-</div>
+<hr /></div>
 </div>
 <div id="outline-container-orgheadline219" class="outline-2">
 <h2 id="orgheadline219">Subtleties</h2>
@@ -3469,17 +3508,36 @@ Some results wrapped in an example block.
 <div id="outline-container-orgheadline218" class="outline-3">
 <h3 id="orgheadline218">Shell mode</h3>
 <div class="outline-text-3" id="text-orgheadline218">
-<p>&gt; Why is the `diff' command alone not exported while the piped `diff' via &gt; `cat' works?</p>
-<p>The exit code is not zero since diff found differences, so Babel assumes the script produced an error. Try this instead when you don't know what the return code of the last command will be or if you know that it isn't zero even when no error occured:</p>
-<p>&gt; Is this this a bug?</p>
-<p>I don't think so, although Babel could give a more enlightening message about why it didn't evaluate STDOUT. It gives this on your original example:</p>
-<p>Babel evaluation exited with code 1 Code block produced no output.</p>
+<p class="verse">&gt; Why is the `diff' command alone not exported while the piped `diff' via<br />
+&gt; `cat' works?<br />
+<br />
+The exit code is not zero since diff found differences, so Babel assumes the<br />
+script produced an error. Try this instead when you don't know what the return<br />
+code of the last command will be or if you know that it isn't zero even when no<br />
+error occured:<br />
+<br />
+#+begin_src shell :exports results :results output<br />
+diff testdiff.txt.orig testdiff.txt<br />
+:<br />
+#+end_src<br />
+<br />
+&gt; Is this this a bug?<br />
+<br />
+I don't think so, although Babel could give a more enlightening message about<br />
+why it didn't evaluate STDOUT. It gives this on your original example:<br />
+<br />
+Babel evaluation exited with code 1<br />
+Code block produced no output.<br /></p>
+<hr /></div>
 </div>
 </div>
-</div>
-<div id="outline-container-orgheadline220" class="outline-2">
-<h2 id="orgheadline220">References</h2>
-<div class="outline-text-2" id="text-orgheadline220">
+<div id="outline-container-orgheadline227" class="outline-2">
+<h2 id="orgheadline227">Colophon</h2>
+<div class="outline-text-2" id="text-orgheadline227"></div>
+<div id="outline-container-orgheadline220" class="outline-3">
+<h3 id="orgheadline220">References</h3>
+<div class="outline-text-3" id="text-orgheadline220">
+<p>The primary sources for this documentation are:</p>
 <ul class="org-ul">
 <li><a href="http://orgmode.org/org.pdf">The Org Manual</a></li>
 <li><a href="http://orgmode.org/worg/">Worg</a> site</li>
@@ -3487,39 +3545,52 @@ Some results wrapped in an example block.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline224" class="outline-2">
-<h2 id="orgheadline224">Contributing</h2>
-<div class="outline-text-2" id="text-orgheadline224"></div>
-<div id="outline-container-orgheadline221" class="outline-3">
-<h3 id="orgheadline221">Issues</h3>
-<div class="outline-text-3" id="text-orgheadline221">
+<div id="outline-container-orgheadline224" class="outline-3">
+<h3 id="orgheadline224">Contributing</h3>
+<div class="outline-text-3" id="text-orgheadline224"></div>
+<div id="outline-container-orgheadline221" class="outline-4">
+<h4 id="orgheadline221">Issues</h4>
+<div class="outline-text-4" id="text-orgheadline221">
 <p>Report issues and suggest features and improvements on the <a href="https://github.com/fniessen/refcard-org-babel%20/issues/new">GitHub issue tracker</a>.</p>
 </div>
 </div>
-<div id="outline-container-orgheadline222" class="outline-3">
-<h3 id="orgheadline222">Patches</h3>
-<div class="outline-text-3" id="text-orgheadline222">
+<div id="outline-container-orgheadline222" class="outline-4">
+<h4 id="orgheadline222">Patches</h4>
+<div class="outline-text-4" id="text-orgheadline222">
 <p>I love contributions! Patches under any form are always welcome!</p>
 </div>
 </div>
-<div id="outline-container-orgheadline223" class="outline-3">
-<h3 id="orgheadline223">Donations</h3>
-<div class="outline-text-3" id="text-orgheadline223">
+<div id="outline-container-orgheadline223" class="outline-4">
+<h4 id="orgheadline223">Donations</h4>
+<div class="outline-text-4" id="text-orgheadline223">
 <p>If you like the refcard-org-babel project, you can show your appreciation and support future development by making a <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard-org-babel&amp;currency_code=EUR&amp;bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted">donation</a> through PayPal.</p>
 <p>Regardless of the donations, refcard-org-babel will always be free both as in beer and as in speech.</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline225" class="outline-2">
-<h2 id="orgheadline225">License</h2>
-<div class="outline-text-2" id="text-orgheadline225">
+<div id="outline-container-orgheadline225" class="outline-3">
+<h3 id="orgheadline225">License</h3>
+<div class="outline-text-3" id="text-orgheadline225">
 <p>Copyright (C) 2014-2015 Free Software Foundation, Inc.</p>
 <p>Author: Fabrice Niessen<br />
 Keywords: org-mode org-babel reference card</p>
 <p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+</div>
+</div>
+<div id="outline-container-orgheadline226" class="outline-3">
+<h3 id="orgheadline226">Change Log</h3>
+<div class="outline-text-3" id="text-orgheadline226">
+<pre class="example">
+add1feb (HEAD, master) Remove useless headlines in "See also" sections
+7dcdd98 (origin/master) Add notes and horizontal lines
+26f6354 Add tip about blanks in code block names (for Noweb)
+157ce07 Add example of using `:dir'
+c131724 Add doc about :post-header
+</pre>
 <a href="http://opensource.org/licenses/GPL-3.0"><img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" /></a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard%2dorg%2dbabel&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" /></a></div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">

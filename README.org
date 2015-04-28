@@ -66,6 +66,8 @@ This allows you to insert in your Org document:
 
 following the principles of *reproducible research* (RR).
 
+-----
+
 * Code evaluation
 
 Org mode basically just runs the code every time you export the document.  But,
@@ -909,6 +911,8 @@ Will shell-2 export call_shell-2() with a newline?
 
 Will r-2 export call_r-2() with a newline?
 
+-----
+
 * Key bindings
 
 Babel commands can be used as *speed commands* when the point is at the beginning
@@ -1091,6 +1095,8 @@ reference in this language can not be resolved).
 - ~C-c C-v l~ (or ~C-c C-v C-l~ or ~<M-up>~) ::
      *Load the current code* block into the Library of Babel and enter the
      *session*.
+
+-----
 
 * Header arguments
   :PROPERTIES:
@@ -2827,6 +2833,7 @@ Specifies what type of results the code block will return.
      # #+results:
      # : "* Headline\nParagraph"
 
+#+begin_verse
      >> #+begin_src R :results pp replace
      >>  c("** New header2", "[[./graph1.pdf]]", "", "** and second header", "and some text" )
      >> #+end_src
@@ -2855,6 +2862,7 @@ Specifies what type of results the code block will return.
 > situations, at least the results look more like part of the document
 > when you care about the looks of the org file too (not only the export
 > results).
+#+end_verse
 
 *** Remarks
 
@@ -2895,6 +2903,7 @@ results) by Babel upon code block re-evaluation.
 No matter how special the results drawer is, it cannot (and shouldn't)
 contain headlines.
 
+#+begin_verse
 > Or wrap the results in a drawer when you type C-c C-c, but render them as
 > raw on export (which removes the drawer and replaces with raw results).
 >
@@ -2909,6 +2918,7 @@ contain headlines.
 That's a very nice tip - one small weakness is that it'll do the wrong
 thing if you just happen to have a binding for "backend" outside of the
 export mechanism.
+#+end_verse
 
 A naked "~tildes~" will be marked up as "\verb~tildes~" under ~:results raw~ or
 ~:results latex raw~, and as "~tildes~" under ~:results latex~.
@@ -3011,7 +3021,7 @@ Shares data and persists state between (evaluation of) different code blocks.
 *** Remarks
 
 - If a code block has a =:session= header argument, then it is assumed that the
-  block should be evaluated regardless of it's =:exports= header argument, because
+  block should be evaluated regardless of its =:exports= header argument, because
   it could change the state of the session.
 
 - Even if you don't need to share data between blocks, you can still use
@@ -3434,6 +3444,8 @@ source block.
 
 [[#results][:results]]
 
+-----
+
 * Extra language-specific header arguments
 
 The following table lists the header arguments that some languages use.
@@ -3479,7 +3491,11 @@ Specifies code block prefix for code evaluation.
 
 Specifies a different results separator.
 
+-----
+
 * Data types
+
+-----
 
 * Hooks
 
@@ -3491,10 +3507,13 @@ Specifies a different results separator.
      Example applications could include post-processing, compilation or
      evaluation of tangled code files.
 
+-----
+
 * Subtleties
 
 ** Shell mode
 
+#+begin_verse
 > Why is the `diff' command alone not exported while the piped `diff' via
 > `cat' works?
 
@@ -3515,8 +3534,15 @@ why it didn't evaluate STDOUT.  It gives this on your original example:
 
 Babel evaluation exited with code 1
 Code block produced no output.
+#+end_verse
 
-* References
+-----
+
+* Colophon
+
+** References
+
+The primary sources for this documentation are:
 
 - [[http://orgmode.org/org.pdf][The Org Manual]]
 
@@ -3524,17 +3550,20 @@ Code block produced no output.
 
 - Mailing list [[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]]
 
-* Contributing
+** Contributing
 
-** Issues
+*** Issues
 
 Report issues and suggest features and improvements on the [[https://github.com/fniessen/refcard-org-babel /issues/new][GitHub issue tracker]].
 
-** Patches
+*** Patches
 
 I love contributions!  Patches under any form are always welcome!
 
-** Donations
+# See "Editar este documento" at
+# http://plone-spanish-docs.readthedocs.org/en/latest/novedades/2.html
+
+*** Donations
 
 If you like the refcard-org-babel project, you can show your appreciation and
 support future development by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.
@@ -3542,7 +3571,7 @@ support future development by making a [[https://www.paypal.com/cgi-bin/webscr?c
 Regardless of the donations, refcard-org-babel will always be free both as in
 beer and as in speech.
 
-* License
+** License
 
 Copyright (C) 2014-2015 Free Software Foundation, Inc.
 
@@ -3560,6 +3589,12 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see http://www.gnu.org/licenses/.
+
+** Change Log
+
+#+begin_src shell :eval yes :results output :exports results
+git log --oneline --decorate | head -n 5
+#+end_src
 
 #+begin_html
 <a href="http://opensource.org/licenses/GPL-3.0">
