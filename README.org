@@ -12,6 +12,12 @@
 #+PROPERTY:  eval never
 
 #+begin_html
+<div class="right">
+  <a href="https://github.com/fniessen/refcard-org-babel/blob/master/README.org" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_html
+
+#+begin_html
 <a href="http://opensource.org/licenses/GPL-3.0">
   <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
 </a>
