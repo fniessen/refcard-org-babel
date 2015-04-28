@@ -6,7 +6,7 @@
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil toc:2
 
-# #+SETUPFILE: bigblow-pirilampo.setup
+# #+SETUPFILE: bigblow-pirilampo.setup # test
 #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
 #+PROPERTY:  eval never
