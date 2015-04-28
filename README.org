@@ -1387,8 +1387,6 @@ x <- 'side effect'
 
 *** See also
 
-**** Reference
-
 [[#eval][:eval]] \\
 [[#exports][:exports]]
 
@@ -1694,8 +1692,6 @@ The workaround is to use:
 
 *** See also
 
-**** Reference
-
 [[#hlines][:hlines]] \\
 [[#rownames][:rownames]]
 
@@ -1740,11 +1736,7 @@ which the code was tangled).
 
 *** See also
 
-**** Reference
-
 [[#tangle][:tangle]]
-
-**** Other resources
 
 The variable ~org-babel-tangle-use-relative-file-links~ controls whether files
 and links in comments in tangled files use relative or absolute path names (it
@@ -1808,8 +1800,6 @@ SELECT 2+2 AS 'four', 1+1 AS 'one';
 
 *** See also
 
-**** Reference
-
 [[#file][:file]]
 
 -----
@@ -1831,8 +1821,6 @@ Appends text to code block body.
      body before execution.
 
 *** See also
-
-**** Reference
 
 [[#prologue][:prologue]]
 
@@ -1899,15 +1887,11 @@ supported for both performing the evaluation and collecting the [[#results][resu
 
 *** See also
 
-**** Reference
-
 [[#cache][:cache]] \\
 [[#exports][:exports]] \\
 [[#session][:session]]
 
-**** Variable
-
-~org-confirm-babel-evaluate~
+Variable ~org-confirm-babel-evaluate~.
 
 -----
 
@@ -1959,8 +1943,6 @@ Specifies how code and/or results should be handled *during export*.
   for code run elsewhere.  If you don't want that, set ~:eval~ accordingly.
 
 *** See also
-
-**** Reference
 
 [[#cache][:cache]] \\
 [[#eval][:eval]] \\
@@ -2076,8 +2058,6 @@ plot(1:10, (1:10)^2)
 
 *** See also
 
-**** Reference
-
 [[#dir][:dir]] \\
 [[#results][:results]] \\
 [[#sep][:sep]] (for saving tabular results)
@@ -2177,8 +2157,6 @@ The ~:hlines yes~ header argument must be set on the call line itself.
 
 *** See also
 
-**** Reference
-
 [[#colnames][:colnames]]
 
 -----
@@ -2212,8 +2190,6 @@ Turns off the code blocks expansion *during tangling*.
 ~:no-expand~ has no effect during execution.
 
 *** See also
-
-**** Reference
 
 [[#noweb][:noweb]] \\
 [[#noweb-ref][:noweb-ref]] \\
@@ -2300,8 +2276,6 @@ echo "]"
 
 *** See also
 
-**** Reference
-
 [[#comments][:comments]] \\
 [[#no-expand][:no-expand]] \\
 [[#noweb-ref][:noweb-ref]] \\
@@ -2309,9 +2283,7 @@ echo "]"
 [[#padline][:padline]] \\
 [[#tangle][:tangle]]
 
-**** Concepts
-
-Noweb references
+Concept of Noweb references.
 
 -----
 
@@ -2379,12 +2351,8 @@ second
 
 *** See also
 
-**** Reference
-
 [[#noweb][:noweb]] \\
 [[#noweb-sep][:noweb-sep]]
-
-**** Other resources
 
 The variable ~org-babel-use-quick-and-dirty-noweb-expansion~ controls XXX
 
@@ -2402,8 +2370,6 @@ Specifies the string to use to separate accumulated noweb references.
 By default a newline is used.
 
 *** See also
-
-**** Reference
 
 [[#noweb][:noweb]] \\
 [[#noweb-ref][:noweb-ref]]
@@ -2430,8 +2396,6 @@ Controls insertion of padding lines in tangled code files.
 The padline is not inserted at the top of the file, only between blocks.
 
 *** See also
-
-**** Reference
 
 [[#noweb][:noweb]]
 
@@ -2577,8 +2541,6 @@ Prepends text to code block body.
      body before execution.
 
 *** See also
-
-**** Reference
 
 [[#epilogue][:epilogue]]
 
@@ -2964,8 +2926,6 @@ A naked "~tildes~" will be marked up as "\verb~tildes~" under ~:results raw~ or
 
 *** See also
 
-**** Reference
-
 [[#exports][:exports]] \\
 [[#file][:file]] \\
 [[#wrap][:wrap]]
@@ -2988,8 +2948,6 @@ Handles row names in tables.
      Tells Org that your first column contains row names.
 
 *** See also
-
-**** Reference
 
 [[#colnames][:colnames]] \\
 [[#wrap][:wrap]]
@@ -3027,8 +2985,6 @@ ls -l
 Recall that ~:results value~ is the default.
 
 *** See also
-
-**** Reference
 
 [[#file][:file]]
 
@@ -3071,8 +3027,6 @@ Shares data and persists state between (evaluation of) different code blocks.
   be run from =~= directory (instead of the local one).
 
 *** See also
-
-**** Reference
 
 [[#eval][:eval]] \\
 [[#exports][:exports]]
@@ -3147,8 +3101,6 @@ Propagating changes back from tangled code to Org mode blocks (aka
 "*detangling*") is possible with the function ~org-babel-detangle~.
 
 *** See also
-
-**** Reference
 
 [[#noweb][:noweb]]
 
@@ -3479,8 +3431,6 @@ source block.
 # :END:
 
 *** See also
-
-**** Reference
 
 [[#results][:results]]
 
