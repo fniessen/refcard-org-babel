@@ -32,8 +32,8 @@ that describes how to perform *code execution* within Org mode documents using O
 Babel 8.
 
 In a nutshell, Org Babel is like Sweave (for [[id:1663ff41-af51-4b07-abc8-6bfed9395b2b][reproducible research]]) but it takes
-a *large number of possible languages* (R, python, Java, ...) and Org mode can
-produce *HTML* as well as *PDF*.
+a *large number of possible languages* (C, Java, Python, Ruby, R, ...) and Org
+mode can produce *HTML* as well as *PDF*.
 
 #+begin_warning
 Prolonged use may cause addiction!
@@ -1156,6 +1156,10 @@ This can also be done file-wide through the use of /file local variables/.
 - Variable ~org-babel-default-header-args:org~ for Org
 - Etc.
 
+#+begin_seealso
+~org-babel-common-header-args-w-values~
+#+end_seealso
+
 Header arguments which have different defaults between languages:
 
 | Languages                         | :exports | :hlines | :results       |
@@ -1188,86 +1192,55 @@ This can also be done file-wide (for certain files) through the use of:
 A ~#+PROPERTY:~ line located *anywhere* in a buffer affects the entire file: it
 sets a *global* property.
 
-Header arguments can either be specified:
-- as *separate property* (could be deprecated in the future)
-- with the *header-args property* (faster system to fetch block properties)
+#+begin_warning
+Don't forget to =C-c C-c= on these arguments (just one of them in your preamble)
+to make sure they're updated before trying another export.
+#+end_warning
+
+Header arguments can be specified with the *header-args property*.
 
 For example, when you want to tangle all source blocks in an Org file, include
 the line:
 
-: #+PROPERTY: tangle yes
-
-That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] or [[id:69939aec-bdee-449b-87fd-420daa53eaba][per-block]] basis.
-
-Since *only one property may be specified per property line*, there is *no need
-for colons*.
-
-Multiple lines may be used to specify multiple properties:
-
-: #+PROPERTY: results output code append
-: #+PROPERTY: cache yes
-
-In the case of two ~#+PROPERTY:~ lines for the same property, the property will
-have the later value.
+: #+PROPERTY: header-args :tangle yes
 
 #+begin_note
-The deprecated syntax for default header argument properties, using the name of
-the header argument as a property name directly, evaluates the property as seen
-by the corresponding source block definition.  This behavior has been kept for
-backwards compatibility.
-
-BUT...
-
-Eric Schulte has said <http://mid.gmane.org/87wqce0w9n.fsf@gmail.com> that the
-deprecation of this feature is "premature".  I didn't realize at the time that
-the deprecation was also included in the manual rather than just a code comment.
-Possibly it should be un-deprecated.
-
-Certainly I agree that the suggested replacement is less capable.  Sorry I can't
-help more.  Maybe Eric or Achim (who introduced the deprecation) will comment.
+Before, *header arguments* could also be specified as *separate properties*
+(~#+PROPERTY: tangle yes~, for example), but that syntax has been *deprecated* in
+the commit ~90b16870~ of 2013-06-23 as that was slower to fetch block properties.
 #+end_note
 
 You can also specify *multiple header arguments as one Org mode property* through
 the use of:
 
-: #+PROPERTY: header-args :results output code append :cache yes
+: #+PROPERTY: header-args :results output :cache yes
 
-That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] basis.
+That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] or [[id:69939aec-bdee-449b-87fd-420daa53eaba][per-block]] basis.
 
-The property mechanism is a general mechanism for the concatenation of property
-strings (accumulated values).  Any property specification unless it is postfixed
-with a ~+~ will /reset/ the value of that property to its current value.
+Any property specification, unless it is postfixed with a ~+~, will /reset/ the
+value of that property to its current value: in the case of two ~#+PROPERTY:~
+lines for the same property, the property will have the later value.
 
-: #+PROPERTY: header-args+ :results output scalar pp replace
-
-
-
-Awesome! Indeed, this works, for reference:
+But there is a general mechanism for the *concatenation of property* strings
+(*accumulated values*):
 
 #+begin_src org
 ,#+PROPERTY: header-args:R :exports results
-,#+PROPERTY: header-args   :results output graphics
-# Above line will crash some exports with msg "No :file header argument given; cannot create graphical result."
 ,#+PROPERTY: header-args:R+ :width 800
 #+end_src
-
-Also, don't forget to =C-c C-c= on these arguments (just one of them in your
-preamble) to make sure they're updated before trying another export.  (Only
-mentioning this as I often forget and then think something didn't work...)
-
 
 *** Subtree header arguments
     :PROPERTIES:
     :ID:       e7fda871-60ec-47d5-aee0-130c7d06fab2
     :END:
 
-In contrast to property lines, a ~:PROPERTIES:~ block is only valid for the given
-tree (and subtrees):
+In contrast to property lines, a ~:PROPERTIES:~ block is only valid *for the given
+tree (and subtrees)*:
 
 #+begin_src org
 ,* Outline heading
   :PROPERTIES:
-  :header-args:    :results output code append :cache yes
+  :header-args:    :results output :cache yes
   :END:
 #+end_src
 
@@ -3572,7 +3545,7 @@ I love contributions!  Patches under any form are always welcome!
 *** Donations
 
 If you like the refcard-org-babel project, you can show your appreciation and
-support future development by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.
+help support future development by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.
 
 Regardless of the donations, refcard-org-babel will always be free both as in
 beer and as in speech.
