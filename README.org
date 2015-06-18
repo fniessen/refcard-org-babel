@@ -9,7 +9,7 @@
 # #+SETUPFILE: bigblow-pirilampo.setup # test
 #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
-#+PROPERTY:  eval never
+#+PROPERTY:  header-args :eval never
 
 #+begin_html
 <div class="right">
@@ -842,7 +842,7 @@ each header argument portion is optional (so are the square brackets).
 
 **** Remarks
      :PROPERTIES:
-     :RESULTS:  raw
+     :header-args: results raw
      :END:
 
 - The result of named code blocks evaluated inline within a block of text is
@@ -1240,7 +1240,7 @@ tree (and subtrees)*:
 #+begin_src org
 ,* Outline heading
   :PROPERTIES:
-  :header-args:    :results output :cache yes
+  :header-args: :results output :cache yes
   :END:
 #+end_src
 
@@ -2309,7 +2309,7 @@ be a great loss.
 
 *** Examples
     :PROPERTIES:
-    :noweb-ref: accumulated
+    :header-args: :noweb-ref accumulated
     :END:
 
 #+begin_src org
