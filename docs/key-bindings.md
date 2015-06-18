@@ -1,9 +1,12 @@
+Org-babel is making use of the `C-c C-v` key binding.  All Org-babel keybindings
+are located behind this prefix.
+
+<div class="tip">
 Babel commands can be used as **speed commands** when the point is at the beginning
 of a code block (specifically, at the beginning of the `#+begin_src` line, in
 column `0`).
 
-Org-babel is making use of the `C-c C-v` key binding.  All Org-babel keybindings
-are located behind this prefix.
+</div>
 
 # Help
 
