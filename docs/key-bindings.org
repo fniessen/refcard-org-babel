@@ -1,4 +1,5 @@
-* Key bindings
+#+TITLE:     Key bindings
+#+OPTIONS:   toc:nil
 
 Babel commands can be used as *speed commands* when the point is at the beginning
 of a code block (specifically, at the beginning of the ~#+begin_src~ line, in
@@ -7,12 +8,12 @@ column ~0~).
 Org-babel is making use of the =C-c C-v= key binding.  All Org-babel keybindings
 are located behind this prefix.
 
-** Help
+* Help
 
 - ~C-c C-v h~ ::
      *Describe* all *key bindings* behind Org Babel key prefix.
 
-** Edit the code
+* Edit the code
 
 - ~C-c '~ ::
      *Edit* the code block in a *dedicated buffer*.
@@ -62,7 +63,7 @@ are located behind this prefix.
   Languages are permitted to add and use *any* arbitrary new header argument, so
   there is no /wrong/ (that is, disallowed) header argument.
 
-** SHA1 hash
+* SHA1 hash
 
 - ~C-c C-v a~ (or ~C-c C-v C-a~) ::
      *View SHA1 hash* of the current code block.
@@ -71,7 +72,7 @@ You could use the hash returned by that function to manually replace the
 original one in the block, and avoid reevaluating the block in case of purely
 cosmetic changes.
 
-** Navigate
+* Navigate
 
 - ~C-c C-v g~ ::
      Go to a *named code block* (with completing read).
@@ -99,7 +100,7 @@ cosmetic changes.
      Go to the *beginning* of the current code block (jump to the enclosing
      structural block).
 
-** Execute (or "evaluate")
+* Execute (or "evaluate")
    :PROPERTIES:
    :ID:       b1b4977c-5c27-4385-a9ce-2fb8346822b5
    :END:
@@ -115,7 +116,7 @@ cosmetic changes.
 
      With ~C-u C-c C-v C-e~, forcibly re-evaluate the block (marked ~:cache~).
 
-** Tangle
+* Tangle
 
 - ~C-c C-v t~ (or ~C-c C-v C-t~) ::
      *Tangle all the code blocks* in current file.
@@ -136,7 +137,7 @@ on such errors on a language-by-language basis, by customizing the variable
 literate programming errors when the source code block satisfying a noweb
 reference in this language can not be resolved).
 
-** View the results
+* View the results
 
 - ~C-c C-v v~ (or ~C-c C-v C-v~) ::
      *View the expanded body* of the code block at point.  This view of code
@@ -171,7 +172,7 @@ reference in this language can not be resolved).
 
      When called with a prefix argument, it applies to the *entire buffer*.
 
-** Library of Babel
+* Library of Babel
 
 - ~C-c C-v i~ (or ~C-c C-v C-i~) ::
      *Ingest all named code blocks* from supplied file into the Library of Babel
@@ -180,6 +181,3 @@ reference in this language can not be resolved).
 - ~C-c C-v l~ (or ~C-c C-v C-l~ or ~<M-up>~) ::
      *Load the current code* block into the Library of Babel and enter the
      *session*.
-
------
-

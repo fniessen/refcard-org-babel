@@ -1,25 +1,3 @@
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgheadline9">1. Key bindings</a>
-<ul>
-<li><a href="#orgheadline1">1.1. Help</a></li>
-<li><a href="#orgheadline2">1.2. Edit the code</a></li>
-<li><a href="#orgheadline3">1.3. SHA1 hash</a></li>
-<li><a href="#orgheadline4">1.4. Navigate</a></li>
-<li><a href="#orgheadline5">1.5. Execute (or &ldquo;evaluate&rdquo;)</a></li>
-<li><a href="#orgheadline6">1.6. Tangle</a></li>
-<li><a href="#orgheadline7">1.7. View the results</a></li>
-<li><a href="#orgheadline8">1.8. Library of Babel</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-# Key bindings<a id="orgheadline9"></a>
-
 Babel commands can be used as **speed commands** when the point is at the beginning
 of a code block (specifically, at the beginning of the `#+begin_src` line, in
 column `0`).
@@ -27,11 +5,11 @@ column `0`).
 Org-babel is making use of the `C-c C-v` key binding.  All Org-babel keybindings
 are located behind this prefix.
 
-## Help<a id="orgheadline1"></a>
+# Help
 
 -   **`C-c C-v h`:** **Describe** all **key bindings** behind Org Babel key prefix.
 
-## Edit the code<a id="orgheadline2"></a>
+# Edit the code
 
 -   **`C-c '`:** **Edit** the code block in a **dedicated buffer**.
 
@@ -69,7 +47,7 @@ are located behind this prefix.
     Languages are permitted to add and use **any** arbitrary new header argument, so
     there is no *wrong* (that is, disallowed) header argument.
 
-## SHA1 hash<a id="orgheadline3"></a>
+# SHA1 hash
 
 -   **`C-c C-v a` (or `C-c C-v C-a`):** **View SHA1 hash** of the current code block.
 
@@ -77,7 +55,7 @@ You could use the hash returned by that function to manually replace the
 original one in the block, and avoid reevaluating the block in case of purely
 cosmetic changes.
 
-## Navigate<a id="orgheadline4"></a>
+# Navigate
 
 -   **`C-c C-v g`:** Go to a **named code block** (with completing read).
     
@@ -102,7 +80,7 @@ cosmetic changes.
 -   **`C-c C-v u` (or `C-c C-v C-u`):** Go to the **beginning** of the current code block (jump to the enclosing
     structural block).
 
-## Execute (or &ldquo;evaluate&rdquo;)<a id="orgheadline5"></a>
+# Execute (or &ldquo;evaluate&rdquo;)
 
 -   **`C-c C-v b` (or `C-c C-v C-b`):** Evaluate all the code blocks **in the current buffer**.
 
@@ -112,7 +90,7 @@ cosmetic changes.
     
     With `C-u C-c C-v C-e`, forcibly re-evaluate the block (marked `:cache`).
 
-## Tangle<a id="orgheadline6"></a>
+# Tangle
 
 -   **`C-c C-v t` (or `C-c C-v C-t`):** **Tangle all the code blocks** in current file.
     
@@ -131,7 +109,7 @@ on such errors on a language-by-language basis, by customizing the variable
 literate programming errors when the source code block satisfying a noweb
 reference in this language can not be resolved).
 
-## View the results<a id="orgheadline7"></a>
+# View the results
 
 -   **`C-c C-v v` (or `C-c C-v C-v`):** **View the expanded body** of the code block at point.  This view of code
     blocks is not editable.
@@ -161,12 +139,10 @@ reference in this language can not be resolved).
     
     When called with a prefix argument, it applies to the **entire buffer**.
 
-## Library of Babel<a id="orgheadline8"></a>
+# Library of Babel
 
 -   **`C-c C-v i` (or `C-c C-v C-i`):** **Ingest all named code blocks** from supplied file into the Library of Babel
     (in memory).
 
 -   **`C-c C-v l` (or `C-c C-v C-l` or `<M-up>`):** **Load the current code** block into the Library of Babel and enter the
     **session**.
-
----
