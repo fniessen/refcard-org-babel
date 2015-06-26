@@ -41,7 +41,12 @@ mode can produce *HTML* as well as *PDF*.
 Prolonged use may cause addiction!
 #+end_warning
 
+# See http://faculty.washington.edu/kenrice/sisg-adv/SweaveIntro.pdf for intro
+# about Sweave.
+
 # * Example
+#
+# http://www.johndcook.com/blog/2012/12/20/basics-of-sweave-and-pweave/
 #
 # Here is a sample Org file:
 #
