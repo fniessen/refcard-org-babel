@@ -1,0 +1,37 @@
+#+TITLE:     Frequently Asked Questions
+#+OPTIONS:   toc:nil
+
+* How can I post-process the generated file?
+
+- ~org-babel-post-tangle-hook~ ::
+     When the hook is executed, the current buffer (as identified by the
+     ~current-buffer~ function) will be a buffer visiting the *file* of the *tangled
+     code*.
+
+     Example applications could include post-processing, compilation or
+     evaluation of tangled code files.
+
+* Why does my Shell code chunk produce no output?
+
+#+begin_verse
+> Why is the `diff' command alone not exported while the piped `diff' via
+> `cat' works?
+
+The exit code is not zero since diff found differences, so Babel assumes the
+script produced an error.  Try this instead when you don't know what the return
+code of the last command will be or if you know that it isn't zero even when no
+error occured:
+
+#+begin_src shell :exports results :results output
+diff testdiff.txt.orig testdiff.txt
+:
+#+end_src
+
+> Is this this a bug?
+
+I don't think so, although Babel could give a more enlightening message about
+why it didn't evaluate STDOUT.  It gives this on your original example:
+
+Babel evaluation exited with code 1
+Code block produced no output.
+#+end_verse
