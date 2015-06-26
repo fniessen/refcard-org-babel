@@ -442,13 +442,17 @@ As ~#+call:~ lines can be named, it is possible to reference that result.
 #+RESULTS:
 : this=input=new
 
+See [[http://emacs.stackexchange.com/questions/12546/with-org-babel-how-to-name-the-results-of-a-function-call-and-reuse-them][how to name the results of a function call and reuse them]].
+
 ***** Raw results
 
+#+begin_verse
 >> #+call: org-figure-to-slide[:exports none :results raw]()
 >
 > Does the following call line do what you want?
 >
 > #+call: org-figure-to-slide() :results raw
+#+end_verse
 
 #+begin_warning
 No square bracket for the "end header arguments"!
@@ -596,6 +600,21 @@ not literally inserted in the formulas when Org is computing it.
 
 # <<account-rules-python()>>
 # #+end_src
+
+****** Tangle the results of a code blocks
+
+To tangle #+RESULTS: block, name the block:
+
+#+name: Test
+#+begin_src emacs-lisp
+(+ 1 2)
+#+end_src
+
+and use:
+
+#+begin_src markdown :tangle ./test.md :noweb yes
+<<Test()>>
+#+end_src
 
 **** Examples
 
@@ -937,10 +956,6 @@ Specifies a different results separator.
 
 -----
 
-* Data types
-
------
-
 * Hooks
 
 - ~org-babel-post-tangle-hook~ ::
@@ -1034,12 +1049,6 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see http://www.gnu.org/licenses/.
 
-** Change Log
-
-#+begin_src shell :eval yes :results output :exports results
-git log --oneline --decorate | head -n 5
-#+end_src
-
 #+begin_html
 <a href="http://opensource.org/licenses/GPL-3.0">
   <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
@@ -1049,6 +1058,12 @@ git log --oneline --decorate | head -n 5
   <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
 </a>
 #+end_html
+
+** Change Log
+
+#+begin_src shell :eval yes :results output :exports results
+git log --oneline --decorate | head -n 5
+#+end_src
 
 #  LocalWords:  maxima Niessen fniessen pirilampo CSS SQL org-sbe TBLFM PID
 #  LocalWords:  elisp Inline inline hline noweb
