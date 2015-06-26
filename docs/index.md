@@ -1,3 +1,28 @@
+<div class="right">
+  <a href="https://github.com/fniessen/refcard-org-babel/blob/master/README.org" class="fa fa-github"> Edit on GitHub</a>
+</div>
+
+<a href="http://opensource.org/licenses/GPL-3.0">
+  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+</a>
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+</a>
+
+Welcome to Org Babel reference card.  It contains the reference documentation
+that describes how to perform **code execution** within Org mode documents using Org
+Babel 8.
+
+In a nutshell, Org Babel is like Sweave (for reproducible research (See section 2)) but it takes
+a **large number of possible languages** (C, Java, Python, Ruby, R, &#x2026;) and Org
+mode can produce **HTML** as well as **PDF**.
+
+<div class="warning">
+Prolonged use may cause addiction!
+
+</div>
+
 # Literate Programming
 
 **Literate programming** (LP) offers 2 classical operations:
