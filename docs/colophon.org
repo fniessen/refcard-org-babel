@@ -1,0 +1,71 @@
+#+TITLE:     Colophon
+#+OPTIONS:   toc:nil
+
+* References
+
+The primary sources for this documentation are:
+
+- [[http://orgmode.org/org.pdf][The Org Manual]]
+
+- [[http://orgmode.org/worg/][Worg]] site
+
+- Mailing list [[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]]
+
+* Contributing
+
+** Issues
+
+Report issues and suggest features and improvements on the [[https://github.com/fniessen/refcard-org-babel /issues/new][GitHub issue tracker]].
+
+** Patches
+
+I love contributions!  Patches under any form are always welcome!
+
+# See "Editar este documento" at
+# http://plone-spanish-docs.readthedocs.org/en/latest/novedades/2.html
+
+** Donations
+
+If you like the refcard-org-babel project, you can show your appreciation and
+help support future development by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.
+
+Regardless of the donations, refcard-org-babel will always be free both as in
+beer and as in speech.
+
+* License
+
+Copyright (C) 2014-2015 Free Software Foundation, Inc.
+
+Author: Fabrice Niessen \\
+Keywords: org-mode org-babel reference card
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program.  If not, see http://www.gnu.org/licenses/.
+
+#+begin_html
+<a href="http://opensource.org/licenses/GPL-3.0">
+  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+</a>
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+</a>
+#+end_html
+
+* Change Log
+
+#+begin_src shell :eval yes :results output :exports results
+git log --oneline --decorate | head -n 5
+#+end_src
+
+#  LocalWords:  maxima Niessen fniessen pirilampo CSS SQL org-sbe TBLFM PID
+#  LocalWords:  elisp Inline inline hline noweb
