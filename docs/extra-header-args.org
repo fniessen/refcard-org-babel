@@ -1,0 +1,43 @@
+#+TITLE:     Extra language-specific header arguments
+#+OPTIONS:   toc:nil
+
+The following table lists the header arguments that some languages use.
+
+| :border        | :java             |
+| :buffer        | :main             |
+| :classname     | :nullvalue        |
+| :cmd           | :out-file         |
+| :cmd-line      | :package          |
+| :cmpflag       | :packages         |
+| :colname-names | :pdf              |
+| :database      | :pdfheight        |
+| :db            | :pdfpng           |
+| :dbhost        | :pdfwidth         |
+| :dbpassword    | [[#preamble][:preamble]]         |
+| :dbuser        | :result-params    |
+| :defines       | :result-type      |
+| :engine        | :results_switches |
+| :eps           | :return           |
+| :filetype      | :rowname-names    |
+| :fit           | :scheme           |
+| :flags         | [[#separator][:separator]]        |
+| :headers       | *:stdin*            |
+| :imagemagick   | :tangle           |
+| :iminoptions   | :term             |
+| :imoutoptions  | :terminal         |
+| :in-file       | :xmp-option       |
+| *:includes*      |                   |
+
+* :preamble
+   :PROPERTIES:
+   :CUSTOM_ID: preamble
+   :END:
+
+Specifies code block prefix for code evaluation.
+
+* :separator
+   :PROPERTIES:
+   :CUSTOM_ID: separator
+   :END:
+
+Specifies a different results separator.
