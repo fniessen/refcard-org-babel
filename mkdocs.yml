@@ -1,0 +1,10 @@
+site_name: Org Babel reference card
+
+pages:
+- 'Introduction': 'index.md'
+- 'Code blocks': 'eval.md'
+- 'Header arguments': 'header-args.md'
+- 'Other Header arguments': 'extra-header-args.md'
+- 'FAQ': 'faq.md'
+- 'Key bindings': 'key-bindings.md'
+- 'Colophon': 'colophon.md'
