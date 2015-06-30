@@ -59,3 +59,14 @@ This allows you to insert in your Org document:
 - the full set of *outputs* you got,
 
 following the principles of *reproducible research* (RR).
+
+* Overview of contents
+
+# The following "site TOC" should be generated automatically, up to level 2...
+
+- [[file:eval.org][Code blocks]]
+- [[file:header-args.org][Header arguments]]
+- [[file:extra-header-args.org][Other Header arguments]]
+- [[file:faq.org][FAQ]]
+- [[file:key-bindings.org][Key bindings]]
+- [[file:colophon.org][Colophon]]
