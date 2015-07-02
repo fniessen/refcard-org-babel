@@ -320,6 +320,15 @@ according to the value of ~org-babel-inline-result-wrap~, which by default is
 
 for markup that produces /verbatim/ text.
 
+#+begin_warning
+The semantics of whether a remote invocation of a babel block (via e.g. ~#+call~)
+uses the properties from the block's document position or from the call's,
+should be explicated.
+
+The current suggestion is to remove the old "dynamic" setting and implement the
+new "lexical" one.
+#+end_warning
+
 *** Examples
 
 **** Relying on the default value of the arguments
