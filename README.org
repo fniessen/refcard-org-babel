@@ -73,3 +73,7 @@ Prolonged use may cause addiction!
 # x <- seq(0, 6*pi, length=200)
 # plot(x, sin(x))
 # @
+
+* Documentation
+
+See http://org-babel.readthedocs.org/en/latest/ for full documentation.
