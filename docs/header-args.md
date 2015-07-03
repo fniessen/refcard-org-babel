@@ -168,9 +168,9 @@ In contrast to property lines, a `:PROPERTIES:` block is only valid **for the gi
 tree (and subtrees)**:
 
     * Outline heading
-      :PROPERTIES:
-      :header-args: :results output :cache yes
-      :END:
+     :PROPERTIES:
+     :header-args: :results output :cache yes
+     :END:
 
 ## Code block header arguments
 
@@ -549,10 +549,128 @@ names.
 
 The following example outputs the table without column names.
 
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">one</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">two</td>
+</tr>
+
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">three</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">one</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">two</td>
+</tr>
+
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">three</td>
+</tr>
+</tbody>
+</table>
+
 ### Using `:colnames no`
 
 The following example outputs all the rows of the table, considering there is
 no column names.
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">one</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">two</td>
+</tr>
+
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">three</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">num</td>
+<td class="org-left">word</td>
+</tr>
+
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">one</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">two</td>
+</tr>
+
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">three</td>
+</tr>
+</tbody>
+</table>
 
 ### Using `:colnames yes`
 
@@ -933,8 +1051,6 @@ Send the text output of `ls -l` directly to a file:
 Recall that `:results value` is the default.
 
 ### Saving the graphical output from a general-purpose language to an image file
-
-XXX Output is not necessary!!
 
     plot(1:10, (1:10)^2)
 
@@ -1542,7 +1658,6 @@ output`.
         <./plots/file1.pdf>
         
         <./plots/file2.pdf>
-                EOF
     
     -   **`:results code`:** This will be **exported as <LANG> code block** (as `verbatim` or `listings` to
         LaTeX).
@@ -1816,7 +1931,7 @@ Controls the permissions of tangled files.
 Multiple `var` specifications behind a single `:var` are allowed.  The multiple
 var arguments must be comma-separated:
 
-    #+PROPERTY: var foo=1, bar=2
+    #+PROPERTY: header-args :var foo=1, bar=2
     
     #+begin_src emacs-lisp
     (+ foo bar)
@@ -1890,12 +2005,34 @@ references.
 
 ### Literal string
 
+    value
+
 ### Literal number
+
+    42
 
 ### Reference to a literal example block
 
     Les sanglots longs
     des violons de l'automne
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Les sanglots longs</td>
+</tr>
+
+
+<tr>
+<td class="org-left">des violons de l'automne</td>
+</tr>
+</tbody>
+</table>
 
 ### Reference to part of a table
 
@@ -2057,6 +2194,44 @@ references.
 It is possible to **chain code blocks** (possibly in different languages) in `:var`
 lines, as shown:
 
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-right">7</td>
+<td class="org-right">10</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-right">8</td>
+<td class="org-right">11</td>
+</tr>
+
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">6</td>
+<td class="org-right">9</td>
+<td class="org-right">12</td>
+</tr>
+</tbody>
+</table>
+
     rowSums(x)
 
 ---
@@ -2089,13 +2264,52 @@ from code blocks.
 The following example wraps the results in `#+begin_results` &#x2026; `#+end_results`
 block.
 
-<div class="RESULTS">
+<div class="results">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-right">7</td>
+<td class="org-right">10</td>
+</tr>
+
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-right">8</td>
+<td class="org-right">11</td>
+</tr>
+
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">6</td>
+<td class="org-right">9</td>
+<td class="org-right">12</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
 ### Using `:wrap` with a string value
 
 The following examples puts the **output in an `example` block**.
+
+    Some results wrapped in an example block.
 
 ### Using `:wrap` to produce a source code block in a named language
 
@@ -2111,5 +2325,3 @@ source block.
 ## See also
 
 :results (See section 22)
-
----

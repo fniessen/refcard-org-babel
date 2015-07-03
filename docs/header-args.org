@@ -1,6 +1,8 @@
 #+TITLE:     Header arguments
 #+OPTIONS:   toc:nil
 
+#+PROPERTY:  header-args :eval never
+
 * Inheritance
 
 Header arguments can be set at different levels of a hierarchy:
@@ -20,9 +22,9 @@ Header arguments near the bottom of the hierarchy provide behavior more
 specific to a (group of) code block(s).
 
 ** Default header arguments shipped with Org mode
-    :PROPERTIES:
-    :ID:       7b0711cf-353b-4382-bc19-093e4e67ca92
-    :END:
+   :PROPERTIES:
+   :ID:       7b0711cf-353b-4382-bc19-093e4e67ca92
+   :END:
 
 - Variable ~org-babel-default-header-args~ for source blocks
 - Variable ~org-babel-default-inline-header-args~ for inline code blocks
@@ -39,9 +41,9 @@ These default header arguments can be set by the user:
 This can also be done file-wide through the use of /file local variables/.
 
 ** Default languages-specific header arguments shipped with Org mode
-    :PROPERTIES:
-    :ID:       1cadb447-8403-400c-9117-13db017cc198
-    :END:
+   :PROPERTIES:
+   :ID:       1cadb447-8403-400c-9117-13db017cc198
+   :END:
 
 - Variable ~org-babel-default-header-args:emacs-lisp~ for Emacs Lisp
 - Variable ~org-babel-default-header-args:R~ for R
@@ -77,9 +79,9 @@ This can also be done file-wide (for certain files) through the use of:
 - /file local variables/.
 
 ** Buffer (or file) level header arguments
-    :PROPERTIES:
-    :ID:       aebeec14-5693-4c38-8040-c91d28ade608
-    :END:
+   :PROPERTIES:
+   :ID:       aebeec14-5693-4c38-8040-c91d28ade608
+   :END:
 
 A ~#+PROPERTY:~ line located *anywhere* in a buffer affects the entire file: it
 sets a *global* property.
@@ -122,24 +124,24 @@ But there is a general mechanism for the *concatenation of property* strings
 #+end_src
 
 ** Subtree header arguments
-    :PROPERTIES:
-    :ID:       e7fda871-60ec-47d5-aee0-130c7d06fab2
-    :END:
+   :PROPERTIES:
+   :ID:       e7fda871-60ec-47d5-aee0-130c7d06fab2
+   :END:
 
 In contrast to property lines, a ~:PROPERTIES:~ block is only valid *for the given
 tree (and subtrees)*:
 
 #+begin_src org
 ,* Outline heading
-  :PROPERTIES:
-  :header-args: :results output :cache yes
-  :END:
+ :PROPERTIES:
+ :header-args: :results output :cache yes
+ :END:
 #+end_src
 
 ** Code block header arguments
-    :PROPERTIES:
-    :ID:       69939aec-bdee-449b-87fd-420daa53eaba
-    :END:
+   :PROPERTIES:
+   :ID:       69939aec-bdee-449b-87fd-420daa53eaba
+   :END:
 
 #+begin_src org
 ,#+header: :exports code :var data=2
@@ -149,9 +151,9 @@ tree (and subtrees)*:
 #+end_src
 
 ** Call line header arguments
-    :PROPERTIES:
-    :ID:       3fe40664-b445-4ae4-8248-8847576732fa
-    :END:
+   :PROPERTIES:
+   :ID:       3fe40664-b445-4ae4-8248-8847576732fa
+   :END:
 
 * Standard header arguments
 
@@ -183,9 +185,9 @@ should return a string (or a list of strings, depending on the case).
 -----
 
 * :cache
-   :PROPERTIES:
-   :CUSTOM_ID: cache
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: cache
+  :END:
 
 Avoids re-evaluating unchanged code blocks.
 
@@ -270,9 +272,9 @@ x <- 'side effect'
 -----
 
 * :cmdline
-   :PROPERTIES:
-   :CUSTOM_ID: cmdline
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: cmdline
+  :END:
 
 ** Options
 
@@ -313,9 +315,9 @@ script (supplying the value in the call line).
 -----
 
 * :colnames
-   :PROPERTIES:
-   :CUSTOM_ID: colnames
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: colnames
+  :END:
 
 Handles *column names in tables*.
 
@@ -575,9 +577,9 @@ The workaround is to use:
 -----
 
 * :comments
-   :PROPERTIES:
-   :CUSTOM_ID: comments
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: comments
+  :END:
 
 Controls the insertion of extra comments into the tangled code files to allow
 backward linking from tangled code blocks to the original code blocks (from
@@ -622,9 +624,9 @@ defaults to relative paths).
 -----
 
 * :dir
-   :PROPERTIES:
-   :CUSTOM_ID: dir
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: dir
+  :END:
 
 Specifies the default (possibly *remote*) directory during code block execution.
 
@@ -682,9 +684,9 @@ SELECT 2+2 AS 'four', 1+1 AS 'one';
 -----
 
 * :epilogue
-   :PROPERTIES:
-   :CUSTOM_ID: epilogue
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: epilogue
+  :END:
 
 Appends text to code block body.
 
@@ -704,9 +706,9 @@ Appends text to code block body.
 -----
 
 * :eval
-   :PROPERTIES:
-   :CUSTOM_ID: eval
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: eval
+  :END:
 
 Specifies permissions for /every/ execution of code blocks.
 
@@ -773,9 +775,9 @@ Variable ~org-confirm-babel-evaluate~.
 -----
 
 * :exports
-   :PROPERTIES:
-   :CUSTOM_ID: exports
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: exports
+  :END:
 
 Specifies how code and/or results should be handled *during export*.
 
@@ -828,9 +830,9 @@ Specifies how code and/or results should be handled *during export*.
 -----
 
 * :file
-   :PROPERTIES:
-   :CUSTOM_ID: file
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: file
+  :END:
 
 Specifies to *write the results to a file*.
 
@@ -893,9 +895,7 @@ Recall that ~:results value~ is the default.
 
 *** Saving the graphical output from a general-purpose language to an image file
 
-XXX Output is not necessary!!
-
-#+begin_src R :results output graphics :file images/square.png :exports both
+#+begin_src R :results graphics :file images/square.png :exports both
 plot(1:10, (1:10)^2)
 #+end_src
 
@@ -942,18 +942,18 @@ plot(1:10, (1:10)^2)
 -----
 
 * :file-desc
-   :PROPERTIES:
-   :CUSTOM_ID: file-desc
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: file-desc
+  :END:
 
 Specifies a description for file results.
 
 -----
 
 * :hlines
-   :PROPERTIES:
-   :CUSTOM_ID: hlines
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: hlines
+  :END:
 
 Handles *horizontal lines* in input tables.
 
@@ -972,9 +972,9 @@ Handles *horizontal lines* in input tables.
 *Don't confound this with the [[#colnames][:colnames]] machinery.*
 
 ** Examples
-    :PROPERTIES:
-    :eval:     yes
-    :END:
+   :PROPERTIES:
+   :header-args: :eval yes
+   :END:
 
 #+name: one-hline
 | Key | Val   |
@@ -1039,9 +1039,9 @@ The ~:hlines yes~ header argument must be set on the call line itself.
 -----
 
 * :mkdirp
-   :PROPERTIES:
-   :CUSTOM_ID: mkdirp
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: mkdirp
+  :END:
 
 Toggles creation of parent directories of target files during tangling.
 
@@ -1056,9 +1056,9 @@ Toggles creation of parent directories of target files during tangling.
 -----
 
 * :no-expand
-   :PROPERTIES:
-   :CUSTOM_ID: no-expand
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: no-expand
+  :END:
 
 Turns off the code blocks expansion *during tangling*.
 
@@ -1075,9 +1075,9 @@ Turns off the code blocks expansion *during tangling*.
 -----
 
 * :noweb
-   :PROPERTIES:
-   :CUSTOM_ID: noweb
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: noweb
+  :END:
 
 Specifies when expansion of "noweb" style references should occur.
 
@@ -1165,9 +1165,9 @@ Concept of Noweb references.
 -----
 
 * :noweb-ref
-   :PROPERTIES:
-   :CUSTOM_ID: noweb-ref
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: noweb-ref
+  :END:
 
 Specifies block's noweb reference resolution target.
 
@@ -1200,9 +1200,9 @@ That feature enables the true literate programming to remove it would
 be a great loss.
 
 ** Examples
-    :PROPERTIES:
-    :header-args: :noweb-ref accumulated
-    :END:
+   :PROPERTIES:
+   :header-args: :noweb-ref accumulated
+   :END:
 
 #+begin_src org
 ,*** Some subtree
@@ -1236,9 +1236,9 @@ The variable ~org-babel-use-quick-and-dirty-noweb-expansion~ controls XXX
 -----
 
 * :noweb-sep
-   :PROPERTIES:
-   :CUSTOM_ID: noweb-sep
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: noweb-sep
+  :END:
 
 Specifies the string to use to separate accumulated noweb references.
 
@@ -1254,9 +1254,9 @@ By default a newline is used.
 -----
 
 * :padline
-   :PROPERTIES:
-   :CUSTOM_ID: padline
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: padline
+  :END:
 
 Controls insertion of padding lines in tangled code files.
 
@@ -1279,9 +1279,9 @@ The padline is not inserted at the top of the file, only between blocks.
 -----
 
 * :post
-   :PROPERTIES:
-   :CUSTOM_ID: post
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: post
+  :END:
 
 *Post-processes* the *results* of a code block.
 
@@ -1402,9 +1402,9 @@ data.frame(foo=rnorm(1))
 -----
 
 * :prologue
-   :PROPERTIES:
-   :CUSTOM_ID: prologue
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: prologue
+  :END:
 
 Prepends text to code block body.
 
@@ -1424,9 +1424,9 @@ Prepends text to code block body.
 -----
 
 * :results
-   :PROPERTIES:
-   :CUSTOM_ID: results
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: results
+  :END:
 
 Specifies the type of results and how they will be collected and handled.
 
@@ -1814,9 +1814,9 @@ A naked "~tildes~" will be marked up as "\verb~tildes~" under ~:results raw~ or
 -----
 
 * :rownames
-   :PROPERTIES:
-   :CUSTOM_ID: rownames
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: rownames
+  :END:
 
 Handles row names in tables.
 
@@ -1836,9 +1836,9 @@ Handles row names in tables.
 -----
 
 * :sep
-   :PROPERTIES:
-   :CUSTOM_ID: sep
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: sep
+  :END:
 
 Specifies a delimiter for reading or writing *tabular results*.
 
@@ -1872,9 +1872,9 @@ Recall that ~:results value~ is the default.
 -----
 
 * :session
-   :PROPERTIES:
-   :CUSTOM_ID: session
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: session
+  :END:
 
 Shares data and persists state between (evaluation of) different code blocks.
 
@@ -1915,9 +1915,9 @@ Shares data and persists state between (evaluation of) different code blocks.
 -----
 
 * :shebang
-   :PROPERTIES:
-   :CUSTOM_ID: shebang
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: shebang
+  :END:
 
 Uses preamble for tangled files (and *make* them *executable*).
 
@@ -1948,9 +1948,9 @@ printf "with a shebang line, I can be run as a script!\n"
 -----
 
 * :tangle
-   :PROPERTIES:
-   :CUSTOM_ID: tangle
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: tangle
+  :END:
 
 Toggles tangling and specify file name.
 
@@ -1988,9 +1988,9 @@ Propagating changes back from tangled code to Org mode blocks (aka
 -----
 
 * :tangle-mode
-   :PROPERTIES:
-   :CUSTOM_ID: tangle-mode
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: tangle-mode
+  :END:
 
 Controls the permissions of tangled files.
 
@@ -2003,9 +2003,9 @@ plot(1)
 -----
 
 * :var
-   :PROPERTIES:
-    :CUSTOM_ID: var
-    :END:
+  :PROPERTIES:
+   :CUSTOM_ID: var
+   :END:
 
 *Passes arguments* to code blocks.
 
@@ -2021,7 +2021,7 @@ Multiple ~var~ specifications behind a single ~:var~ are allowed.  The multiple
 var arguments must be comma-separated:
 
 #+begin_src org
-,#+PROPERTY: var foo=1, bar=2
+,#+PROPERTY: header-args :var foo=1, bar=2
 
 ,#+begin_src emacs-lisp
 (+ foo bar)
@@ -2208,9 +2208,9 @@ rowSums(x)
 -----
 
 * :wrap
-   :PROPERTIES:
-   :CUSTOM_ID: wrap
-   :END:
+  :PROPERTIES:
+  :CUSTOM_ID: wrap
+  :END:
 
 Delimit the results (of source block evaluation).
 
@@ -2314,6 +2314,3 @@ source block.
 ** See also
 
 [[#results][:results]]
-
------
-
