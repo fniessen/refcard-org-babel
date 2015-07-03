@@ -64,7 +64,7 @@ value is used if no other value has been specified in the call.
 
 The way to define arguments is to declare them on the `#+begin_src` line.
 
-    (* x x)
+    (* 2 x)
 
 Specifying default values is necessary because each variable must be
 initialized when the code block is executed.
@@ -239,6 +239,16 @@ according to the value of `org-babel-inline-result-wrap`, which by default is
     "=%s="
 
 for markup that produces *verbatim* text.
+
+<div class="warning">
+The semantics of whether a remote invocation of a babel block (via e.g. `#+call`)
+uses the properties from the block&rsquo;s document position or from the call&rsquo;s,
+should be explicated.
+
+The current suggestion is to remove the old &ldquo;dynamic&rdquo; setting and implement the
+new &ldquo;lexical&rdquo; one.
+
+</div>
 
 ### Examples
 

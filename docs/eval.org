@@ -105,9 +105,9 @@ value is used if no other value has been specified in the call.
 
 The way to define arguments is to declare them on the ~#+begin_src~ line.
 
-#+name: square
-#+begin_src emacs-lisp :var x=1
-(* x x)
+#+name: double
+#+begin_src emacs-lisp :var x=0
+(* 2 x)
 #+end_src
 
 Specifying default values is necessary because each variable must be
@@ -351,7 +351,7 @@ is equivalent to
 
 #+name: add1
 #+begin_src emacs-lisp :var x=1 :results silent
-  (+ x 1)
+(+ x 1)
 #+end_src
 
 #+call: add1(x=4)
@@ -375,7 +375,7 @@ It is possible to pass the ~:dir~ header argument through a call line.
 
 #+name: where
 #+begin_src shell
-  pwd
+pwd
 #+end_src
 
 #+RESULTS: where
@@ -394,7 +394,7 @@ Let's assume, the original code block takes an argument.
 
 #+name: echo-string
 #+begin_src shell :var input="original"
-  echo "input=$input"
+echo "input=$input"
 #+end_src
 
 #+RESULTS: echo-string
@@ -441,9 +441,9 @@ command either as an inside header arguments or directly when declaring the
 =org-figure-to-slide= code like
 
 #+NAME: org-figure-to-slide
-#+HEADERS: :var title="Empty title"
-#+HEADERS: :var dir="./figures" :var ext="*.pdf"
-#+HEADERS: :var options=""
+#+HEADER: :var title="Empty title"
+#+HEADER: :var dir="./figures" :var ext="*.pdf"
+#+HEADER: :var options=""
 #+begin_src shell :results raw
 # ...
 #+end_src
@@ -506,12 +506,12 @@ From [[http://osdir.com/ml/emacs-orgmode-gnu/2010-03/msg00651.html][Re: {Orgmode
 
 | prefix   | remaining characters |
 |----------+----------------------|
-| ob-      |                  nil |
-| org-b-   |                  nil |
-| orgb-    |                  nil |
-| org-bbl- |                  nil |
-| bbl-     |                  nil |
-| babel-   |                  nil |
+| ob-      | nil                  |
+| org-b-   | nil                  |
+| orgb-    | nil                  |
+| org-bbl- | nil                  |
+| bbl-     | nil                  |
+| babel-   | nil                  |
 #+TBLFM: $2='(org-sbe leftover (prefix $$1))
 
 *** Remarks
@@ -803,9 +803,9 @@ each header argument portion is optional (so are the square brackets).
 #+end_src
 
 *** Remarks
-     :PROPERTIES:
-     :header-args: results raw
-     :END:
+    :PROPERTIES:
+    :header-args: :results raw
+    :END:
 
 - The result of named code blocks evaluated inline within a block of text is
   wrapped according to the value of ~org-babel-inline-result-wrap~, which by
