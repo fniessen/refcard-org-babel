@@ -992,7 +992,7 @@ Handles *horizontal lines* in input tables.
 
 ** Examples
    :PROPERTIES:
-   :header-args: :eval yes
+   :header-args+: :eval yes
    :END:
 
 #+name: one-hline
@@ -1220,7 +1220,7 @@ be a great loss.
 
 ** Examples
    :PROPERTIES:
-   :header-args: :noweb-ref accumulated
+   :header-args+: :noweb-ref accumulated
    :END:
 
 #+begin_src org
