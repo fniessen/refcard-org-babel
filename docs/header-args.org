@@ -1,4 +1,9 @@
 #+TITLE:     Header arguments
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
+#+DESCRIPTION: Org Babel reference card
+#+KEYWORDS:  emacs, org-mode, org-babel, eric shulte, dan davison, literate programming, reproducible research, sweave
+#+LANGUAGE:  en
 #+OPTIONS:   toc:nil
 
 #+PROPERTY:  header-args :eval never
@@ -111,9 +116,13 @@ the use of:
 
 That can be over-ridden on a [[id:e7fda871-60ec-47d5-aee0-130c7d06fab2][per-subtree]] or [[id:69939aec-bdee-449b-87fd-420daa53eaba][per-block]] basis.
 
+#+begin_warning
 Any property specification, unless it is postfixed with a ~+~, will /reset/ the
-value of that property to its current value: in the case of two ~#+PROPERTY:~
-lines for the same property, the property will have the later value.
+value of that property to its current value.
+#+end_warning
+
+In the case of two ~#+PROPERTY:~ lines for the same property, the property will
+have the later value.
 
 But there is a general mechanism for the *concatenation of property* strings
 (*accumulated values*):

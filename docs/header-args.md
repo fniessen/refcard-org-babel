@@ -152,9 +152,14 @@ the use of:
 
 That can be over-ridden on a per-subtree (See section 1.4) or per-block (See section 1.5) basis.
 
+<div class="warning">
 Any property specification, unless it is postfixed with a `+`, will *reset* the
-value of that property to its current value: in the case of two `#+PROPERTY:`
-lines for the same property, the property will have the later value.
+value of that property to its current value.
+
+</div>
+
+In the case of two `#+PROPERTY:` lines for the same property, the property will
+have the later value.
 
 But there is a general mechanism for the **concatenation of property** strings
 (**accumulated values**):
