@@ -1,4 +1,9 @@
 #+TITLE:     Extra language-specific header arguments
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
+#+DESCRIPTION: Org Babel reference card
+#+KEYWORDS:  emacs, org-mode, org-babel, eric shulte, dan davison, literate programming, reproducible research, sweave
+#+LANGUAGE:  en
 #+OPTIONS:   toc:nil
 
 The following table lists the header arguments that some languages use.
