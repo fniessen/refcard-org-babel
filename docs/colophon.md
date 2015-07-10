@@ -55,8 +55,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Change Log
 
-    cc6cec5 (HEAD -> master) Add example of tangling the results
-    9a7f48f (origin/master) Externalize "header arguments"
-    f9f48c1 Remove test files
-    4333fa7 Use all markdown supports from Pandoc
-    130e98d Use Pandoc to convert from Org
+    616fcc8 (HEAD -> master) Org-Lint
+    a7f7c75 (origin/master) Add (in comment) section about reusing cached results from a #+call
+    9ab36be Org-lint this file
+    fa7f7e2 Org-lint this file
+    a169b72 Add warning
