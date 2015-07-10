@@ -264,6 +264,25 @@ x <- 'side effect'
 #+results[609468f06f835a6ce8591f76f48c95fc2e2d9823]:
 : done
 
+# *** Reuse the results of a cached call
+#
+# Why can't you simply use the (cached) results of my-call instead of the
+# call itself, e.g.:
+#
+#
+#   #+name: my-call-cached
+#   #+call: fun[:results table](nb=5) :cache yes
+#   #+name: my-cached-results
+#   #+RESULTS[f2b650eb5296f72a1f7237c2a65b7fb3443acf5f]: my-call-cached
+#   | 1 |  2 |
+#   | 3 |  4 |
+#   | 5 |  6 |
+#   | 7 |  8 |
+#   | 9 | 10 |
+#
+#   #+name: plot-result-cached
+#   #+call: plotting[:file result-call-cached.png](data= my-cached-results) :results file
+
 ** See also
 
 [[#eval][:eval]] \\
