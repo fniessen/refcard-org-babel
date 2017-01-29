@@ -76,4 +76,4 @@ Prolonged use may cause addiction!
 
 * Documentation
 
-See http://org-babel.readthedocs.org/en/latest/ for full documentation.
+See http://org-babel.readthedocs.org/ for full documentation.
