@@ -1,3 +1,5 @@
+
+
 # References
 
 The primary sources for this documentation are:
@@ -8,27 +10,33 @@ The primary sources for this documentation are:
 
 -   Mailing list [emacs-orgmode@gnu.org](emacs-orgmode@gnu.org)
 
+
 # Contributing
+
 
 ## Issues
 
 Report issues and suggest features and improvements on the [GitHub issue tracker](https://github.com/fniessen/refcard-org-babel /issues/new).
 
+
 ## Patches
 
 I love contributions!  Patches under any form are always welcome!
 
+
 ## Donations
 
-If you like the refcard-org-babel project, you can show your appreciation and
-help support future development by making a [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted) through PayPal.
+If you use the refcard-org-babel project and feel it is making your life better
+and easier, you can show your appreciation and help support future development
+by making a [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dbabel&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted) through PayPal.  Thank you!
 
 Regardless of the donations, refcard-org-babel will always be free both as in
 beer and as in speech.
 
+
 # License
 
-Copyright (C) 2014-2015 Free Software Foundation, Inc.
+Copyright (C) 2014-2017 Free Software Foundation, Inc.
 
 Author: Fabrice Niessen   
 Keywords: org-mode org-babel reference card
@@ -53,10 +61,12 @@ this program.  If not, see <http://www.gnu.org/licenses/>.
   <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
 </a>
 
+
 # Change Log
 
-    616fcc8 (HEAD -> master) Org-Lint
-    a7f7c75 (origin/master) Add (in comment) section about reusing cached results from a #+call
-    9ab36be Org-lint this file
-    fa7f7e2 Org-lint this file
-    a169b72 Add warning
+    c2adcb6 (HEAD -> master, origin/master) Add warning
+    be9feed Add Org meta-keywords
+    74a058a Add Org meta-keywords
+    616fcc8 Org-Lint
+    a7f7c75 Add (in comment) section about reusing cached results from a #+call
+
