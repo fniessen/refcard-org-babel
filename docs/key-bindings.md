@@ -90,8 +90,9 @@ cosmetic changes.
 -   **`C-c C-v s` (or `C-c C-v C-s`):** Evaluate all the code blocks **in the current subtree**.
 
 -   **`C-c C-v e` (or `C-c C-v C-e`):** Evaluate the code block **at point**.
-    
-    With `C-u C-c C-v C-e`, forcibly re-evaluate the block (marked `:cache`).
+
+With `C-u C-c C-v b/s/e`, **forcibly re-evaluate the block(s)** (even when marked
+&ldquo;cached&rdquo;).
 
 # Tangle
 
