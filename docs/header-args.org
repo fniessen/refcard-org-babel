@@ -31,7 +31,7 @@ specific to a (group of) code block(s).
    :ID:       7b0711cf-353b-4382-bc19-093e4e67ca92
    :END:
 
-- Variable ~org-babel-default-header-args~ for source blocks
+- Variable ~org-babel-default-header-args~ for all source blocks
 - Variable ~org-babel-default-inline-header-args~ for inline code blocks
 - Variable ~org-babel-default-lob-header-args~ for ~#+call~ lines
 
@@ -44,6 +44,10 @@ These default header arguments can be set by the user:
 #+end_src
 
 This can also be done file-wide through the use of /file local variables/.
+
+#+begin_note
+The "+" on ~header-args~ applies when using the same property on multiple lines.
+#+end_note
 
 ** Default languages-specific header arguments shipped with Org mode
    :PROPERTIES:
@@ -66,8 +70,16 @@ Header arguments which have different defaults between languages:
 | general-purpose languages + /shell/ | code     | no      | replace        |
 | /ledger/                            | code     | no      | output replace |
 | /org/                               | code     | no      | silent raw     |
+|-----------------------------------+----------+---------+----------------|
 | /latex/                             | results  | no      | latex replace  |
 | graphics-only languages           | results  | no      | file replace   |
+
+#+begin_warning
+As ~latex~ code blocks export ~results~ by default, they will be exported enclosed
+in a LaTeX export block (~#+BEGIN_LATEX ... #+END_LATEX~), hence ignored by all
+backends but the LaTeX one. Hence, if you want to export the LaTeX code, use
+~#+BEGIN_SRC latex :exports code~.
+#+end_warning
 
 These default language-specific header arguments can be changed by the user:
 
@@ -83,12 +95,12 @@ This can also be done file-wide (for certain files) through the use of:
 - [[id:aebeec14-5693-4c38-8040-c91d28ade608][property lines]] or
 - /file local variables/.
 
-** Buffer (or file) level header arguments
+** Buffer (or file) wide level header arguments
    :PROPERTIES:
    :ID:       aebeec14-5693-4c38-8040-c91d28ade608
    :END:
 
-A ~#+PROPERTY:~ line located *anywhere* in a buffer affects the entire file: it
+A ~#+PROPERTY:~ line (located *anywhere* in a buffer) affects the entire file: it
 sets a *global* property.
 
 #+begin_warning
@@ -124,8 +136,8 @@ value of that property to its current value.
 In the case of two ~#+PROPERTY:~ lines for the same property, the property will
 have the later value.
 
-But there is a general mechanism for the *concatenation of property* strings
-(*accumulated values*):
+But there is a general mechanism for the *concatenation of property* strings to
+augment the properties (*accumulated values*):
 
 #+begin_src org
 ,#+PROPERTY: header-args:R :exports results
@@ -137,8 +149,8 @@ But there is a general mechanism for the *concatenation of property* strings
    :ID:       e7fda871-60ec-47d5-aee0-130c7d06fab2
    :END:
 
-In contrast to property lines, a ~:PROPERTIES:~ block is only valid *for the given
-tree (and subtrees)*:
+In contrast to property lines, a local ~:PROPERTIES:~ block is only valid *for the
+given tree (and subtrees)*:
 
 #+begin_src org
 ,* Outline heading
@@ -362,8 +374,8 @@ Handles *column names in tables*.
      (default for Emacs Lisp code blocks)
 
 - ~:colnames yes~ ::
-     Tells Org Babel that your first row contains column names.  Applies the
-     code block to the body of the input table.
+     Tells Org Babel that your first row contains column names (~header = TRUE~ in
+     R).  Applies the code block to the body of the input table.
 
 - ~:colnames <LIST>~ ::
      Specifies to use ~<LIST>~ as column names.
@@ -776,8 +788,19 @@ Specifies permissions for /every/ execution of code blocks.
      Is the same as ~:eval no~.
 
 - ~:eval never-export~ ::
-     Allows interactive evaluation of the code block, but inhibits its
-     evaluation during export.
+     Allows interactive evaluation of the code block, but *inhibits* its
+     *evaluation during export*.
+
+     #+begin_note
+     When ~org-export-babel-evaluate~ is set to ~nil~, *no code will be evaluated* as
+     part of the export process and *no header arguments will be obeyed*!
+
+     Users who simply wish to *avoid evaluating code on export* should use the
+     header argument ~:eval never-export~.
+
+     See also
+     https://www.wisdomandwonder.com/article/10400/the-fifteen-questions-that-you-must-answer-in-your-org-mode-literate-programming-configuration
+     #+end_note
 
 - ~:eval no-export~ ::
      Is the same as ~:eval never-export~.
@@ -886,9 +909,9 @@ directory]].
   "results" written to file is the *normal Org Babel results* (string, number,
   table).
 
-  When generating *graphics*, including the ~:results graphics~ header argument is
+  When generating *graphics*, including the ~:results output graphics file~ header argument is
   *required*, in addition to ~:file <FILENAME>~, in order for graphical output to be
-  sent automatically to file.  If ~:file~ is supplied, but not ~:results graphics~,
+  sent automatically to file.  If ~:file~ is supplied, but not ~:results output graphics file~,
   then non-graphical (~value~ or ~output~) results are written to file.
 
 Links to generated images will be expanded to include the contents of the
@@ -923,7 +946,7 @@ Recall that ~:results value~ is the default.
 
 *** Saving the graphical output from a general-purpose language to an image file
 
-#+begin_src R :results graphics :file images/square.png :exports both
+#+begin_src R :results output graphics file :file images/square.png :exports both
 plot(1:10, (1:10)^2)
 #+end_src
 
@@ -954,7 +977,7 @@ Recall that ~:exports results~ is the default for graphics-only languages.
 Choose PNG extension (and not PDF) to preview the results in the Org buffer
 itself.
 
-#+begin_src R :results graphics :file testout.png :eval yes
+#+begin_src R :results output graphics file :file testout.png :eval yes
 plot(1:10, (1:10)^2)
 #+end_src
 
@@ -1571,7 +1594,7 @@ Specifies how the results should be *interpreted*.
      the Org mode file syntax. \\
      (default for code blocks in graphics-only languages)
 
-- ~:results graphics~ ::
+- ~:results output graphics file~ ::
      (extra option for code blocks in maxima, octave and R)
      XXX
 
@@ -1580,7 +1603,7 @@ Specifies how the results should be *interpreted*.
 Specifies what type of results the code block will return.
 
 - ~:results raw~ ::
-     Means that the input is a string (so hline processing is not performed). \\
+     Means that the output is a string (so hline processing is not performed). \\
      (default for Org code blocks) \\
      (implies ~verbatim~ results, unless otherwise stated)
 
@@ -1593,6 +1616,8 @@ Specifies what type of results the code block will return.
      Note that it is allowable for raw results to include newlines (if the code
      block returns a newline): the purpose of raw results is specifically to
      *not* change the result.
+
+     See [[id:5cdd5fcc-cb6c-4882-8abe-04566d9588b2][Remarks]].
 
 - ~:results html~ ::
      Specifies that the *results* of the code block is *raw HTML code* (which can
@@ -1697,6 +1722,29 @@ Specifies what type of results the code block will return.
      [[./plots/file2.pdf]]
      :END:
 
+     *Org mode table* produced by an R block:
+
+     #+begin_src R :cache yes :results output drawer :exports both
+     library(RODBC)
+     library(ascii)
+     con <- odbcDriverConnect("driver={SQL Server};server=localhost;database=PFlowXiphias;trusted_connection=true")
+     sql <-
+        "SELECT TOP 4 oprPfiID_fk, oprIdx
+         FROM operateur;"
+     dossier <- sqlQuery(con, sql)
+     print(ascii(dossier, include.rownames=TRUE), type="org")
+     #+end_src
+
+     #+results[84226bc469fd58a1835f2b86918a4ecb72af69be]:
+     :RESULTS:
+     |   | oprPfiID_fk    | oprIdx |
+     |---+----------------+--------|
+     | 1 | 00/200105/0001 | COO    |
+     | 2 | 00/200105/0001 | GT     |
+     | 3 | 00/200105/0003 | COO    |
+     | 4 | 00/200105/0003 | CPFI   |
+     :END:
+
 - ~:results code~ ::
      This will be *exported as <LANG> code block* (as ~verbatim~ or ~listings~ to
      LaTeX).
@@ -1764,12 +1812,16 @@ Specifies what type of results the code block will return.
 #+end_verse
 
 ** Remarks
+:PROPERTIES:
+:ID:       5cdd5fcc-cb6c-4882-8abe-04566d9588b2
+:END:
 
 With ~raw~, as there are *no obvious markers to delimit the results* in the Org mode
-buffer, there is no way to know where raw results begin or end.  So, ~:results
-raw replace~ will never work as expected: *raw results cannot be removed* (they
-become part of the buffer), and you'll get duplicates when re-evaluating the
-code block.
+buffer, Org has no way to know where raw results begin or end and whether the
+results of the code block are already inserted in the document or not.  So,
+~:results raw replace~ will never work as expected: *raw results cannot be removed*
+(they become part of the buffer), and you'll get duplicates when re-evaluating
+the code block.
 
 The sole purpose of ~raw~ results is to allow inserting an headline (a real
 headline, not comma protected) in the buffer, because headlines cannot be

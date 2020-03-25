@@ -1023,9 +1023,9 @@ directory (See section 7).
     &ldquo;results&rdquo; written to file is the **normal Org Babel results** (string, number,
     table).
     
-    When generating **graphics**, including the `:results graphics` header argument is
+    When generating **graphics**, including the `:results output graphics file` header argument is
     **required**, in addition to `:file <FILENAME>`, in order for graphical output to be
-    sent automatically to file.  If `:file` is supplied, but not `:results graphics`,
+    sent automatically to file.  If `:file` is supplied, but not `:results output graphics file`,
     then non-graphical (`value` or `output`) results are written to file.
 
 Links to generated images will be expanded to include the contents of the
@@ -1579,7 +1579,7 @@ output`.
         the Org mode file syntax.   
         (default for code blocks in graphics-only languages)
     
-    -   **`:results graphics`:** (extra option for code blocks in maxima, octave and R)
+    -   **`:results output graphics file`:** (extra option for code blocks in maxima, octave and R)
         XXX
 
 3.  Format
