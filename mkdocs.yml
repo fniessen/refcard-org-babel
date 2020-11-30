@@ -1,5 +1,4 @@
 site_name: Org Babel reference card
-
 pages:
 - 'Introduction': 'index.md'
 - 'Code blocks': 'eval.md'
@@ -8,3 +7,4 @@ pages:
 - 'FAQ': 'faq.md'
 - 'Key bindings': 'key-bindings.md'
 - 'Colophon': 'colophon.md'
+theme: readthedocs
