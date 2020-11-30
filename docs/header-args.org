@@ -839,7 +839,7 @@ Specifies how code and/or results should be handled *during export*.
 
 - ~:exports code~ ::
      Includes (only) the body of the code block into the exported file. \\
-     (default) \\
+     (default shipped with Org mode) \\
      (default for Org code blocks)
 
 - ~:exports results~ ::
