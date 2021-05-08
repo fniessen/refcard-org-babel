@@ -112,8 +112,10 @@ These default language-specific header arguments can be changed by the user:
     (add-to-list 'org-babel-default-header-args:R
                  '(:session . "*org-R*"))
     
-    (add-to-list 'org-babel-default-header-args:R
-                 '((:width . 640) (:height . 640)))
+    (setf (alist-get :width org-babel-default-header-args:R) 640)
+    (setf (alist-get :height org-babel-default-header-args:R) 640)
+    
+For appending string to value of an exist key in `header-args`, see [pull-6](https://github.com/fniessen/refcard-org-babel/pull/6).
 
 This can also be done file-wide (for certain files) through the use of:
 
