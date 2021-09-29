@@ -16,7 +16,7 @@ The primary sources for this documentation are:
 
 ## Issues
 
-Report issues and suggest features and improvements on the [GitHub issue tracker](https://github.com/fniessen/refcard-org-babel /issues/new).
+Report issues and suggest features and improvements on the [GitHub issue tracker](https://github.com/fniessen/refcard-org-babel/issues/new).
 
 
 ## Patches

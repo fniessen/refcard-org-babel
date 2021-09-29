@@ -20,7 +20,7 @@ The primary sources for this documentation are:
 
 ** Issues
 
-Report issues and suggest features and improvements on the [[https://github.com/fniessen/refcard-org-babel /issues/new][GitHub issue tracker]].
+Report issues and suggest features and improvements on the [[https://github.com/fniessen/refcard-org-babel/issues/new][GitHub issue tracker]].
 
 ** Patches
 
