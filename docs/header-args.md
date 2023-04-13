@@ -1934,10 +1934,10 @@ Controls the permissions of tangled files.
 ## Remarks
 
 Multiple `var` specifications behind a single `:var` are allowed.  The multiple
-var arguments must be comma-separated:
+var arguments must be space-separated:
 
-    #+PROPERTY: header-args :var foo=1, bar=2
     
+    #+PROPERTY: header-args :var foo=1 bar=2
     #+begin_src emacs-lisp
     (+ foo bar)
     #+end_src
@@ -1947,7 +1947,7 @@ var arguments must be comma-separated:
 
 and
 
-    #+begin_src emacs-lisp :var foo="hello", bar="world"
+    #+begin_src emacs-lisp :var foo="hello" bar="world"
     (concat foo " " bar)
     #+end_src
     
