@@ -77,8 +77,7 @@ Prolonged use may cause addiction!
 
 See http://org-babel.readthedocs.org/ for full documentation.
 
-#+begin_note
-Please be aware that when viewing this content on the web, the example org-babel
-blocks may not be visible due to rendering limitations. To see the complete
-content, it is recommended to *use Emacs* and *open the =.org= files directly*.
-#+end_note
+*NOTE --* Please be aware that when viewing this content on the web, the example
+org-babel blocks may not be visible due to rendering limitations. To see the
+complete content, it is recommended to *use Emacs* and *open the =.org= files
+directly*.
