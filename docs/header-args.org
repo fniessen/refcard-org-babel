@@ -872,6 +872,14 @@ Specifies how code and/or results should be handled *during export*.
   evaluation is allowed during export, because its side-effects may be needed
   for code run elsewhere.  If you don't want that, set ~:eval~ accordingly.
 
+** Examples
+
+#+BEGIN_SRC bash :exports code
+printf "This text will not be exported.\n"
+#+END_SRC
+
+Only the ~bash~ block will appear in the export, but *not* its output.
+
 ** See also
 
 [[#cache][:cache]] \\
