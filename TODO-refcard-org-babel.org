@@ -1,0 +1,47 @@
+
+* Tasks
+
+** TODO Add key bidnings about expanding / collapsing code blocks
+
+Dans Org mode sous Emacs, les blocs de code (chunks) peuvent être repliés ou
+développés. Pour rendre toutes les lignes visibles, voici plusieurs méthodes :
+
+1. Utiliser org-babel-expand-src-block
+
+   Si vous souhaitez voir le code complet d'un seul bloc, placez votre curseur
+   dessus et utilisez :
+
+       M-x org-babel-expand-src-block
+
+   Cela affichera le code complet sous une forme temporaire.
+
+2. Déplier tous les blocs de code
+
+   Si vous voulez afficher toutes les lignes de tous les blocs de code dans un
+   document Org, utilisez la commande :
+
+       M-x org-show-block-all
+
+   ou la touche de raccourci :
+
+       C-c C-x v
+
+   Cela développera tous les blocs source dans le document.
+
+3. Modifier la visibilité par défaut des blocs
+
+   Si vous voulez que tous les blocs de code soient toujours visibles par défaut
+   (au lieu d’être repliés), ajoutez cette ligne dans votre fichier de
+   configuration Emacs :
+
+       (setq org-startup-folded nil)
+
+   Ou pour activer uniquement l'affichage des blocs de code :
+
+       (setq org-babel-hide-block-startup nil)
+
+4. Désactiver le repliement des blocs
+
+   Si vous voulez empêcher Org mode de cacher les blocs source par défaut :
+
+       (setq org-hide-block-startup nil)
