@@ -1,0 +1,81 @@
+#+TITLE: Exemple de chaînage de code avec Org-Babel
+#+AUTHOR: Un utilisateur inspiré
+#+DATE: 2025-02-10
+#+OPTIONS: toc:nil
+
+#+SETUPFILE: ~/org/setup/html-theme-readtheorg.setup
+
+* Introduction
+
+Ce document illustre comment utiliser le chaînage de blocs de code avec
+Org-Babel. Nous allons enchaîner quatre langages différents (*Shell, AWK, R, et
+Emacs Lisp*) afin de :
+
+1. Lister les fichiers d'un répertoire donné (*Shell*).
+2. Filtrer ceux contenant le mot *note* (*AWK*).
+3. Compter le nombre de fichiers correspondants (*R*).
+4. Générer un message adapté en fonction du résultat (*Emacs Lisp*).
+
+* Code source
+
+** Étape 1 : Lister les fichiers (Shell)
+
+Ce premier bloc exécute la commande ~ls~ dans un répertoire donné (par défaut le
+répertoire courant) et produit une liste de fichiers.
+
+#+name: list_files
+#+begin_src shell :results output
+find . -maxdepth 1 -type f -printf "%f\n"
+#+end_src
+
+** Étape 2 : Filtrer les fichiers contenant "note" (AWK)
+
+Ce second bloc reçoit la liste des fichiers et utilise *AWK* pour ne garder que
+ceux contenant "note" dans leur nom.
+
+#+name: filter_files_does_not_work
+#+begin_src awk :results output :var files=list_files
+{ if ($0 ~ /note/) print $0 }
+#+end_src
+
+#+begin_warning
+~:var files=list_files~ does not send ~list_files~ to AWK's standard input. It
+defines an AWK variable named ~files~, which would require to be explicitly
+processed, while my rule expects input records through ~$0~, so ~:stdin~ is the
+appropriate Babel header argument for this pipeline.
+#+end_warning
+
+#+name: filter_files
+#+begin_src awk :results output :stdin list_files
+{ if ($0 ~ /note/) print $0 }
+#+end_src
+
+** Étape 3 : Compter le nombre de fichiers obtenus (R)
+
+Ici, nous utilisons *R* pour compter le nombre de fichiers résultants.
+
+#+name: count_filtered_files
+#+begin_src R :results value :var filtered_files=filter_files
+length(unlist(strsplit(filtered_files, "\n")))
+#+end_src
+
+** Étape 4 : Générer un message (Emacs Lisp)
+
+Enfin, ce bloc *Emacs Lisp* affiche un message différent en fonction du nombre de
+fichiers obtenus.
+
+#+name: generate_message
+#+begin_src emacs-lisp :results value :var count=count_filtered_files
+(if (> count 0)
+    (format "Il y a %d fichier%s correspondant%s."
+            count
+            (if (= count 1) "" "s")
+            (if (= count 1) "" "s"))
+  "Aucun fichier correspondant n'a été trouvé.")
+#+end_src
+
+* Conclusion
+
+Ce document montre comment enchaîner des blocs de code dans Org-Babel en
+transmettant explicitement les résultats entre eux via ~:var~. Cela permet une
+exécution fluide et interconnectée des traitements.
