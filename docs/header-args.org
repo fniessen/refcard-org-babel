@@ -681,7 +681,7 @@ Specifies the default (possibly *remote*) directory during code block execution.
 ** Remarks
 
 You can use the ~:dir~ header argument for *remote execution*.  The directory is
-specified using using [[http://www.gnu.org/software/emacs/manual/html_node/tramp/Filename-Syntax.html][Tramp filename syntax]].
+specified using using [[https://www.gnu.org/software/emacs/manual/html_node/tramp/File-name-syntax.html][Tramp filename syntax]].
 
 ~:results output~ seems to be necessary!
 
